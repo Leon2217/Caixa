@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33A96B26-5033-4767-AC1E-D126867EDBD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Caixa</RootNamespace>
+    <AssemblyName>Caixa</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\estagiario\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://localhost/Caixa/</UpdateUrl>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>668F00CCE0A9C0814094AB4551A8D77E8730BCD1</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Caixa_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CurrencyTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\CurrencyTextBox.1.4.3\lib\CurrencyTextBoxControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Google.Protobuf.3.5.1\lib\netstandard1.0\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\MySql.Data.8.0.11\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=16.1451.0.37, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Syncfusion.Xamarin.SfNumericTextBox.16.1.0.37\lib\netstandard1.0\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abertura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abertura.designer.cs">
+      <DependentUpon>Abertura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="assinada.cs" />
+    <Compile Include="assinadaDAO.cs" />
+    <Compile Include="Caixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caixa.designer.cs">
+      <DependentUpon>Caixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cartao.cs" />
+    <Compile Include="Cartaocaixa.cs" />
+    <Compile Include="CartaocaixaDAO.cs" />
+    <Compile Include="Cartaomaquina.cs" />
+    <Compile Include="CartaomaquinaDAO.cs" />
+    <Compile Include="CartoesDAO.cs" />
+    <Compile Include="Conexao.cs" />
+    <Compile Include="Contas.cs" />
+    <Compile Include="Contas2.cs" />
+    <Compile Include="Contas3.cs" />
+    <Compile Include="ContasDAO.cs" />
+    <Compile Include="CredDeb.cs" />
+    <Compile Include="credDebDAO.cs" />
+    <Compile Include="Credito.cs" />
+    <Compile Include="CreditoDAO.cs" />
+    <Compile Include="Criptografia.cs" />
+    <Compile Include="Debito.cs" />
+    <Compile Include="DebitoDAO.cs" />
+    <Compile Include="Despesa.cs" />
+    <Compile Include="DespesaDAO.cs" />
+    <Compile Include="DevMoeda.cs" />
+    <Compile Include="DevMoedaDAO.cs" />
+    <Compile Include="Diferenca.cs" />
+    <Compile Include="diferencaDAO.cs" />
+    <Compile Include="Dinheiro.cs" />
+    <Compile Include="DinheiroDAO.cs" />
+    <Compile Include="EntradaDev.cs" />
+    <Compile Include="EntradaDevDAO.cs" />
+    <Compile Include="Entradamoeda.cs" />
+    <Compile Include="EntradamoedaDAO.cs" />
+    <Compile Include="Falta.cs" />
+    <Compile Include="FaltaDAO.cs" />
+    <Compile Include="Fechamento.cs" />
+    <Compile Include="FechamentoDAO.cs" />
+    <Compile Include="Form1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAssinadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAssinadas.designer.cs">
+      <DependentUpon>frmAssinadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadFunc.designer.cs">
+      <DependentUpon>frmCadFunc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadOperadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadOperadora.designer.cs">
+      <DependentUpon>frmCadOperadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadusu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadusu.designer.cs">
+      <DependentUpon>frmCadusu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmContasPagas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmContasPagas.Designer.cs">
+      <DependentUpon>frmContasPagas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCredito.designer.cs">
+      <DependentUpon>frmCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDebito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDebito.designer.cs">
+      <DependentUpon>frmDebito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDespesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDespesa.Designer.cs">
+      <DependentUpon>frmDespesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevoluçãodeMoeda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevoluçãodeMoeda.designer.cs">
+      <DependentUpon>frmDevoluçãodeMoeda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDinheiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDinheiro.designer.cs">
+      <DependentUpon>frmDinheiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntradaMoeda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEntradaMoeda.designer.cs">
+      <DependentUpon>frmEntradaMoeda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEs.designer.cs">
+      <DependentUpon>frmEs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmESM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmESM.designer.cs">
+      <DependentUpon>frmESM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcluirFunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExcluirFunc.Designer.cs">
+      <DependentUpon>frmExcluirFunc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcluirOperadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExcluirOperadora.designer.cs">
+      <DependentUpon>frmExcluirOperadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcluirUsu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExcluirUsu.designer.cs">
+      <DependentUpon>frmExcluirUsu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcluirValores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExcluirValores.designer.cs">
+      <DependentUpon>frmExcluirValores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFalta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFalta.designer.cs">
+      <DependentUpon>frmFalta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGeral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeral.Designer.cs">
+      <DependentUpon>frmGeral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventario.designer.cs">
+      <DependentUpon>frmInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventariorec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventariorec.designer.cs">
+      <DependentUpon>frmInventariorec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovimentoCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMovimentoCaixa.designer.cs">
+      <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpcaoFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpcaoFecha.designer.cs">
+      <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpValeCap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpValeCap.designer.cs">
+      <DependentUpon>frmOpValeCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpçãodeMoeda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpçãodeMoeda.designer.cs">
+      <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPesquisaRecarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPesquisaRecarga.designer.cs">
+      <DependentUpon>frmPesquisaRecarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecarga.designer.cs">
+      <DependentUpon>frmRecarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatCartao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatCartao.Designer.cs">
+      <DependentUpon>frmRelatCartao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatContas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatContas.Designer.cs">
+      <DependentUpon>frmRelatContas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatDif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatDif.Designer.cs">
+      <DependentUpon>frmRelatDif.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatFalta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatFalta.designer.cs">
+      <DependentUpon>frmRelatFalta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatVendavc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatVendavc.designer.cs">
+      <DependentUpon>frmRelatVendavc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSangria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSangria.designer.cs">
+      <DependentUpon>frmSangria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuprimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuprimento.designer.cs">
+      <DependentUpon>frmSuprimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipo.Designer.cs">
+      <DependentUpon>frmTipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmValorOperadora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValorOperadora.designer.cs">
+      <DependentUpon>frmValorOperadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVendavc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVendavc.designer.cs">
+      <DependentUpon>frmVendavc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Geral.cs" />
+    <Compile Include="GeralDAO.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="InicialCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InicialCaixa.designer.cs">
+      <DependentUpon>InicialCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario.cs" />
+    <Compile Include="InventarioDAO.cs" />
+    <Compile Include="Inventariorec.cs" />
+    <Compile Include="InventariorecDAO.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maquinas.cs" />
+    <Compile Include="MaquinasDAO.cs" />
+    <Compile Include="Marca.cs" />
+    <Compile Include="MarcaDAO.cs" />
+    <Compile Include="Operadora.cs" />
+    <Compile Include="OperadoraDAO.cs" />
+    <Compile Include="Pessoa.cs" />
+    <Compile Include="PessoaDAO.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recarga.cs" />
+    <Compile Include="RecargaDAO.cs" />
+    <Compile Include="Sangria.cs" />
+    <Compile Include="SangriaDAO.cs" />
+    <Compile Include="suprimentoDAO.cs" />
+    <Compile Include="suprimentos.cs" />
+    <Compile Include="Tipo.cs" />
+    <Compile Include="TipoDAO.cs" />
+    <Compile Include="totalcartao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="totalcartao.designer.cs">
+      <DependentUpon>totalcartao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Turno.cs" />
+    <Compile Include="TurnoDAO.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioDAO.cs" />
+    <Compile Include="Valorcaixa.cs" />
+    <Compile Include="ValorcaixaDAO.cs" />
+    <Compile Include="Valorcxm.cs" />
+    <Compile Include="ValorcxmDAO.cs" />
+    <Compile Include="Valorgeral.cs" />
+    <Compile Include="ValorgeralDAO.cs" />
+    <Compile Include="Valoroperadora.cs" />
+    <Compile Include="ValoroperadoraDAO.cs" />
+    <Compile Include="VendaVC.cs" />
+    <Compile Include="VendaVCDAO.cs" />
+    <Compile Include="Verifica.cs" />
+    <Compile Include="VerificaDAO.cs" />
+    <EmbeddedResource Include="Abertura.resx">
+      <DependentUpon>Abertura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caixa.resx">
+      <DependentUpon>Caixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Form1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAssinadas.resx">
+      <DependentUpon>frmAssinadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadFunc.resx">
+      <DependentUpon>frmCadFunc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadOperadora.resx">
+      <DependentUpon>frmCadOperadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadusu.resx">
+      <DependentUpon>frmCadusu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmContasPagas.resx">
+      <DependentUpon>frmContasPagas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCredito.resx">
+      <DependentUpon>frmCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDebito.resx">
+      <DependentUpon>frmDebito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDespesa.resx">
+      <DependentUpon>frmDespesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevoluçãodeMoeda.resx">
+      <DependentUpon>frmDevoluçãodeMoeda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDinheiro.resx">
+      <DependentUpon>frmDinheiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEntradaMoeda.resx">
+      <DependentUpon>frmEntradaMoeda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEs.resx">
+      <DependentUpon>frmEs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmESM.resx">
+      <DependentUpon>frmESM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcluirFunc.resx">
+      <DependentUpon>frmExcluirFunc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcluirOperadora.resx">
+      <DependentUpon>frmExcluirOperadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcluirUsu.resx">
+      <DependentUpon>frmExcluirUsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcluirValores.resx">
+      <DependentUpon>frmExcluirValores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFalta.resx">
+      <DependentUpon>frmFalta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGeral.resx">
+      <DependentUpon>frmGeral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventario.resx">
+      <DependentUpon>frmInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventariorec.resx">
+      <DependentUpon>frmInventariorec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovimentoCaixa.resx">
+      <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpcaoFecha.resx">
+      <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpValeCap.resx">
+      <DependentUpon>frmOpValeCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpçãodeMoeda.resx">
+      <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPesquisaRecarga.resx">
+      <DependentUpon>frmPesquisaRecarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecarga.resx">
+      <DependentUpon>frmRecarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatCartao.resx">
+      <DependentUpon>frmRelatCartao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatContas.resx">
+      <DependentUpon>frmRelatContas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatDif.resx">
+      <DependentUpon>frmRelatDif.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatFalta.resx">
+      <DependentUpon>frmRelatFalta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatVendavc.resx">
+      <DependentUpon>frmRelatVendavc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSangria.resx">
+      <DependentUpon>frmSangria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSuprimento.resx">
+      <DependentUpon>frmSuprimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipo.resx">
+      <DependentUpon>frmTipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValorOperadora.resx">
+      <DependentUpon>frmValorOperadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVendavc.resx">
+      <DependentUpon>frmVendavc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InicialCaixa.resx">
+      <DependentUpon>InicialCaixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="totalcartao.resx">
+      <DependentUpon>totalcartao.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Caixa_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Accounting_icon-icons.com_74682.ico" />
+    <Content Include="Caixa.csproj.user" />
+    <None Include="Resources\1489436625-chartmoneydollarcurrency_81885.png" />
+    <None Include="Resources\Paperdesk_icon-icons.com_51135.png" />
+    <None Include="Resources\three-dots-more-indicator_icon-icons.com_72518.png" />
+    <None Include="Resources\more-button-of-three-dots_icon-icons.com_74259.png" />
+    <None Include="Resources\business_salesreport_salesreport_negocio_2353.png" />
+    <Content Include="UpgradeLog.htm" />
+    <Content Include="UpgradeLog2.htm" />
+    <Content Include="UpgradeLog3.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 e x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

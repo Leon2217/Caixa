@@ -1,0 +1,374 @@
+﻿namespace Caixa
+{
+    partial class frmRelatContas
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelatContas));
+            this.btnPaideFamilia = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.mskAté = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mskDe = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkNf = new System.Windows.Forms.CheckBox();
+            this.chkPc = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbFornecedor = new System.Windows.Forms.ComboBox();
+            this.txtNf = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.gvExibir = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.cmbS = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnAt = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtn = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // btnPaideFamilia
+            // 
+            this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
+            this.btnPaideFamilia.Location = new System.Drawing.Point(761, 14);
+            this.btnPaideFamilia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPaideFamilia.Name = "btnPaideFamilia";
+            this.btnPaideFamilia.Size = new System.Drawing.Size(181, 65);
+            this.btnPaideFamilia.TabIndex = 14;
+            this.btnPaideFamilia.Text = "Gerar .PDF";
+            this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPaideFamilia.UseVisualStyleBackColor = false;
+            this.btnPaideFamilia.Click += new System.EventHandler(this.btnPaideFamilia_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
+            this.btnExport.Location = new System.Drawing.Point(761, 89);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(181, 65);
+            this.btnExport.TabIndex = 13;
+            this.btnExport.Text = "Gerar Excel";
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // mskAté
+            // 
+            this.mskAté.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskAté.Location = new System.Drawing.Point(224, 16);
+            this.mskAté.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mskAté.Mask = "00/00/0000";
+            this.mskAté.Name = "mskAté";
+            this.mskAté.Size = new System.Drawing.Size(119, 26);
+            this.mskAté.TabIndex = 2;
+            this.mskAté.TextChanged += new System.EventHandler(this.mskAté_TextChanged);
+            this.mskAté.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskAté_KeyDown);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(182, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Até";
+            // 
+            // mskDe
+            // 
+            this.mskDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskDe.Location = new System.Drawing.Point(55, 16);
+            this.mskDe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mskDe.Mask = "00/00/0000";
+            this.mskDe.Name = "mskDe";
+            this.mskDe.Size = new System.Drawing.Size(119, 26);
+            this.mskDe.TabIndex = 1;
+            this.mskDe.TextChanged += new System.EventHandler(this.mskDe_TextChanged);
+            this.mskDe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskDe_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "De:";
+            // 
+            // chkNf
+            // 
+            this.chkNf.AutoSize = true;
+            this.chkNf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.chkNf.Location = new System.Drawing.Point(161, 53);
+            this.chkNf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkNf.Name = "chkNf";
+            this.chkNf.Size = new System.Drawing.Size(50, 24);
+            this.chkNf.TabIndex = 5;
+            this.chkNf.Text = "NF";
+            this.chkNf.UseVisualStyleBackColor = true;
+            this.chkNf.CheckedChanged += new System.EventHandler(this.chkNf_CheckedChanged);
+            // 
+            // chkPc
+            // 
+            this.chkPc.AutoSize = true;
+            this.chkPc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.chkPc.Location = new System.Drawing.Point(12, 53);
+            this.chkPc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkPc.Name = "chkPc";
+            this.chkPc.Size = new System.Drawing.Size(141, 24);
+            this.chkPc.TabIndex = 4;
+            this.chkPc.Text = "Pedido/Cheque";
+            this.chkPc.UseVisualStyleBackColor = true;
+            this.chkPc.CheckedChanged += new System.EventHandler(this.chkPc_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label3.Location = new System.Drawing.Point(351, 19);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 20);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Fornecedor:";
+            // 
+            // cmbFornecedor
+            // 
+            this.cmbFornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cmbFornecedor.FormattingEnabled = true;
+            this.cmbFornecedor.Location = new System.Drawing.Point(454, 16);
+            this.cmbFornecedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbFornecedor.Name = "cmbFornecedor";
+            this.cmbFornecedor.Size = new System.Drawing.Size(299, 28);
+            this.cmbFornecedor.TabIndex = 3;
+            this.cmbFornecedor.SelectedIndexChanged += new System.EventHandler(this.cmbFornecedor_SelectedIndexChanged);
+            this.cmbFornecedor.TextChanged += new System.EventHandler(this.cmbFornecedor_TextChanged);
+            // 
+            // txtNf
+            // 
+            this.txtNf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNf.Location = new System.Drawing.Point(219, 51);
+            this.txtNf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNf.MaxLength = 10;
+            this.txtNf.Name = "txtNf";
+            this.txtNf.Size = new System.Drawing.Size(124, 26);
+            this.txtNf.TabIndex = 6;
+            this.txtNf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNf.Visible = false;
+            this.txtNf.TextChanged += new System.EventHandler(this.txtNf_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.label4.Location = new System.Drawing.Point(351, 54);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 20);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Status:";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "Atrasado",
+            "Em aberto",
+            "Pago"});
+            this.cmbStatus.Location = new System.Drawing.Point(454, 51);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(180, 28);
+            this.cmbStatus.TabIndex = 7;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            this.cmbStatus.TextChanged += new System.EventHandler(this.cmbStatus_TextChanged);
+            // 
+            // gvExibir
+            // 
+            this.gvExibir.AllowUserToAddRows = false;
+            this.gvExibir.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvExibir.Location = new System.Drawing.Point(12, 93);
+            this.gvExibir.Name = "gvExibir";
+            this.gvExibir.ReadOnly = true;
+            this.gvExibir.Size = new System.Drawing.Size(741, 337);
+            this.gvExibir.TabIndex = 21;
+            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick_1);
+            this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(762, 276);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 20);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "ID:";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(803, 273);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(139, 26);
+            this.txtID.TabIndex = 23;
+            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
+            // 
+            // cmbS
+            // 
+            this.cmbS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbS.FormattingEnabled = true;
+            this.cmbS.Items.AddRange(new object[] {
+            "Em aberto",
+            "Pago"});
+            this.cmbS.Location = new System.Drawing.Point(761, 357);
+            this.cmbS.Name = "cmbS";
+            this.cmbS.Size = new System.Drawing.Size(181, 28);
+            this.cmbS.TabIndex = 24;
+            this.cmbS.SelectedIndexChanged += new System.EventHandler(this.cmbS_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(759, 334);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 20);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Status:";
+            // 
+            // btnAt
+            // 
+            this.btnAt.BackColor = System.Drawing.Color.White;
+            this.btnAt.Location = new System.Drawing.Point(761, 391);
+            this.btnAt.Name = "btnAt";
+            this.btnAt.Size = new System.Drawing.Size(181, 39);
+            this.btnAt.TabIndex = 26;
+            this.btnAt.Text = "Atualizar";
+            this.btnAt.UseVisualStyleBackColor = false;
+            this.btnAt.Click += new System.EventHandler(this.btnAt_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(762, 310);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 20);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "NF:";
+            // 
+            // txtn
+            // 
+            this.txtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtn.Location = new System.Drawing.Point(803, 307);
+            this.txtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtn.MaxLength = 10;
+            this.txtn.Name = "txtn";
+            this.txtn.Size = new System.Drawing.Size(139, 26);
+            this.txtn.TabIndex = 28;
+            this.txtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtn.TextChanged += new System.EventHandler(this.txtn_TextChanged);
+            // 
+            // frmRelatContas
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PapayaWhip;
+            this.ClientSize = new System.Drawing.Size(949, 439);
+            this.Controls.Add(this.txtn);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnAt);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cmbS);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.gvExibir);
+            this.Controls.Add(this.cmbStatus);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtNf);
+            this.Controls.Add(this.cmbFornecedor);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.chkPc);
+            this.Controls.Add(this.chkNf);
+            this.Controls.Add(this.btnPaideFamilia);
+            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.mskAté);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.mskDe);
+            this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.Name = "frmRelatContas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = ".: Relatórios de contas";
+            this.Load += new System.EventHandler(this.frmRelatContas_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRelatContas_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnPaideFamilia;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.MaskedTextBox mskAté;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox mskDe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkNf;
+        private System.Windows.Forms.CheckBox chkPc;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbFornecedor;
+        private System.Windows.Forms.TextBox txtNf;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.DataGridView gvExibir;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.ComboBox cmbS;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnAt;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtn;
+    }
+}
