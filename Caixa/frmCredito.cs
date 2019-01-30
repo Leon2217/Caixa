@@ -23,6 +23,9 @@ namespace Caixa
         GeralDAO gerDAO = new GeralDAO();
         ValorgeralDAO vgDAO = new ValorgeralDAO();
         Valorgeral vg = new Valorgeral();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         #endregion
 
         #region VAR
@@ -77,9 +80,15 @@ namespace Caixa
                         cred.Hora = Convert.ToDateTime(mskHr.Text);
                         cred.Responsavel = txtResponsa.Text.ToString();
                         credDAO.Inserir(cred);
+
+                        aud.Acao = "INSERIU MOV CREDITO";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                         #endregion
 
-                      
+
                         if (vcDAO.Verificavalor()==true)
                         {
                             vcDAO.Update(valor);
@@ -123,9 +132,11 @@ namespace Caixa
                             vgDAO.Verificavalor();
                             #region GERAL
                             ger.Data = Convert.ToDateTime(mskData.Text);
-                            ger.Desc_g = "CRÉDITO";
+                            ger.Desc_g = "";
                             ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
                             ger.Deb_g = "0,00";
+                            ger.Func = "0,00";
+                            ger.Forn = "0,00";
                             ger.Total = vgDAO.Vg.Valor;
                             gerDAO.Inserir(ger);
                             ((frmMovimentoCaixa)this.Owner).AtualizaDados();
@@ -140,9 +151,11 @@ namespace Caixa
 
                             #region GERAL
                             ger.Data = Convert.ToDateTime(mskData.Text);        
-                            ger.Desc_g = "CRÉDITO";
+                            ger.Desc_g = "";
                             ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
                             ger.Deb_g = "0,00";
+                            ger.Func = "0,00";
+                            ger.Forn = "0,00";
                             ger.Total = vgDAO.Vg.Valor;
                             gerDAO.Inserir(ger);
                             ((frmMovimentoCaixa)this.Owner).AtualizaDados();
@@ -151,11 +164,14 @@ namespace Caixa
 
 
 
-
-
-
                         MessageBox.Show("Informações cadastradas com sucesso !!!");
                         Limpar();
+
+                        aud.Acao = "INSERIU CRÉDITO";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                 }
                 catch
@@ -219,7 +235,20 @@ namespace Caixa
             string hrtela = DateTime.Now.ToShortTimeString();
             mskData.Text = datatela;
             mskHr.Text = hrtela;
-            CarregarComboFornecedor();
+
+            txtResponsa.Text = UsuarioDAO.login;
+
+            try
+            {
+                CarregarComboFornecedor();
+                cmbFornecedor.SelectedIndex = -1;
+
+            }
+            catch
+            {
+                MessageBox.Show("Favor cadastrar fornecedores primeiro");
+            }
+    
             cmbFornecedor.Text = "";
         }
 
@@ -289,7 +318,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
@@ -340,13 +368,13 @@ namespace Caixa
             else
             {
                 cmbFornecedor.Enabled = false;
-                cmbFornecedor.Text = "";
+                cmbFornecedor.SelectedIndex = -1;
             }
         }
 
         private void cmbFornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbFornecedor.Text != string.Empty)
+            if (cmbFornecedor.Text != string.Empty && cmbFornecedor.Enabled==true)
             {
                 f = cmbFornecedor.Text.ToString();
             }

@@ -110,6 +110,11 @@
             // btnSalvar
             // 
             this.btnSalvar.BackColor = System.Drawing.Color.White;
+            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnSalvar.FlatAppearance.BorderSize = 2;
+            this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Location = new System.Drawing.Point(12, 270);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(458, 36);
@@ -133,7 +138,9 @@
             this.gvExibir.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
             this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gvExibir.Location = new System.Drawing.Point(12, 374);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
@@ -144,6 +151,11 @@
             // btnRelatorio
             // 
             this.btnRelatorio.BackColor = System.Drawing.Color.White;
+            this.btnRelatorio.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnRelatorio.FlatAppearance.BorderSize = 2;
+            this.btnRelatorio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRelatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnRelatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelatorio.Location = new System.Drawing.Point(12, 312);
             this.btnRelatorio.Name = "btnRelatorio";
             this.btnRelatorio.Size = new System.Drawing.Size(458, 36);
@@ -197,6 +209,7 @@
             this.mskDataem.Size = new System.Drawing.Size(107, 26);
             this.mskDataem.TabIndex = 5;
             this.mskDataem.TextChanged += new System.EventHandler(this.mskDataem_TextChanged);
+            this.mskDataem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskDataem_KeyDown);
             // 
             // label1
             // 
@@ -225,6 +238,7 @@
             this.mskData2.Size = new System.Drawing.Size(107, 26);
             this.mskData2.TabIndex = 10;
             this.mskData2.TextChanged += new System.EventHandler(this.mskData2_TextChanged);
+            this.mskData2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskData2_KeyDown);
             // 
             // mskData3
             // 
@@ -235,6 +249,7 @@
             this.mskData3.Size = new System.Drawing.Size(107, 26);
             this.mskData3.TabIndex = 12;
             this.mskData3.TextChanged += new System.EventHandler(this.mskData3_TextChanged);
+            this.mskData3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskData3_KeyDown);
             // 
             // label4
             // 
@@ -290,6 +305,11 @@
             // btnDespesa
             // 
             this.btnDespesa.BackColor = System.Drawing.Color.White;
+            this.btnDespesa.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnDespesa.FlatAppearance.BorderSize = 2;
+            this.btnDespesa.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDespesa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnDespesa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDespesa.Location = new System.Drawing.Point(276, 91);
             this.btnDespesa.Name = "btnDespesa";
             this.btnDespesa.Size = new System.Drawing.Size(194, 60);
@@ -329,6 +349,7 @@
             this.Controls.Add(this.cmbFornecedor);
             this.Controls.Add(this.lblFornecedor);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

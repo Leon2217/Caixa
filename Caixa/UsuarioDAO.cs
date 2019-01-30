@@ -19,9 +19,10 @@ namespace Caixa
 
         internal Usuario Usu { get => usu; set => usu = value; }
 
-
+        private static Boolean existe;
 
         public static string Login { get => login; set => login = value; }
+        public static bool Existe { get => existe; set => existe = value; }
 
         public static string login;
 
@@ -32,6 +33,7 @@ namespace Caixa
             executar_comando = new MySqlCommandBuilder(comando_sql);
             comando_sql.Fill(tabela_memoria);
         }
+
         #region VERIFICA ADMINISTRADOR
         public Boolean VerificaAdm(string login, string senha)
         {
@@ -57,9 +59,23 @@ namespace Caixa
             executarComando("select tipo from usuario where login_usu='" + login + "';");
             try
             {
-
-                //usu.Login_usu = tabela_memoria.Rows[0]["login_usu"].ToString();
                 usu.Tipo = tabela_memoria.Rows[0]["tipo"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA EXISTE
+        public Boolean VerificaExiste()
+        {
+            executarComando("select * from usuario;");
+            try
+            {
+                usu.Login_usu = tabela_memoria.Rows[0]["login_usu"].ToString();
                 return true;
             }
             catch

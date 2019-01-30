@@ -1,0 +1,1069 @@
+//drop database caixa;
+
+create database caixa1;
+
+use caixa1;
+
+create table usuario
+(
+id_usu int not null auto_increment,
+login_usu text not null,
+senha_usu text not null,
+tipo text not null,
+status text not null,
+primary key(id_usu)
+);
+
+insert into usuario values(0,"Uzan","2402151956484741","Administrador","Ativo");
+insert into usuario values(0,"Helder","5432","Administrador","Ativo");
+insert into usuario values(0,"Luciana","5432","Administrador","Ativo");
+
+create table turno
+(
+id_turno int not null auto_increment,
+turno text not null,
+primary key(id_turno)
+);
+insert into turno values(0,"Manha");
+insert into turno values(0,"Tarde");
+insert into turno values(0,"Noite");
+
+create table caixa
+(
+id_caixa int not null auto_increment,
+id_turno int not null,
+datainicio datetime not null,
+datafinal datetime,
+hrinicio time not null,
+hrfinal time,
+status text,
+responsavel text not null,
+valor_relat text,
+primary key(id_caixa),
+foreign key(id_turno) references turno(id_turno)
+);
+
+
+create table suprimento
+(
+id_supri int not null auto_increment,
+id_caixa int not null,
+valor text not null,
+primary key(id_supri,id_caixa),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+create table operadora
+(
+id_operadora int not null auto_increment,
+operadora text not null,
+primary key(id_operadora)
+);
+
+create table recarga
+(
+id_recarga int not null auto_increment,
+id_caixa int not null,
+operadora text not null,
+valor_rec text not null,
+telefone text not null,
+descricao text not null,
+data date not null,
+hora time not null,
+total text not null,
+primary key(id_recarga),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+
+create table inventario_rec
+(
+id_ir int not null auto_increment,
+total text not null,
+primary key(id_ir)
+);
+
+
+create table valor_operadora
+(
+id_valor int not null auto_increment,
+id_operadora int not null,
+valor text not null,
+primary key(id_valor,id_operadora),
+foreign key(id_operadora) references operadora(id_operadora) on delete
+cascade on update cascade
+);
+
+
+create table credito
+(
+id_credito int not null auto_increment,
+desc_credito text not null,
+valor text not null,
+hora time not null,
+data date not null,
+responsavel text not null,
+primary key(id_credito)
+);
+
+
+create table debito
+(
+id_debito int not null auto_increment,
+desc_debito text not null,
+valor text not null,
+hora time not null,
+data date not null,
+responsavel text not null,
+primary key(id_debito)
+);
+
+create table credito_debito
+(
+id_cd int not null auto_increment,
+data date not null,
+hora time not null,
+desc_db text not null,
+responsa_db text not null,
+cred_db text,
+deb_db text,
+total text not null,
+primary key(id_cd)
+);
+
+create table geral
+(
+id_g int not null auto_increment,
+data date not null,
+desc_g text not null,
+cred_g text,
+deb_g text,
+total text not null,
+forn text,
+func text,
+primary key(id_g)
+);
+
+
+create table valor_geral
+(
+id_valorg int not null auto_increment,
+valor text not null,
+primary key(id_valorg)
+);
+
+
+create table valor_caixa
+(
+id_valorcaixa int not null auto_increment,
+valor text not null,
+primary key(id_valorcaixa)
+);
+
+create table tipo
+(
+id_tipo int not null auto_increment,
+tipo text not null,
+primary key(id_tipo)
+);
+insert into tipo values(0,"Fornecedor");
+insert into tipo values(0,"Funcionario");
+insert into tipo values(0,"Cliente");
+
+
+create table pessoa
+(
+id_pessoa int not null auto_increment,
+nome text,
+fisjur text not null,
+cpfnj varchar(20) unique,
+im text,
+ie text,
+fornecimento text,
+rs text,
+cel text,
+tel text,
+email varchar(40),
+obs text,
+primary key(id_pessoa)
+);
+
+
+
+create table endereco
+(
+id_end int not null auto_increment,
+id_pessoa int not null,
+tipo text,
+cep text,
+bairro text,
+uf text,
+n_casa int,
+rua text,
+cidade text,
+complemento text,
+primary key(id_end),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+create table contato
+(
+id_contato int not null auto_increment,
+id_pessoa int not null,
+nome text not null,
+email text not null,
+telefone text not null,
+dep text not null,
+primary key(id_contato),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+
+
+
+create table tipo_pessoa
+(
+id_tipo int not null,
+id_pessoa int not null,
+primary key(id_tipo, id_pessoa),
+foreign key(id_tipo) references tipo(id_tipo),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+create table fiado
+(
+id_pessoa int not null,
+valor text not null,
+primary key(id_pessoa),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+create table relatfiado
+(
+id_fiado int not null auto_increment,
+id_pessoa int not null,
+valor text not null,
+descr text,
+data date not null,
+primary key(id_fiado),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+create table assinadas
+(
+
+id_fiado int not null auto_increment,
+id_caixa int not null,
+classm text not null,
+julio text not null,
+assinada text not null,
+primary key(id_fiado),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+
+
+create table contas
+(
+id_contas int not null auto_increment,
+id_pessoa int not null,
+valor text not null,
+NF text not null,
+data date not null,
+data_em date not null,
+status text not null,
+primary key(id_contas),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+create table tipo_despesa
+(
+id_tipodespesa int not null auto_increment,
+nome text not null,
+primary key(id_tipodespesa)
+);
+
+
+create table despesa
+(
+id_despesa int not null auto_increment,
+id_pessoa int,
+id_tipodespesa int,
+descr text,
+valor text not null,
+data date not null,
+status text not null,
+primary key(id_despesa),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+
+create table falta
+(
+id_falta int not null auto_increment,
+id_pessoa int not null,
+data date not null,
+periodo text not null,
+primary key(id_falta),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+
+create table entrada_moeda
+(
+id_em int not null auto_increment,
+moeda_1 text,
+moeda_50 text,
+moeda_25 text,
+moeda_10 text,
+moeda_5 text,
+valor text,
+hora time not null,
+data date not null,
+responsavel text not null,
+primary key(id_em)
+);
+
+create table dev_moeda
+(
+id_dev int not null auto_increment,
+valor text,
+hora time not null,
+data date not null,
+responsavel text not null,
+primary key(id_dev)
+);
+
+
+create table entrada_dev
+(
+id_ed int not null auto_increment,
+data date not null,
+hora time not null,
+desc_ed text not null,
+responsa_ed text not null,
+moeda_1 text,
+moeda_50 text,
+moeda_25 text,
+moeda_10 text,
+moeda_5 text,
+entrada_ed text,
+saida_ed text,
+total text not null,
+primary key(id_ed)
+);
+
+create table valor_cxm
+(
+id_valorcxm int not null auto_increment,
+valor text not null,
+primary key(id_valorcxm)
+);
+
+
+
+create table dinheiro
+(
+id_qtd int not null auto_increment,
+id_caixa int not null,
+nota_100 text,
+nota_50 text,
+nota_20 text,
+nota_10 text,
+nota_5 text,
+nota_2 text,
+moeda_1 text,
+moeda_50 text,
+moeda_25 text,
+moeda_10 text,
+moeda_5 text,
+total text,
+primary key(id_qtd),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+create table gaveta
+(
+id_qtd int not null auto_increment,
+id_caixa int not null,
+nota_100 text,
+nota_50 text,
+nota_20 text,
+nota_10 text,
+nota_5 text,
+nota_2 text,
+moeda_1 text,
+moeda_50 text,
+moeda_25 text,
+moeda_10 text,
+moeda_5 text,
+total text,
+primary key(id_qtd),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+create table inventario
+(
+id_iv int not null auto_increment,
+qtd_est int not null,
+valor_vc text not null,
+primary key(id_iv)
+);
+
+
+create table venda_vc
+(
+id_vc int not null auto_increment,
+id_caixa int not null,
+qtd_vc int not null,
+valor_vc text not null,
+total_vc text not null,
+qtd_estoque int not null,
+total_vendas int not null,
+data date not null,
+hora time not null,
+descr text not null,
+primary key(id_vc),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+
+
+create table verifica
+(
+id_ver int not null auto_increment,
+verifica text not null,
+primary key(id_ver)
+);
+
+
+create table diferenca
+(
+id_diferenca int not null auto_increment,
+id_caixa int not null,
+manha text,
+tarde text,
+primary key(id_diferenca),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+create table sangria
+(
+id_sangria int not null auto_increment,
+id_caixa int not null,
+valor text not null,
+primary key(id_sangria),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+create table marca
+(
+id_marca int not null auto_increment,
+marca text not null,
+primary key(id_marca)
+);
+insert into marca values(0,"Visa");
+insert into marca values(0,"Mastercard");
+insert into marca values(0,"Elo");
+insert into marca values(0,"Hipercard");
+insert into marca values(0,"Sodexo");
+insert into marca values(0,"Ticket");
+insert into marca values(0,"American Express");
+insert into marca values(0,"Vr");
+insert into marca values(0,"Softnex");
+
+create table cartao
+(
+id_cartao int not null auto_increment,
+id_marca int not null,
+cartao text not null,
+tipo text not null,
+primary key (id_cartao),
+foreign key(id_marca) references marca(id_marca)
+on delete cascade on update cascade
+);
+insert into cartao values(0,1,"Visa credito","Cartao");
+insert into cartao values(0,1,"Visa debito","Cartao");
+insert into cartao values(0,2,"Mastercard credito","Cartao");
+insert into cartao values(0,2,"Mastercard debito","Cartao");
+insert into cartao values(0,3,"Elo debito","Cartao");
+insert into cartao values(0,3,"Elo credito","Cartao");
+insert into cartao values(0,4,"Hipercard","Cartao");
+insert into cartao values(0,3,"Elo alimentacao","Refeicao");
+insert into cartao values(0,3,"Elo refeicao","Refeicao");
+insert into cartao values(0,5,"Sodexo alimentacao","Refeicao");
+insert into cartao values(0,5,"Sodexo refeicao","Refeicao");
+insert into cartao values(0,6,"Ticket","Refeicao");
+insert into cartao values(0,2,"Maestro debito","Refeicao");
+insert into cartao values(0,7,"Amex","Cartao");
+insert into cartao values(0,8,"Vr refeicao","Refeicao");
+insert into cartao values(0,8,"Vr alimentacao","Refeicao");
+insert into cartao values(0,6,"Ticket ali","Refeicao");
+insert into cartao values(0,9,"Plantao card ali","Refeicao");
+insert into cartao values(0,9,"Plantao card ref","Refeicao");
+
+create table maquina
+(
+id_maquina int not null auto_increment,
+maquina text not null,
+primary key(id_maquina)
+);
+insert into maquina values(0,"getnet");
+insert into maquina values(0,"Stone");
+insert into maquina values(0,"getnet 2");
+
+create table cartaomaquina
+(
+id_maquina int not null,
+id_cartao int not null,
+primary key(id_maquina,id_cartao),
+foreign key(id_maquina) references maquina(id_maquina),
+foreign key(id_cartao) references cartao(id_cartao)
+);
+
+insert into cartaomaquina values(1,5);
+insert into cartaomaquina values(1,6);
+insert into cartaomaquina values(1,8);
+insert into cartaomaquina values(1,9);
+insert into cartaomaquina values(1,3);
+insert into cartaomaquina values(1,4);
+insert into cartaomaquina values(1,10);
+insert into cartaomaquina values(1,11);
+insert into cartaomaquina values(1,12);
+insert into cartaomaquina values(1,2);
+insert into cartaomaquina values(1,1);
+insert into cartaomaquina values(1,15);
+insert into cartaomaquina values(1,14);
+insert into cartaomaquina values(1,16);
+insert into cartaomaquina values(1,17);
+insert into cartaomaquina values(1,18);
+insert into cartaomaquina values(1,19);
+
+insert into cartaomaquina values(2,5);
+insert into cartaomaquina values(2,6);
+insert into cartaomaquina values(2,8);
+insert into cartaomaquina values(2,9);
+insert into cartaomaquina values(2,3);
+insert into cartaomaquina values(2,4);
+insert into cartaomaquina values(2,10);
+insert into cartaomaquina values(2,11);
+insert into cartaomaquina values(2,12);
+insert into cartaomaquina values(2,2);
+insert into cartaomaquina values(2,1);
+insert into cartaomaquina values(2,15);
+insert into cartaomaquina values(2,16);
+insert into cartaomaquina values(2,7);
+insert into cartaomaquina values(2,14);
+insert into cartaomaquina values(2,17);
+
+insert into cartaomaquina values(3,5);
+insert into cartaomaquina values(3,6);
+insert into cartaomaquina values(3,8);
+insert into cartaomaquina values(3,9);
+insert into cartaomaquina values(3,3);
+insert into cartaomaquina values(3,4);
+insert into cartaomaquina values(3,10);
+insert into cartaomaquina values(3,11);
+insert into cartaomaquina values(3,12);
+insert into cartaomaquina values(3,2);
+insert into cartaomaquina values(3,1);
+insert into cartaomaquina values(3,15);
+insert into cartaomaquina values(3,16);
+insert into cartaomaquina values(3,7);
+insert into cartaomaquina values(3,14);
+insert into cartaomaquina values(3,17);
+insert into cartaomaquina values(3,18);
+insert into cartaomaquina values(3,19);
+
+create table cartaocaixa
+(
+id_caixa int not null,
+id_cartao int not null,
+id_maquina int not null,
+valor text not null,
+primary key(id_caixa,id_cartao,id_maquina),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade,
+foreign key(id_cartao) references cartao(id_cartao),
+foreign key(id_maquina) references maquina(id_maquina)
+);
+
+
+create table taxas
+(
+id_cartao int not null,
+taxa text not null,
+dias text not null,
+primary key(id_cartao),
+foreign key(id_cartao) references cartao(id_cartao)
+on delete cascade on update cascade
+);
+
+create table relattx
+(
+id_caixa int not null,
+id_cartao int not null,
+id_maquina int not null,
+data date not null,
+valor text not null,
+taxa text not null,
+valor_ct text not null,
+primary key(id_caixa,id_cartao,id_maquina),
+foreign key(id_maquina) references maquina(id_maquina),
+foreign key(id_cartao) references cartao(id_cartao),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
+
+create table auditoria
+(
+id_aud int not null auto_increment,
+acao text not null,
+responsavel text not null,
+data date not null,
+hora time not null,
+primary key(id_aud)
+);
+
+
+create table temporaria
+(
+chave text not null
+);
+
+
+executarComando("delete a.* FROM assinadas a INNER JOIN caixa c on c.id_caixa = a.id_caixa;");
+
+
+
+
+DELETE assinadas.*,auditoria.*,contas.*,credito.*,credito_debito.*,debito.*,
+despesa.*,dev_moeda.*,diferenca.*,dinheiro.*,entrada_dev.*,entrada_moeda.*,falta.*,
+fiado.*,gaveta.*,geral.*,inventario.*,inventario_rec.*,recarga.*,relatfiado.*,relattx.*,sangria.*,
+suprimento.*,venda_vc.* from assinadas,auditoria,contas,credito,credito_debito,debito,despesa,dev_moeda,
+diferenca,dinheiro,entrada_dev,entrada_moeda,falta,fiado,gaveta,geral,inventario,inventario_rec,recarga,
+relatfiado,relattx,sangria,suprimento,venda_vc;
+
+
+
+
+INSTRUÇÕES: 31/08/2018
+
+CADASTRAR TAXA
+SODEXO: 6.90%    28 DIAS
+VR:     6.30%    28 DIAS
+TICKET: 6.00%    30 DIAS
+ALELO:  5.99%    31 DIAS
+PCARD:  5.50%    48 DIAS
+CRED:   4.14%    30 DIAS
+DEB:    2.31%    1  DIA
+
+
+
+CADASTRAR USUÁRIO
+CADASTRAR TIPOS DE PESSOA(FUNCIONÁRIO, CLIENTE, FORNECEDOR, CLIENTE E FORNECEDOR)
+
+
+
+
+
+
+
+
+select c.cartao,cc.valor from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno;
+
+
+
+
+
+
+
+
+select c.cartao,cc.valor from cartaocaixa cc inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22" and
+cx.status="Finalizado" and 
+t.turno="Manhã"
+and c.tipo="Cartão";
+
+select sum(cc.valor) as debcred from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Cartão";
+
+select c.cartao,cc.valor from cartaocaixa cc inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22" and
+cx.status="Finalizado" and 
+t.turno="Manhã"
+and c.tipo="Refeição";
+
+select sum(cc.valor) as totalali from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Refeição";
+
+select sum(cc.valor) as totalmanha from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where
+t.turno="Manhã" and
+cx.datafinal="2017-05-22";
+
+
+select c.cartao,cc.valor from cartaocaixa cc inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22" and
+cx.status="Finalizado" and 
+t.turno="Tarde"
+and c.tipo="Cartão";
+
+select sum(valor) as debcred from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where t.turno="Tarde" and
+cx.datafinal="2017-05-22"
+and c.tipo="Cartão";
+
+select sum(valor) as acumuladodebcred from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22"
+and c.tipo="Cartão";
+
+
+select c.cartao,cc.valor from cartaocaixa cc inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22" and
+cx.status="Finalizado" and 
+t.turno="Tarde"
+and c.tipo="Refeição";
+
+select sum(valor) as totalali from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22"
+and c.tipo="Refeição" and
+t.turno="Tarde";
+
+select sum(cc.valor) as totaltarde from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where
+t.turno="Tarde" and
+cx.datafinal="2017-05-22";
+
+select sum(valor) as totalacumuladoali from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+where cx.datafinal="2017-05-22"
+and c.tipo="Refeição";
+
+
+
+
+
+select sum(cc.valor) as subtotal from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+inner join maquina m
+on m.id_maquina=cc.id_maquina
+inner join marca ma
+on ma.id_marca=c.id_marca
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Cartão"
+and m.maquina="getnet"
+and ma.marca="Elo";
+
+
+select sum(cc.valor) as subtotal from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+inner join maquina m
+on m.id_maquina=cc.id_maquina
+inner join marca ma
+on ma.id_marca=c.id_marca
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Refeição"
+and m.maquina="getnet"
+and ma.marca="Elo";
+
+
+
+select sum(cc.valor) as debcred from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+inner join maquina m
+on m.id_maquina=cc.id_maquina
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Cartão"
+and m.maquina="Maquina 2";
+
+select sum(cc.valor) as debcred from cartaocaixa cc
+inner join caixa cx
+on cx.id_caixa=cc.id_caixa
+inner join cartao c
+on c.id_cartao=cc.id_cartao
+inner join turno t
+on cx.id_turno=t.id_turno
+inner join maquina m
+on m.id_maquina=cc.id_maquina
+where t.turno="Manhã" and
+cx.datafinal="2017-05-22"
+and c.tipo="Cartão"
+and m.maquina="Maquina 3";
+
+
+select c.cartao,cm.valor,cm.id_cartao,cm.id_maquina from cartaomaquina cm inner join cartao c on c.id_cartao=cm.id_cartao inner join maquina m on m.id_maquina=cm.id_maquina where cm.id_maquina=1;
+
+
+select valor from cartaocaixa cc inner caixa c
+on c.id_caixa=cc.id_caixa
+inner join maquina m
+on m.id_maquina
+
+
+
+
+
+
+
+//SELECT DO TOTAL DE DINHEIRO POR PERÍODO:
+
+select d.total from dinheiro d inner join caixa ca on ca.id_caixa=d.id_caixa inner join turno t on t.id_turno=ca.id_turno where ca.id_turno=1 and ca.datainicio="2018-06-01";
+select d.total from dinheiro d inner join caixa ca on ca.id_caixa=d.id_caixa inner join turno t on t.id_turno=ca.id_turno where ca.id_turno=2 and ca.datainicio="2018-06-01";
+
+//
+
+
+
+
+
+
+
+select id_qtd from dinheiro d inner join caixa ca on d.id_caixa=ca.id_caixa where ca.id_caixa=2;
+update dinheiro set total=(nota_100*100)+(nota_50*50)+(nota_20*20)+(nota_10*10)+(nota_5*5)+(nota_2*2)+(moeda_1*1)+(moeda_50*0.50)+(moeda_25*0.25)+(moeda_10*0.10)+(moeda_5*0.05) where id_qtd=1;
+select login_usu from usuario where login_usu="Uzan" and senha_usu="1234" and tipo="Adm" and status="Ativo";
+select c.cartao from cartaomaquina cm inner join cartao c on c.id_cartao=cm.id_cartao inner join maquina m on m.id_maquina=cm.id_maquina where c.cartao like'f%'and c.id_cartao>16 and m.id_maquina=1; 
+
+
+select id_caixa from caixa where responsavel="Uzan" and tipo="Administrador";
+
+
+
+insert into caixa values(0,2,"2017-05-22","Finalizado","Danilo","");
+insert into caixa values(0,1,"2017-05-23","Finalizado","Danilo","");
+insert into caixa values(0,2,"2017-05-23","Finalizado","Danilo","");
+
+
+
+
+
+
+select classm,julio,assinada from assinadas a inner join caixa ca on ca.id_caixa=a.id_caixa where ca.datainicio="2018-06-04";
+
+insert into caixa values(0,1,"2018-05-23",null,"9:00",null,"Fechado","Uzan");
+
+select sum(valor) from cartaocaixa cc inner join caixa c on c.id_caixa= where id_caixa=2;
+
+select * from cartaocaixa c inner join caixa ca on ca.id_caixa=c.id_caixa
+inner join cartao car
+on car.id_cartao=c.id_cartao
+inner join cartaomaquina cm
+on cm.id_cartao=car.id_cartao
+inner join turno t
+on t.id_turno=ca.id_turno
+where cm.id_maquina=1 
+and t.id_turno=1;
+
+
+
+
+Select
+CASE 
+WHEN valor is null THEN "0.00"
+ELSE valor
+END as cartaocaixa;
+
+
+
+
+
+
+CREATE PROCEDURE 
+
+
+
+
+
+
+SELECT sum(valor_rec) FROM RECARGA R INNER JOIN CAIXA C ON C.ID_CAIXA=R.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=2 AND C.DATAINICIO="2018-06-27";
+
+
+
+select id_caixa,id_turno,datainicio from caixa WHERE responsavel="Uzan" and id_caixa=(SELECT MAX(ID_CAIXA) from caixa WHERE responsavel="Uzan");
+
+
+
+
+
+SELECT r.descricao as DESCR,r.valor_rec as VALOR,r.total as TOTAL,r.operadora as OP,r.telefone as TEL,r.da
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+alter table testefk add foreign key(id_caixa) references caixa(id_caixa);
+
+
+
+
+
+ALTER TABLE testefk
+MODIFY COLUMN id_caixa int not null
+AFTER id_fk;
+
+
+
+
+
+
+select c.cartao,sum(cc.valor) from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join marca ma on ma.id_marca=c.id_marca inner join caixa cx on cx.id_caixa=cc.id_caixa inner join maquina m on m.id_maquina=cc.id_maquina group by c.id_cartao;
+
+
+
+
+
+DELIMITER $$
+ 
+CREATE PROCEDURE TESTE3()
+BEGIN
+      DECLARE cont, maxlivrable, quantGrupos int;
+      select max(id_cartao) into quantGrupos from cartao;
+      set cont = 1;
+      while cont <= quantGrupos do
+         select c.cartao,sum(cc.valor) from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join marca ma on ma.id_marca=c.id_marca inner join caixa cx on cx.id_caixa=cc.id_caixa inner join maquina m on m.id_maquina=cc.id_maquina where c.id_cartao=cont;
+        set cont = cont + 1;
+    end while;
+    
+END $$
+DELIMITER ;
+
+
+
+
+
+
+
+
+select SUM(cc.valor) as TOTAL from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join marca ma on ma.id_marca=c.id_marca inner join caixa cx on cx.id_caixa=cc.id_caixa inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where t.id_turno=2 and last_day(adddate(cx.datainicio,interval 30 day)) and c.id_cartao=1;
+
+
+
+
+select c.cartao,sum(cc.valor) from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join marca ma on ma.id_marca=c.id_marca inner join caixa cx on cx.id_caixa=cc.id_caixa inner join maquina m on m.id_maquina=cc.id_maquina where c.id_cartao=1 UNION select c.cartao,sum(cc.valor) from cartaocaixa cc inner join cartao c on c.id_cartao=cc.
+id_cartao inner join marca ma on ma.id_marca=c.id_marca inner join ca
+
+SELECT cred_g AS CRED,deb_g AS DEB FROM GERAL where cred_g=(select sum(cred_g) from ;
+
+SELECT DATE_FORMAT(cx.datainicio, '%d/%m/%y')  as DATA,t.turno as TURNO,ma.marca as MARCA,c.tipo as TIPO,cartao as CART,IF(cc.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cc.valor, 2), '.', '|'), ',', '.'), '|', ','))) VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where cx.datainicio="2018-08-08" and ma.id_marca="1";

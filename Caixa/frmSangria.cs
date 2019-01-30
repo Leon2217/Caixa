@@ -23,6 +23,8 @@ namespace Caixa
         Valorgeral vg = new Valorgeral();
         Geral ger = new Geral();
         GeralDAO gerDAO = new GeralDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         #endregion
 
         #region VAR
@@ -65,7 +67,7 @@ namespace Caixa
         private void txtSangria_TextChanged(object sender, EventArgs e)
         {
             Moeda(ref txtSangria);
-            valor = txtSangria.Text.ToString().Replace(".","");
+            valor = txtSangria.Text.ToString().Replace(".", "");
 
         }
 
@@ -93,66 +95,12 @@ namespace Caixa
                     san.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
                     san.Valor = txtSangria.Text.ToString().Replace(".", "");
                     sanDAO.Inserir(san);
-            
+
                     if (vcDAO.Verificavalor() == true)
                     {
                         vcDAO.Update(valor);
                         vcDAO.Verificavalor();
 
-                        #region CREDITO DEBITO
-                        string datatela = DateTime.Now.ToShortDateString();
-                        string hrtela = DateTime.Now.ToShortTimeString();
-                        cd.Data =Convert.ToDateTime(datatela);
-                        cd.Hora =Convert.ToDateTime(hrtela);
-                        cd.Desc_db ="Entrada sangria PDV";
-                        cd.Cred_db = txtSangria.Text.ToString().Replace(".", "");
-                        cd.Deb_db = "0,00";
-                        cd.Responsa_db = UsuarioDAO.login;
-                        cd.Total = vcDAO.Vc.Valor;
-                        cdDAO.Inserir(cd);
-
-                        #endregion
-
-                        #region GERAL
-                        if (vgDAO.Verificavalor() == true)
-                        {
-                            vgDAO.Update(valor);
-                            vgDAO.Verificavalor();
-                            #region GERAL
-                            ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                            ger.Desc_g = "CRÉDITO";
-                            ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
-                            ger.Deb_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);
-                        
-                            #endregion
-                        }
-                        else
-                        {
-                            string zero = "0.00";
-                            vgDAO.Inserir(zero);
-                            vgDAO.Update(valor);
-                            vgDAO.Verificavalor();
-
-                            #region GERAL
-                            ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                            ger.Desc_g = "CRÉDITO";
-                            ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
-                            ger.Deb_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);
-                     
-                            #endregion
-                        }
-                        #endregion
-                    }
-                    else
-                    {
-                        string zero = "0.00";
-                        vcDAO.Inserir(zero);
-                        vcDAO.Update(valor);
-                        vcDAO.Verificavalor();                       
                         #region CREDITO DEBITO
                         string datatela = DateTime.Now.ToShortDateString();
                         string hrtela = DateTime.Now.ToShortTimeString();
@@ -174,12 +122,72 @@ namespace Caixa
                             vgDAO.Verificavalor();
                             #region GERAL
                             ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                            ger.Desc_g = "CRÉDITO";
+                            ger.Desc_g = "";
                             ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
                             ger.Deb_g = "0,00";
+                            ger.Forn = "0,00";
+                            ger.Func = "0,00";
                             ger.Total = vgDAO.Vg.Valor;
                             gerDAO.Inserir(ger);
-                        
+
+                            #endregion
+                        }
+                        else
+                        {
+                            string zero = "0.00";
+                            vgDAO.Inserir(zero);
+                            vgDAO.Update(valor);
+                            vgDAO.Verificavalor();
+
+                            #region GERAL
+                            ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                            ger.Desc_g = "";
+                            ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
+                            ger.Deb_g = "0,00";
+                            ger.Func = "0,00";
+                            ger.Forn = "0,00";
+                            ger.Total = vgDAO.Vg.Valor;
+                            gerDAO.Inserir(ger);
+
+                            #endregion
+                        }
+                        #endregion
+                    }
+                    else
+                    {
+                        string zero = "0.00";
+                        vcDAO.Inserir(zero);
+                        vcDAO.Update(valor);
+                        vcDAO.Verificavalor();
+                        #region CREDITO DEBITO
+                        string datatela = DateTime.Now.ToShortDateString();
+                        string hrtela = DateTime.Now.ToShortTimeString();
+                        cd.Data = Convert.ToDateTime(datatela);
+                        cd.Hora = Convert.ToDateTime(hrtela);
+                        cd.Desc_db = "Entrada sangria PDV";
+                        cd.Cred_db = txtSangria.Text.ToString().Replace(".", "");
+                        cd.Deb_db = "0,00";
+                        cd.Responsa_db = UsuarioDAO.login;
+                        cd.Total = vcDAO.Vc.Valor;
+                        cdDAO.Inserir(cd);
+
+                        #endregion
+
+                        #region GERAL
+                        if (vgDAO.Verificavalor() == true)
+                        {
+                            vgDAO.Update(valor);
+                            vgDAO.Verificavalor();
+                            #region GERAL
+                            ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                            ger.Desc_g = "";
+                            ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
+                            ger.Deb_g = "0,00";
+                            ger.Forn = "0,00";
+                            ger.Func = "0,00";
+                            ger.Total = vgDAO.Vg.Valor;
+                            gerDAO.Inserir(ger);
+
                             #endregion
                         }
                         else
@@ -191,22 +199,28 @@ namespace Caixa
 
                             #region GERAL
                             ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                            ger.Desc_g = "CRÉDITO";
+                            ger.Desc_g = "";
                             ger.Cred_g = txtSangria.Text.ToString().Replace(".", "");
                             ger.Deb_g = "0,00";
+                            ger.Forn = "0,00";
+                            ger.Func = "0,00";
                             ger.Total = vgDAO.Vg.Valor;
                             gerDAO.Inserir(ger);
-                     
+
                             #endregion
                         }
                         #endregion
                     }
 
 
-
-
-
                     MessageBox.Show("Informações salvas com sucesso !!!");
+
+                    aud.Acao = "INSERIU SANGRIA";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
+
                     ((InicialCaixa)this.Owner).Atualizadados();
 
                     this.Close();
@@ -217,9 +231,6 @@ namespace Caixa
                 }
             }
 
-
-
-            
         }
 
         private void frmSangria_KeyDown(object sender, KeyEventArgs e)
@@ -228,6 +239,22 @@ namespace Caixa
             {
                 this.Close();
             }
+        }
+
+        private void txtSangria_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void btnRelatório_Click(object sender, EventArgs e)
+        {
+            relatSangria s = new relatSangria();
+            s.Owner = this;
+            s.ShowDialog();
         }
     }
 }

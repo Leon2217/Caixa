@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System;
 
 namespace Caixa
 {
     class ValoroperadoraDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
-       Valoroperadora valorop = new Valoroperadora();
+        Valoroperadora valorop = new Valoroperadora();
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
@@ -75,11 +71,13 @@ namespace Caixa
         }
         #endregion
 
+        
+
         #region LISTA OS VALORES POR ID DA OPERADORA
         public DataTable Listarvalores3(string id)
         {
             DataTable listaDescripto;
-            executarComando("SELECT id_valor,valor FROM VALOR_OPERADORA VO INNER JOIN OPERADORA OP ON OP.ID_OPERADORA=VO.ID_OPERADORA WHERE OP.id_operadora='" + id + "';");
+            executarComando("SELECT id_valor,valor FROM VALOR_OPERADORA VO INNER JOIN OPERADORA OP ON OP.ID_OPERADORA=VO.ID_OPERADORA WHERE OP.id_operadora='" + id + "' ORDER by CAST(valor as decimal) asc;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)

@@ -48,6 +48,8 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -58,16 +60,20 @@
             // 
             // cmbNome
             // 
+            this.cmbNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbNome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNome.FormattingEnabled = true;
             this.cmbNome.Location = new System.Drawing.Point(66, 18);
             this.cmbNome.Name = "cmbNome";
-            this.cmbNome.Size = new System.Drawing.Size(213, 28);
+            this.cmbNome.Size = new System.Drawing.Size(195, 28);
             this.cmbNome.TabIndex = 1;
             this.cmbNome.SelectedIndexChanged += new System.EventHandler(this.cmbNome_SelectedIndexChanged);
             // 
             // lblPeríodo
             // 
+            this.lblPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPeríodo.AutoSize = true;
             this.lblPeríodo.Location = new System.Drawing.Point(13, 74);
             this.lblPeríodo.Name = "lblPeríodo";
@@ -77,6 +83,8 @@
             // 
             // chkIntegral
             // 
+            this.chkIntegral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIntegral.AutoSize = true;
             this.chkIntegral.Location = new System.Drawing.Point(83, 74);
             this.chkIntegral.Name = "chkIntegral";
@@ -88,6 +96,8 @@
             // 
             // chkParcial
             // 
+            this.chkParcial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chkParcial.AutoSize = true;
             this.chkParcial.Location = new System.Drawing.Point(195, 74);
             this.chkParcial.Name = "chkParcial";
@@ -99,6 +109,8 @@
             // 
             // chkManha
             // 
+            this.chkManha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chkManha.AutoSize = true;
             this.chkManha.Location = new System.Drawing.Point(83, 104);
             this.chkManha.Name = "chkManha";
@@ -110,6 +122,8 @@
             // 
             // chkTarde
             // 
+            this.chkTarde.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chkTarde.AutoSize = true;
             this.chkTarde.Location = new System.Drawing.Point(195, 104);
             this.chkTarde.Name = "chkTarde";
@@ -121,6 +135,8 @@
             // 
             // lblDe
             // 
+            this.lblDe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDe.AutoSize = true;
             this.lblDe.Location = new System.Drawing.Point(39, 135);
             this.lblDe.Name = "lblDe";
@@ -131,6 +147,8 @@
             // 
             // lblAt
             // 
+            this.lblAt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAt.AutoSize = true;
             this.lblAt.Location = new System.Drawing.Point(167, 135);
             this.lblAt.Name = "lblAt";
@@ -141,6 +159,8 @@
             // 
             // mskDe
             // 
+            this.mskDe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mskDe.Location = new System.Drawing.Point(115, 132);
             this.mskDe.Mask = "00:00";
             this.mskDe.Name = "mskDe";
@@ -150,6 +170,8 @@
             // 
             // mskAte
             // 
+            this.mskAte.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mskAte.Location = new System.Drawing.Point(211, 132);
             this.mskAte.Mask = "00:00";
             this.mskAte.Name = "mskAte";
@@ -159,6 +181,8 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 173);
             this.label2.Name = "label2";
@@ -168,7 +192,8 @@
             // 
             // mskData
             // 
-            this.mskData.Enabled = false;
+            this.mskData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mskData.Location = new System.Drawing.Point(67, 170);
             this.mskData.Mask = "00/00/0000";
             this.mskData.Name = "mskData";
@@ -177,7 +202,14 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvar.BackColor = System.Drawing.Color.White;
+            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnSalvar.FlatAppearance.BorderSize = 2;
+            this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Location = new System.Drawing.Point(4, 212);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(283, 43);
@@ -188,7 +220,14 @@
             // 
             // btnRelat
             // 
+            this.btnRelat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRelat.BackColor = System.Drawing.Color.White;
+            this.btnRelat.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnRelat.FlatAppearance.BorderSize = 2;
+            this.btnRelat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRelat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnRelat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelat.Location = new System.Drawing.Point(4, 261);
             this.btnRelat.Name = "btnRelat";
             this.btnRelat.Size = new System.Drawing.Size(283, 43);
@@ -202,7 +241,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(296, 316);
+            this.ClientSize = new System.Drawing.Size(298, 310);
             this.Controls.Add(this.btnRelat);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.mskData);
@@ -219,6 +258,7 @@
             this.Controls.Add(this.cmbNome);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

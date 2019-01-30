@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -14,6 +8,8 @@ namespace Caixa
     {
         Usuario usu = new Usuario();
         UsuarioDAO usuDAO = new UsuarioDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         public frmCadusu()
         {
             InitializeComponent();
@@ -46,8 +42,8 @@ namespace Caixa
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if(txtLogin.Text==string.Empty||txtSenha.Text==string.Empty||txtConfirma.Text==string.Empty
-                ||cmbCargo.Text==string.Empty)
+            if (txtLogin.Text == string.Empty || txtSenha.Text == string.Empty || txtConfirma.Text == string.Empty
+                || cmbCargo.Text == string.Empty)
             {
                 if (txtLogin.Text == string.Empty)
                     txtLogin.BackColor = Color.Red;
@@ -67,16 +63,31 @@ namespace Caixa
             else
             {
                 try
-                {                    
-                        usu.Login_usu = txtLogin.Text;
-                        usu.Senha_usu = txtConfirma.Text;
-                        usu.Status = "Ativo";
-                        usu.Tipo = cmbCargo.Text;
-                        usuDAO.Inserir(usu);
-                        MessageBox.Show("Usuário cadastrado com sucesso !!!");
-                        Limpar();                  
+                {
+                    usu.Login_usu = txtLogin.Text;
+                    usu.Senha_usu = txtConfirma.Text;
+                    usu.Status = "Ativo";
+                    usu.Tipo = cmbCargo.Text;
+                    usuDAO.Inserir(usu);
+                    MessageBox.Show("Usuário cadastrado com sucesso !!!");
+                    Limpar();
+
+                    if (UsuarioDAO.Existe == false)
+                    {
+                        Application.Restart();
+                    }
+
+                    if (UsuarioDAO.Existe == true)
+                    {
+                        aud.Acao = "CADASTROU USUARIO";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+                    }
+
                 }
-                catch(FormatException)
+                catch (FormatException)
                 {
                     MessageBox.Show("Favor verificar as informações digitadas !!!");
                 }
@@ -124,6 +135,13 @@ namespace Caixa
 
         private void frmCadusu_Load(object sender, EventArgs e)
         {
+            if (UsuarioDAO.Existe == false)
+            {
+                cmbCargo.Enabled = false;
+                cmbCargo.SelectedIndex = 0;
+            }
+
+
             Conexao.criar_Conexao();
         }
         public void Limpar()
@@ -131,26 +149,8 @@ namespace Caixa
             txtLogin.Clear();
             txtSenha.Clear();
             txtConfirma.Clear();
-            cmbCargo.SelectedIndex=0;
+            cmbCargo.SelectedIndex = 0;
         }
-
-        private void txtLogin_Leave(object sender, EventArgs e)
-        {
-            //string login = txtLogin.Text;
-            //if (txtLogin.Text != string.Empty)
-            //{
-            //    if (usuDAO.VerificaCargo(login) == true)
-            //    {
-            //        txtLogin.BackColor = Color.Red;
-                    
-            //    }
-            //    else
-            //    {
-            //        txtLogin.BackColor = Color.LightGreen;
-            //    }
-            //}        
-        }
-
         private void frmCadusu_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(27))
@@ -169,7 +169,7 @@ namespace Caixa
 
         private void txtConfirma_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)  || char.IsNumber(e.KeyChar)))
+            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsNumber(e.KeyChar)))
             {
                 e.Handled = true;
             }
@@ -179,6 +179,42 @@ namespace Caixa
         {
             if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsNumber(e.KeyChar)))
             {
+                e.Handled = true;
+            }
+        }
+
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void txtConfirma_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void cmbCargo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
                 e.Handled = true;
             }
         }

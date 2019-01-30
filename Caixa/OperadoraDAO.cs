@@ -44,6 +44,8 @@ namespace Caixa
         }
         #endregion
 
+        
+
         #region INSERIR OPERADORA
         public void Inserir(Operadoras op)
         {

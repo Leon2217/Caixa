@@ -19,6 +19,7 @@ namespace Caixa
         MarcaDAO marDAO = new MarcaDAO();
         MaquinasDAO maqDAO = new MaquinasDAO();
         CartaocaixaDAO ccDAO = new CartaocaixaDAO();
+        UsuarioDAO usuDAO = new UsuarioDAO();
         #endregion
 
         #region VAR
@@ -28,6 +29,8 @@ namespace Caixa
         string codturno;
         string codmaq;
         int j;
+        string tipo;
+        string login;
         #endregion
         public frmRelatCartao()
         {
@@ -61,8 +64,20 @@ namespace Caixa
         }
 
         private void frmRelatCartao_Load(object sender, EventArgs e)
-        {            
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+        {
+            #region LOGIN
+            login = UsuarioDAO.login;
+            usuDAO.VerificaCargo(login);
+            tipo = usuDAO.Usu.Tipo.ToString();
+            #endregion
+
+
+            if (tipo == "Operador" || tipo == "Operador\t")
+            {            
+                btnTaxa.Visible = false;
+            }
+
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             CarregarComboMarca();
             CarregarComboMaq();
             cmbBandeira.Text = "";
@@ -387,6 +402,24 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                 this.Close();
+            }
+
+            if (e.KeyValue.Equals(121))
+            {
+                #region LOGIN
+                login = UsuarioDAO.login;
+                usuDAO.VerificaCargo(login);
+                tipo = usuDAO.Usu.Tipo.ToString();
+                #endregion
+
+
+                if (tipo != "Operador")
+                {
+                    frmRelatTaxa rlt = new frmRelatTaxa();
+                    rlt.Owner = this;
+                    rlt.ShowDialog();
+                }
+              
             }
         }
 
@@ -2858,6 +2891,14 @@ namespace Caixa
 
 
 
+        }
+
+        private void btnTaxa_Click(object sender, EventArgs e)
+        {        
+                frmRelatTaxa rlt = new frmRelatTaxa();
+                rlt.Owner = this;
+                rlt.ShowDialog();
+            
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)

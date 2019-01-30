@@ -37,6 +37,10 @@
             // btnCrédito
             // 
             this.btnCrédito.BackColor = System.Drawing.Color.White;
+            this.btnCrédito.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCrédito.FlatAppearance.BorderSize = 3;
+            this.btnCrédito.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnCrédito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrédito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrédito.Location = new System.Drawing.Point(12, 12);
             this.btnCrédito.Name = "btnCrédito";
@@ -50,6 +54,10 @@
             // btnDebito
             // 
             this.btnDebito.BackColor = System.Drawing.Color.White;
+            this.btnDebito.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDebito.FlatAppearance.BorderSize = 3;
+            this.btnDebito.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnDebito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDebito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDebito.Location = new System.Drawing.Point(12, 102);
             this.btnDebito.Name = "btnDebito";
@@ -63,6 +71,10 @@
             // btnMovimento
             // 
             this.btnMovimento.BackColor = System.Drawing.Color.White;
+            this.btnMovimento.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnMovimento.FlatAppearance.BorderSize = 3;
+            this.btnMovimento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnMovimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMovimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMovimento.Location = new System.Drawing.Point(12, 192);
             this.btnMovimento.Name = "btnMovimento";

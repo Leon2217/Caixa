@@ -39,6 +39,25 @@ namespace Caixa
                     gvExibir.DataSource = edDAO.ListarTudo();
                 }
             }
+
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 160; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna DESCR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+
+            }
+            #endregion
         }
 
         private void mskAté_TextChanged(object sender, EventArgs e)
@@ -56,6 +75,25 @@ namespace Caixa
                     gvExibir.DataSource = edDAO.ListarTudo();
                 }
             }
+
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 160; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna DESCR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+
+            }
+            #endregion
         }
 
         public void ExportarPDF(DataGridView dgw, string filename)
@@ -227,7 +265,7 @@ namespace Caixa
 
         private void frmESM_Load(object sender, EventArgs e)
         {
-             gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+             //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             string datatela = DateTime.Now.ToShortDateString();
             mskDe.Text = datatela;
             mskAté.Text = datatela;
@@ -243,6 +281,25 @@ namespace Caixa
                 try
                 {
                     gvExibir.DataSource = edDAO.ListarB(de, at);
+
+                    #region AJUSTE GRID
+                    foreach (DataGridViewColumn column in gvExibir.Columns)
+                    {
+                        if (column.DataPropertyName == "DESCR")
+                            column.Width = 160; //tamanho fixo da coluna DESCR
+                        else if (column.DataPropertyName == "DATA")
+                            column.Width = 80; //tamanho fixo da coluna DESCR
+                        else if (column.DataPropertyName == "HORA")
+                            column.Width = 60; //tamanho fixo da coluna DESCR                       
+
+                        else
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+
+
+                    }
+                    #endregion
                 }
                 catch
                 {

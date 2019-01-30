@@ -22,6 +22,10 @@ namespace Caixa
         ValorgeralDAO vgDAO = new ValorgeralDAO();
         Geral ger = new Geral();
         GeralDAO gerDAO = new GeralDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+        Sangria san = new Sangria();
+        SangriaDAO sanDAO = new SangriaDAO();
         #endregion
 
         #region VAR
@@ -139,6 +143,15 @@ namespace Caixa
 
         }
 
+        public void CarregarComboFunc()
+        {
+            cmbFornecedor.DataSource = pesDAO.ListarFU();
+            cmbFornecedor.DisplayMember = "nome";
+            cmbFornecedor.ValueMember = "ID";
+            codpes = cmbFornecedor.SelectedValue.ToString();
+            //pessoa = cmbFornecedor.Text;
+        }
+
         private void frmDebito_Load(object sender, EventArgs e)
         {
             Moeda(ref txtValor);
@@ -146,7 +159,18 @@ namespace Caixa
             string hrtela = DateTime.Now.ToShortTimeString();
             mskData.Text = datatela;
             mskHr.Text = hrtela;
-            CarregarComboFornecedor();
+
+            txtResponsa.Text = UsuarioDAO.login;
+            try
+            {
+                CarregarComboFornecedor();
+                cmbFornecedor.SelectedIndex = -1;
+            }
+            catch
+            {
+                MessageBox.Show("Favor cadastrar fornecedores primeiro");
+            }
+          
             cmbFornecedor.Text = "";
         }
 
@@ -193,80 +217,958 @@ namespace Caixa
 
                     if (op == DialogResult.Yes)
                     {
-        
-                        if (vcDAO.Verificavalor() == true)
+                        #region PAGAMENTO
+                        if (chkPag.Checked == true && chkF.Checked == true && chkOutros.Checked == false)
                         {
-                            vcDAO.Update2(valor);
-                            vcDAO.Verificavalor();
-                            #region CREDITO DEBITO
-                            cd.Data = Convert.ToDateTime(mskData.Text);
-                            cd.Hora = Convert.ToDateTime(mskHr.Text);
-                            cd.Desc_db = txtDesc.Text.ToString() +" "+f;
-                            cd.Deb_db= txtValor.Text.ToString().ToString().Replace(".","");
-                            cd.Cred_db = "0,00";
-                            cd.Responsa_db = txtResponsa.Text.ToString();
-                            cd.Total = vcDAO.Vc.Valor;
-                            cdDAO.Inserir(cd);
-                            ((frmMovimentoCaixa)this.Owner).AtualizaDados();
-                            #endregion
+                            san.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
+                            san.Valor = txtValor.Text.ToString().Replace(".", "");
+                            sanDAO.Inserir(san);
+
+                            var qrForm = from frm in Application.OpenForms.Cast<Form>()
+                                         where frm is InicialCaixa
+                                         select frm;
+
+                            if (qrForm != null && qrForm.Count() > 0)
+                            {
+                                ((InicialCaixa)qrForm.First()).Atualizadados();
+                            }
+
+
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update(valor);
+                                vcDAO.Verificavalor();
+
+                                #region CREDITO DEBITO
+                                string datatela = DateTime.Now.ToShortDateString();
+                                string hrtela = DateTime.Now.ToShortTimeString();
+                                cd.Data = Convert.ToDateTime(datatela);
+                                cd.Hora = Convert.ToDateTime(hrtela);
+                                cd.Desc_db = "Entrada sangria PDV";
+                                cd.Cred_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Deb_db = "0,00";
+                                cd.Responsa_db = UsuarioDAO.login;
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #endregion
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero = "0.00";
+                                    vgDAO.Inserir(zero);
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                string datatela = DateTime.Now.ToShortDateString();
+                                string hrtela = DateTime.Now.ToShortTimeString();
+                                cd.Data = Convert.ToDateTime(datatela);
+                                cd.Hora = Convert.ToDateTime(hrtela);
+                                cd.Desc_db = "Entrada sangria PDV";
+                                cd.Cred_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Deb_db = "0,00";
+                                cd.Responsa_db = UsuarioDAO.login;
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #endregion
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = f;
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = f;
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = f;
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+
+
 
                         }
-                        else
+                        #endregion
+
+                        #region FORNECEDOR
+                        if (chkF.Checked == true && chkPag.Checked == false)
                         {
-                            string zero = "0.00";
-                            vcDAO.Inserir(zero);
-                            vcDAO.Update2(valor);
-                            vcDAO.Verificavalor();
-                            #region CREDITO DEBITO
-                            cd.Data = Convert.ToDateTime(mskData.Text);
-                            cd.Hora = Convert.ToDateTime(mskHr.Text);
-                            cd.Desc_db = txtDesc.Text.ToString() +" "+ f;
-                            cd.Deb_db = txtValor.Text.ToString().Replace(".","");
-                            cd.Cred_db = "0,00";
-                            cd.Responsa_db = txtResponsa.Text.ToString();
-                            cd.Total = vcDAO.Vc.Valor;
-                            cdDAO.Inserir(cd);
-                            ((frmMovimentoCaixa)this.Owner).AtualizaDados();
-                            #endregion
-                        }
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
 
-                        //GERAL
-                        if (vgDAO.Verificavalor() == true)
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                            //GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = f;
+                                ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = f;
+                                ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                        }
+                        #endregion
+
+                        #region MICROSTATION
+                        if (chkMicrostation.Checked == true)
                         {
-                            vgDAO.Update2(valor);
-                            vgDAO.Verificavalor();
-                            #region GERAL
-                            ger.Data = Convert.ToDateTime(mskData.Text);
-                            ger.Desc_g = "DÉBITO";
-                            ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
-                            ger.Cred_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);
-                            ((frmMovimentoCaixa)this.Owner).AtualizaDados();
-                            #endregion
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString();
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString();
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                            //GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = txtDesc.Text.ToString(); ;
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Func = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = txtDesc.Text.ToString();
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Func = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
                         }
-                        else
+                        #endregion
+
+                        #region FUNCIONARIO
+                        if (chkFuncionario.Checked == true)
                         {
-                            string zero = "0.00";
-                            vgDAO.Inserir(zero);
-                            vgDAO.Update2(valor);
-                            vgDAO.Verificavalor();
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
 
-                            #region GERAL
-                            ger.Data = Convert.ToDateTime(mskData.Text);
-                            ger.Desc_g = "DÉBITO";
-                            ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
-                            ger.Cred_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);
-                            ((frmMovimentoCaixa)this.Owner).AtualizaDados();
-                            #endregion
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                            //GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = f;
+                                ger.Forn = "0,00";
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = txtValor.Text.ToString().Replace(".", "");
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = f;
+                                ger.Forn = "0,00";
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = txtValor.Text.ToString().Replace(".", "");
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
                         }
+                        #endregion
+
+                        #region OUTROS PDV
+                        if (chkPag.Checked == true && chkF.Checked == false && chkOutros.Checked == true)
+                        {
+                            san.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
+                            san.Valor = txtValor.Text.ToString().Replace(".", "");
+                            sanDAO.Inserir(san);
+
+                            var qrForm = from frm in Application.OpenForms.Cast<Form>()
+                                         where frm is InicialCaixa
+                                         select frm;
+
+                            if (qrForm != null && qrForm.Count() > 0)
+                            {
+                                ((InicialCaixa)qrForm.First()).Atualizadados();
+                            }
 
 
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update(valor);
+                                vcDAO.Verificavalor();
+
+                                #region CREDITO DEBITO
+                                string datatela = DateTime.Now.ToShortDateString();
+                                string hrtela = DateTime.Now.ToShortTimeString();
+                                cd.Data = Convert.ToDateTime(datatela);
+                                cd.Hora = Convert.ToDateTime(hrtela);
+                                cd.Desc_db = "Entrada sangria PDV";
+                                cd.Cred_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Deb_db = "0,00";
+                                cd.Responsa_db = UsuarioDAO.login;
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #endregion
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero = "0.00";
+                                    vgDAO.Inserir(zero);
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                string datatela = DateTime.Now.ToShortDateString();
+                                string hrtela = DateTime.Now.ToShortTimeString();
+                                cd.Data = Convert.ToDateTime(datatela);
+                                cd.Hora = Convert.ToDateTime(hrtela);
+                                cd.Desc_db = "Entrada sangria PDV";
+                                cd.Cred_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Deb_db = "0,00";
+                                cd.Responsa_db = UsuarioDAO.login;
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #endregion
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = "0,00";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero1 = "0.00";
+                                    vgDAO.Inserir(zero1);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = Convert.ToDateTime(FechamentoDAO.data);
+                                    ger.Desc_g = "";
+                                    ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                #endregion
+                            }
+
+
+
+                        }
+                        #endregion   
+
+                        #region OUTROS ONLY
+                        if (chkOutros.Checked == true && chkPag.Checked == false)
+                        {
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString() + " " + f;
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                            //GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "";
+                                ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "";
+                                ger.Forn = txtValor.Text.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                        }
+                        #endregion
+
+                        #region NENHUM
+                        if (chkF.Checked == false && chkPag.Checked == false && chkFuncionario.Checked == false && chkOutros.Checked == false && chkMicrostation.Checked == false)
+                        {
+                            if (vcDAO.Verificavalor() == true)
+                            {
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString();
+                                cd.Deb_db = txtValor.Text.ToString().ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+
+                                aud.Acao = "INSERIU MOV DEBITO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vcDAO.Inserir(zero);
+                                vcDAO.Update2(valor);
+                                vcDAO.Verificavalor();
+                                #region CREDITO DEBITO
+                                cd.Data = Convert.ToDateTime(mskData.Text);
+                                cd.Hora = Convert.ToDateTime(mskHr.Text);
+                                cd.Desc_db = txtDesc.Text.ToString();
+                                cd.Deb_db = txtValor.Text.ToString().Replace(".", "");
+                                cd.Cred_db = "0,00";
+                                cd.Responsa_db = txtResponsa.Text.ToString();
+                                cd.Total = vcDAO.Vc.Valor;
+                                cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                            //GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "";
+                                ger.Forn = "0,00";
+                                ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "";
+                                ger.Forn = "0,00";
+                                ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+                            }
+
+
+                        }
+                        #endregion
 
                         MessageBox.Show("Informações cadastradas com sucesso !!!");
                         Limpar();
+                      
                     }
                 }
                 catch
@@ -285,7 +1187,11 @@ namespace Caixa
             mskData.Text = datatela;
             mskHr.Text = hrtela;
             txtResponsa.Clear();
+            chkFuncionario.Checked = false;
+            chkMicrostation.Checked = false;
+            chkPag.Checked = false;
             chkF.Checked = false;
+            chkOutros.Checked = false;
             cmbFornecedor.Text = "";
             txtDesc.Clear();
         }
@@ -321,20 +1227,167 @@ namespace Caixa
             if (chkF.Checked == true)
             {
                 cmbFornecedor.Enabled = true;
+                chkMicrostation.Enabled = false;
+                chkFuncionario.Enabled = false;
+                chkOutros.Enabled = false;
+
+                try
+                {
+                    CarregarComboFornecedor();
+                }
+                catch
+                {
+
+                }
+
+                
+            }
+            else if (chkPag.Checked == true)
+            {
+                cmbFornecedor.Enabled = false;
+                cmbFornecedor.SelectedIndex = -1;
+                chkFuncionario.Enabled = false;
+                chkMicrostation.Enabled = false;
+                chkOutros.Enabled = true;
             }
             else
             {
                 cmbFornecedor.Enabled = false;
-                cmbFornecedor.Text = "";
+                cmbFornecedor.SelectedIndex = -1;
+                chkFuncionario.Enabled = true;
+                chkMicrostation.Enabled = true;
+                chkOutros.Enabled = true;
             }
         }
 
         private void cmbFornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbFornecedor.Text != string.Empty)
+            //if (cmbFornecedor.Text != string.Empty && cmbFornecedor.Enabled == true)
+            //{
+            //    f = cmbFornecedor.Text.ToString();
+            //}
+            if (chkFuncionario.Checked == true || chkF.Checked == true)
             {
-                f = cmbFornecedor.Text.ToString();
+                f = cmbFornecedor.Text;
+                try
+                {
+                    codpes = cmbFornecedor.SelectedValue.ToString();
+                }
+                catch
+                {
+
+                }
             }
+            else
+            {
+                f = null;
+            }
+        }
+
+        private void chkPag_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOutros.Checked == true && chkPag.Checked == true)
+            {
+                chkF.Checked = false;
+                txtDesc.Text = "Pagamento";
+                cmbFornecedor.SelectedIndex = -1;
+                chkMicrostation.Enabled = false;
+            }
+            else
+            {
+                if (chkPag.Checked == true)
+                {
+                    txtDesc.Text = "Pagamento";
+                    chkF.Checked = true;
+                    chkMicrostation.Enabled = false;
+                }
+                else
+                {
+                    chkF.Checked = false;
+                    txtDesc.Clear();
+                    chkMicrostation.Enabled = true;
+                }
+            }
+           
+        }
+
+        private void chkMicrostation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMicrostation.Checked == true)
+            {
+                txtDesc.Text = "PAGAMENTO BOLETO M";
+                chkPag.Enabled = false;
+                chkF.Enabled = false;
+                chkFuncionario.Enabled = false;
+                chkOutros.Enabled = false;
+            }
+            else
+            {
+                chkF.Enabled = true;
+                txtDesc.Text = "";
+                chkPag.Enabled = true;
+                chkFuncionario.Enabled = true;
+                chkOutros.Enabled = true;
+            }
+
+        }
+
+        private void chkFuncionario_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkFuncionario.Checked == true)
+            {
+                chkOutros.Enabled = false;
+                chkF.Enabled = false;
+                chkMicrostation.Enabled = false;
+                chkPag.Enabled = false;
+                cmbFornecedor.Enabled = true;
+                try
+                {
+                    CarregarComboFunc();
+                }
+                catch
+                {
+
+                }
+            }
+            else
+            {
+                chkOutros.Enabled = true;
+                chkF.Enabled = true;
+                chkMicrostation.Enabled = true;
+                chkPag.Enabled = true;
+                cmbFornecedor.SelectedIndex = -1;
+                cmbFornecedor.Enabled = false;
+                
+            }
+        }
+
+        private void chkOutros_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkOutros.Checked == true)
+            {
+                chkPag.Enabled = true;
+                chkF.Checked = false;
+                chkF.Enabled = false;
+                chkMicrostation.Enabled = false;
+                cmbFornecedor.SelectedIndex = -1;
+                cmbFornecedor.Enabled = false;
+                chkFuncionario.Enabled = false;
+                f = null;
+            }
+            else
+            {
+                chkMicrostation.Enabled = true;
+                chkPag.Checked = false;
+                chkPag.Enabled = true;
+                chkF.Enabled = true;
+                chkFuncionario.Enabled = true;                
+            }
+        }
+
+        private void cmbFornecedor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

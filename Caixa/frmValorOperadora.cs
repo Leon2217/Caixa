@@ -16,6 +16,9 @@ namespace Caixa
         Operadoras op = new Operadoras();
         Valoroperadora vop = new Valoroperadora();
         ValoroperadoraDAO vopDAO = new ValoroperadoraDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string codop;
         string operadora;
         string valor;
@@ -54,7 +57,8 @@ namespace Caixa
             {
                 Moeda(ref txtValor);
                 CarregarComboOperadora();
-                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
             }
             catch
             {
@@ -68,7 +72,7 @@ namespace Caixa
             cmbOperadora.DataSource = opDAO.Listartudo();
             cmbOperadora.DisplayMember = "operadora";
             cmbOperadora.ValueMember = "id_operadora";
-            codop = cmbOperadora.SelectedValue.ToString();        
+            codop = cmbOperadora.SelectedValue.ToString();
         }
 
         private void cmbOperadora_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,11 +109,18 @@ namespace Caixa
             {
 
                 try
-                {
-                    vop.Id_operadora = Convert.ToInt32(codop);
-                    vop.Valor = txtValor.Text.ToString().Replace(".","");
-                    vopDAO.Inserir(vop);
-                    gvExibir.DataSource = vopDAO.Listarvalores(operadora);
+                {                   
+                        vop.Id_operadora = Convert.ToInt32(codop);
+                        vop.Valor = txtValor.Text.ToString().Replace(".", "");
+                        vopDAO.Inserir(vop);
+
+                        aud.Acao = "INSERIU VALOR DE OPERADORA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+
+                        gvExibir.DataSource = vopDAO.Listarvalores(operadora);                    
                 }
                 catch
                 {
@@ -136,6 +147,15 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                 this.Close();
+            }
+        }
+
+        private void txtValor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
             }
         }
     }

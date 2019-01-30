@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+#pragma warning disable CS0105 // A diretiva using para "System.Windows.Forms" apareceu anteriormente neste namespace
 using System.Windows.Forms;
+#pragma warning restore CS0105 // A diretiva using para "System.Windows.Forms" apareceu anteriormente neste namespace
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
@@ -18,12 +20,14 @@ namespace Caixa
     {
         #region INSTANCIAMENTO DE CLASSES
         GeralDAO gerDAO = new GeralDAO();
+        Geral ger = new Geral();
+        ValorgeralDAO vgDAO = new ValorgeralDAO();
         #endregion
 
         #region VAR
         DateTime de, at;
-        string desc;
-        double cred, deb;
+        string desc, valor;
+        double cred, deb, forn, func;
         int j;
         DateTime data;
         #endregion
@@ -45,16 +49,38 @@ namespace Caixa
 
         private void frmGeral_Load(object sender, EventArgs e)
         {
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            Moeda(ref txtAjuste);
+
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             try
             {
                 gvExibir.DataSource = gerDAO.ListarTudo();
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+
+                    
+                }
+                #endregion
                 try
                 {
                     #region SOMA TUDO
                     gerDAO.VerificaSoma();
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""))+ forn + func;
+                   
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("c2");
@@ -79,10 +105,55 @@ namespace Caixa
             {
 
             }
+
+            
         }
+
+        public static void Moeda(ref TextBox txt)
+        {
+            string n = string.Empty;
+            double v = 0;
+
+            try
+            {
+                n = txt.Text.Replace(",", "").Replace(".", "");
+                if (n.Equals(""))
+                    n = "";
+                n = n.PadLeft(3, '0');
+                if (n.Length > 3 & n.Substring(0, 1) == "0")
+                    n = n.Substring(1, n.Length - 1);
+                v = Convert.ToDouble(n) / 100;
+                txt.Text = string.Format("{0:N}", v);
+                txt.SelectionStart = txt.Text.Length;
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+
 
         private void cmbDescricao_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 160; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DESCR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -118,17 +189,21 @@ namespace Caixa
             #region DE
             if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
             {
+                this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
 
                 #region SOMA DE
                 gerDAO.VerificaSD(de);
                 try
                 {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
 
                     if (lblTotal.Text.Contains("-"))
                     {
@@ -143,6 +218,7 @@ namespace Caixa
                 {
 
                 }
+
                 #endregion
             }
             #endregion
@@ -159,6 +235,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -167,12 +259,13 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
 
-                    }         
+                    }
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -191,7 +284,6 @@ namespace Caixa
 
                 }
                 #endregion
-
             }
             #endregion
 
@@ -207,6 +299,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -215,7 +323,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -246,16 +354,26 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
             {
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
-
                 #region SOMA B
                 try
                 {
                     gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
                 }
                 catch
                 {
@@ -275,7 +393,23 @@ namespace Caixa
                 #region SOMA B E DESC
                 try
                 {
-                    gerDAO.VerificaSBD(de, at,desc);
+                    gerDAO.VerificaSBD(de, at, desc);
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
                     try
                     {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
@@ -286,13 +420,13 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
 
                     }
-                    
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -319,10 +453,13 @@ namespace Caixa
             if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
             {
                 gvExibir.DataSource = gerDAO.ListarTudo();
+
                 #region SOMA TUDO
                 gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                 cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                 lblDeb.Text = deb.ToString("C2");
                 lblCred.Text = cred.ToString("C2");
                 lblTotal.Text = (cred - deb).ToString("c2");
@@ -338,7 +475,10 @@ namespace Caixa
                 #endregion
             }
             #endregion
+
         }
+
+
 
         private void cmbDescricao_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -377,17 +517,21 @@ namespace Caixa
             #region DE
             if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
             {
+                this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
 
                 #region SOMA DE
                 gerDAO.VerificaSD(de);
                 try
                 {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
 
                     if (lblTotal.Text.Contains("-"))
                     {
@@ -402,6 +546,7 @@ namespace Caixa
                 {
 
                 }
+
                 #endregion
             }
             #endregion
@@ -418,6 +563,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -426,12 +587,13 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
 
                     }
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -465,6 +627,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -473,7 +651,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -504,23 +682,32 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
             {
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
-
                 #region SOMA B
-                gerDAO.VerificaSB(de, at);
-                cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
-                lblDeb.Text = deb.ToString("C2");
-                lblCred.Text = cred.ToString("C2");
-                lblTotal.Text = (cred - deb).ToString("C2");
+                try
+                {
+                    gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
 
-                if (lblTotal.Text.Contains("-"))
-                {
-                    lblTotal.ForeColor = Color.Firebrick;
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
                 }
-                else
+                catch
                 {
-                    lblTotal.ForeColor = Color.ForestGreen;
+
                 }
+
                 #endregion
             }
             #endregion
@@ -537,6 +724,22 @@ namespace Caixa
                     gerDAO.VerificaSBD(de, at, desc);
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -545,7 +748,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -574,15 +777,17 @@ namespace Caixa
             }
             #endregion
 
-
             #region LISTAR TUDO
             if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
             {
                 gvExibir.DataSource = gerDAO.ListarTudo();
+
                 #region SOMA TUDO
                 gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                 cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                 lblDeb.Text = deb.ToString("C2");
                 lblCred.Text = cred.ToString("C2");
                 lblTotal.Text = (cred - deb).ToString("c2");
@@ -608,7 +813,7 @@ namespace Caixa
         public void ExportarPDF(DataGridView dgw, string filename)
         {
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
-            PdfPTable pdftable = new PdfPTable(new float[] { 1, 2, 1, 1, 1});
+            PdfPTable pdftable = new PdfPTable(new float[] { 1, 2, 1, 1, 1, 1, 1});
             pdftable.DefaultCell.Padding = 3;
             pdftable.WidthPercentage = 100;
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
@@ -833,8 +1038,140 @@ namespace Caixa
             #endregion
         }
 
+        private void txtAjuste_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAjuste_TextChanged(object sender, EventArgs e)
+        {
+            Moeda(ref txtAjuste);
+            if (txtAjuste.Text!=string.Empty)
+            {
+                valor = txtAjuste.Text.ToString().Replace(".", "");
+            }
+        }
+
+        private void cmbAjustes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (cmbAjustes.Text=="CRÉDITO")
+            {
+                //GERAL
+                if (vgDAO.Verificavalor() == true)
+                {
+                    vgDAO.Update(valor);
+                    vgDAO.Verificavalor();
+                    #region GERAL
+                    ger.Data = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+                    ger.Desc_g = "AJUSTE";
+                    ger.Cred_g = txtAjuste.Text.ToString().Replace(".", "");
+                    ger.Deb_g = "0,00";
+                    ger.Forn = "0,00";
+                    ger.Func = "0,00";
+                    ger.Total = vgDAO.Vg.Valor;
+                    gerDAO.Inserir(ger);
+                    gvExibir.DataSource = gerDAO.ListarTudo();
+                    txtAjuste.Text = "";
+                    #endregion
+                }
+                else
+                {
+                    string zero = "0.00";
+                    vgDAO.Inserir(zero);
+                    vgDAO.Update(valor);
+                    vgDAO.Verificavalor();
+
+                    #region GERAL
+                    ger.Data = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+                    ger.Desc_g = "AJUSTE";
+                    ger.Cred_g = txtAjuste.Text.ToString().Replace(".", "");
+                    ger.Deb_g = "0,00";
+                    ger.Forn = "0,00";
+                    ger.Func = "0,00";
+                    ger.Total = vgDAO.Vg.Valor;
+                    gerDAO.Inserir(ger);
+                    gvExibir.DataSource = gerDAO.ListarTudo();
+                    txtAjuste.Text = "";
+                    #endregion
+                }
+            }
+            else
+            {
+                if (cmbAjustes.Text == "DÉBITO")
+                {
+                    if (vgDAO.Verificavalor() == true)
+                    {
+                        vgDAO.Update2(valor);
+                        vgDAO.Verificavalor();
+                        #region GERAL
+                        ger.Data = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+                        ger.Desc_g = "AJUSTE";
+                        ger.Deb_g = txtAjuste.Text.ToString().Replace(".", "");
+                        ger.Cred_g = "0,00";
+                        ger.Forn = "0,00";
+                        ger.Func = "0,00";
+                        ger.Total = vgDAO.Vg.Valor;
+                        gerDAO.Inserir(ger);
+                        gvExibir.DataSource = gerDAO.ListarTudo();
+                        txtAjuste.Text = "";
+                        #endregion
+                    }
+                    else
+                    {
+                        string zero = "0.00";
+                        vgDAO.Inserir(zero);
+                        vgDAO.Update2(valor);
+                        vgDAO.Verificavalor();
+
+                        #region GERAL
+                        ger.Data = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+                        ger.Desc_g = "AJUSTE";
+                        ger.Deb_g = txtAjuste.Text.ToString().Replace(".", "");
+                        ger.Cred_g = "0,00";
+                        ger.Forn = "0,00";
+                        ger.Func = "0,00";
+                        ger.Total = vgDAO.Vg.Valor;
+                        gerDAO.Inserir(ger);
+                        gvExibir.DataSource = gerDAO.ListarTudo();
+                        txtAjuste.Text = "";
+                        #endregion
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Escolha se é débito ou crédito!!!");
+                }
+                   
+            }
+        }
+
         private void mskAté_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 160; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DESCR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -870,17 +1207,21 @@ namespace Caixa
             #region DE
             if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
             {
+                //this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
 
                 #region SOMA DE
                 gerDAO.VerificaSD(de);
                 try
                 {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
 
                     if (lblTotal.Text.Contains("-"))
                     {
@@ -912,6 +1253,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -920,12 +1277,13 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
 
                     }
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -959,6 +1317,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -967,7 +1341,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -997,24 +1371,34 @@ namespace Caixa
             #region BETWEEN
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
             {
+                this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
-
                 #region SOMA B
-                gerDAO.VerificaSB(de, at);
-                cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
-                lblDeb.Text = deb.ToString("C2");
-                lblCred.Text = cred.ToString("C2");
-                lblTotal.Text = (cred - deb).ToString("C2");
+                try
+                {
+                    gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
 
-                if (lblTotal.Text.Contains("-"))
-                {
-                    lblTotal.ForeColor = Color.Firebrick;
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
                 }
-                else
+                catch
                 {
-                    lblTotal.ForeColor = Color.ForestGreen;
+
                 }
+
                 #endregion
             }
             #endregion
@@ -1031,6 +1415,22 @@ namespace Caixa
                     gerDAO.VerificaSBD(de, at, desc);
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -1039,7 +1439,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -1075,8 +1475,10 @@ namespace Caixa
 
                 #region SOMA TUDO
                 gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                 cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                 lblDeb.Text = deb.ToString("C2");
                 lblCred.Text = cred.ToString("C2");
                 lblTotal.Text = (cred - deb).ToString("c2");
@@ -1096,6 +1498,23 @@ namespace Caixa
 
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 160; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DESCR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
+
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -1138,8 +1557,11 @@ namespace Caixa
                 gerDAO.VerificaSD(de);
                 try
                 {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("c2");
@@ -1174,6 +1596,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));                       
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -1182,12 +1620,13 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
 
                     }
+                    
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -1221,6 +1660,22 @@ namespace Caixa
                 {
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -1229,7 +1684,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -1264,8 +1719,10 @@ namespace Caixa
                 try
                 {
                     gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                     cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -1300,6 +1757,22 @@ namespace Caixa
                     gerDAO.VerificaSBD(de, at, desc);
                     try
                     {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
                         cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
                     }
                     catch
@@ -1308,7 +1781,7 @@ namespace Caixa
                     }
                     try
                     {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                     }
                     catch
                     {
@@ -1344,8 +1817,10 @@ namespace Caixa
 
                 #region SOMA TUDO
                 gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
                 cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
                 lblDeb.Text = deb.ToString("C2");
                 lblCred.Text = cred.ToString("C2");
                 lblTotal.Text = (cred - deb).ToString("c2");
@@ -1361,10 +1836,6 @@ namespace Caixa
                 #endregion
             }
             #endregion
-
-
-
-
         }
     }
 }

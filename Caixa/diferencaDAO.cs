@@ -47,7 +47,7 @@ namespace Caixa
         public DataTable Listartudo()
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.datainicio as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa;");
+            executarComando("SELECT DATE_FORMAT(c.datainicio, '%d/%m/%y') as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -67,7 +67,7 @@ namespace Caixa
         public DataTable ListarD(DateTime data)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.datainicio as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa WHERE c.datainicio='" + data.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT DATE_FORMAT(c.datainicio, '%d/%m/%y') as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa WHERE c.datainicio='" + data.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -87,7 +87,7 @@ namespace Caixa
         public DataTable ListarB(DateTime data, DateTime data2)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.datainicio as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa WHERE c.datainicio BETWEEN '" + data.ToString("yyyy/MM/dd") + "' AND '" + data2.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT DATE_FORMAT(c.datainicio, '%d/%m/%y') as DATA,IF(d.manha=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.manha, 2), '.', '|'), ',', '.'), '|', ','))) as MANHA,IF(d.tarde=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(d.tarde, 2), '.', '|'), ',', '.'), '|', ','))) as TARDE FROM DIFERENCA d inner join CAIXA c on c.id_caixa=d.id_caixa WHERE c.datainicio BETWEEN '" + data.ToString("yyyy/MM/dd") + "' AND '" + data2.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)

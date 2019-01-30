@@ -22,6 +22,9 @@ namespace Caixa
         GeralDAO gerDAO = new GeralDAO();
         Valorgeral vg = new Valorgeral();
         ValorgeralDAO vgDAO = new ValorgeralDAO();
+        UsuarioDAO usuDAO = new UsuarioDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         #endregion
 
         #region VAR
@@ -31,11 +34,15 @@ namespace Caixa
         string valor;
         string valor2;
         string valor3;
+        string login;
+        string tipo;
         DateTime data;
         DateTime data2;
         DateTime data3;
         DateTime data4;
+#pragma warning disable CS0169 // O campo "frmContasPagas.dataem" nunca é usado
         DateTime dataem;
+#pragma warning restore CS0169 // O campo "frmContasPagas.dataem" nunca é usado
 
         #endregion
 
@@ -85,6 +92,21 @@ namespace Caixa
             Moeda(ref txtValorVenc1);
             Moeda(ref txtValorVenc2);
             Moeda(ref txtValorVenc3);
+
+            #region LOGIN
+            login = UsuarioDAO.login;
+            usuDAO.VerificaCargo(login);
+            tipo = usuDAO.Usu.Tipo.ToString();
+            #endregion
+
+
+            if (tipo == "Operador" || tipo == "Operador\t")
+            {            
+                btnDespesa.Visible = false;
+            }
+
+
+
             try
             {
                 CarregarComboFornecedor();
@@ -110,6 +132,25 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                 this.Close();
+            }
+
+
+            if (e.KeyValue.Equals(121))
+            {
+                #region LOGIN
+                login = UsuarioDAO.login;
+                usuDAO.VerificaCargo(login);
+                tipo = usuDAO.Usu.Tipo.ToString();
+                #endregion
+
+                if(tipo != "Operador")
+                {
+                    frmDespesa des = new frmDespesa();
+                    des.Owner = this;
+                    des.ShowDialog();
+                }
+
+           
             }
         }
 
@@ -259,11 +300,11 @@ namespace Caixa
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
 
-                                    
-
-
-
-
+                                    aud.Acao = "INSERIU CONTA";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
 
                                 if (cmbParcela.SelectedIndex == 1)
@@ -277,6 +318,8 @@ namespace Caixa
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
 
+                                   
+
                                     //2
                                     conta2.Data = Convert.ToDateTime(mskData2.Text);
                                     conta2.Id_pessoa = Convert.ToInt32(codpes);
@@ -285,6 +328,12 @@ namespace Caixa
                                     conta2.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta2.Status = "Em aberto";
                                     contaDAO.Inserir2(conta2);
+
+                                    aud.Acao = "INSERIU CONTA X2P";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
 
                                 if (cmbParcela.SelectedIndex == 2)
@@ -315,6 +364,12 @@ namespace Caixa
                                     conta3.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta3.Status = "Em aberto";
                                     contaDAO.Inserir3(conta3);
+
+                                    aud.Acao = "INSERIU CONTA X3P";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
 
                                 DialogResult dl;
@@ -383,11 +438,17 @@ namespace Caixa
                                 {
                                     conta.Data = Convert.ToDateTime(mskData.Text);
                                     conta.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta.Nf = txtNf.Text.ToString();
+                                    conta.Nf = "Pedido/Cheque";
                                     conta.Valor = txtValorVenc1.Text.ToString().Replace(".", "");
                                     conta.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
+
+                                    aud.Acao = "INSERIU PEDIDO/CHEQUE";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
 
                                 if (cmbParcela.SelectedIndex == 1)
@@ -395,20 +456,28 @@ namespace Caixa
 
                                     conta.Data = Convert.ToDateTime(mskData.Text);
                                     conta.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta.Nf = txtNf.Text.ToString();
+                                    conta.Nf = "Pedido/Cheque";
                                     conta.Valor = txtValorVenc1.Text.ToString().Replace(".", "");
                                     conta.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
 
+                                    
+
                                     //2
                                     conta2.Data = Convert.ToDateTime(mskData2.Text);
                                     conta2.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta2.Nf = txtNf.Text.ToString();
+                                    conta2.Nf = "Pedido/Cheque";
                                     conta2.Valor = txtValorVenc2.Text.ToString().Replace(".", "");
                                     conta2.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta2.Status = "Em aberto";
                                     contaDAO.Inserir2(conta2);
+
+                                    aud.Acao = "INSERIU PEDIDO/CHEQUE X2P";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
 
                                 if (cmbParcela.SelectedIndex == 2)
@@ -416,7 +485,7 @@ namespace Caixa
 
                                     conta.Data = Convert.ToDateTime(mskData.Text);
                                     conta.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta.Nf = txtNf.Text.ToString();
+                                    conta.Nf = "Pedido/Cheque";
                                     conta.Valor = txtValorVenc1.Text.ToString().Replace(".", "");
                                     conta.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta.Status = "Em aberto";
@@ -425,7 +494,7 @@ namespace Caixa
                                     //2
                                     conta2.Data = Convert.ToDateTime(mskData2.Text);
                                     conta2.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta2.Nf = txtNf.Text.ToString();
+                                    conta2.Nf = "Pedido/Cheque";
                                     conta2.Valor = txtValorVenc2.Text.ToString().Replace(".", "");
                                     conta2.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta2.Status = "Em aberto";
@@ -434,12 +503,31 @@ namespace Caixa
                                     //3
                                     conta3.Data = Convert.ToDateTime(mskData3.Text);
                                     conta3.Id_pessoa = Convert.ToInt32(codpes);
-                                    conta3.Nf = txtNf.Text.ToString();
+                                    conta3.Nf = "Pedido/Cheque";
                                     conta3.Valor = txtValorVenc3.Text.ToString().Replace(".", "");
                                     conta3.Data_em = Convert.ToDateTime(mskDataem.Text);
                                     conta3.Status = "Em aberto";
                                     contaDAO.Inserir3(conta3);
+
+                                    aud.Acao = "INSERIU PEDIDO/CHEQUE X3P";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
                                 }
+
+                                MessageBox.Show("Informações salvas com sucesso");
+
+                                txtNf.Clear();
+                                mskData.Clear();
+                                mskData2.Clear();
+                                mskData3.Clear();
+                                mskDataem.Clear();
+                                txtValorVenc1.Clear();
+                                txtValorVenc2.Clear();
+                                txtValorVenc3.Clear();
+                                chkNf.Checked = false;
+                                cmbParcela.SelectedIndex = 0;
                             }
 
                         }
@@ -740,6 +828,33 @@ namespace Caixa
             frmDespesa desp = new frmDespesa();
             desp.Owner = this;
             desp.ShowDialog();
+        }
+
+        private void mskDataem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void mskData2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void mskData3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
         }
     }
 }

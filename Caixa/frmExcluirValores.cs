@@ -15,6 +15,9 @@ namespace Caixa
 
         OperadoraDAO opDAO = new OperadoraDAO();
         ValoroperadoraDAO vopDAO = new ValoroperadoraDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string codop;
         string operadora;
         string id;
@@ -38,7 +41,7 @@ namespace Caixa
             try
             {
                 CarregarComboOperadora();
-                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             catch
             {
@@ -73,8 +76,14 @@ namespace Caixa
                 {
                     vopDAO.Excluir(id);             
                     MessageBox.Show("Excluído com sucesso !!!");
-                    txtId.Text = string.Empty;
+                    txtId.Text = string.Empty;              
                     gvExibir.DataSource = vopDAO.Listarvalores2(operadora);
+
+                    aud.Acao = "EXCLUIU VALOR OPERADORA";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
                 }
                 else
                 {
@@ -103,6 +112,15 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                 this.Close();
+            }
+        }
+
+        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+                txtId.Text = row.Cells["id_valor"].Value.ToString();
             }
         }
     }

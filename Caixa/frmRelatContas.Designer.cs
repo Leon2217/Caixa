@@ -51,14 +51,21 @@
             this.btnAt = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtn = new System.Windows.Forms.TextBox();
+            this.btnExcluir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPaideFamilia
             // 
+            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
+            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(761, 14);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(882, 14);
             this.btnPaideFamilia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
             this.btnPaideFamilia.Size = new System.Drawing.Size(181, 65);
@@ -70,9 +77,15 @@
             // 
             // btnExport
             // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(761, 89);
+            this.btnExport.Location = new System.Drawing.Point(882, 89);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(181, 65);
@@ -158,7 +171,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(351, 19);
+            this.label3.Location = new System.Drawing.Point(397, 19);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 20);
@@ -169,7 +182,7 @@
             // 
             this.cmbFornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbFornecedor.FormattingEnabled = true;
-            this.cmbFornecedor.Location = new System.Drawing.Point(454, 16);
+            this.cmbFornecedor.Location = new System.Drawing.Point(500, 16);
             this.cmbFornecedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbFornecedor.Name = "cmbFornecedor";
             this.cmbFornecedor.Size = new System.Drawing.Size(299, 28);
@@ -194,7 +207,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label4.Location = new System.Drawing.Point(351, 54);
+            this.label4.Location = new System.Drawing.Point(397, 54);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 20);
@@ -209,7 +222,7 @@
             "Atrasado",
             "Em aberto",
             "Pago"});
-            this.cmbStatus.Location = new System.Drawing.Point(454, 51);
+            this.cmbStatus.Location = new System.Drawing.Point(500, 51);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(180, 28);
@@ -223,19 +236,27 @@
             this.gvExibir.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
             this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gvExibir.Location = new System.Drawing.Point(12, 93);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(741, 337);
+            this.gvExibir.Size = new System.Drawing.Size(862, 421);
             this.gvExibir.TabIndex = 21;
             this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick_1);
+            this.gvExibir.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.gvExibir_CellErrorTextNeeded);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(762, 276);
+            this.label5.Location = new System.Drawing.Point(878, 315);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 22;
@@ -243,7 +264,8 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(803, 273);
+            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtID.Location = new System.Drawing.Point(919, 312);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(139, 26);
             this.txtID.TabIndex = 23;
@@ -251,12 +273,13 @@
             // 
             // cmbS
             // 
+            this.cmbS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbS.FormattingEnabled = true;
             this.cmbS.Items.AddRange(new object[] {
             "Em aberto",
             "Pago"});
-            this.cmbS.Location = new System.Drawing.Point(761, 357);
+            this.cmbS.Location = new System.Drawing.Point(882, 396);
             this.cmbS.Name = "cmbS";
             this.cmbS.Size = new System.Drawing.Size(181, 28);
             this.cmbS.TabIndex = 24;
@@ -264,8 +287,9 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(759, 334);
+            this.label6.Location = new System.Drawing.Point(875, 373);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 20);
             this.label6.TabIndex = 25;
@@ -273,8 +297,14 @@
             // 
             // btnAt
             // 
+            this.btnAt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAt.BackColor = System.Drawing.Color.White;
-            this.btnAt.Location = new System.Drawing.Point(761, 391);
+            this.btnAt.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnAt.FlatAppearance.BorderSize = 2;
+            this.btnAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAt.Location = new System.Drawing.Point(882, 430);
             this.btnAt.Name = "btnAt";
             this.btnAt.Size = new System.Drawing.Size(181, 39);
             this.btnAt.TabIndex = 26;
@@ -284,8 +314,9 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(762, 310);
+            this.label7.Location = new System.Drawing.Point(878, 349);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 20);
             this.label7.TabIndex = 27;
@@ -293,8 +324,9 @@
             // 
             // txtn
             // 
+            this.txtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtn.Location = new System.Drawing.Point(803, 307);
+            this.txtn.Location = new System.Drawing.Point(919, 346);
             this.txtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtn.MaxLength = 10;
             this.txtn.Name = "txtn";
@@ -303,12 +335,30 @@
             this.txtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtn.TextChanged += new System.EventHandler(this.txtn_TextChanged);
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.BackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnExcluir.FlatAppearance.BorderSize = 2;
+            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Location = new System.Drawing.Point(882, 475);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(181, 39);
+            this.btnExcluir.TabIndex = 29;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // frmRelatContas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(949, 439);
+            this.ClientSize = new System.Drawing.Size(1070, 523);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.txtn);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnAt);
@@ -335,7 +385,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximizeBox = false;
             this.Name = "frmRelatContas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Relatórios de contas";
@@ -370,5 +419,6 @@
         private System.Windows.Forms.Button btnAt;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtn;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }

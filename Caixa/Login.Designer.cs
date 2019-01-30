@@ -64,6 +64,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(138, 26);
             this.txtLogin.TabIndex = 1;
+            this.txtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLogin_KeyDown);
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogin_KeyPress);
             // 
             // txtSenha
@@ -81,6 +82,11 @@
             // btnEntrar
             // 
             this.btnEntrar.BackColor = System.Drawing.Color.White;
+            this.btnEntrar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnEntrar.FlatAppearance.BorderSize = 2;
+            this.btnEntrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEntrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.Image = global::Caixa.Properties.Resources.Login_37128__1_;
             this.btnEntrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -97,12 +103,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(243, 162);
+            this.ClientSize = new System.Drawing.Size(243, 152);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

@@ -40,7 +40,7 @@ namespace Caixa
             DataTable listaDescripto;
             try
             {
-                executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,TIME_FORMAT(hora,'%H:%i') as HORA,desc_ed as DESCR,responsa_ed as RESPONSAVEL,IF(entrada_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(entrada_ed, 2), '.', '|'), ',', '.'), '|', ','))) as ENTRADA,IF(saida_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(saida_ed, 2), '.', '|'), ',', '.'), '|', ','))) as SAIDA,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL,moeda_1 as 1REAL,moeda_50 as 50CENT,moeda_25 as 25CENT,moeda_10 as 10CENT,moeda_5 as 5CENT FROM ENTRADA_DEV;");
+                executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,TIME_FORMAT(hora,'%H:%i') as HORA,desc_ed as DESCR,responsa_ed as RESP,IF(entrada_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(entrada_ed, 2), '.', '|'), ',', '.'), '|', ','))) as ENTRADA,IF(saida_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(saida_ed, 2), '.', '|'), ',', '.'), '|', ','))) as SAIDA,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL,moeda_1 as 1REAL,moeda_50 as 50CENT,moeda_25 as 25CENT,moeda_10 as 10CENT,moeda_5 as 5CENT FROM ENTRADA_DEV;");
             }
             catch
             {
@@ -54,7 +54,7 @@ namespace Caixa
                 DataRow linha = listaDescripto.NewRow();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
-                linha["RESPONSAVEL"] = tabela_memoria.Rows[i]["RESPONSAVEL"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["ENTRADA"] = tabela_memoria.Rows[i]["ENTRADA"].ToString();
                 linha["SAIDA"] = tabela_memoria.Rows[i]["SAIDA"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
@@ -77,7 +77,7 @@ namespace Caixa
             DataTable listaDescripto;
             try
             {
-                executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y')  as DATA,TIME_FORMAT(hora,'%H:%i') as HORA,desc_ed as DESCR,responsa_ed as RESPONSAVEL,IF(entrada_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(entrada_ed, 2), '.', '|'), ',', '.'), '|', ','))) as ENTRADA,IF(saida_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(saida_ed, 2), '.', '|'), ',', '.'), '|', ','))) as SAIDA,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL,moeda_1 as 1REAL,moeda_50 as 50CENT,moeda_25 as 25CENT,moeda_10 as 10CENT,moeda_5 as 5CENT FROM ENTRADA_DEV WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+                executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y')  as DATA,TIME_FORMAT(hora,'%H:%i') as HORA,desc_ed as DESCR,responsa_ed as RESP,IF(entrada_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(entrada_ed, 2), '.', '|'), ',', '.'), '|', ','))) as ENTRADA,IF(saida_ed=('0.00'),'',Concat(Replace(Replace(Replace(Format(saida_ed, 2), '.', '|'), ',', '.'), '|', ','))) as SAIDA,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL,moeda_1 as 1REAL,moeda_50 as 50CENT,moeda_25 as 25CENT,moeda_10 as 10CENT,moeda_5 as 5CENT FROM ENTRADA_DEV WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             }
             catch
             {
@@ -93,7 +93,7 @@ namespace Caixa
                
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
-                linha["RESPONSAVEL"] = tabela_memoria.Rows[i]["RESPONSAVEL"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["ENTRADA"] = tabela_memoria.Rows[i]["ENTRADA"].ToString();
                 linha["SAIDA"] = tabela_memoria.Rows[i]["SAIDA"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();

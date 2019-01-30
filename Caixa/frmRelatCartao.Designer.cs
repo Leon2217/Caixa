@@ -44,6 +44,7 @@
             this.cmbMaquina = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbCartao = new System.Windows.Forms.ComboBox();
+            this.btnTaxa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,19 +52,31 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
+            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gvExibir.Location = new System.Drawing.Point(12, 114);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(611, 323);
+            this.gvExibir.Size = new System.Drawing.Size(698, 365);
             this.gvExibir.TabIndex = 22;
             // 
             // btnPaideFamilia
             // 
+            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
+            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(629, 15);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(716, 15);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
             this.btnPaideFamilia.Size = new System.Drawing.Size(178, 60);
             this.btnPaideFamilia.TabIndex = 17;
@@ -74,10 +87,16 @@
             // 
             // btnExport
             // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(629, 80);
+            this.btnExport.Location = new System.Drawing.Point(716, 80);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(178, 60);
             this.btnExport.TabIndex = 18;
@@ -147,7 +166,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(344, 83);
+            this.label5.Location = new System.Drawing.Point(409, 83);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 20);
             this.label5.TabIndex = 24;
@@ -158,7 +177,7 @@
             this.cmbBandeira.FormattingEnabled = true;
             this.cmbBandeira.Location = new System.Drawing.Point(91, 46);
             this.cmbBandeira.Name = "cmbBandeira";
-            this.cmbBandeira.Size = new System.Drawing.Size(199, 28);
+            this.cmbBandeira.Size = new System.Drawing.Size(225, 28);
             this.cmbBandeira.TabIndex = 25;
             this.cmbBandeira.SelectedIndexChanged += new System.EventHandler(this.cmbBandeira_SelectedIndexChanged);
             this.cmbBandeira.TextChanged += new System.EventHandler(this.cmbBandeira_TextChanged);
@@ -171,16 +190,16 @@
             "Tarde"});
             this.cmbTurno.Location = new System.Drawing.Point(91, 80);
             this.cmbTurno.Name = "cmbTurno";
-            this.cmbTurno.Size = new System.Drawing.Size(199, 28);
+            this.cmbTurno.Size = new System.Drawing.Size(225, 28);
             this.cmbTurno.TabIndex = 26;
             this.cmbTurno.SelectedIndexChanged += new System.EventHandler(this.cmbTurno_SelectedIndexChanged);
             // 
             // cmbMaquina
             // 
             this.cmbMaquina.FormattingEnabled = true;
-            this.cmbMaquina.Location = new System.Drawing.Point(424, 80);
+            this.cmbMaquina.Location = new System.Drawing.Point(485, 80);
             this.cmbMaquina.Name = "cmbMaquina";
-            this.cmbMaquina.Size = new System.Drawing.Size(199, 28);
+            this.cmbMaquina.Size = new System.Drawing.Size(225, 28);
             this.cmbMaquina.TabIndex = 27;
             this.cmbMaquina.SelectedIndexChanged += new System.EventHandler(this.cmbMaquina_SelectedIndexChanged);
             this.cmbMaquina.TextChanged += new System.EventHandler(this.cmbMaquina_TextChanged);
@@ -188,7 +207,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(344, 49);
+            this.label6.Location = new System.Drawing.Point(409, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 20);
             this.label6.TabIndex = 28;
@@ -197,19 +216,37 @@
             // cmbCartao
             // 
             this.cmbCartao.FormattingEnabled = true;
-            this.cmbCartao.Location = new System.Drawing.Point(424, 46);
+            this.cmbCartao.Location = new System.Drawing.Point(485, 46);
             this.cmbCartao.Name = "cmbCartao";
-            this.cmbCartao.Size = new System.Drawing.Size(199, 28);
+            this.cmbCartao.Size = new System.Drawing.Size(225, 28);
             this.cmbCartao.TabIndex = 29;
             this.cmbCartao.SelectedIndexChanged += new System.EventHandler(this.cmbCartao_SelectedIndexChanged);
             this.cmbCartao.TextChanged += new System.EventHandler(this.cmbCartao_TextChanged);
+            // 
+            // btnTaxa
+            // 
+            this.btnTaxa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTaxa.BackColor = System.Drawing.Color.White;
+            this.btnTaxa.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnTaxa.FlatAppearance.BorderSize = 2;
+            this.btnTaxa.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnTaxa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnTaxa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaxa.Location = new System.Drawing.Point(716, 419);
+            this.btnTaxa.Name = "btnTaxa";
+            this.btnTaxa.Size = new System.Drawing.Size(178, 60);
+            this.btnTaxa.TabIndex = 30;
+            this.btnTaxa.Text = "F10 - Relatório Taxa";
+            this.btnTaxa.UseVisualStyleBackColor = false;
+            this.btnTaxa.Click += new System.EventHandler(this.btnTaxa_Click);
             // 
             // frmRelatCartao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(812, 444);
+            this.ClientSize = new System.Drawing.Size(899, 486);
+            this.Controls.Add(this.btnTaxa);
             this.Controls.Add(this.cmbCartao);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbMaquina);
@@ -226,10 +263,11 @@
             this.Controls.Add(this.mskDe);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximizeBox = false;
             this.Name = "frmRelatCartao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Relatório de vendas de Cartões";
@@ -258,5 +296,6 @@
         private System.Windows.Forms.ComboBox cmbMaquina;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbCartao;
+        private System.Windows.Forms.Button btnTaxa;
     }
 }

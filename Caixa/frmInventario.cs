@@ -16,6 +16,9 @@ namespace Caixa
         InventarioDAO invDAO = new InventarioDAO();
         VendaVC vc = new VendaVC();
         VendaVCDAO vcDAO = new VendaVCDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string valor;
         int qtd;
 
@@ -99,6 +102,13 @@ namespace Caixa
 
                         MessageBox.Show("Dados alterados com sucesso !!!");
                         Limpar();
+
+
+                        aud.Acao = "ATUALIZOU INVENTARIO VALECAP";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch (FormatException)
                     {
@@ -131,6 +141,12 @@ namespace Caixa
                     //((InicialCaixa)this.Owner).Atualizadados();
                     MessageBox.Show("Dados salvos com sucesso !!!");
                     Limpar();
+
+                    aud.Acao = "INSERIU INVENTARIO VALECAP";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
                 }
                 catch(FormatException)
                 {
@@ -176,6 +192,15 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                 this.Close();
+            }
+        }
+
+        private void txtQtd_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
             }
         }
     }

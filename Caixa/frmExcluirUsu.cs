@@ -14,6 +14,9 @@ namespace Caixa
     {
         Usuario usu = new Usuario();
         UsuarioDAO usuDAO = new UsuarioDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string id;
 
         public frmExcluirUsu()
@@ -55,6 +58,12 @@ namespace Caixa
                     MessageBox.Show("Excluído com sucesso !!!");
                     txtId.Text = string.Empty;
                     gvExibir.DataSource = usuDAO.ListarTudo();
+
+                    aud.Acao = "EXCLUIU USUARIO";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
                 }
                 else
                 {
@@ -87,6 +96,24 @@ namespace Caixa
             {
                 e.Handled = true;
 
+            }
+        }
+
+        private void txtId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+                txtId.Text = row.Cells["ID"].Value.ToString();
             }
         }
     }

@@ -54,6 +54,7 @@
             this.txtSenha.TabIndex = 2;
             this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // txtLogin
@@ -66,8 +67,8 @@
             this.txtLogin.Size = new System.Drawing.Size(127, 26);
             this.txtLogin.TabIndex = 1;
             this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
+            this.txtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLogin_KeyDown);
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogin_KeyPress);
-            this.txtLogin.Leave += new System.EventHandler(this.txtLogin_Leave);
             // 
             // label2
             // 
@@ -114,10 +115,16 @@
             this.cmbCargo.Size = new System.Drawing.Size(127, 28);
             this.cmbCargo.TabIndex = 4;
             this.cmbCargo.SelectedIndexChanged += new System.EventHandler(this.cmbCargo_SelectedIndexChanged);
+            this.cmbCargo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCargo_KeyDown);
             // 
             // btnCadastrar
             // 
             this.btnCadastrar.BackColor = System.Drawing.Color.White;
+            this.btnCadastrar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnCadastrar.FlatAppearance.BorderSize = 2;
+            this.btnCadastrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCadastrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastrar.Location = new System.Drawing.Point(17, 178);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(229, 50);
@@ -148,6 +155,7 @@
             this.txtConfirma.TabIndex = 3;
             this.txtConfirma.UseSystemPasswordChar = true;
             this.txtConfirma.TextChanged += new System.EventHandler(this.txtConfirma_TextChanged);
+            this.txtConfirma.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirma_KeyDown);
             this.txtConfirma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirma_KeyPress);
             this.txtConfirma.Leave += new System.EventHandler(this.txtConfirma_Leave);
             // 
@@ -156,7 +164,7 @@
             this.pictureBox1.Image = global::Caixa.Properties.Resources.new_add_user_16734;
             this.pictureBox1.Location = new System.Drawing.Point(253, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(182, 210);
+            this.pictureBox1.Size = new System.Drawing.Size(182, 198);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -189,6 +197,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

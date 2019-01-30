@@ -21,9 +21,11 @@ namespace Caixa
         internal VendaVC Vvc { get => vvc; set => vvc = value; }
         public static string Manha { get => manha; set => manha = value; }
         public static string Tarde { get => tarde; set => tarde = value; }
+        public static string Noite { get => noite; set => noite = value; }
 
         public static string manha;
         public static string tarde;
+        public static string noite;
 
         private void executarComando(string comando)
         {
@@ -135,7 +137,21 @@ namespace Caixa
         }
         #endregion
 
-
+        #region BUSCAR SOMA DE RECARGA POR TURNO3
+        public Boolean VerificaVenda3(DateTime data)
+        {
+            executarComando("SELECT sum(total_vc) FROM VENDA_VC V INNER JOIN CAIXA C ON C.ID_CAIXA=V.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=3 AND C.DATAINICIO='" + data.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                noite = tabela_memoria.Rows[0]["sum(total_vc)"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
 
     }
 }

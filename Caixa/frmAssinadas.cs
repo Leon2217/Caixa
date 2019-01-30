@@ -68,7 +68,7 @@ namespace Caixa
                     }
                     else
                     {
-                        ass.Id_caixa = Convert.ToInt32(assinadaDAO.codcaixa);
+                        ass.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
                         ass.Classm = txtClass.Text.ToString().Replace(".", "");
                         ass.Assinadas = txtAssinada.Text.ToString().Replace(".", "");
                         ass.Julio = txtJulio.Text.ToString().Replace(".", "");

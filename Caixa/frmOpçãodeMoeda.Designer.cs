@@ -37,6 +37,10 @@
             // btnMovimento
             // 
             this.btnMovimento.BackColor = System.Drawing.Color.White;
+            this.btnMovimento.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnMovimento.FlatAppearance.BorderSize = 2;
+            this.btnMovimento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnMovimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMovimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMovimento.Location = new System.Drawing.Point(11, 193);
             this.btnMovimento.Name = "btnMovimento";
@@ -50,6 +54,10 @@
             // btnDev
             // 
             this.btnDev.BackColor = System.Drawing.Color.White;
+            this.btnDev.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDev.FlatAppearance.BorderSize = 2;
+            this.btnDev.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnDev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDev.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDev.Location = new System.Drawing.Point(11, 103);
             this.btnDev.Name = "btnDev";
@@ -63,6 +71,10 @@
             // btnEntrada
             // 
             this.btnEntrada.BackColor = System.Drawing.Color.White;
+            this.btnEntrada.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEntrada.FlatAppearance.BorderSize = 2;
+            this.btnEntrada.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnEntrada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrada.Location = new System.Drawing.Point(11, 13);
             this.btnEntrada.Name = "btnEntrada";
@@ -82,6 +94,7 @@
             this.Controls.Add(this.btnMovimento);
             this.Controls.Add(this.btnDev);
             this.Controls.Add(this.btnEntrada);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

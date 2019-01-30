@@ -16,6 +16,8 @@ namespace Caixa
         PessoaDAO pesDAO = new PessoaDAO();
         Falta fal = new Falta();
         FaltaDAO falDAO = new FaltaDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         #endregion
 
         #region VAR
@@ -165,6 +167,12 @@ namespace Caixa
                             cmbNome.SelectedIndex = 0;
                             mskDe.Clear();
                             mskAte.Clear();
+
+                            aud.Acao = "INSERIU FALTA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
                         }
                         catch
                         {
@@ -189,6 +197,12 @@ namespace Caixa
                         MessageBox.Show("Falta salva com sucesso !!!");
                         chkIntegral.Checked = false;
                         cmbNome.SelectedIndex = 0;
+
+                        aud.Acao = "INSERIU FALTA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch
                     {
@@ -211,6 +225,12 @@ namespace Caixa
                         MessageBox.Show("Falta salva com sucesso !!!");
                         chkManha.Checked = false;
                         cmbNome.SelectedIndex = 0;
+
+                        aud.Acao = "INSERIU FALTA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch
                     {
@@ -233,6 +253,12 @@ namespace Caixa
                         MessageBox.Show("Falta salva com sucesso !!!");
                         chkTarde.Checked = false;
                         cmbNome.SelectedIndex = 0;
+
+                        aud.Acao = "INSERIU FALTA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch
                     {

@@ -23,6 +23,8 @@ namespace Caixa
         Valorgeral vg = new Valorgeral();
         Geral ger = new Geral();
         GeralDAO gerDAO = new GeralDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         #endregion
 
         #region VAR
@@ -38,8 +40,12 @@ namespace Caixa
         int j;
         DateTime data;
         DateTime data2;
+#pragma warning disable CS0169 // O campo "frmRelatContas.data3" nunca é usado
         DateTime data3;
+#pragma warning restore CS0169 // O campo "frmRelatContas.data3" nunca é usado
+#pragma warning disable CS0169 // O campo "frmRelatContas.data4" nunca é usado
         DateTime data4;
+#pragma warning restore CS0169 // O campo "frmRelatContas.data4" nunca é usado
 
         #endregion
 
@@ -76,10 +82,19 @@ namespace Caixa
 
         private void frmRelatContas_Load(object sender, EventArgs e)
         {
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            CarregarComboFornecedor();
-            cmbFornecedor.SelectedIndex = -1;
-            contasDAO.UpdateAtrasado();
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+            try
+            {
+                CarregarComboFornecedor();
+                cmbFornecedor.SelectedIndex = -1;
+                contasDAO.UpdateAtrasado();
+            }
+            catch
+            {
+
+            }
+      
 
 
             try
@@ -88,6 +103,34 @@ namespace Caixa
                 gvExibir.DataSource = contasDAO.ListarTudo();
 
                 DataTable table = new DataTable();
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "ID")
+                        column.Width = 45; //tamanho fixo da coluna ID
+                    else if (column.DataPropertyName == "STATUS")
+                        column.Width = 90; //tamanho fixo da coluna STATUS               
+                    else if (column.DataPropertyName == "VENC")
+                        column.Width = 90; //tamanho fixo da coluna VENC
+                    else if (column.DataPropertyName == "EMISSAO")
+                        column.Width = 90; //tamanho fixo da coluna EMISSAO
+                    else if (column.DataPropertyName == "NF")
+                        column.Width = 140; //tamanho fixo da coluna NF
+                    else if (column.DataPropertyName == "VALOR")
+                        column.Width = 90; //tamanho fixo da coluna VALOR
+                    else if (column.DataPropertyName == "FORNECEDOR")
+                        column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+
+
 
 
             }
@@ -134,7 +177,31 @@ namespace Caixa
                 chkNf.Enabled = true;
             }
 
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
 
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
 
             #region DE
             if (mskDe.MaskFull == true)
@@ -769,6 +836,32 @@ namespace Caixa
 
         private void mskAté_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -1666,6 +1759,32 @@ namespace Caixa
 
         private void cmbFornecedor_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -1965,6 +2084,32 @@ namespace Caixa
 
         private void cmbStatus_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -2264,6 +2409,32 @@ namespace Caixa
 
         private void txtNf_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -2581,11 +2752,7 @@ namespace Caixa
             }
             #endregion
         }
-
-        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+      
 
         public void AtualizaDados()
         {
@@ -2963,8 +3130,10 @@ namespace Caixa
                                     #region GERAL
                                     ger.Data = data;
                                     ger.Desc_g = "NF";
-                                    ger.Deb_g = valor;
+                                    ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
                                     ger.Total = vgDAO.Vg.Valor;
                                     gerDAO.Inserir(ger);
 
@@ -2980,7 +3149,9 @@ namespace Caixa
                                     #region GERAL
                                     ger.Data = data;
                                     ger.Desc_g = "NF";
-                                    ger.Deb_g = valor;
+                                    ger.Deb_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
                                     ger.Cred_g = "0,00";
                                     ger.Total = vgDAO.Vg.Valor;
                                     gerDAO.Inserir(ger);
@@ -2997,6 +3168,12 @@ namespace Caixa
                             }
 
                             MessageBox.Show("Atualizado com sucesso !!!");
+
+                            aud.Acao = "PAGOU CONTA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
                             AtualizaDados();
                         }
                     }
@@ -3045,8 +3222,10 @@ namespace Caixa
                                     #region GERAL
                                     ger.Data = data;
                                     ger.Desc_g = "NF";
-                                    ger.Deb_g = valor;
+                                    ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
                                     ger.Total = vgDAO.Vg.Valor;
                                     gerDAO.Inserir(ger);
 
@@ -3062,8 +3241,10 @@ namespace Caixa
                                     #region GERAL
                                     ger.Data = data;
                                     ger.Desc_g = "NF";
-                                    ger.Deb_g = valor;
+                                    ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
                                     ger.Total = vgDAO.Vg.Valor;
                                     gerDAO.Inserir(ger);
 
@@ -3122,6 +3303,7 @@ namespace Caixa
 
         private void txtn_TextChanged(object sender, EventArgs e)
         {
+           
             if (txtn.Text != string.Empty)
             {
                 txtID.Enabled = false;
@@ -3383,11 +3565,82 @@ namespace Caixa
 
         private void gvExibir_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+                txtID.Text = row.Cells["ID"].Value.ToString();             
+            }
+        }
 
+        private void gvExibir_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
+        {
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == string.Empty && txtn.Text == string.Empty)
+            {
+                txtID.BackColor = Color.Red;
+                MessageBox.Show("Favor preencher o ID ou NF da conta");
+            }
+            else
+            {
+                DialogResult op;
+
+                op = MessageBox.Show("Deseja realmente excluir?",
+                    "Excluir?", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (op == DialogResult.Yes)
+                {
+                    contasDAO.Excluir(id, n);
+                    MessageBox.Show("Excluído com sucesso !!!");
+                    txtID.Text = string.Empty;
+                    txtn.Text = string.Empty;
+                    gvExibir.DataSource = contasDAO.ListarTudo();
+
+                    aud.Acao = "EXCLUIU CONTA";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
+                }
+                else
+                {
+                    MessageBox.Show("Cancelado");
+                }
+            }
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "STATUS")
+                    column.Width = 90; //tamanho fixo da coluna STATUS               
+                else if (column.DataPropertyName == "VENC")
+                    column.Width = 90; //tamanho fixo da coluna VENC
+                else if (column.DataPropertyName == "EMISSAO")
+                    column.Width = 90; //tamanho fixo da coluna EMISSAO
+                else if (column.DataPropertyName == "NF")
+                    column.Width = 140; //tamanho fixo da coluna NF
+                else if (column.DataPropertyName == "VALOR")
+                    column.Width = 90; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "FORNECEDOR")
+                    column.Width = 250; //tamanho fixo da coluna FORNECEDOR
+
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DE
             if (mskDe.MaskFull == true)
             {

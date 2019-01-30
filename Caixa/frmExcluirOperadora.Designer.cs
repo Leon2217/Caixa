@@ -55,17 +55,22 @@
             this.txtOperadora.Size = new System.Drawing.Size(168, 26);
             this.txtOperadora.TabIndex = 1;
             this.txtOperadora.TextChanged += new System.EventHandler(this.txtOperadora_TextChanged);
+            this.txtOperadora.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOperadora_KeyDown);
             // 
             // gvExibir
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
+            this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gvExibir.Location = new System.Drawing.Point(12, 44);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.Size = new System.Drawing.Size(265, 150);
             this.gvExibir.TabIndex = 99;
+            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
             // 
             // label2
             // 
@@ -83,11 +88,17 @@
             this.txtId.Size = new System.Drawing.Size(106, 26);
             this.txtId.TabIndex = 2;
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
+            this.txtId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtId_KeyDown);
             this.txtId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtId_KeyPress);
             // 
             // btnExcluir
             // 
             this.btnExcluir.BackColor = System.Drawing.Color.White;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnExcluir.FlatAppearance.BorderSize = 2;
+            this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.Location = new System.Drawing.Point(156, 208);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(121, 43);
@@ -101,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(294, 267);
+            this.ClientSize = new System.Drawing.Size(294, 257);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label2);
@@ -110,6 +121,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

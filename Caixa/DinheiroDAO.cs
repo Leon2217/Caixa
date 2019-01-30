@@ -192,5 +192,37 @@ namespace Caixa
             }
         }
 
+        public Boolean PegaUltimoId(string usu)
+        {
+            executarComando("SELECT max(id_qtd) as ID FROM gaveta g inner join caixa cx on cx.id_caixa=g.id_caixa WHERE cx.responsavel='"+usu+"';");
+            try
+            {
+                Dinh.Id_qtd= Convert.ToInt32(tabela_memoria.Rows[0]["ID"].ToString());
+
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Boolean PegaTotalUltimoId(string cod,string usu)
+        {
+            executarComando("SELECT total as TOTAL FROM gaveta g inner join caixa cx on cx.id_caixa=g.id_caixa WHERE  g.id_qtd='"+cod+"' and  cx.responsavel='"+usu+"';");
+            try
+            {
+                Dinh.Total = tabela_memoria.Rows[0]["TOTAL"].ToString();
+
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

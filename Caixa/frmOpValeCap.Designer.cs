@@ -37,6 +37,10 @@
             // btnRelatorio
             // 
             this.btnRelatorio.BackColor = System.Drawing.Color.White;
+            this.btnRelatorio.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRelatorio.FlatAppearance.BorderSize = 2;
+            this.btnRelatorio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnRelatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelatorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRelatorio.Location = new System.Drawing.Point(12, 193);
             this.btnRelatorio.Name = "btnRelatorio";
@@ -50,6 +54,10 @@
             // btnInventario
             // 
             this.btnInventario.BackColor = System.Drawing.Color.White;
+            this.btnInventario.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnInventario.FlatAppearance.BorderSize = 2;
+            this.btnInventario.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventario.Location = new System.Drawing.Point(11, 103);
             this.btnInventario.Name = "btnInventario";
@@ -63,6 +71,10 @@
             // btnVenda
             // 
             this.btnVenda.BackColor = System.Drawing.Color.White;
+            this.btnVenda.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnVenda.FlatAppearance.BorderSize = 2;
+            this.btnVenda.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVenda.Location = new System.Drawing.Point(11, 13);
             this.btnVenda.Name = "btnVenda";
@@ -82,6 +94,7 @@
             this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.btnInventario);
             this.Controls.Add(this.btnVenda);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

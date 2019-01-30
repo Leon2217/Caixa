@@ -15,11 +15,15 @@ namespace Caixa
         #region INSTANCIAMENTO CLASSES
         PessoaDAO pesDAO = new PessoaDAO();
         TipoDAO tpDAO = new TipoDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         #endregion
 
         #region VAR
         string nome;
+#pragma warning disable CS0169 // O campo "frmExcluirFunc.id" nunca é usado
         string id;
+#pragma warning restore CS0169 // O campo "frmExcluirFunc.id" nunca é usado
         string tipo;
         #endregion
 
@@ -55,11 +59,31 @@ namespace Caixa
 
         private void frmExcluirFunc_Load(object sender, EventArgs e)
         {
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             CarregarComboTipo();
+            cmbTipo.SelectedIndex = -1;
             try
             {
-                gvExibir.DataSource = pesDAO.ListarID(tipo);
+                gvExibir.DataSource = pesDAO.ListarT();
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "ID")
+                        column.Width = 45; //tamanho fixo da coluna ID
+                    else if(column.DataPropertyName =="TIPO")
+                        column.Width = 80; //tamanho fixo da coluna FISJUR
+                    else if (column.DataPropertyName == "CPFNJ")
+                        column.Width = 160; //tamanho fixo da coluna FISJUR
+                    else if (column.DataPropertyName == "CATEGORIA")
+                        column.Width = 100; //tamanho fixo da coluna FISJUR
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
             }
             catch
             {
@@ -67,6 +91,8 @@ namespace Caixa
             }
             
         }
+
+       
 
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -79,64 +105,103 @@ namespace Caixa
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
-            #region FILTRA POR NOME
-            if (txtNome.Text != string.Empty)
+            #region FILTRA POR NOME E TIPO
+            if (txtNome.Text != string.Empty && cmbTipo.Text != string.Empty)
             {
                 nome = txtNome.Text;
-                gvExibir.DataSource = pesDAO.ListarNome(nome,tipo);
+                gvExibir.DataSource = pesDAO.ListarNome(nome, tipo);
             }
             #endregion
 
-            #region SOMENTE NOME VAZIO
-            if (txtNome.Text == string.Empty)
+            #region FILTRA POR TIPO
+            if (txtNome.Text == string.Empty && cmbTipo.Text != string.Empty)
             {
                 gvExibir.DataSource = pesDAO.ListarID(tipo);
             }
             #endregion
 
-        }
-
-        private void txtId_TextChanged(object sender, EventArgs e)
-        {
-            txtId.BackColor = Color.Empty;
-            if (txtId.Text != string.Empty)
+            #region FILTRA POR NOME
+            if (txtNome.Text != string.Empty && cmbTipo.Text == string.Empty)
             {
-              id = txtId.Text.ToString();
+                nome = txtNome.Text;
+                gvExibir.DataSource = pesDAO.ListarNM(nome);
             }
-            
-          
-        }
+            #endregion
 
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            if (txtId.Text == string.Empty)
+            if (txtNome.Text == string.Empty && cmbTipo.Text == string.Empty)
             {
-                txtId.BackColor = Color.Red;
-                MessageBox.Show("Favor preencher o ID da pessoa");
+
+                gvExibir.DataSource = pesDAO.ListarT();
             }
-            else
+
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
             {
-                DialogResult op;
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "TIPO")
+                    column.Width = 80; //tamanho fixo da coluna FISJUR
+                else if (column.DataPropertyName == "CPFNJ")
+                    column.Width = 160; //tamanho fixo da coluna FISJUR
+                else if (column.DataPropertyName == "CATEGORIA")
+                    column.Width = 100; //tamanho fixo da coluna FISJUR
 
-                op = MessageBox.Show("Deseja realmente excluir?",
-                    "Excluir?", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (op == DialogResult.Yes)
-                {
-                    pesDAO.Excluir(id);
-                    MessageBox.Show("Excluído com sucesso !!!");
-                    txtId.Text = string.Empty;
-                    cmbTipo.SelectedIndex = 0;
-                    txtNome.Clear();
-                    gvExibir.DataSource = pesDAO.ListarID(tipo);
-                }
                 else
                 {
-                    MessageBox.Show("Cancelado");
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
+            #endregion
+
         }
+
+        //private void txtId_TextChanged(object sender, EventArgs e)
+        //{
+        //    txtId.BackColor = Color.Empty;
+        //    if (txtId.Text != string.Empty)
+        //    {
+        //      id = txtId.Text.ToString();
+        //    }
+
+
+        //}
+
+        //private void btnExcluir_Click(object sender, EventArgs e)
+        //{
+        //    if (txtId.Text == string.Empty)
+        //    {
+        //        txtId.BackColor = Color.Red;
+        //        MessageBox.Show("Favor preencher o ID da pessoa");
+        //    }
+        //    else
+        //    {
+        //        DialogResult op;
+
+        //        op = MessageBox.Show("Deseja realmente excluir?",
+        //            "Excluir?", MessageBoxButtons.YesNo,
+        //            MessageBoxIcon.Question);
+
+        //        if (op == DialogResult.Yes)
+        //        {
+        //            pesDAO.Excluir(id);
+        //            MessageBox.Show("Excluído com sucesso !!!");
+        //            txtId.Text = string.Empty;
+        //            cmbTipo.SelectedIndex = 0;
+        //            txtNome.Clear();
+        //            gvExibir.DataSource = pesDAO.ListarID(tipo);
+
+        //            aud.Acao = "EXCLUIU PESSOA";
+        //            aud.Data = FechamentoDAO.data;
+        //            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+        //            aud.Responsavel = UsuarioDAO.login;
+        //            audDAO.Inserir(aud);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Cancelado");
+        //        }
+        //    }
+        //}
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -246,8 +311,47 @@ namespace Caixa
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             tipo = cmbTipo.Text.ToString();
+            #region FILTRA POR NOME E TIPO
+            if (txtNome.Text != string.Empty && cmbTipo.Text != string.Empty)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pesDAO.ListarNome(nome, tipo);
+            }
+            #endregion
+
+            #region FILTRA POR TIPO
+            if (txtNome.Text == string.Empty && cmbTipo.Text != string.Empty)
+            {
+                gvExibir.DataSource = pesDAO.ListarID(tipo);
+            }
+            #endregion
+
             #region FILTRA POR NOME
-            if (txtNome.Text != string.Empty)
+            if (txtNome.Text != string.Empty && cmbTipo.Text == string.Empty)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pesDAO.ListarNM(nome);
+            }
+            #endregion
+
+            if (txtNome.Text == string.Empty && cmbTipo.Text == string.Empty)
+            {
+                
+                gvExibir.DataSource = pesDAO.ListarT();
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cmbTipo_TextChanged(object sender, EventArgs e)
+        {
+            #region FILTRA POR NOME
+            if (txtNome.Text != string.Empty && cmbTipo.Text != string.Empty)
             {
                 nome = txtNome.Text;
                 gvExibir.DataSource = pesDAO.ListarNome(nome, tipo);
@@ -255,11 +359,57 @@ namespace Caixa
             #endregion
 
             #region SOMENTE NOME VAZIO
-            if (txtNome.Text == string.Empty)
+            if (txtNome.Text == string.Empty && cmbTipo.Text == string.Empty)
             {
                 gvExibir.DataSource = pesDAO.ListarID(tipo);
             }
             #endregion
+
+            if (txtNome.Text == string.Empty && cmbTipo.Text == string.Empty)
+            {
+                gvExibir.DataSource = pesDAO.ListarT();
+            }
+
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "ID")
+                    column.Width = 45; //tamanho fixo da coluna ID
+                else if (column.DataPropertyName == "TIPO")
+                    column.Width = 80; //tamanho fixo da coluna FISJUR
+                else if (column.DataPropertyName == "CPFNJ")
+                    column.Width = 160; //tamanho fixo da coluna FISJUR
+                else if (column.DataPropertyName == "CATEGORIA")
+                    column.Width = 100; //tamanho fixo da coluna FISJUR
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
+        }
+
+        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string nomec;
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+                 nomec = row.Cells["NOME"].Value.ToString();
+
+                var qrForm = from frm in Application.OpenForms.Cast<Form>()
+                             where frm is frmPesquisaPessoa
+                             select frm;
+
+                if (qrForm != null && qrForm.Count() > 0)
+                {
+                    ((frmPesquisaPessoa)qrForm.First()).AtualizaNome(nomec);
+                }
+            }
+            this.Close();
         }
     }
-}
+    }
+

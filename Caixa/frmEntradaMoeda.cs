@@ -42,6 +42,10 @@ namespace Caixa
         Valorgeral vg = new Valorgeral();
         GeralDAO gerDAO = new GeralDAO();
         Geral ger = new Geral();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
+
         #endregion
         public frmEntradaMoeda()
         {
@@ -131,6 +135,12 @@ namespace Caixa
                         emDAO.Inserir(em);
 
                         MessageBox.Show("Informações salvas com sucesso!!!");
+
+                        aud.Acao = "INSERIU MOEDA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch
                     {
@@ -243,9 +253,11 @@ namespace Caixa
                                 vgDAO.Verificavalor();
                                 
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                ger.Desc_g = "DÉBITO";
+                                ger.Desc_g = "";
                                 ger.Cred_g = "0.00";
-                                ger.Deb_g = valor.ToString().Replace(".", ""); ;
+                                ger.Deb_g = valor.ToString().Replace(".", "");
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
 
@@ -264,7 +276,7 @@ namespace Caixa
                                 
 
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                ger.Desc_g = "DÉBITO";
+                                ger.Desc_g = "";
                                 ger.Cred_g = "0,00";
                                 ger.Deb_g = valor.ToString().Replace(".", "");
                                 ger.Total = vgDAO.Vg.Valor;
@@ -320,9 +332,11 @@ namespace Caixa
                                 vgDAO.Verificavalor();
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                ger.Desc_g = "CRÉDITO CAIXA MOEDA";
+                                ger.Desc_g = "";
                                 ger.Cred_g = valor.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
 
@@ -344,6 +358,8 @@ namespace Caixa
                                 ger.Desc_g = "CRÉDITO CAIXA MOEDA";
                                 ger.Cred_g = valor.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
 
@@ -454,6 +470,8 @@ namespace Caixa
                             #endregion
 
                             Limpar();
+
+                            
                         }
 
                     }
@@ -592,6 +610,8 @@ namespace Caixa
                             cd.Total = vcxDAO.Vc.Valor;
                             cdDAO.Inserir(cd);
 
+                          
+
                             #endregion
 
                             #region SUBTRAINDO NO CAIXA NORMAL
@@ -680,6 +700,9 @@ namespace Caixa
                             ed.Responsa_ed = UsuarioDAO.login;
                             ed.Total = cxmDAO.Vcm.Valor;
                             edDAO.Inserir(ed);
+
+
+                           
                             #endregion
 
                             #region SANGRIA

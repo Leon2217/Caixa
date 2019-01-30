@@ -16,6 +16,11 @@ namespace Caixa
         InventariorecDAO irDAO = new InventariorecDAO();
         Recarga rec = new Recarga();
         RecargaDAO recDAO = new RecargaDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+       
+
+
         string valor;
 
         public frmInventariorec()
@@ -76,6 +81,12 @@ namespace Caixa
                         ir.Total = txtValor.Text.ToString().Replace(".", "");
                         irDAO.Update(ir);
 
+                        aud.Acao = "ATUALIZADO INVENTARIO RECARGA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+
 
                         rec.Id_caixa = FechamentoDAO.codcaixa;
                         rec.Operadora = "-";
@@ -90,12 +101,16 @@ namespace Caixa
 
                         recDAO.Inserir(rec);
 
+                       
+
 
 
 
 
                         Limpar();
                         MessageBox.Show("Informações salvas com sucesso !!!");
+
+      
                     }
                     catch
                     {
@@ -119,7 +134,13 @@ namespace Caixa
                         ir.Total = txtValor.Text.ToString().Replace(".", "");
                         irDAO.Inserir(ir);
                         Limpar();
-                        MessageBox.Show("Informações alteradas com sucesso !!!");
+                        MessageBox.Show("Informações salvas com sucesso !!!");
+
+                        aud.Acao = "INSERIDO INVENTARIO RECARGA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
                     catch
                     {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDevoluçãodeMoeda));
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.txtSangria = new System.Windows.Forms.TextBox();
             this.lblSangria = new System.Windows.Forms.Label();
@@ -36,6 +37,11 @@
             // btnAdicionar
             // 
             this.btnAdicionar.BackColor = System.Drawing.Color.White;
+            this.btnAdicionar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnAdicionar.FlatAppearance.BorderSize = 2;
+            this.btnAdicionar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Location = new System.Drawing.Point(12, 38);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(223, 43);
@@ -52,6 +58,7 @@
             this.txtSangria.Size = new System.Drawing.Size(134, 26);
             this.txtSangria.TabIndex = 88;
             this.txtSangria.TextChanged += new System.EventHandler(this.txtSangria_TextChanged);
+            this.txtSangria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSangria_KeyDown);
             this.txtSangria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSangria_KeyPress);
             // 
             // lblSangria
@@ -74,6 +81,8 @@
             this.Controls.Add(this.lblSangria);
             this.Controls.Add(this.btnAdicionar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;

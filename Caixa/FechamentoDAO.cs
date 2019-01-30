@@ -57,20 +57,6 @@ namespace Caixa
             }
         }
 
-        //public Boolean Pesquisavalor(Fechamento fec)
-        //{
-        //    executarComando("select valor_relat from caixa WHERE id_caixa='"+fec.Id_caixa+"');");
-        //    try
-        //    {
-        //        Fec.Valor= tabela_memoria.Rows[0]["valor_relat"].ToString();
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-
         public void fechar(Fechamento fec)
         {
             executarComando("UPDATE CAIXA SET DATAFINAL='" + fec.Datafinal.ToString("yyyy/MM/dd") + "',STATUS='" + fec.Status + "',HRFINAL='" +fec.Hrfinal.ToString("HH:mm:ss") + "' WHERE ID_CAIXA='" + fec.Id_caixa + "' and RESPONSAVEL='"+fec.Responsavel+"';");
@@ -102,11 +88,14 @@ namespace Caixa
 
         public Boolean Verifica(string codper,DateTime datainicio)
         {
-            executarComando("select id_caixa,responsavel from caixa WHERE id_turno='" + codper + "' and status='Aberto' and datainicio='"+datainicio.ToString("yyyy/MM/dd")+"';");
+            executarComando("select id_caixa,responsavel,datainicio,id_turno,valor_relat from caixa WHERE id_turno='" + codper + "' and status='Aberto' and datainicio='"+datainicio.ToString("yyyy/MM/dd")+"';");
             try
             {
                 Fec.Id_caixa = Convert.ToInt32(tabela_memoria.Rows[0]["id_caixa"].ToString());
+                Fec.Id_turno = Convert.ToInt32(tabela_memoria.Rows[0]["id_turno"].ToString());
+                Fec.Data = Convert.ToDateTime(tabela_memoria.Rows[0]["datainicio"].ToString());
                 Fec.Responsavel = tabela_memoria.Rows[0]["responsavel"].ToString();
+                fec.Valor = tabela_memoria.Rows[0]["valor_relat"].ToString();
                 return true;
             }
             catch
@@ -146,6 +135,11 @@ namespace Caixa
             {
                 return false;
             }
+        }
+
+        public void UpdateResp(Fechamento fec)
+        {
+            executarComando("UPDATE CAIXA SET RESPONSAVEL='" + fec.Responsavel + "' WHERE ID_CAIXA='" + fec.Id_caixa + "';");
         }
 
 

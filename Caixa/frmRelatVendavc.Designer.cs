@@ -41,18 +41,26 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
+            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvExibir.Location = new System.Drawing.Point(16, 56);
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gvExibir.Location = new System.Drawing.Point(13, 69);
+            this.gvExibir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(658, 386);
+            this.gvExibir.Size = new System.Drawing.Size(820, 450);
             this.gvExibir.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Location = new System.Drawing.Point(13, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 1;
@@ -61,21 +69,29 @@
             // mskData
             // 
             this.mskData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mskData.Location = new System.Drawing.Point(66, 16);
+            this.mskData.Location = new System.Drawing.Point(69, 25);
+            this.mskData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mskData.Mask = "00/00/0000";
             this.mskData.Name = "mskData";
-            this.mskData.Size = new System.Drawing.Size(108, 26);
+            this.mskData.Size = new System.Drawing.Size(93, 26);
             this.mskData.TabIndex = 1;
             this.mskData.TextChanged += new System.EventHandler(this.mskData_TextChanged);
             // 
             // btnPaideFamilia
             // 
+            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
+            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(250, 9);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(447, 14);
+            this.btnPaideFamilia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
-            this.btnPaideFamilia.Size = new System.Drawing.Size(210, 41);
+            this.btnPaideFamilia.Size = new System.Drawing.Size(189, 45);
             this.btnPaideFamilia.TabIndex = 2;
             this.btnPaideFamilia.Text = "Gerar .PDF";
             this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -84,12 +100,19 @@
             // 
             // btnExport
             // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(466, 9);
+            this.btnExport.Location = new System.Drawing.Point(644, 14);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(210, 41);
+            this.btnExport.Size = new System.Drawing.Size(189, 45);
             this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Gerar Excel";
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -98,18 +121,20 @@
             // 
             // frmRelatVendavc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(682, 448);
+            this.ClientSize = new System.Drawing.Size(840, 526);
             this.Controls.Add(this.btnPaideFamilia);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.mskData);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gvExibir);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MaximizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmRelatVendavc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Relatório Vale Cap";

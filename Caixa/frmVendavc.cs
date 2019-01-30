@@ -16,6 +16,11 @@ namespace Caixa
         InventarioDAO invDAO = new InventarioDAO();
         VendaVC vc = new VendaVC();
         VendaVCDAO vcDAO = new VendaVCDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
+
+
 #pragma warning disable CS0169 // O campo "frmVendavc.form1" nunca é usado
         InicialCaixa form1;
 #pragma warning restore CS0169 // O campo "frmVendavc.form1" nunca é usado
@@ -50,10 +55,9 @@ namespace Caixa
             //update de qtd de estoque 
             if (invDAO.VerificaInventário() == true)
             {
-
                 DialogResult op;
 
-                op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Qtd : " +venda,
+                op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Qtd : " + venda,
                     "Salvando!", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
@@ -94,7 +98,7 @@ namespace Caixa
                         vc.Id_caixa = FechamentoDAO.codcaixa;
                         vc.Qtd_vc = qtd;
                         vc.Valor_vc = valor.ToString();
-                        vc.Total_vc = totalvc.ToString().Replace(".","");
+                        vc.Total_vc = totalvc.ToString().Replace(".", "");
                         vc.Qtd_estoque = qtd_estoque;
                         vc.Total_vendas = totalvenda;
                         vc.Data = Convert.ToDateTime(DateTime.Now.ToShortDateString());
@@ -102,7 +106,13 @@ namespace Caixa
                         vc.Descr = "Venda";
 
                         vcDAO.Inserir(vc);
-                        txtQtd.ResetText();
+                        this.Close();
+
+                        aud.Acao = "INSERIU VENDA VALECAP";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
 
 
                         var qrForm = from frm in Application.OpenForms.Cast<Form>()
@@ -124,24 +134,40 @@ namespace Caixa
                         MessageBox.Show("Dados salvos com sucesso");
                     }
 
-                } 
+                }
             }
             else
             {
                 MessageBox.Show("Para realizar uma venda, é necessário atualizar o estoque primeiro !!!");
             }
-            
 
 
-         
-           
+
+
+
 
 
         }
 
         private void txtQtd_ValueChanged(object sender, EventArgs e)
         {
-            venda = Convert.ToInt32(txtQtd.Text);
+            try
+            {
+                venda = Convert.ToInt32(txtQtd.Text);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void txtQtd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
         }
     }
 }

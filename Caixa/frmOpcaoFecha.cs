@@ -17,7 +17,9 @@ namespace Caixa
         ValorcaixaDAO vcDAO = new ValorcaixaDAO();
         CredDeb cd = new CredDeb();
         credDebDAO cdDAO = new credDebDAO();
+#pragma warning disable CS0169 // O campo "frmOpcaoFecha.data_hora" nunca é usado
         DateTime data_hora;
+#pragma warning restore CS0169 // O campo "frmOpcaoFecha.data_hora" nunca é usado
         Dinheiro din = new Dinheiro();
         DinheiroDAO dinDAO = new DinheiroDAO();
         suprimentoDAO supriDAO = new suprimentoDAO();
@@ -35,10 +37,15 @@ namespace Caixa
         GeralDAO gerDAO = new GeralDAO();
         Valorgeral vg = new Valorgeral();
         ValorgeralDAO vgDAO = new ValorgeralDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+        suprimentos supri = new suprimentos();
         #endregion
 
         #region VAR
+#pragma warning disable CS0169 // O campo "frmOpcaoFecha.update" nunca é usado
         Boolean update;
+#pragma warning restore CS0169 // O campo "frmOpcaoFecha.update" nunca é usado
         string codcaixa;
         double total;
         double totalgaveta;
@@ -55,16 +62,19 @@ namespace Caixa
         string valor;
         string v;
         double valorrelat;
+#pragma warning disable CS0169 // O campo "frmOpcaoFecha.codturno" nunca é usado
         string codturno;
+#pragma warning restore CS0169 // O campo "frmOpcaoFecha.codturno" nunca é usado
         string tipo;
         string login;
+        double noite;
         #endregion
         public frmOpcaoFecha()
         {
             InitializeComponent();
         }
 
-       
+
 
 
         private void btnDinheiro_Click(object sender, EventArgs e)
@@ -73,7 +83,7 @@ namespace Caixa
             frmDinheiro d = new frmDinheiro();
             d.Owner = this;
             d.ShowDialog();
-    
+
         }
 
 
@@ -109,7 +119,7 @@ namespace Caixa
                 {
 
                 }
-             
+
 
 
             }
@@ -127,9 +137,9 @@ namespace Caixa
                 {
 
                 }
-          
+
             }
-         
+
             #endregion
 
             #region SUPRIMENTO
@@ -144,7 +154,7 @@ namespace Caixa
                 {
 
                 }
-        
+
             }
             #endregion
 
@@ -162,12 +172,14 @@ namespace Caixa
                 {
 
                 }
-            
+
 
             }
             #endregion
 
             #region CARTÕES
+
+
             if (carcai.testa(data) == true)
             {
                 try
@@ -182,40 +194,61 @@ namespace Caixa
                 {
                     btnCartão.Text = "F3 - Cartão" + "\n Total : " + totalmanhacart.ToString("C2");
                 }
-                else
-                {
-                    if (carcai.testa2(data) == true)
-                    {
-                        try
-                        {
-                            totalcart = Convert.ToDouble(CartaocaixaDAO.total2.ToString().Replace('.', ','));
-                            totaltarde = (totalcart - totalmanhacart);
-                            TotalCart();
-                        }
-                        catch
-                        {
 
-                        }
-
-                    }
-                }
             }
 
-            #endregion
+
+
+            if (carcai.testa2(data) == true)
+            {
+                try
+                {
+                    totalcart = Convert.ToDouble(CartaocaixaDAO.total2.ToString().Replace('.', ','));
+                    totaltarde = (totalcart - totalmanhacart);
+                    if (FechamentoDAO.codturno == "2")
+                    {
+                        TotalCart();
+                    }
+                }
+
+                catch
+                {
+
+                }
+
+            }
+
+            if (carcai.testa3(data) == true)
+            {
+                try
+                {
+                    noite = Convert.ToDouble(CartaocaixaDAO.noite.ToString().Replace('.', ','));
+                }
+                catch
+                {
+
+                }
+                if (FechamentoDAO.codturno == "3")
+                {
+                    btnCartão.Text = "F3 - Cartão" + "\n Total : " + noite.ToString("C2");
+                }
+
+            }
             Calcdif();
+            #endregion
         }
 
         private void btnSalvarefechar_Click(object sender, EventArgs e)
         {
 
         }
-  
+
 
         public static void Moeda(ref TextBox txt)
         {
             string n = string.Empty;
             double v = 0;
-     
+
             try
             {
                 n = txt.Text.Replace(",", "").Replace(".", "");
@@ -242,22 +275,21 @@ namespace Caixa
             fec.Id_caixa = Convert.ToInt32(codcaixa);
 
 
-           
 
             try
             {
-                    valorrelat = Convert.ToDouble(FechamentoDAO.valor);
-                    txtValorRelat.Text = valorrelat.ToString();
+                valorrelat = Convert.ToDouble(FechamentoDAO.valor);
+                txtValorRelat.Text = valorrelat.ToString();
 
-                    if (txtValorRelat.Text == "0,00")
-                    {
-                        txtValorRelat.Enabled = true;
-                        lblDif.Visible = false;
-                    }
-                    else
-                    {              
+                if (txtValorRelat.Text == "0,00")
+                {
+                    txtValorRelat.Enabled = true;
+                    lblDif.Visible = false;
+                }
+                else
+                {
                     lblDif.Visible = true;
-                    }
+                }
 
 
                 login = UsuarioDAO.login;
@@ -266,7 +298,7 @@ namespace Caixa
 
                 fecDAO.VerificaRelat(codcaixa);
 
-                if (fecDAO.Fec.Valor!="0.00")
+                if (fecDAO.Fec.Valor != "0.00")
                 {
                     if (tipo == "Operador" || tipo == "Operador\t")
                     {
@@ -278,7 +310,7 @@ namespace Caixa
             {
 
             }
-            
+
             #region SANGRIA
             if (sanDAO.Verificasangria(codcaixa) == true)
             {
@@ -304,7 +336,7 @@ namespace Caixa
                 {
 
                 }
-               
+
 
 
             }
@@ -324,7 +356,7 @@ namespace Caixa
 
 
             }
-   
+
             #endregion
             #region SUPRIMENTO
             if (supriDAO.Verificatotalsupri(codcaixa) == true)
@@ -339,6 +371,26 @@ namespace Caixa
 
                 }
             }
+            else
+            {
+                try
+                {
+                    dinDAO.PegaUltimoId(UsuarioDAO.login);
+                    string cod = dinDAO.Dinh.Id_qtd.ToString();
+                    dinDAO.PegaTotalUltimoId(cod,UsuarioDAO.login);
+                    double supr = Convert.ToDouble(dinDAO.Dinh.Total.ToString().Replace('.', ','));
+                    btnSuprimento.Text = "F5 - Suprimento" + "\n Total : " + (supr).ToString("C2");
+
+                    supri.Id_caixa = Convert.ToInt32(suprimentoDAO.codcaixa);
+                    supri.Valor = supr.ToString().Replace(".", "");
+                    supriDAO.inserir(supri);
+                }
+                catch
+                {
+
+                }
+               
+            }
             #endregion
             #region ASSINADAS
             if (assDAO.Buscar(codcaixa) == true)
@@ -347,11 +399,13 @@ namespace Caixa
                 julio = Convert.ToDouble(assinadaDAO.julio.ToString().Replace('.', ','));
                 assinadas = Convert.ToDouble(assinadaDAO.assinada.ToString().Replace('.', ','));
                 Caclularass();
-       
+
             }
             #endregion
             #region CARTÕES
-            if (carcai.testa(data) == true )
+
+
+            if (carcai.testa(data) == true)
             {
                 try
                 {
@@ -365,40 +419,70 @@ namespace Caixa
                 {
                     btnCartão.Text = "F3 - Cartão" + "\n Total : " + totalmanhacart.ToString("C2");
                 }
-                else
-                {
-                    if (carcai.testa2(data) == true)
-                    {
-                        try
-                        {
-                            totalcart = Convert.ToDouble(CartaocaixaDAO.total2.ToString().Replace('.', ','));
-                            totaltarde = (totalcart - totalmanhacart);
-                            TotalCart();
-                        }
-                        catch
-                        {
 
-                        }
-                    
+            }
+
+
+
+            if (carcai.testa2(data) == true)
+            {
+                try
+                {
+                    totalcart = Convert.ToDouble(CartaocaixaDAO.total2.ToString().Replace('.', ','));
+                    totaltarde = (totalcart - totalmanhacart);
+                    if (FechamentoDAO.codturno == "2")
+                    {
+                        TotalCart();
                     }
                 }
+
+                catch
+                {
+
+                }
+
             }
+
+            if (carcai.testa3(data) == true)
+            {
+                try
+                {
+                    noite = Convert.ToDouble(CartaocaixaDAO.noite.ToString().Replace('.', ','));
+                }
+                catch
+                {
+
+                }
+                if (FechamentoDAO.codturno == "3")
+                {
+                    btnCartão.Text = "F3 - Cartão" + "\n Total : " + noite.ToString("C2");
+                }
+
+            }
+
+
+
+
+
+
+
             Calcdif();
             #endregion
 
-           
+
         }
 
-      
 
-      
+
+
         public void TotalCart()
         {
             //Esse void irá servir somente no caso do id_período=2
-            btnCartão.Text = "F3 - Cartão" +"\n Manhã : "+totalmanhacart.ToString("C2")+"\n Tarde : "+totaltarde.ToString("C2") + "\n Total : " + totalcart.ToString("C2");
-        }       public void Caclularass()
+            btnCartão.Text = "F3 - Cartão" + "\n Manhã : " + totalmanhacart.ToString("C2") + "\n Tarde : " + totaltarde.ToString("C2") + "\n Total : " + totalcart.ToString("C2");
+        }
+        public void Caclularass()
         {
-            btnFiado.Text="F4 - Assinadas"+"\n Total: "+(classm + julio + assinadas).ToString("C2");
+            btnFiado.Text = "F4 - Assinadas" + "\n Total: " + (classm + julio + assinadas).ToString("C2");
         }
         private void btnCartão_Click(object sender, EventArgs e)
         {
@@ -410,7 +494,7 @@ namespace Caixa
         private void btnFiado_Click(object sender, EventArgs e)
         {
             frmAssinadas a = new frmAssinadas();
-            a.Owner=this;
+            a.Owner = this;
             a.ShowDialog();
         }
 
@@ -433,27 +517,28 @@ namespace Caixa
             }
             else
             {
- 
+
                 Calcdif();
             }
 
 
-           
-           
+
+
         }
-        public void Calcdif() {
+        public void Calcdif()
+        {
 
             double valor;
 
             valor = Convert.ToDouble(txtValorRelat.Text);
             if (FechamentoDAO.codturno == "1")
             {
-                dif = (( totalgaveta+ total+ classm + julio + assinadas +totalmanhacart)-(valor));
+                dif = ((totalgaveta + total + classm + julio + assinadas + totalmanhacart) - (valor));
                 lblDif.Text = "Diferença : " + dif.ToString("C2");
             }
             else
             {
-                dif = ((totalgaveta+ total + classm + julio + assinadas + totaltarde)-(valor));
+                dif = ((totalgaveta + total + classm + julio + assinadas + totaltarde) - (valor));
                 lblDif.Text = "Diferença : " + dif.ToString("C2");
 
             }
@@ -484,7 +569,7 @@ namespace Caixa
             frmDinheiro d = new frmDinheiro();
             d.Owner = this;
             d.ShowDialog();
-      
+
         }
 
         private void frmOpcaoFecha_KeyDown(object sender, KeyEventArgs e)
@@ -514,16 +599,17 @@ namespace Caixa
             }
             if (e.KeyValue.Equals(115))
             {
-                frmAssinadas a = new frmAssinadas();
+                frmFiado a = new frmFiado();
                 a.Owner = this;
                 a.ShowDialog();
 
             }
             if (e.KeyValue.Equals(116))
             {
-                frmSuprimento s = new frmSuprimento();
-                s.Owner = this;
-                s.ShowDialog();
+            
+                //frmSuprimento s = new frmSuprimento();
+                //s.Owner = this;
+                //s.ShowDialog();
 
             }
 
@@ -536,13 +622,13 @@ namespace Caixa
             }
             if (e.KeyValue.Equals(27))
             {
-                
+
                 this.Close();
             }
 
             if (e.KeyValue.Equals(122))
             {
-               
+
             }
 
 
@@ -593,7 +679,7 @@ namespace Caixa
 
             string codcaixa = FechamentoDAO.codcaixa.ToString();
 
-            if (txtValorRelat.Text=="0,00")
+            if (txtValorRelat.Text == "0,00")
             {
                 MessageBox.Show("Valor inválido");
             }
@@ -606,10 +692,10 @@ namespace Caixa
                     op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Valor : " + v + " R$",
                         "Salvando!", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
-                    if(op == DialogResult.Yes)
+                    if (op == DialogResult.Yes)
                     {
                         fecDAO.VerificaRelat(codcaixa);
-                        if (fecDAO.Fec.Valor!="0.00")
+                        if (fecDAO.Fec.Valor != "0.00")
                         {
                             if (tipo == "Administrador")
                             {
@@ -618,6 +704,8 @@ namespace Caixa
                                 fecDAO.Updatevalor(valor, codcaixa);
                                 FechamentoDAO.valor = valor.ToString().Replace(",", ".");
                                 lblDif.Visible = true;
+                                btnValor.Enabled = true;
+                                 
                             }
                             else
                             {
@@ -629,8 +717,10 @@ namespace Caixa
                             codcaixa = DinheiroDAO.codcaixa;
                             valor = txtValorRelat.Text.ToString().Replace(".", "");
                             fecDAO.Updatevalor(valor, codcaixa);
-                            FechamentoDAO.valor = valor.ToString().Replace(",", ".");           
+                            FechamentoDAO.valor = valor.ToString().Replace(",", ".");
                             lblDif.Visible = true;
+                            btnValor.Enabled = true;
+                           
 
                             if (tipo == "Administrador")
                             {
@@ -653,7 +743,7 @@ namespace Caixa
                 }
             }
 
-        
+
 
         }
 
@@ -671,10 +761,7 @@ namespace Caixa
                     dinheiro = DinheiroDAO.totalmanha;
                     if (dinheiro != null)
                     {
-                        vcDAO.Update(dinheiro);
-                        vcDAO.Verificavalor();
                         verDAO.Verifica();
-
                         #region CREDITO DEBITO
                         if (verDAO.Ver.Verifica == "SIM")
                         {
@@ -682,6 +769,10 @@ namespace Caixa
                         }
                         else
                         {
+                            vcDAO.Update(dinheiro);
+                            vcDAO.Verificavalor();
+                         
+
                             string datatela = DateTime.Now.ToShortDateString();
                             string hrtela = DateTime.Now.ToShortTimeString();
                             cd.Data = Convert.ToDateTime(datatela);
@@ -693,217 +784,6 @@ namespace Caixa
                             cd.Total = vcDAO.Vc.Valor;
 
                             cdDAO.Inserir(cd);
-                            if (verDAO.Verifica() == true)
-                            {
-                                //update 
-                                ver.Verifica = "SIM";
-                                verDAO.Update(ver);
-                            }
-                            else
-                            {
-                                ver.Verifica = "SIM";
-                                verDAO.Inserir(ver);
-                                //inserir
-                            }
-
-                            if (FechamentoDAO.codturno == "1")
-                            {
-                                try
-                                {
-                                    difr.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
-                                    difr.Manha = dif.ToString().Replace(".", "");
-                                    difr.Tarde = "";
-                                    difDAO.Inserir(difr);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Favor salvar o valor do relatório primeiro !!!");
-                                }
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    if (difDAO.Verifica() == true)
-                                    {
-                                        string valor = dif.ToString().Replace(".", "");
-                                        DateTime data = FechamentoDAO.data;
-                                        difDAO.Update(valor, data);
-                                    }
-                                    else
-                                    {
-                                        difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
-                                        difr.Tarde = dif.ToString().Replace(".", "");
-                                        difr.Manha = "";
-                                        difDAO.Inserir(difr);
-                                    }
-
-
-                  
-                                }
-                                catch
-                                {
-
-                                }
-                            }
-
-                           
-                          
-                            
-                            MessageBox.Show("Informações cadastradas com sucesso !!!");
-                        }
-
-                        #endregion
-
-                        #region GERAL
-                        if (vgDAO.Verificavalor() == true)
-                        {
-                            vgDAO.Update(total.ToString());
-                            vgDAO.Verificavalor();
-
-
-                            #region GERAL
-                            string datatela1 = DateTime.Now.ToShortDateString();
-                            ger.Data = Convert.ToDateTime(datatela1);
-                            ger.Desc_g = "CRÉDITO";
-                            ger.Cred_g = total.ToString().Replace(".", "");
-                            ger.Deb_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);                           
-                            #endregion
-                        }
-                        else
-                        {
-                            string zero1 = "0.00";
-                            string datatela2 = DateTime.Now.ToShortDateString();
-                            vgDAO.Inserir(zero1);
-                            vgDAO.Update(total.ToString());
-                            vgDAO.Verificavalor();
-
-                            #region GERAL
-                            ger.Data = Convert.ToDateTime(datatela2);
-                            ger.Desc_g = "CRÉDITO";
-                            ger.Cred_g = total.ToString().Replace(".", "");
-                            ger.Deb_g = "0,00";
-                            ger.Total = vgDAO.Vg.Valor;
-                            gerDAO.Inserir(ger);
-                            #endregion
-                        }
-
-                        #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não existe valor de retirada");
-                    }
-                 
-                 
-                }
-                else
-                {
-                    string zero = "0.00";
-                    vcDAO.Inserir(zero);
-                    dinheiro = DinheiroDAO.totalmanha;
-                    if (dinheiro != null)
-                    {
-                        vcDAO.Update(dinheiro);
-                        vcDAO.Verificavalor();
-                        verDAO.Verifica();
-
-                        #region CREDITO DEBITO
-                        if (verDAO.Ver.Verifica == "SIM")
-                        {
-                            MessageBox.Show("Enviado e-mail para Helder devido a tentativa de burlar o sistema.");
-                        }
-                        else
-                        {
-                            string datatela = DateTime.Now.ToShortDateString();
-                            string hrtela = DateTime.Now.ToShortTimeString();
-                            cd.Data = Convert.ToDateTime(datatela);
-                            cd.Hora = Convert.ToDateTime(hrtela);
-                            cd.Desc_db = "Fechamento PDV";
-                            cd.Cred_db = total.ToString().Replace(".", "");
-                            cd.Deb_db = "0,00";
-                            cd.Responsa_db = UsuarioDAO.login;
-                            cd.Total = vcDAO.Vc.Valor;
-
-                            cdDAO.Inserir(cd);
-
-                            if (verDAO.Verifica() == true)
-                            {
-                                //update 
-                                ver.Verifica = "SIM";
-                                verDAO.Update(ver);
-                            }
-                            else
-                            {
-                                ver.Verifica = "SIM";
-                                verDAO.Inserir(ver);
-                                //inserir
-                            }
-
-                            if (FechamentoDAO.codturno == "1")
-                            {
-                                try
-                                {
-                                    difr.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
-                                    difr.Manha = dif.ToString().Replace(".", "");
-                                    difr.Tarde = "";
-                                    difDAO.Inserir(difr);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Favor salvar o valor do relatório primeiro !!!");
-                                }
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    if (difDAO.Verifica() == true)
-                                    {
-                                        string valor = dif.ToString().Replace(".", "");
-                                        DateTime data = FechamentoDAO.data;
-                                        difDAO.Update(valor, data);
-                                    }
-                                    else
-                                    {
-                                        difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
-                                        difr.Tarde = dif.ToString().Replace(".", "");
-                                        difr.Manha = "";
-                                        difDAO.Inserir(difr);
-                                    }
-
-
-
-                                }
-                                catch
-                                {
-
-                                }
-                            }
-
-
-                            MessageBox.Show("Informações cadastradas com sucesso !!!");
-                            #endregion
-
-
 
                             #region GERAL
                             if (vgDAO.Verificavalor() == true)
@@ -913,11 +793,360 @@ namespace Caixa
 
 
                                 #region GERAL
-                                string datatela3 = DateTime.Now.ToShortDateString();
-                                ger.Data = Convert.ToDateTime(datatela3);
-                                ger.Desc_g = "CRÉDITO";
+                                string datatela1 = DateTime.Now.ToShortDateString();
+                                ger.Data = Convert.ToDateTime(datatela1);
+                                ger.Desc_g = "";
                                 ger.Cred_g = total.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero1 = "0.00";
+                                string datatela2 = DateTime.Now.ToShortDateString();
+                                vgDAO.Inserir(zero1);
+                                vgDAO.Update(total.ToString());
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(datatela2);
+                                ger.Desc_g = "";
+                                ger.Cred_g = total.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+
+
+                                #endregion
+                            }
+
+                            #endregion
+
+                            if (verDAO.Verifica() == true)
+                            {
+                                //update 
+                                ver.Verifica = "SIM";
+                                verDAO.Update(ver);
+                            }
+                            else
+                            {
+                                ver.Verifica = "SIM";
+                                verDAO.Inserir(ver);
+                                //inserir
+                            }
+
+                            if (FechamentoDAO.codturno == "1")
+                            {
+                                try
+                                {
+                                    difr.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
+                                    difr.Manha = dif.ToString().Replace(".", "");
+                                    difr.Tarde = "";
+                                    difDAO.Inserir(difr);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Favor salvar o valor do dinheiro primeiro !!!");
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    if (FechamentoDAO.codturno == "2")
+                                    {
+                                        if (difDAO.Verifica() == true)
+                                        {
+                                            string valor = dif.ToString().Replace(".", "");
+                                            DateTime data = FechamentoDAO.data;
+                                            difDAO.Update(valor, data);
+                                        }
+                                        else
+                                        {
+                                            difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
+                                            difr.Tarde = dif.ToString().Replace(".", "");
+                                            difr.Manha = "";
+                                            difDAO.Inserir(difr);
+                                        }
+                                    }
+
+                                    
+
+
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                            MessageBox.Show("Informações cadastradas com sucesso !!!");
+
+                            aud.Acao = "ENVIOU RETIRADA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+                        }
+
+                        #endregion
+
+                        
+                    }
+                    else
+                    {
+                        if (FechamentoDAO.codturno =="3")
+                        {
+                            dinheiro = "0.00";
+                            
+                            verDAO.Verifica();
+                            #region CREDITO DEBITO
+                            if (verDAO.Ver.Verifica == "SIM")
+                            {
+                                MessageBox.Show("Já foi enviado a retirada.");
+                            }
+                            else
+                            {
+                                vcDAO.Update(dinheiro);
+                                vcDAO.Verificavalor();
+
+
+                                string datatela = DateTime.Now.ToShortDateString();
+                                string hrtela = DateTime.Now.ToShortTimeString();
+                                cd.Data = Convert.ToDateTime(datatela);
+                                cd.Hora = Convert.ToDateTime(hrtela);
+                                cd.Desc_db = "Fechamento PDV";
+                                cd.Cred_db = total.ToString().Replace(".", "");
+                                cd.Deb_db = "0,00";
+                                cd.Responsa_db = UsuarioDAO.login;
+                                cd.Total = vcDAO.Vc.Valor;
+
+                                cdDAO.Inserir(cd);
+                                if (verDAO.Verifica() == true)
+                                {
+                                    //update 
+                                    ver.Verifica = "SIM";
+                                    verDAO.Update(ver);
+                                }
+                                else
+                                {
+                                    ver.Verifica = "SIM";
+                                    verDAO.Inserir(ver);
+                                    //inserir
+                                }
+
+                                if (FechamentoDAO.codturno == "1")
+                                {
+                                    try
+                                    {
+                                        difr.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
+                                        difr.Manha = dif.ToString().Replace(".", "");
+                                        difr.Tarde = "";
+                                        difDAO.Inserir(difr);
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Favor salvar o valor do relatório primeiro !!!");
+                                    }
+                                }
+                                else
+                                {
+                                    try
+                                    {
+                                        if (difDAO.Verifica() == true)
+                                        {
+                                            string valor = dif.ToString().Replace(".", "");
+                                            DateTime data = FechamentoDAO.data;
+                                            difDAO.Update(valor, data);
+                                        }
+                                        else
+                                        {
+                                            difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
+                                            difr.Tarde = dif.ToString().Replace(".", "");
+                                            difr.Manha = "";
+                                            difDAO.Inserir(difr);
+                                        }
+
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                }
+                                MessageBox.Show("Informações cadastradas com sucesso !!!");
+
+                                aud.Acao = "ENVIOU RETIRADA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                            }
+
+                            #endregion
+
+                            #region GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update(total.ToString());
+                                vgDAO.Verificavalor();
+
+
+                                #region GERAL
+                                string datatela1 = DateTime.Now.ToShortDateString();
+                                ger.Data = Convert.ToDateTime(datatela1);
+                                ger.Desc_g = "";
+                                ger.Cred_g = total.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                #endregion
+                            }
+                            else
+                            {
+                                string zero1 = "0.00";
+                                string datatela2 = DateTime.Now.ToShortDateString();
+                                vgDAO.Inserir(zero1);
+                                vgDAO.Update(total.ToString());
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = Convert.ToDateTime(datatela2);
+                                ger.Desc_g = "";
+                                ger.Cred_g = total.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                #endregion
+                            }
+
+                            #endregion
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não existe valor de retirada");
+                        }
+
+
+                      
+                    }
+
+
+                }
+                else
+                {
+                    string zero = "0.00";
+                    vcDAO.Inserir(zero);
+                    dinheiro = DinheiroDAO.totalmanha;
+                    if (dinheiro != null)
+                    {
+                        verDAO.Verifica();
+
+                        #region CREDITO DEBITO
+                        if (verDAO.Ver.Verifica == "SIM")
+                        {
+                            MessageBox.Show("Já foi enviado a retirada.");
+                        }
+                        else
+                        {
+                            vcDAO.Update(dinheiro);
+                            vcDAO.Verificavalor();
+                         
+
+                            string datatela = DateTime.Now.ToShortDateString();
+                            string hrtela = DateTime.Now.ToShortTimeString();
+                            cd.Data = Convert.ToDateTime(datatela);
+                            cd.Hora = Convert.ToDateTime(hrtela);
+                            cd.Desc_db = "Fechamento PDV";
+                            cd.Cred_db = total.ToString().Replace(".", "");
+                            cd.Deb_db = "0,00";
+                            cd.Responsa_db = UsuarioDAO.login;
+                            cd.Total = vcDAO.Vc.Valor;
+
+                            cdDAO.Inserir(cd);
+
+                            if (verDAO.Verifica() == true)
+                            {
+                                //update 
+                                ver.Verifica = "SIM";
+                                verDAO.Update(ver);
+                            }
+                            else
+                            {
+                                ver.Verifica = "SIM";
+                                verDAO.Inserir(ver);
+                                //inserir
+                            }
+
+                            if (FechamentoDAO.codturno == "1")
+                            {
+                                try
+                                {
+                                    difr.Id_caixa = Convert.ToInt32(DinheiroDAO.codcaixa);
+                                    difr.Manha = dif.ToString().Replace(".", "");
+                                    difr.Tarde = "";
+                                    difDAO.Inserir(difr);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Favor salvar o valor do relatório primeiro !!!");
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    if (difDAO.Verifica() == true)
+                                    {
+                                        string valor = dif.ToString().Replace(".", "");
+                                        DateTime data = FechamentoDAO.data;
+                                        difDAO.Update(valor, data);
+                                    }
+                                    else
+                                    {
+                                        difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
+                                        difr.Tarde = dif.ToString().Replace(".", "");
+                                        difr.Manha = "";
+                                        difDAO.Inserir(difr);
+                                    }
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                            MessageBox.Show("Informações cadastradas com sucesso !!!");
+
+                            aud.Acao = "ENVIOU RETIRADA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+                            #endregion
+                            
+                        #region GERAL
+                            if (vgDAO.Verificavalor() == true)
+                            {
+                                vgDAO.Update(total.ToString());
+                                vgDAO.Verificavalor();
+
+
+                                #region GERAL
+                                string datatela3 = DateTime.Now.ToShortDateString();
+                                ger.Data = Convert.ToDateTime(datatela3);
+                                ger.Desc_g = "";
+                                ger.Cred_g = total.ToString().Replace(".", "");
+                                ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
                                 #endregion
@@ -932,19 +1161,17 @@ namespace Caixa
 
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(datatela4);
-                                ger.Desc_g = "CRÉDITO";
+                                ger.Desc_g = "";
                                 ger.Cred_g = total.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
                                 #endregion
                             }
 
                             #endregion
-
-
-
-
                         }
 
                     }
@@ -952,7 +1179,7 @@ namespace Caixa
                     {
                         MessageBox.Show("Não existe valor de retirada");
                     }
-                  
+
                 }
             }
         }

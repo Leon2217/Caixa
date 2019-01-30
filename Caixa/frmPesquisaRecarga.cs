@@ -31,7 +31,7 @@ namespace Caixa
         {
             try
             {
-                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
 
 
@@ -46,6 +46,23 @@ namespace Caixa
                         at = Convert.ToDateTime(mskAt.Text);
 
                         gvExibir.DataSource = recDAO.ListarB(de, at);
+
+                        #region AJUSTE GRID
+                        foreach (DataGridViewColumn column in gvExibir.Columns)
+                        {
+                            if (column.DataPropertyName == "VALOR")
+                                column.Width = 70; //tamanho fixo da coluna VALOR
+                            else if (column.DataPropertyName == "HORA")
+                                column.Width = 60; //tamanho fixo da coluna HORA
+                            else if (column.DataPropertyName == "DATA")
+                                column.Width = 70; //tamanho fixo da coluna DATA
+
+                            else
+                            {
+                                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                            }
+                        }
+                        #endregion
                     }
                     catch
                     {
@@ -151,6 +168,23 @@ namespace Caixa
 
         private void txtOperadora_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "VALOR")
+                    column.Width = 70; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 70; //tamanho fixo da coluna DATA
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskData.MaskFull == true)
             {
@@ -234,6 +268,23 @@ namespace Caixa
 
         private void mskData_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "VALOR")
+                    column.Width = 70; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 70; //tamanho fixo da coluna DATA
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskData.MaskFull == true)
             {
@@ -342,6 +393,23 @@ namespace Caixa
 
         private void mskAt_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "VALOR")
+                    column.Width = 70; //tamanho fixo da coluna VALOR
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 70; //tamanho fixo da coluna DATA
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskData.MaskFull == true)
             {

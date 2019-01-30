@@ -18,6 +18,9 @@ namespace Caixa
         ValoroperadoraDAO vopDAO = new ValoroperadoraDAO();
         Recarga rec = new Recarga();
         RecargaDAO recDAO = new RecargaDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string codop;
 
 #pragma warning disable CS0169 // O campo "frmRecarga.valor" nunca é usado
@@ -67,8 +70,17 @@ namespace Caixa
                     recDAO.Inserir(rec);
                     mskCel.Clear();
 
+
+
+
                     ((InicialCaixa)this.Owner).Atualizadados();
                     MessageBox.Show("Cadastro efetuado com sucesso !!!");
+
+                    aud.Acao = "INSERIU RECARGA";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
 
                 }
                 catch
@@ -98,6 +110,7 @@ namespace Caixa
             try
             {
                 CarregarComboOperadora();
+                CarregarComboValor();
             }
             catch
             {
@@ -142,6 +155,15 @@ namespace Caixa
             frmInventariorec ir = new frmInventariorec();
             ir.Owner = this;
             ir.ShowDialog();
+        }
+
+        private void mskCel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
         }
     }
 }

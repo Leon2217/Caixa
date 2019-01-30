@@ -30,18 +30,21 @@ namespace Caixa
         #region INSERIR GERAL
         public void Inserir(Geral gr)
         {
-            executarComando("INSERT INTO GERAL VALUES(0,'" + gr.Data.ToString("yyyy/MM/dd") + "','" +gr.Desc_g.ToString()+ "','" + gr.Cred_g.ToString().Replace(",", ".") + "','" + gr.Deb_g.ToString().Replace(",", ".") + "','" + gr.Total.ToString() + "');");
+            executarComando("INSERT INTO GERAL VALUES(0,'" + gr.Data.ToString("yyyy/MM/dd") + "','" +gr.Desc_g.ToString()+ "','" + gr.Cred_g.ToString().Replace(",",".") + "','" + gr.Deb_g.ToString().Replace(",", ".") + "','" + gr.Total.ToString().Replace(",", ".") + "','" + gr.Forn.ToString().Replace(",",".")+ "','" + gr.Func.ToString().Replace(",", ".") + "');");
         }
         #endregion
 
         #region VERIFICA A SOMA DE TUDO
         public Boolean VerificaSoma()
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL;");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL;");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                
                 return true;
             }
             catch
@@ -54,11 +57,13 @@ namespace Caixa
         #region VERIFICA A SOMA E DE
         public Boolean VerificaSD(DateTime de)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL where data='"+de.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where data='" + de.ToString("yyyy/MM/dd")+"';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
                 return true;
             }
             catch
@@ -71,11 +76,13 @@ namespace Caixa
         #region VERIFICA A SOMA E BETWEEN
         public Boolean VerificaSB(DateTime de,DateTime at)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '"+at.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '"+at.ToString("yyyy/MM/dd")+"';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
                 return true;
             }
             catch
@@ -88,11 +95,13 @@ namespace Caixa
         #region VERIFICA A SOMA E DESC
         public Boolean VerificaSDC(string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL where desc_g='" +desc+ "';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g='" + desc+ "';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
                 return true;
             }
             catch
@@ -105,11 +114,13 @@ namespace Caixa
         #region VERIFICA A SOMA DE DESC 
         public Boolean VerificaSDD(DateTime de,string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL where desc_g='" + desc + "' and data='"+de.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g='" + desc + "' and data='"+de.ToString("yyyy/MM/dd")+"';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
                 return true;
             }
             catch
@@ -122,11 +133,13 @@ namespace Caixa
         #region VERIFICA A SOMA E BETWEEN
         public Boolean VerificaSBD(DateTime de, DateTime at,string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "' and desc_g='"+desc+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "' and desc_g='"+desc+"';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
                 Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
                 return true;
             }
             catch
@@ -136,11 +149,29 @@ namespace Caixa
         }
         #endregion
 
+        #region VERIFICA SE EXISTE
+        public Boolean VerificaExiste()
+        {
+            executarComando("SELECT id_g as ID FROM GERAL where desc_g='CARTÃO' and curdate()=adddate(data,interval 30 day);");
+            try
+            {
+                Ger.Id_g = Convert.ToInt32(tabela_memoria.Rows[0]["ID"].ToString());
+               
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+
         #region LISTAR TUDO
         public DataTable ListarTudo()
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL;");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -152,8 +183,10 @@ namespace Caixa
                     linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();               
                     linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();             
                     linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
-               
-                           
+                    linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                    linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+
+
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -164,7 +197,7 @@ namespace Caixa
         public DataTable ListarDE(DateTime data)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE data='"+data.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE data='" + data.ToString("yyyy/MM/dd")+"';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -176,6 +209,8 @@ namespace Caixa
                 linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();
                 linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -186,7 +221,7 @@ namespace Caixa
         public DataTable ListarDS(string desc)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE desc_g LIKE '" +desc+ "%';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE desc_g LIKE '" + desc+ "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -198,6 +233,8 @@ namespace Caixa
                 linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();
                 linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -208,7 +245,7 @@ namespace Caixa
         public DataTable ListarDD(string desc,DateTime de)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE desc_g LIKE '" + desc + "%' and data='"+de.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE desc_g LIKE '" + desc + "%' and data='"+de.ToString("yyyy/MM/dd")+"';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -220,6 +257,8 @@ namespace Caixa
                 linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();
                 linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -230,7 +269,7 @@ namespace Caixa
         public DataTable ListarB(DateTime de,DateTime at)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '"+at.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '"+at.ToString("yyyy/MM/dd")+"';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -242,6 +281,8 @@ namespace Caixa
                 linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();
                 linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -252,7 +293,7 @@ namespace Caixa
         public DataTable ListarBD(DateTime de, DateTime at,string desc)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE (data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "') and desc_g='"+desc+"' ;");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(cred_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_g, 2), '.', '|'), ',', '.'), '|', ','))) AS CREDITO,IF(deb_g=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_g, 2), '.', '|'), ',', '.'), '|', ','))) AS DEBITO,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE (data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "') and desc_g='"+desc+"' ;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -264,6 +305,8 @@ namespace Caixa
                 linha["CREDITO"] = tabela_memoria.Rows[i]["CREDITO"].ToString();
                 linha["DEBITO"] = tabela_memoria.Rows[i]["DEBITO"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;

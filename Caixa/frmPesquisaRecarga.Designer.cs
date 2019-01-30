@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPesquisaRecarga));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtOperadora = new System.Windows.Forms.TextBox();
@@ -53,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(392, 13);
+            this.label2.Location = new System.Drawing.Point(387, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 20);
@@ -62,7 +63,7 @@
             // 
             // txtOperadora
             // 
-            this.txtOperadora.Location = new System.Drawing.Point(489, 10);
+            this.txtOperadora.Location = new System.Drawing.Point(484, 10);
             this.txtOperadora.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtOperadora.Name = "txtOperadora";
             this.txtOperadora.Size = new System.Drawing.Size(137, 26);
@@ -74,12 +75,18 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
+            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvExibir.Location = new System.Drawing.Point(18, 48);
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gvExibir.Location = new System.Drawing.Point(18, 40);
             this.gvExibir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(620, 390);
+            this.gvExibir.Size = new System.Drawing.Size(778, 445);
             this.gvExibir.TabIndex = 4;
             // 
             // mskData
@@ -112,12 +119,18 @@
             // 
             // btnPaideFamilia
             // 
+            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
+            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(645, 48);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(803, 40);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
-            this.btnPaideFamilia.Size = new System.Drawing.Size(97, 92);
+            this.btnPaideFamilia.Size = new System.Drawing.Size(81, 92);
             this.btnPaideFamilia.TabIndex = 7;
             this.btnPaideFamilia.Text = "Gerar .PDF";
             this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -126,12 +139,18 @@
             // 
             // btnExport
             // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(645, 146);
+            this.btnExport.Location = new System.Drawing.Point(803, 138);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(97, 92);
+            this.btnExport.Size = new System.Drawing.Size(81, 92);
             this.btnExport.TabIndex = 8;
             this.btnExport.Text = "Gerar Excel";
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -143,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(748, 452);
+            this.ClientSize = new System.Drawing.Size(893, 491);
             this.Controls.Add(this.btnPaideFamilia);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.mskAt);
@@ -154,9 +173,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximizeBox = false;
             this.Name = "frmPesquisaRecarga";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Consulta de Recarga";

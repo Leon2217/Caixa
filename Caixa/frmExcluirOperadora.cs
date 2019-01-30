@@ -13,6 +13,9 @@ namespace Caixa
     public partial class frmExcluirOperadora : Form
     {
         OperadoraDAO opDAO = new OperadoraDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+
         string operadora;
         string id;
         public frmExcluirOperadora()
@@ -46,7 +49,7 @@ namespace Caixa
         private void frmExcluirOperadora_Load(object sender, EventArgs e)
         {
             gvExibir.DataSource = opDAO.Listartudo();
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
@@ -80,27 +83,51 @@ namespace Caixa
                     txtId.Text = string.Empty;
                     txtOperadora.Text = string.Empty;
                     gvExibir.DataSource = opDAO.Listartudo();
+
+                    aud.Acao = "EXCLUIU OPERADORA";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
                 }
                 else
                 {
                     MessageBox.Show("Cancelado");
                 }
             }
-
-
-
-
-
-
-
-
-
         }
 
         private void txtId_TextChanged(object sender, EventArgs e)
         {
             txtId.BackColor = Color.Empty;
             id = txtId.Text.ToString();
+        }
+
+        private void txtOperadora_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void txtId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+                txtId.Text = row.Cells["id_operadora"].Value.ToString();
+            }
         }
     }
 }

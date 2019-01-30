@@ -15,6 +15,8 @@ namespace Caixa
         Dinheiro din = new Dinheiro();
         DinheiroDAO dinDAO = new DinheiroDAO();
         UsuarioDAO usuDao = new UsuarioDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
       
         int qtd1;
         int qtd2;
@@ -534,6 +536,13 @@ namespace Caixa
                             dinDAO.Verificaqtd(codcaixa);
                             string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                             dinDAO.updatetotal(codqtd);
+
+                            aud.Acao = "ALTEROU DINHEIRO";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
                         }
@@ -638,6 +647,13 @@ namespace Caixa
                             dinDAO.Verificaqtdgaveta(codcaixa);
                             string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                             dinDAO.Updatetotalgaveta(codqtd);
+
+                            aud.Acao = "ALTEROU DINHEIRO GAVETA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
                         }
@@ -757,6 +773,15 @@ namespace Caixa
                             dinDAO.Verificaqtd(codcaixa);
                             string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                             dinDAO.updatetotal(codqtd);
+
+
+                            aud.Acao = "INSERIU DINHEIRO";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+
+
                             MessageBox.Show("Informações salvas com sucesso!!!");
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
@@ -870,6 +895,16 @@ namespace Caixa
                             dinDAO.Verificaqtdgaveta(codcaixa);
                             string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                             dinDAO.Updatetotalgaveta(codqtd);
+
+
+                            aud.Acao = "INSERIU DINHEIRO GAVETA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
+
+
+
                             MessageBox.Show("Informações salvas com sucesso!!!");
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
@@ -1020,6 +1055,13 @@ namespace Caixa
                                 dinDAO.Verificaqtd(codcaixa);
                                 string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                                 dinDAO.updatetotal(codqtd);
+
+                                aud.Acao = "ALTEROU DINHEIRO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
                                 this.Close();
                             }
@@ -1124,6 +1166,13 @@ namespace Caixa
                                 dinDAO.Verificaqtdgaveta(codcaixa);
                                 string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                                 dinDAO.Updatetotalgaveta(codqtd);
+
+                                aud.Acao = "ALTEROU DINHEIRO GAVETA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
                                 this.Close();
                             }
@@ -1243,6 +1292,15 @@ namespace Caixa
                                 dinDAO.Verificaqtd(codcaixa);
                                 string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                                 dinDAO.updatetotal(codqtd);
+
+
+                                aud.Acao = "INSERIU DINHEIRO";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+
+
                                 MessageBox.Show("Informações salvas com sucesso!!!");
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
                                 this.Close();
@@ -1356,6 +1414,13 @@ namespace Caixa
                                 dinDAO.Verificaqtdgaveta(codcaixa);
                                 string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                                 dinDAO.Updatetotalgaveta(codqtd);
+
+                                aud.Acao = "INSERIU DINHEIRO GAVETA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+
                                 MessageBox.Show("Informações salvas com sucesso!!!");
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
                                 this.Close();
@@ -1476,5 +1541,7 @@ namespace Caixa
             frmOpcaoFecha f = new frmOpcaoFecha();
             f.ShowDialog();
         }
+
+       
     }
 }

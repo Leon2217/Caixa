@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Caixa
 {
@@ -43,6 +44,8 @@ namespace Caixa
 
         }
 
+     
+
         private void Login_Load(object sender, EventArgs e)
         {
            Conexao.criar_Conexao();
@@ -74,9 +77,13 @@ namespace Caixa
                         FechamentoDAO.data = fecDAO.Fec.Data;
                         FechamentoDAO.valor = fecDAO.Fec.Valor;
 
+                        
+
                         this.Hide();
                         InicialCaixa i = new InicialCaixa();
                         i.ShowDialog();
+
+                  
                 }
                 else
                 {
@@ -166,6 +173,15 @@ namespace Caixa
         {
             if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsNumber(e.KeyChar)))
             {
+                e.Handled = true;
+            }
+        }
+
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
                 e.Handled = true;
             }
         }

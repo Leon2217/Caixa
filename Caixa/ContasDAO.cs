@@ -51,6 +51,11 @@ namespace Caixa
         }
         #endregion
 
+        public void Excluir(string id, string n)
+        {
+            executarComando("DELETE FROM CONTAS WHERE id_contas ='" + id + "' || NF='"+n +"';");
+        }
+
 
         #region INSERIR CONTA
         public void Inserir(Contas con)
@@ -77,7 +82,7 @@ namespace Caixa
         public DataTable ListarNF(string nf)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + nf + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + nf + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -89,7 +94,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();        
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -101,7 +106,7 @@ namespace Caixa
         public DataTable ListarTudo()
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa;");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa ORDER BY C.ID_CONTAS;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -113,7 +118,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();               
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -124,7 +129,7 @@ namespace Caixa
         public DataTable ListarFS(string fornecedor, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -136,7 +141,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -147,7 +152,7 @@ namespace Caixa
         public DataTable ListarD(DateTime de)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -159,7 +164,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -171,7 +176,7 @@ namespace Caixa
         public DataTable ListarB(DateTime de, DateTime at)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' ;");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' ;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -183,7 +188,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -195,7 +200,7 @@ namespace Caixa
         public DataTable ListarDF(DateTime de, string fornecedor)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and p.nome LIKE '" + fornecedor + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and p.nome LIKE '" + fornecedor + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -207,7 +212,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -219,7 +224,7 @@ namespace Caixa
         public DataTable ListarDS(DateTime de, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and c.status LIKE '" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and c.status LIKE '" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -231,7 +236,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -243,7 +248,7 @@ namespace Caixa
         public DataTable ListarDNF(DateTime de, string nf)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and c.nf LIKE '" + nf + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and c.nf LIKE '" + nf + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -255,7 +260,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -267,7 +272,7 @@ namespace Caixa
         public DataTable ListarF(string fornecedor)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -279,7 +284,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -290,7 +295,7 @@ namespace Caixa
         public DataTable ListarS(string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.status LIKE'" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.status LIKE'" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -302,7 +307,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -325,7 +330,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -337,7 +342,7 @@ namespace Caixa
         public DataTable ListarBS(DateTime de, DateTime at, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' and c.status LIKE'" + status + "%' ;");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' and c.status LIKE'" + status + "%' ;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -349,7 +354,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -361,7 +366,7 @@ namespace Caixa
         public DataTable ListarNS(string nf, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + nf + "%' and c.status LIKE'" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + nf + "%' and c.status LIKE'" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -373,7 +378,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -384,7 +389,7 @@ namespace Caixa
         public DataTable ListarBN(DateTime de, DateTime at, string nf)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' and c.nf LIKE'" + nf + "%' ;");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' and c.nf LIKE'" + nf + "%' ;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -396,7 +401,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -407,7 +412,7 @@ namespace Caixa
         public DataTable ListarPF(string pc, string fornecedor)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + pc + "%' and p.nome LIKE'" + fornecedor + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE C.NF LIKE '" + pc + "%' and p.nome LIKE'" + fornecedor + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -419,7 +424,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -430,7 +435,7 @@ namespace Caixa
         public DataTable ListarBFS(DateTime de, DateTime at, string fornecedor, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -442,7 +447,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -453,7 +458,7 @@ namespace Caixa
         public DataTable ListarBNS(DateTime de, DateTime at, string nf, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.nf LIKE'" + nf + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.nf LIKE'" + nf + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -465,7 +470,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -476,7 +481,7 @@ namespace Caixa
         public DataTable ListarBPFS(DateTime de, DateTime at, string fornecedor, string status, string pc)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' AND  C.NF LIKE '" + pc + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' AND  C.NF LIKE '" + pc + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -488,7 +493,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -499,7 +504,7 @@ namespace Caixa
         public DataTable ListarDFS(DateTime de, string fornecedor, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and  p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and  p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -511,7 +516,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -523,7 +528,7 @@ namespace Caixa
         public DataTable ListarDNS(DateTime de, string nf, string status)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and  c.nf LIKE'" + nf + "%' and c.status LIKE'" + status + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE c.data='" + de.ToString("yyyy/MM/dd") + "' and  c.nf LIKE'" + nf + "%' and c.status LIKE'" + status + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -535,7 +540,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -558,7 +563,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -569,7 +574,7 @@ namespace Caixa
         public DataTable ListarPFS(string fornecedor, string status, string pc)
         {
             DataTable listaDescripto;
-            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,data_em as EMISSAO,data as VENCIMENTO,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND  C.NF LIKE '" + pc + "%';");
+            executarComando("SELECT c.id_contas as ID,nf as NF,p.nome as FORNECEDOR,DATE_FORMAT(data_em, '%d/%m/%y') as EMISSAO,DATE_FORMAT(data, '%d/%m/%y') as VENC,IF(c.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(valor, 2), '.', '|'), ',', '.'), '|', ','))) AS VALOR,status as STATUS FROM CONTAS C inner join pessoa p on p.id_pessoa=c.id_pessoa WHERE p.nome LIKE'" + fornecedor + "%' and c.status LIKE'" + status + "%' AND  C.NF LIKE '" + pc + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -581,7 +586,7 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["NF"] = tabela_memoria.Rows[i]["NF"].ToString();
                 linha["EMISSAO"] = tabela_memoria.Rows[i]["EMISSAO"].ToString();
-                linha["VENCIMENTO"] = tabela_memoria.Rows[i]["VENCIMENTO"].ToString();
+                linha["VENC"] = tabela_memoria.Rows[i]["VENC"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;

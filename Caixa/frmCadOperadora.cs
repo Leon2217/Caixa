@@ -14,6 +14,8 @@ namespace Caixa
     {
         OperadoraDAO opDAO = new OperadoraDAO();
         Operadoras op = new Operadoras();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         string nome;
         public frmCadOperadora()
         {
@@ -51,7 +53,13 @@ namespace Caixa
                         opDAO.Inserir(op);
                         MessageBox.Show("Operadora cadastrada com sucesso");
                         txtNome.Clear();
-                       
+
+                        aud.Acao = "CADASTROU OPERADORA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+
                     }
 
 
@@ -76,6 +84,20 @@ namespace Caixa
                e.Handled = true;
 
             }
+        }
+
+        private void txtNome_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
+        }
+
+        private void frmCadOperadora_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

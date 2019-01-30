@@ -31,7 +31,6 @@ namespace Caixa
 
             try
             {
-                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 gvExibir.DataSource = vcDAO.ListarTudo();
 
                 this.gvExibir.Columns["VALOR"].DefaultCellStyle

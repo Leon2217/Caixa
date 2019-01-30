@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Caixa
 {
-    class TipoPessoa
+    class Tipos
     {
         int id_tp;
         string tipo;

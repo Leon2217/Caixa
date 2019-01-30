@@ -48,6 +48,11 @@
             // btnAdicionar
             // 
             this.btnAdicionar.BackColor = System.Drawing.Color.White;
+            this.btnAdicionar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnAdicionar.FlatAppearance.BorderSize = 2;
+            this.btnAdicionar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Location = new System.Drawing.Point(22, 45);
             this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionar.Name = "btnAdicionar";
@@ -78,6 +83,7 @@
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

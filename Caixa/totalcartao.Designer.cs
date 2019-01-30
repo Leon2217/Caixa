@@ -571,6 +571,11 @@
             // btninserir
             // 
             this.btninserir.BackColor = System.Drawing.Color.White;
+            this.btninserir.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btninserir.FlatAppearance.BorderSize = 2;
+            this.btninserir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btninserir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btninserir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btninserir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btninserir.ForeColor = System.Drawing.Color.Red;
             this.btninserir.Location = new System.Drawing.Point(12, 594);
@@ -636,6 +641,11 @@
             // btnRelat
             // 
             this.btnRelat.BackColor = System.Drawing.Color.White;
+            this.btnRelat.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnRelat.FlatAppearance.BorderSize = 2;
+            this.btnRelat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRelat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnRelat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRelat.ForeColor = System.Drawing.Color.Red;
             this.btnRelat.Location = new System.Drawing.Point(12, 636);
@@ -660,6 +670,7 @@
             this.Controls.Add(this.grpCred);
             this.Controls.Add(this.grpAli);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

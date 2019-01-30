@@ -147,6 +147,21 @@ namespace Caixa
                     }
                 }
                 #endregion
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DATA                    
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+
+
             }
             catch
             {
@@ -160,6 +175,19 @@ namespace Caixa
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA                    
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -240,6 +268,19 @@ namespace Caixa
 
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA                                  
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -319,6 +360,19 @@ namespace Caixa
 
         private void mskAté_TextChanged(object sender, EventArgs e)
         {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA                         
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -439,7 +493,7 @@ namespace Caixa
                     }
                 }
             }
-            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("A2", "C300");
+            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("C2", "C300");
 
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;

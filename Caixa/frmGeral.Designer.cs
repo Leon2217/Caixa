@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGeral));
             this.btnPaideFamilia = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.mskAté = new System.Windows.Forms.MaskedTextBox();
@@ -47,14 +48,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblAjuste = new System.Windows.Forms.Label();
+            this.cmbAjustes = new System.Windows.Forms.ComboBox();
+            this.txtAjuste = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPaideFamilia
             // 
+            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
+            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
+            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(303, 7);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(490, 7);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
             this.btnPaideFamilia.Size = new System.Drawing.Size(137, 67);
             this.btnPaideFamilia.TabIndex = 14;
@@ -65,9 +76,15 @@
             // 
             // btnExport
             // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(446, 7);
+            this.btnExport.Location = new System.Drawing.Point(633, 7);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(140, 67);
             this.btnExport.TabIndex = 13;
@@ -122,16 +139,17 @@
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Empty;
             this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvExibir.Location = new System.Drawing.Point(12, 80);
+            this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gvExibir.Location = new System.Drawing.Point(12, 114);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(574, 513);
+            this.gvExibir.Size = new System.Drawing.Size(761, 479);
             this.gvExibir.TabIndex = 8;
             this.gvExibir.TabStop = false;
             // 
@@ -139,11 +157,16 @@
             // 
             this.cmbDescricao.FormattingEnabled = true;
             this.cmbDescricao.Items.AddRange(new object[] {
-            "DÉBITO",
-            "CRÉDITO",
+            "FIADO",
             "NF",
-            "CRÉDITO CAIXA MOEDA",
-            "CARTAO"});
+            "DESPESA FIXA",
+            "SODEXO",
+            "TICKET",
+            "VR",
+            "ALELO",
+            "PLCARD",
+            "CARTÃO CRÉDITO",
+            "CARTÃO DÉBITO"});
             this.cmbDescricao.Location = new System.Drawing.Point(98, 45);
             this.cmbDescricao.Name = "cmbDescricao";
             this.cmbDescricao.Size = new System.Drawing.Size(199, 28);
@@ -162,6 +185,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 635);
             this.label1.Name = "label1";
@@ -171,15 +195,17 @@
             // 
             // lblDeb
             // 
+            this.lblDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDeb.AutoSize = true;
             this.lblDeb.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblDeb.Location = new System.Drawing.Point(355, 635);
+            this.lblDeb.Location = new System.Drawing.Point(308, 635);
             this.lblDeb.Name = "lblDeb";
             this.lblDeb.Size = new System.Drawing.Size(0, 20);
             this.lblDeb.TabIndex = 18;
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(474, 635);
             this.lblTotal.Name = "lblTotal";
@@ -188,17 +214,19 @@
             // 
             // lblCred
             // 
+            this.lblCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCred.AutoSize = true;
             this.lblCred.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblCred.Location = new System.Drawing.Point(247, 635);
+            this.lblCred.Location = new System.Drawing.Point(154, 635);
             this.lblCred.Name = "lblCred";
             this.lblCred.Size = new System.Drawing.Size(0, 20);
             this.lblCred.TabIndex = 20;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(247, 615);
+            this.label2.Location = new System.Drawing.Point(154, 615);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 21;
@@ -206,8 +234,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(355, 615);
+            this.label3.Location = new System.Drawing.Point(308, 615);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 20);
             this.label3.TabIndex = 22;
@@ -215,6 +244,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(474, 615);
             this.label4.Name = "label4";
@@ -224,8 +254,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(335, 635);
+            this.label5.Location = new System.Drawing.Point(278, 635);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 20);
             this.label5.TabIndex = 24;
@@ -233,6 +264,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(442, 635);
             this.label6.Name = "label6";
@@ -240,12 +272,60 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "=";
             // 
+            // lblAjuste
+            // 
+            this.lblAjuste.AutoSize = true;
+            this.lblAjuste.Location = new System.Drawing.Point(8, 78);
+            this.lblAjuste.Name = "lblAjuste";
+            this.lblAjuste.Size = new System.Drawing.Size(66, 20);
+            this.lblAjuste.TabIndex = 26;
+            this.lblAjuste.Text = "Ajustes:";
+            // 
+            // cmbAjustes
+            // 
+            this.cmbAjustes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAjustes.FormattingEnabled = true;
+            this.cmbAjustes.Items.AddRange(new object[] {
+            "CRÉDITO",
+            "DÉBITO"});
+            this.cmbAjustes.Location = new System.Drawing.Point(98, 76);
+            this.cmbAjustes.Name = "cmbAjustes";
+            this.cmbAjustes.Size = new System.Drawing.Size(108, 28);
+            this.cmbAjustes.TabIndex = 27;
+            this.cmbAjustes.SelectedIndexChanged += new System.EventHandler(this.cmbAjustes_SelectedIndexChanged);
+            // 
+            // txtAjuste
+            // 
+            this.txtAjuste.Location = new System.Drawing.Point(213, 78);
+            this.txtAjuste.Name = "txtAjuste";
+            this.txtAjuste.Size = new System.Drawing.Size(84, 26);
+            this.txtAjuste.TabIndex = 28;
+            this.txtAjuste.TextChanged += new System.EventHandler(this.txtAjuste_TextChanged);
+            this.txtAjuste.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAjuste_KeyPress);
+            // 
+            // btnOk
+            // 
+            this.btnOk.BackColor = System.Drawing.Color.White;
+            this.btnOk.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnOk.FlatAppearance.BorderSize = 2;
+            this.btnOk.Location = new System.Drawing.Point(303, 77);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(40, 28);
+            this.btnOk.TabIndex = 29;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
             // frmGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(595, 660);
+            this.ClientSize = new System.Drawing.Size(782, 660);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.txtAjuste);
+            this.Controls.Add(this.cmbAjustes);
+            this.Controls.Add(this.lblAjuste);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -265,6 +345,8 @@
             this.Controls.Add(this.lblDe);
             this.Controls.Add(this.gvExibir);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGeral";
@@ -298,5 +380,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAjuste;
+        private System.Windows.Forms.ComboBox cmbAjustes;
+        private System.Windows.Forms.TextBox txtAjuste;
+        private System.Windows.Forms.Button btnOk;
     }
 }

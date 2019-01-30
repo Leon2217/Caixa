@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
 {
     public partial class totalcartao : Form
     {
+        #region INSTANCIAMENTO DE CLASSES
         CartaomaquinaDAO carMaquinaDAO = new CartaomaquinaDAO();
         Cartaomaquina carMaq = new Cartaomaquina();
         Cartaocaixa carcai = new Cartaocaixa();
@@ -20,6 +14,14 @@ namespace Caixa
         Fechamento fecha = new Fechamento();
         FechamentoDAO fechaDAO = new FechamentoDAO();
         UsuarioDAO usuDAO = new UsuarioDAO();
+        TaxasDAO txDAO = new TaxasDAO();
+        Relattx rtx = new Relattx();
+        RelattxDAO rtxDAO = new RelattxDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
+        #endregion
+
+        #region VAR
         String login,tipo;
         Boolean update;
         string codmaq;
@@ -41,15 +43,23 @@ namespace Caixa
         double valor16;
         double valor17;
         double valor18;
-
+#pragma warning disable CS0169 // O campo "totalcartao.vl" nunca é usado
+        double vl;
+#pragma warning restore CS0169 // O campo "totalcartao.vl" nunca é usado
+#pragma warning disable CS0169 // O campo "totalcartao.por" nunca é usado
+        double por;
+#pragma warning restore CS0169 // O campo "totalcartao.por" nunca é usado
         string codcart;
         double total;
-
-
         double totalcred;
         double totalref;
-      
-       
+#pragma warning disable CS0169 // O campo "totalcartao.taxa" nunca é usado
+        double taxa;
+#pragma warning restore CS0169 // O campo "totalcartao.taxa" nunca é usado
+#pragma warning disable CS0169 // O campo "totalcartao.totaltx" nunca é usado
+        double totaltx;
+#pragma warning restore CS0169 // O campo "totalcartao.totaltx" nunca é usado
+        #endregion
         public totalcartao()
         {
             InitializeComponent();
@@ -1270,9 +1280,6 @@ namespace Caixa
 
         private void btninserir_Click(object sender, EventArgs e)
         {
-
-
-
             if (update == true)
             {
                 if (tipo == "Administrador")
@@ -1286,6 +1293,24 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtVsCred.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_maquina=Convert.ToInt32(codmaq);
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtxDAO.Update(rtx);
+
                     }
                     else
                     {
@@ -1305,6 +1330,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtVsDeb.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1324,6 +1366,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtMsCred.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtMsCred.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1343,6 +1402,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        //vl = Convert.ToDouble(txtMsDeb.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1363,6 +1439,23 @@ namespace Caixa
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
 
+                        vl = Convert.ToDouble(txtEdebito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
+
                     }
                     else
                     {
@@ -1382,6 +1475,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtEcredito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1401,6 +1511,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtHcredito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1420,6 +1547,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtEali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1439,6 +1583,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtEref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1457,6 +1618,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtSali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtSali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1476,6 +1654,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtSref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtSref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1495,6 +1690,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtTref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtTref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1514,6 +1726,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtEldebito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1533,6 +1762,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtVrref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVrref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1552,6 +1798,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtVrali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVrali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1570,6 +1833,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtTicketali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1588,6 +1868,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtAlisoft.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1606,6 +1903,23 @@ namespace Caixa
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.update(carcai);
+
+                        vl = Convert.ToDouble(txtRefsoft.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Update(rtx);
                     }
                     else
                     {
@@ -1618,7 +1932,12 @@ namespace Caixa
                     }
                     MessageBox.Show("Dados alterados com sucesso !!!");
                     ((frmOpcaoFecha)this.Owner).AtualizaDados();
-             
+
+                    aud.Acao = "ALTEROU CART";
+                    aud.Data = FechamentoDAO.data;
+                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                    aud.Responsavel = UsuarioDAO.login;
+                    audDAO.Inserir(aud);
 
                 }
                 else
@@ -1628,360 +1947,682 @@ namespace Caixa
             }
             else
             {
-                if (txtVsCred.Text != string.Empty)
+                try
                 {
 
-                    codcart = "1";
-                    carcai.Valor = txtVsCred.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "1";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
+
+                    if (txtVsCred.Text != string.Empty)
+                    {
+
+                        codcart = "1";
+                        carcai.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtVsCred.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
 
-                if (txtVsDeb.Text != string.Empty)
-                {
-                    codcart = "2";
-                    carcai.Valor = txtVsDeb.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "2";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtMsCred.Text != string.Empty)
-                {
-                    codcart = "3";
-                    carcai.Valor = txtMsCred.Text.Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "3";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtMsDeb.Text != string.Empty)
-                {
-                    codcart = "4";
-                    carcai.Valor = txtMsDeb.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "4";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtEdebito.Text != string.Empty)
-                {
-                    codcart = "5";
-                    carcai.Valor = txtEdebito.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
 
-                }
-                else
-                {
-                    codcart = "5";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-
-                if (txtEcredito.Text != string.Empty)
-                {
-                    codcart = "6";
-                    carcai.Valor = txtEcredito.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "6";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtHcredito.Text != string.Empty)
-                {
-                    codcart = "7";
-                    carcai.Valor = txtHcredito.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "7";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
+                    }
+                    else
+                    {
+                        codcart = "1";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
 
 
-                if (txtEali.Text != string.Empty)
-                {
-                    codcart = "8";
-                    carcai.Valor = txtEali.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "8";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtEref.Text != string.Empty)
-                {
-                    codcart = "9";
-                    carcai.Valor = txtEref.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "9";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtSali.Text != string.Empty)
-                {
-                    codcart = "10";
-                    carcai.Valor = txtSali.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "10";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtSref.Text != string.Empty)
-                {
-                    codcart = "11";
-                    carcai.Valor = txtSref.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "11";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtTref.Text != string.Empty)
-                {
-                    codcart = "12";
-                    carcai.Valor = txtTref.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "12";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtEldebito.Text != string.Empty)
-                {
-                    codcart = "14";
-                    carcai.Valor = txtEldebito.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "14";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
+                    if (txtVsDeb.Text != string.Empty)
+                    {
+                        codcart = "2";
+                        carcai.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
 
-                if (txtVrali.Text != string.Empty)
-                {
-                    codcart = "16";
-                    carcai.Valor = txtVrali.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "16";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtVrref.Text != string.Empty)
-                {
-                    codcart = "15";
-                    carcai.Valor = txtVrref.Text.ToString().Replace(".","");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "15";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
 
-                if (txtTicketali.Text != string.Empty)
-                {
-                    codcart = "17";
-                    carcai.Valor = txtTicketali.Text.ToString().Replace(".", "");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "17";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtAlisoft.Text != string.Empty)
-                {
-                    codcart = "18";
-                    carcai.Valor = txtAlisoft.Text.ToString().Replace(".", "");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "18";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                if (txtRefsoft.Text != string.Empty)
-                {
-                    codcart = "19";
-                    carcai.Valor = txtRefsoft.Text.ToString().Replace(".", "");
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
-                else
-                {
-                    codcart = "19";
-                    carcai.Valor = "0";
-                    carcai.Id_cartao = Convert.ToInt32(codcart);
-                    carcai.Id_maquina = Convert.ToInt32(codmaq);
-                    carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                    carcaiDAO.inserir(carcai);
-                }
+                        vl = Convert.ToDouble(txtVsDeb.Text.ToString().Replace(".", ""));
 
-                MessageBox.Show("Informações salvas com sucesso!!!");
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "2";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtMsCred.Text != string.Empty)
+                    {
+                        codcart = "3";
+                        carcai.Valor = txtMsCred.Text.Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtMsCred.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtMsCred.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "3";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtMsDeb.Text != string.Empty)
+                    {
+                        codcart = "4";
+                        carcai.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtMsDeb.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "4";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtEdebito.Text != string.Empty)
+                    {
+                        codcart = "5";
+                        carcai.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtEdebito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+
+                    }
+                    else
+                    {
+                        codcart = "5";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+
+                    if (txtEcredito.Text != string.Empty)
+                    {
+                        codcart = "6";
+                        carcai.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtEcredito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "6";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtHcredito.Text != string.Empty)
+                    {
+                        codcart = "7";
+                        carcai.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtHcredito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "7";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+
+
+                    if (txtEali.Text != string.Empty)
+                    {
+                        codcart = "8";
+                        carcai.Valor = txtEali.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtEali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "8";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtEref.Text != string.Empty)
+                    {
+                        codcart = "9";
+                        carcai.Valor = txtEref.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtEref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "9";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtSali.Text != string.Empty)
+                    {
+                        codcart = "10";
+                        carcai.Valor = txtSali.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtSali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtSali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "10";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtSref.Text != string.Empty)
+                    {
+                        codcart = "11";
+                        carcai.Valor = txtSref.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtSref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtSref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "11";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtTref.Text != string.Empty)
+                    {
+                        codcart = "12";
+                        carcai.Valor = txtTref.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtTref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtTref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "12";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtEldebito.Text != string.Empty)
+                    {
+                        codcart = "14";
+                        carcai.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtEldebito.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "14";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+
+                    if (txtVrali.Text != string.Empty)
+                    {
+                        codcart = "16";
+                        carcai.Valor = txtVrali.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtVrali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVrali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "16";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtVrref.Text != string.Empty)
+                    {
+                        codcart = "15";
+                        carcai.Valor = txtVrref.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtVrref.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtVrref.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "15";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+
+                    if (txtTicketali.Text != string.Empty)
+                    {
+                        codcart = "17";
+                        carcai.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtTicketali.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "17";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtAlisoft.Text != string.Empty)
+                    {
+                        codcart = "18";
+                        carcai.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtAlisoft.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "18";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    if (txtRefsoft.Text != string.Empty)
+                    {
+                        codcart = "19";
+                        carcai.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+
+                        vl = Convert.ToDouble(txtRefsoft.Text.ToString().Replace(".", ""));
+
+                        txDAO.VerificaTaxa(codcart);
+                        por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                        taxa = (vl * (por / 100));
+                        totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                        rtx.Data = FechamentoDAO.data;
+                        rtx.Id_cartao = Convert.ToInt32(codcart);
+                        rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                        rtx.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                        rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                        rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtxDAO.Inserir(rtx);
+                    }
+                    else
+                    {
+                        codcart = "19";
+                        carcai.Valor = "0";
+                        carcai.Id_cartao = Convert.ToInt32(codcart);
+                        carcai.Id_maquina = Convert.ToInt32(codmaq);
+                        carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                        carcaiDAO.inserir(carcai);
+                    }
+                    MessageBox.Show("Informações salvas com sucesso!!!");
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show($"ERRO: FOI IMPOSSÍVEL SALVAR ALGUNS VALORES, CONFIRA SE HÁ TAXAS CADASTRADAS E DEPOIS TENTE NOVAMENTE");
+                }
+                catch (Exception p)
+                {
+                    MessageBox.Show($"Erro inesperado, {p.Message}");
+                }
               
-                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
-                 Atualizadados();
+
+                aud.Acao = "INSERIU CART";
+                aud.Data = FechamentoDAO.data;
+                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                aud.Responsavel = UsuarioDAO.login;
+                audDAO.Inserir(aud);
+
+                try
+                {
+                    ((frmOpcaoFecha)this.Owner).AtualizaDados();
+                    Atualizadados();
+                }
+                catch 
+                {
+                   
+                }
                
-            }
-
-
-                  
+               
+            }               
         }
-
-     
-
-
-
-
-
-
-        
-
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
@@ -2046,6 +2687,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtVsCred.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2065,6 +2723,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtVsDeb.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2084,6 +2759,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtMsCred.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtMsCred.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2103,6 +2795,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtMsDeb.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2123,6 +2832,23 @@ namespace Caixa
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
 
+                                vl = Convert.ToDouble(txtEdebito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
+
                             }
                             else
                             {
@@ -2142,6 +2868,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtEcredito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2161,6 +2904,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtHcredito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2180,6 +2940,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtEali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2199,6 +2976,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtEref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2217,6 +3011,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtSali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtSali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2236,6 +3047,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtSref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtSref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2255,6 +3083,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtTref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtTref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2274,6 +3119,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtEldebito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2283,6 +3145,8 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+
                             }
 
                             if (txtVrref.Text != string.Empty)
@@ -2293,6 +3157,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtVrref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVrref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2312,6 +3193,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtVrali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVrali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2330,6 +3228,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtTicketali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2348,6 +3263,23 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
+
+                                vl = Convert.ToDouble(txtAlisoft.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
                             }
                             else
                             {
@@ -2366,7 +3298,24 @@ namespace Caixa
                                 carcai.Id_maquina = Convert.ToInt32(codmaq);
                                 carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 carcaiDAO.update(carcai);
-                            }
+
+                                vl = Convert.ToDouble(txtRefsoft.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Update(rtx);
+                            }                                                      
                             else
                             {
                                 codcart = "19";
@@ -2378,6 +3327,11 @@ namespace Caixa
                             }
 
                             MessageBox.Show("Dados alterados com sucesso !!!");
+                            aud.Acao = "ALTEROU CART";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
 
 
@@ -2387,344 +3341,680 @@ namespace Caixa
                             MessageBox.Show("Você não possui requisitos o suficiente para alterar !!!");
                         }
                     }
+
                     else
                     {
-                        if (txtVsCred.Text != string.Empty)
+                        try
                         {
 
-                            codcart = "1";
-                            carcai.Valor = txtVsCred.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "1";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
+
+                            if (txtVsCred.Text != string.Empty)
+                            {
+
+                                codcart = "1";
+                                carcai.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtVsCred.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
 
-                        if (txtVsDeb.Text != string.Empty)
-                        {
-                            codcart = "2";
-                            carcai.Valor = txtVsDeb.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "2";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtMsCred.Text != string.Empty)
-                        {
-                            codcart = "3";
-                            carcai.Valor = txtMsCred.Text.Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "3";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtMsDeb.Text != string.Empty)
-                        {
-                            codcart = "4";
-                            carcai.Valor = txtMsDeb.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "4";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtEdebito.Text != string.Empty)
-                        {
-                            codcart = "5";
-                            carcai.Valor = txtEdebito.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-
-                        }
-                        else
-                        {
-                            codcart = "5";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-
-                        if (txtEcredito.Text != string.Empty)
-                        {
-                            codcart = "6";
-                            carcai.Valor = txtEcredito.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "6";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtHcredito.Text != string.Empty)
-                        {
-                            codcart = "7";
-                            carcai.Valor = txtHcredito.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "7";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "1";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
 
 
-                        if (txtEali.Text != string.Empty)
-                        {
-                            codcart = "8";
-                            carcai.Valor = txtEali.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
+                            if (txtVsDeb.Text != string.Empty)
+                            {
+                                codcart = "2";
+                                carcai.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtVsDeb.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "2";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+
+
+                            if (txtMsCred.Text != string.Empty)
+                            {
+                                codcart = "3";
+                                carcai.Valor = txtMsCred.Text.Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtMsCred.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtMsCred.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "3";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtMsDeb.Text != string.Empty)
+                            {
+                                codcart = "4";
+                                carcai.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtMsDeb.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "4";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtEdebito.Text != string.Empty)
+                            {
+                                codcart = "5";
+                                carcai.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtEdebito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+
+                            }
+                            else
+                            {
+                                codcart = "5";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+
+                            if (txtEcredito.Text != string.Empty)
+                            {
+                                codcart = "6";
+                                carcai.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtEcredito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "6";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtHcredito.Text != string.Empty)
+                            {
+                                codcart = "7";
+                                carcai.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtHcredito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "7";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+
+
+                            if (txtEali.Text != string.Empty)
+                            {
+                                codcart = "8";
+                                carcai.Valor = txtEali.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtEali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "8";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtEref.Text != string.Empty)
+                            {
+                                codcart = "9";
+                                carcai.Valor = txtEref.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtEref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "9";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtSali.Text != string.Empty)
+                            {
+                                codcart = "10";
+                                carcai.Valor = txtSali.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtSali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtSali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "10";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtSref.Text != string.Empty)
+                            {
+                                codcart = "11";
+                                carcai.Valor = txtSref.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtSref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtSref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "11";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtTref.Text != string.Empty)
+                            {
+                                codcart = "12";
+                                carcai.Valor = txtTref.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtTref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtTref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "12";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtEldebito.Text != string.Empty)
+                            {
+                                codcart = "14";
+                                carcai.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtEldebito.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "14";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+
+                            if (txtVrali.Text != string.Empty)
+                            {
+                                codcart = "16";
+                                carcai.Valor = txtVrali.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtVrali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVrali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "16";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtVrref.Text != string.Empty)
+                            {
+                                codcart = "15";
+                                carcai.Valor = txtVrref.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtVrref.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtVrref.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "15";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtTicketali.Text != string.Empty)
+                            {
+                                codcart = "17";
+                                carcai.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtTicketali.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtTicketali.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "17";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtAlisoft.Text != string.Empty)
+                            {
+                                codcart = "18";
+                                carcai.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtAlisoft.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtAlisoft.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "18";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+                            }
+                            if (txtRefsoft.Text != string.Empty)
+                            {
+                                codcart = "19";
+                                carcai.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                                vl = Convert.ToDouble(txtRefsoft.Text.ToString().Replace(".", ""));
+
+                                txDAO.VerificaTaxa(codcart);
+                                por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
+                                taxa = (vl * (por / 100));
+                                totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
+
+                                rtx.Data = FechamentoDAO.data;
+                                rtx.Id_cartao = Convert.ToInt32(codcart);
+                                rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
+                                rtx.Valor = txtRefsoft.Text.ToString().Replace(".", "");
+                                rtx.Valor_ct = totaltx.ToString().Replace(".", "");
+                                rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                rtx.Id_maquina = Convert.ToInt32(codmaq);
+                                rtxDAO.Inserir(rtx);
+                            }
+                            else
+                            {
+                                codcart = "19";
+                                carcai.Valor = "0";
+                                carcai.Id_cartao = Convert.ToInt32(codcart);
+                                carcai.Id_maquina = Convert.ToInt32(codmaq);
+                                carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
+                                carcaiDAO.inserir(carcai);
+
+                            }
+                            MessageBox.Show("Informações salvas com sucesso!!!");
                         }
-                        else
+                        catch (NullReferenceException nulo)
                         {
-                            codcart = "8";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
+                            MessageBox.Show($"ERRO: FOI IMPOSSÍVEL SALVAR ALGUNS VALORES, CONFIRA SE HÁ TAXAS CADASTRADAS E DEPOIS TENTE NOVAMENTE");
                         }
-                        if (txtEref.Text != string.Empty)
+                        catch (Exception p)
                         {
-                            codcart = "9";
-                            carcai.Valor = txtEref.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "9";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtSali.Text != string.Empty)
-                        {
-                            codcart = "10";
-                            carcai.Valor = txtSali.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "10";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtSref.Text != string.Empty)
-                        {
-                            codcart = "11";
-                            carcai.Valor = txtSref.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "11";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtTref.Text != string.Empty)
-                        {
-                            codcart = "12";
-                            carcai.Valor = txtTref.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "12";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtEldebito.Text != string.Empty)
-                        {
-                            codcart = "14";
-                            carcai.Valor = txtEldebito.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "14";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
+                            MessageBox.Show($"Erro inesperado, {p.Message}");
                         }
 
-                        if (txtVrali.Text != string.Empty)
+                        aud.Acao = "INSERIU CART";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+                        try
                         {
-                            codcart = "16";
-                            carcai.Valor = txtVrali.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
+                            ((frmOpcaoFecha)this.Owner).AtualizaDados();
+                            Atualizadados();
                         }
-                        else
+                        catch
                         {
-                            codcart = "16";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtVrref.Text != string.Empty)
-                        {
-                            codcart = "15";
-                            carcai.Valor = txtVrref.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "15";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtTicketali.Text != string.Empty)
-                        {
-                            codcart = "17";
-                            carcai.Valor = txtTicketali.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "17";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtAlisoft.Text != string.Empty)
-                        {
-                            codcart = "18";
-                            carcai.Valor = txtAlisoft.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "18";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        if (txtRefsoft.Text != string.Empty)
-                        {
-                            codcart = "19";
-                            carcai.Valor = txtRefsoft.Text.ToString().Replace(".", "");
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        else
-                        {
-                            codcart = "19";
-                            carcai.Valor = "0";
-                            carcai.Id_cartao = Convert.ToInt32(codcart);
-                            carcai.Id_maquina = Convert.ToInt32(codmaq);
-                            carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
-                            carcaiDAO.inserir(carcai);
-                        }
-                        MessageBox.Show("Informações salvas com sucesso!!!");
 
-                        ((frmOpcaoFecha)this.Owner).AtualizaDados();
-                        Atualizadados();
+                        }
+                      
 
                     }
                 }
@@ -2748,7 +4038,11 @@ namespace Caixa
 
         private void txtTicketali_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
+            }
         }
 
         private void txtTicketali_KeyPress(object sender, KeyPressEventArgs e)

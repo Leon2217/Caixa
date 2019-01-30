@@ -53,11 +53,17 @@
             this.txtNome.Size = new System.Drawing.Size(139, 26);
             this.txtNome.TabIndex = 1;
             this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNome_KeyDown);
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // btnAdicionar
             // 
             this.btnAdicionar.BackColor = System.Drawing.Color.White;
+            this.btnAdicionar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnAdicionar.FlatAppearance.BorderSize = 2;
+            this.btnAdicionar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Location = new System.Drawing.Point(17, 51);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(198, 43);
@@ -71,18 +77,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(241, 108);
+            this.ClientSize = new System.Drawing.Size(236, 101);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmCadOperadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ".: Cadastrar operadora";
+            this.Text = ".: Operadora";
+            this.Load += new System.EventHandler(this.frmCadOperadora_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadOperadora_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -22,6 +22,10 @@ namespace Caixa
         DateTime data;
 #pragma warning disable CS0169 // O campo "frmEs.cred" nunca é usado
         string cred;
+        string descr;
+
+        string credito;
+        string debito;
 #pragma warning restore CS0169 // O campo "frmEs.cred" nunca é usado
 
         int j;
@@ -32,30 +36,173 @@ namespace Caixa
 
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
-            if (mskDe.MaskFull == true && mskAté.MaskFull==true)
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 330; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "CRED")
+                    column.Width = 100; //tamanho fixo da coluna CRED
+                else if (column.DataPropertyName == "DEB")
+                    column.Width = 100; //tamanho fixo da coluna DEB
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
+
+            #region DE
+            if (mskDe.MaskFull == true)
             {
                 try
                 {
                     de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
                     at = Convert.ToDateTime(mskAté.Text);
                 }
                 catch
                 {
-                    MessageBox.Show("A data inserida é inválida !!!");
-                    mskDe.Clear();
-                    string datatela = DateTime.Now.ToShortDateString();
-                    mskDe.Text = datatela;
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
                 }
-              
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarD(de);
+            }
+            #endregion
+
+            #region BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
                 gvExibir.DataSource = cdDAO.ListarB(de, at);
             }
-            else
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
             {
-                if(mskDe.MaskFull==false || mskAté.MaskFull == false)
-                {
-                    gvExibir.DataSource = cdDAO.ListarTudo();
-                }
-            }          
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDesc(descr);
+
+
+            }
+            #endregion
+
+            #region DESC DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDD(de, descr);
+
+
+            }
+            #endregion
+
+            #region DESC BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESC(de, at, descr);
+
+
+            }
+            #endregion
+
+            #region TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarTudo();
+            }
+            #endregion
+
+            #region VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarValor(credito, debito);
+            }
+            #endregion
+
+            #region DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarDV(de,credito, debito);
+            }
+            #endregion
+
+            #region BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarBVALOR(de, at, credito, debito);
+            }
+            #endregion
+
+            #region DESC VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDescValor(descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                gvExibir.DataSource = cdDAO.ListarDDV(de, descr, credito, debito);                   
+            }
+            #endregion
+
+            #region DESC BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESCVALOR(de, at, descr, credito, debito);
+
+
+            }
+            #endregion
         }
 
         public void ExportarPDF(DataGridView dgw,string filename)
@@ -120,32 +267,173 @@ namespace Caixa
 
         private void mskAté_TextChanged(object sender, EventArgs e)
         {
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true)
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 330; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "CRED")
+                    column.Width = 100; //tamanho fixo da coluna CRED
+                else if (column.DataPropertyName == "DEB")
+                    column.Width = 100; //tamanho fixo da coluna DEB
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull == true)
             {
                 try
                 {
                     de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
                     at = Convert.ToDateTime(mskAté.Text);
                 }
                 catch
                 {
-                    MessageBox.Show("A data inserida é inválida !!!");
+                    MessageBox.Show("Data inválida !!!");
                     mskAté.Clear();
-                    string datatela = DateTime.Now.ToShortDateString();
-                    mskAté.Text = datatela;
-
                 }
-              
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarD(de);
+            }
+            #endregion
+
+            #region BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
                 gvExibir.DataSource = cdDAO.ListarB(de, at);
             }
-            else
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
             {
-                if (mskDe.MaskFull == false || mskAté.MaskFull == false)
-                {
-                    gvExibir.DataSource = cdDAO.ListarTudo();
-                }
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDesc(descr);
+
+
             }
-    
+            #endregion
+
+            #region DESC DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDD(de, descr);
+
+
+            }
+            #endregion
+
+            #region DESC BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESC(de, at, descr);
+
+
+            }
+            #endregion
+
+            #region TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarTudo();
+            }
+            #endregion
+
+            #region VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarValor(credito, debito);
+            }
+            #endregion
+
+            #region DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarDV(de, credito, debito);
+            }
+            #endregion
+
+            #region BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarBVALOR(de, at, credito, debito);
+            }
+            #endregion
+
+            #region DESC VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDescValor(descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                gvExibir.DataSource = cdDAO.ListarDDV(de, descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESCVALOR(de, at, descr, credito, debito);
+
+
+            }
+            #endregion
+
         }
 
         private void frmEs_KeyDown(object sender, KeyEventArgs e)
@@ -162,15 +450,15 @@ namespace Caixa
 
         private void frmEs_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                foreach (DataGridViewColumn c in gvExibir.Columns)
-                {
-#pragma warning disable CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
-                    c.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, GraphicsUnit.Pixel);
-#pragma warning restore CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
-                }
-            }
+//            if (this.WindowState == FormWindowState.Maximized)
+//            {
+//                foreach (DataGridViewColumn c in gvExibir.Columns)
+//                {
+//#pragma warning disable CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
+//                    c.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, GraphicsUnit.Pixel);
+//#pragma warning restore CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
+//                }
+//            }
         }
 
      
@@ -215,13 +503,8 @@ namespace Caixa
                         data = Convert.ToDateTime(gvExibir.Rows[i].Cells[j].Value);
 
 
-                        worksheet.Cells[i + 2, j + 1] = data.ToString("MM/dd/yyyy");
-
-                    
+                        worksheet.Cells[i + 2, j + 1] = data.ToString("MM/dd/yyyy");                   
                     }
-     
-
-
 
                     else
                     {
@@ -254,16 +537,6 @@ namespace Caixa
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
             foda.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous, Microsoft.Office.Interop.Excel.XlBorderWeight.xlMedium, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic);
@@ -271,8 +544,6 @@ namespace Caixa
             Microsoft.Office.Interop.Excel.Borders bd = cells.Borders;
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
-
-           
 
 
             var saveFileDialoge = new SaveFileDialog();
@@ -291,11 +562,7 @@ namespace Caixa
         }
 
         private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-        
-
-
-
+        {        
             if (e.Value != null && e.Value.Equals("Retirada de dinheiro")|| e.Value != null && e.Value.Equals("Fechamento PDV"))
             {
                 if (e.RowIndex == 0)
@@ -314,14 +581,9 @@ namespace Caixa
                 {
                     gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;
                 }
-
-
-
                 
             }
             
-
-
             if (e.Value != null && e.Value.Equals("Entrada de moeda") || e.Value != null && e.Value.Equals("Sangria de moeda")|| e.Value != null && e.Value.Equals("Troca de Moeda")|| e.Value != null && e.Value.Equals("Devolução moeda")|| e.Value != null && e.Value.Equals("Devolução")|| e.Value != null && e.Value.Equals("Entrada moeda PDV")|| e.Value != null && e.Value.Equals("Saída p/ caixa moeda") || e.Value != null && e.Value.Equals("Entrada caixa moeda"))
             {
 
@@ -343,18 +605,11 @@ namespace Caixa
 
                     
                     gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                }
-
-
-                
+                }              
             }
-
 
             if (e.Value != null && e.Value.Equals("Entrada sangria PDV"))
             {
-
-
-
                 if (e.RowIndex == 0)
                 {
                     try
@@ -371,36 +626,388 @@ namespace Caixa
                 else
                 {
 
-
                     gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
                 }
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
 
         }
 
- 
+        private void txtDesc_TextChanged(object sender, EventArgs e)
+        {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 330; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "CRED")
+                    column.Width = 100; //tamanho fixo da coluna CRED
+                else if (column.DataPropertyName == "DEB")
+                    column.Width = 100; //tamanho fixo da coluna DEB
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarD(de);
+            }
+            #endregion
+
+            #region BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarB(de, at);
+            }
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDesc(descr);
+            }
+            #endregion
+
+            #region DESC DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDD(de, descr);
+
+
+            }
+            #endregion
+
+            #region DESC BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESC(de, at, descr);
+
+
+            }
+            #endregion
+
+            #region TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarTudo();
+            }
+            #endregion
+
+            #region VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarValor(credito, debito);
+            }
+            #endregion
+
+            #region DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarDV(de, credito, debito);
+            }
+            #endregion
+
+            #region BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarBVALOR(de, at, credito, debito);
+            }
+            #endregion
+
+            #region DESC VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDescValor(descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                gvExibir.DataSource = cdDAO.ListarDDV(de, descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESCVALOR(de, at, descr, credito, debito);
+
+
+            }
+            #endregion
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 330; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "CRED")
+                    column.Width = 100; //tamanho fixo da coluna CRED
+                else if (column.DataPropertyName == "DEB")
+                    column.Width = 100; //tamanho fixo da coluna DEB
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarD(de);
+            }
+            #endregion
+
+            #region BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarB(de, at);
+            }
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDesc(descr);
+
+
+            }
+            #endregion
+
+            #region DESC DE
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDD(de, descr);
+
+
+            }
+            #endregion
+
+            #region DESC BTN
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text == string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESC(de, at, descr);
+
+
+            }
+            #endregion
+
+            #region TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text == string.Empty)
+            {
+                gvExibir.DataSource = cdDAO.ListarTudo();
+            }
+            #endregion
+
+            #region VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarValor(credito, debito);
+            }
+            #endregion
+
+            #region DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarDV(de, credito, debito);
+            }
+            #endregion
+
+            #region BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text == string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                gvExibir.DataSource = cdDAO.ListarBVALOR(de, at, credito, debito);
+            }
+            #endregion
+
+            #region DESC VALOR
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarDescValor(descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC DE VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull == false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                descr = txtDesc.Text.ToString();
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+                gvExibir.DataSource = cdDAO.ListarDDV(de, descr, credito, debito);
+            }
+            #endregion
+
+            #region DESC BTN VALOR
+            if (mskDe.MaskFull != false && mskAté.MaskFull != false && txtDesc.Text != string.Empty && txtValor.Text != string.Empty)
+            {
+                credito = txtValor.Text.ToString().Replace(".", "");
+                debito = txtValor.Text.ToString().Replace(".", "");
+
+                descr = txtDesc.Text.ToString();
+                gvExibir.DataSource = cdDAO.ListarBDESCVALOR(de, at, descr, credito, debito);
+
+
+            }
+            #endregion
+        }
+
+
+
+        public static void Moeda(ref TextBox txt)
+        {
+            string n = string.Empty;
+            double v = 0;
+
+            try
+            {
+                n = txt.Text.Replace(",", "").Replace(".", "");
+                if (n.Equals(""))
+                    n = "";
+                n = n.PadLeft(3, '0');
+                if (n.Length > 3 & n.Substring(0, 1) == "0")
+                    n = n.Substring(1, n.Length - 1);
+                v = Convert.ToDouble(n) / 100;
+                txt.Text = string.Format("{0:N}", v);
+                txt.SelectionStart = txt.Text.Length;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btImprimir_Click(object sender, EventArgs e)
+        {
+            printDGV.Print_DataGridView(gvExibir);
+        }
 
         private void frmEs_Load(object sender, EventArgs e)
         {
-           
-            gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;         
+
             string datatela = DateTime.Now.ToShortDateString();
             mskDe.Text = datatela;
             mskAté.Text = datatela;
-           
+
             if (mskDe.MaskFull == true && mskAté.MaskFull == true)
             {
                 de = Convert.ToDateTime(mskDe.Text);
@@ -418,29 +1025,44 @@ namespace Caixa
                 this.gvExibir.Columns["TOTAL"].DefaultCellStyle
 .Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
-               
             }
             else
             {
                 if (mskDe.MaskFull == false || mskAté.MaskFull == false)
-                {
-                   
+                {                  
                         gvExibir.DataSource = cdDAO.ListarTudo();
 
                     this.gvExibir.Columns["CRED"].DefaultCellStyle
 .Alignment = DataGridViewContentAlignment.MiddleRight;
-                 
+
                     this.gvExibir.Columns["DEB"].DefaultCellStyle
 .Alignment = DataGridViewContentAlignment.MiddleRight;
 
                     this.gvExibir.Columns["TOTAL"].DefaultCellStyle
 .Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-
                 }
             }
+
+            #region AJUSTE GRID
+            foreach (DataGridViewColumn column in gvExibir.Columns)
+            {
+                if (column.DataPropertyName == "DESCR")
+                    column.Width = 330; //tamanho fixo da coluna DESCR
+                else if (column.DataPropertyName == "DATA")
+                    column.Width = 80; //tamanho fixo da coluna DATA
+                else if (column.DataPropertyName == "HORA")
+                    column.Width = 60; //tamanho fixo da coluna HORA
+                else if (column.DataPropertyName == "CRED")
+                    column.Width = 100; //tamanho fixo da coluna CRED
+                else if (column.DataPropertyName == "DEB")
+                    column.Width = 100; //tamanho fixo da coluna DEB
+
+                else
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+            #endregion
         }
     }
 }

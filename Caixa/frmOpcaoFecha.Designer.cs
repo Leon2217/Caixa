@@ -86,6 +86,10 @@
             // btnVoltar
             // 
             this.btnVoltar.BackColor = System.Drawing.Color.White;
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnVoltar.FlatAppearance.BorderSize = 3;
+            this.btnVoltar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = global::Caixa.Properties.Resources._1489436625_chartmoneydollarcurrency_81885;
             this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -101,6 +105,10 @@
             // btnGaveta
             // 
             this.btnGaveta.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGaveta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnGaveta.FlatAppearance.BorderSize = 3;
+            this.btnGaveta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnGaveta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGaveta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGaveta.Image = global::Caixa.Properties.Resources.Accounting_icon_icons_com_74682__1_;
             this.btnGaveta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -116,6 +124,10 @@
             // btnSuprimento
             // 
             this.btnSuprimento.BackColor = System.Drawing.Color.White;
+            this.btnSuprimento.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSuprimento.FlatAppearance.BorderSize = 3;
+            this.btnSuprimento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnSuprimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSuprimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuprimento.Image = global::Caixa.Properties.Resources._1486564179_finance_saving_81499;
             this.btnSuprimento.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -131,6 +143,10 @@
             // btnFiado
             // 
             this.btnFiado.BackColor = System.Drawing.Color.White;
+            this.btnFiado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFiado.FlatAppearance.BorderSize = 3;
+            this.btnFiado.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnFiado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiado.Image = global::Caixa.Properties.Resources.business_color_money_time_icon_icons_com_53444;
             this.btnFiado.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -146,7 +162,11 @@
             // btnCartão
             // 
             this.btnCartão.BackColor = System.Drawing.Color.White;
-            this.btnCartão.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCartão.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCartão.FlatAppearance.BorderSize = 3;
+            this.btnCartão.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnCartão.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCartão.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F);
             this.btnCartão.Image = global::Caixa.Properties.Resources.businesspaymentcard_paymentcard_visa_negocio_pag_2339;
             this.btnCartão.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCartão.Location = new System.Drawing.Point(480, 12);
@@ -161,6 +181,10 @@
             // btnDinheiro
             // 
             this.btnDinheiro.BackColor = System.Drawing.Color.White;
+            this.btnDinheiro.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDinheiro.FlatAppearance.BorderSize = 3;
+            this.btnDinheiro.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnDinheiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDinheiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDinheiro.Image = global::Caixa.Properties.Resources.cash_icon_icons_com_51090;
             this.btnDinheiro.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -176,6 +200,10 @@
             // btnSalvar
             // 
             this.btnSalvar.BackColor = System.Drawing.Color.White;
+            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSalvar.FlatAppearance.BorderSize = 3;
+            this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Location = new System.Drawing.Point(358, 201);
             this.btnSalvar.Name = "btnSalvar";
@@ -198,6 +226,10 @@
             // btnValor
             // 
             this.btnValor.BackColor = System.Drawing.Color.White;
+            this.btnValor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnValor.FlatAppearance.BorderSize = 3;
+            this.btnValor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnValor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValor.Location = new System.Drawing.Point(358, 245);
             this.btnValor.Name = "btnValor";
@@ -226,6 +258,7 @@
             this.Controls.Add(this.btnFiado);
             this.Controls.Add(this.btnCartão);
             this.Controls.Add(this.btnDinheiro);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

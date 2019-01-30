@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\estagiario\Desktop\</PublishUrl>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\Estagiario01\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,9 +26,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://localhost/Caixa/</UpdateUrl>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ProductName>Caixa</ProductName>
+    <PublisherName>Leonardo Gabriel e Lucas Uzan</PublisherName>
+    <ApplicationRevision>108</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -38,6 +44,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,34 +67,97 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Accounting_icon-icons.com_74682.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Carbon.Data.Protection, Version=0.19.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.Data.Protection.0.19.1\lib\netstandard2.0\Carbon.Data.Protection.dll</HintPath>
+    </Reference>
+    <Reference Include="Carbon.Json, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.Json.1.9.0\lib\netstandard2.0\Carbon.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Carbon.Packaging, Version=1.28.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.Packaging.1.28.0\lib\netstandard2.0\Carbon.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Carbon.Storage, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.Storage.1.16.0\lib\netstandard2.0\Carbon.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Carbon.VersionControl, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.VersionControl.1.8.1\lib\netstandard2.0\Carbon.VersionControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Carbon.Versioning, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Carbon.Versioning.1.5.0\lib\netstandard2.0\Carbon.Versioning.dll</HintPath>
+    </Reference>
     <Reference Include="CurrencyTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Desktop\Caixa\packages\CurrencyTextBox.1.4.3\lib\CurrencyTextBoxControl.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Google.Protobuf.3.5.1\lib\netstandard1.0\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\MySql.Data.8.0.11\lib\net452\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.13\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=16.1451.0.37, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Caixa\packages\Syncfusion.Xamarin.SfNumericTextBox.16.1.0.37\lib\netstandard1.0\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=16.3460.0.29, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.16.3.0.29\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericTextBox.XForms, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfNumericTextBox.16.3.0.29\lib\netstandard1.0\Syncfusion.SfNumericTextBox.XForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,6 +168,15 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1008975\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1008975\lib\netstandard2.0\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.3.4.0.1008975\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abertura.cs">
@@ -106,14 +185,13 @@
     <Compile Include="Abertura.designer.cs">
       <DependentUpon>Abertura.cs</DependentUpon>
     </Compile>
+    <Compile Include="AcessoEmail.cs" />
     <Compile Include="assinada.cs" />
     <Compile Include="assinadaDAO.cs" />
-    <Compile Include="Caixa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Caixa.designer.cs">
-      <DependentUpon>Caixa.cs</DependentUpon>
-    </Compile>
+    <Compile Include="fiado.cs" />
+    <Compile Include="fiadoDAO.cs" />
+    <Compile Include="Auditoria.cs" />
+    <Compile Include="AuditoriaDAO.cs" />
     <Compile Include="Cartao.cs" />
     <Compile Include="Cartaocaixa.cs" />
     <Compile Include="CartaocaixaDAO.cs" />
@@ -125,6 +203,8 @@
     <Compile Include="Contas2.cs" />
     <Compile Include="Contas3.cs" />
     <Compile Include="ContasDAO.cs" />
+    <Compile Include="Contato.cs" />
+    <Compile Include="ContatoDAO.cs" />
     <Compile Include="CredDeb.cs" />
     <Compile Include="credDebDAO.cs" />
     <Compile Include="Credito.cs" />
@@ -140,6 +220,8 @@
     <Compile Include="diferencaDAO.cs" />
     <Compile Include="Dinheiro.cs" />
     <Compile Include="DinheiroDAO.cs" />
+    <Compile Include="Endereco.cs" />
+    <Compile Include="EnderecoDAO.cs" />
     <Compile Include="EntradaDev.cs" />
     <Compile Include="EntradaDevDAO.cs" />
     <Compile Include="Entradamoeda.cs" />
@@ -158,6 +240,18 @@
     </Compile>
     <Compile Include="frmAssinadas.designer.cs">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadtipodespesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadtipodespesa.Designer.cs">
+      <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFiado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFiado.designer.cs">
+      <DependentUpon>frmFiado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCadFunc.cs">
       <SubType>Form</SubType>
@@ -303,6 +397,12 @@
     <Compile Include="frmOpçãodeMoeda.designer.cs">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPesquisaPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPesquisaPessoa.Designer.cs">
+      <DependentUpon>frmPesquisaPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPesquisaRecarga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +427,12 @@
     <Compile Include="frmRelatContas.Designer.cs">
       <DependentUpon>frmRelatContas.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRelatDespesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatDespesa.Designer.cs">
+      <DependentUpon>frmRelatDespesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRelatDif.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +444,18 @@
     </Compile>
     <Compile Include="frmRelatFalta.designer.cs">
       <DependentUpon>frmRelatFalta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatFiado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatFiado.Designer.cs">
+      <DependentUpon>frmRelatFiado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelatTaxa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatTaxa.Designer.cs">
+      <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRelatVendavc.cs">
       <SubType>Form</SubType>
@@ -351,11 +469,29 @@
     <Compile Include="frmSangria.designer.cs">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSecreta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSecreta.Designer.cs">
+      <DependentUpon>frmSecreta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSecreta2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSecreta2.Designer.cs">
+      <DependentUpon>frmSecreta2.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSuprimento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuprimento.designer.cs">
       <DependentUpon>frmSuprimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTaxa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTaxa.Designer.cs">
+      <DependentUpon>frmTaxa.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipo.cs">
       <SubType>Form</SubType>
@@ -402,16 +538,39 @@
     <Compile Include="OperadoraDAO.cs" />
     <Compile Include="Pessoa.cs" />
     <Compile Include="PessoaDAO.cs" />
+    <Compile Include="printDGV.cs" />
+    <Compile Include="PrintOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintOptions.Designer.cs">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recarga.cs" />
     <Compile Include="RecargaDAO.cs" />
+    <Compile Include="Relatfiado.cs" />
+    <Compile Include="relatfiadoDAO.cs" />
+    <Compile Include="relatSangria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="relatSangria.Designer.cs">
+      <DependentUpon>relatSangria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Relattx.cs" />
+    <Compile Include="RelattxDAO.cs" />
     <Compile Include="Sangria.cs" />
     <Compile Include="SangriaDAO.cs" />
     <Compile Include="suprimentoDAO.cs" />
     <Compile Include="suprimentos.cs" />
+    <Compile Include="Taxas.cs" />
+    <Compile Include="TaxasDAO.cs" />
     <Compile Include="Tipo.cs" />
     <Compile Include="TipoDAO.cs" />
+    <Compile Include="Tipodespesa.cs" />
+    <Compile Include="TipodespesaDAO.cs" />
+    <Compile Include="Tipopessoa.cs" />
+    <Compile Include="TipopessoaDAO.cs" />
     <Compile Include="totalcartao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +581,8 @@
     <Compile Include="TurnoDAO.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioDAO.cs" />
+    <Compile Include="validacnpj.cs" />
+    <Compile Include="validacpf.cs" />
     <Compile Include="Valorcaixa.cs" />
     <Compile Include="ValorcaixaDAO.cs" />
     <Compile Include="Valorcxm.cs" />
@@ -437,15 +598,18 @@
     <EmbeddedResource Include="Abertura.resx">
       <DependentUpon>Abertura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Caixa.resx">
-      <DependentUpon>Caixa.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Form1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAssinadas.resx">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadtipodespesa.resx">
+      <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFiado.resx">
+      <DependentUpon>frmFiado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadFunc.resx">
       <DependentUpon>frmCadFunc.cs</DependentUpon>
@@ -519,6 +683,9 @@
     <EmbeddedResource Include="frmOpçãodeMoeda.resx">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPesquisaPessoa.resx">
+      <DependentUpon>frmPesquisaPessoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPesquisaRecarga.resx">
       <DependentUpon>frmPesquisaRecarga.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,11 +698,23 @@
     <EmbeddedResource Include="frmRelatContas.resx">
       <DependentUpon>frmRelatContas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatDespesa.resx">
+      <DependentUpon>frmRelatDespesa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRelatDif.resx">
       <DependentUpon>frmRelatDif.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRelatFalta.resx">
       <DependentUpon>frmRelatFalta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatFiado.resx">
+      <DependentUpon>frmRelatFiado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatTaxa.es.resx">
+      <DependentUpon>frmRelatTaxa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatTaxa.resx">
+      <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRelatVendavc.resx">
       <DependentUpon>frmRelatVendavc.cs</DependentUpon>
@@ -543,8 +722,17 @@
     <EmbeddedResource Include="frmSangria.resx">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSecreta.resx">
+      <DependentUpon>frmSecreta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSecreta2.resx">
+      <DependentUpon>frmSecreta2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSuprimento.resx">
       <DependentUpon>frmSuprimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTaxa.resx">
+      <DependentUpon>frmTaxa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipo.resx">
       <DependentUpon>frmTipo.cs</DependentUpon>
@@ -561,6 +749,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrintOptions.resx">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -571,6 +762,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="relatSangria.resx">
+      <DependentUpon>relatSangria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="totalcartao.resx">
       <DependentUpon>totalcartao.cs</DependentUpon>
     </EmbeddedResource>
@@ -597,6 +791,45 @@
     <None Include="Resources\three-dots-more-indicator_icon-icons.com_72518.png" />
     <None Include="Resources\more-button-of-three-dots_icon-icons.com_74259.png" />
     <None Include="Resources\business_salesreport_salesreport_negocio_2353.png" />
+    <None Include="Resources\search_find_lupa_21889.png" />
+    <None Include="Resources\plus_40632.png" />
+    <None Include="Resources\more-button-of-three-dots_icon-icons.com_742591.png" />
+    <None Include="Resources\save_as_22027.png" />
+    <None Include="Resources\eraser_46865.png" />
+    <None Include="Resources\trashcan-full-icon_34338.png" />
+    <None Include="Resources\new-file_40454.png" />
+    <None Include="Resources\1485969921-5-refresh_78908.png" />
+    <None Include="Resources\new-file_40454 %281%29.png" />
+    <None Include="Resources\save_as_22027 %281%29.png" />
+    <None Include="Resources\cancel_stop_exit_1583.png" />
+    <None Include="Resources\Cancel_icon-icons.com_73703.png" />
+    <None Include="Resources\trashcan-full-icon_343381.png" />
+    <None Include="Resources\trashcan-full-icon_34338 %281%29.png" />
+    <None Include="Resources\Checked-80_icon-icons.com_57359.png" />
+    <None Include="Resources\ic_cancel_128_28318.png" />
+    <None Include="Resources\Cancel_icon-icons.com_737031.png" />
+    <None Include="Resources\Cancel_icon-icons.com_737032.png" />
+    <None Include="Resources\businessapplication_distributor_report_document_negocio_2319.png" />
+    <None Include="Resources\businessapplication_distributor_report_document_negocio_23191.png" />
+    <None Include="Resources\businessapplication_distributor_report_document_negocio_2319 %281%29.png" />
+    <None Include="Resources\search_find_lupa_218891.png" />
+    <None Include="Resources\search_find_lupa_218892.png" />
+    <None Include="Resources\search_book_open_search_locate_6178.png" />
+    <None Include="Resources\ghostview_search_document_6161.png" />
+    <None Include="Resources\question_icon-icons.com_69970.png" />
+    <None Include="Resources\question_icon-icons.com_699701.png" />
+    <None Include="Resources\ic_arrow_back_128_28226.png" />
+    <None Include="Resources\plusregular_106327.png" />
+    <None Include="Resources\Sales-report_25411.png" />
+    <None Include="Resources\Sales-report_25411 %282%29.png" />
+    <None Include="Resources\bk.PNG" />
+    <None Include="Resources\databackup_theapplication_dedatos_3366.png" />
+    <None Include="Resources\databackup_theapplication_dedatos_3366 %281%29.png" />
+    <None Include="Resources\business_application_addmale_useradd_insert_add_user_client_2312.png" />
+    <None Include="Resources\Caixa.Icon.ico" />
+    <None Include="Resources\Accounting_icon-icons.com_74682.ico" />
+    <None Include="Resources\apps_printer_15747 %281%29.png" />
+    <None Include="Resources\apps_printer_15747.png" />
     <Content Include="UpgradeLog.htm" />
     <Content Include="UpgradeLog2.htm" />
     <Content Include="UpgradeLog3.htm" />
@@ -604,7 +837,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 e x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -617,4 +850,12 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.4.0.1008975\build\Xamarin.Forms.targets')" />
 </Project>

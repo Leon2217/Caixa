@@ -19,8 +19,7 @@ namespace Caixa
         }
 
         public void btnVenda_Click(object sender, EventArgs e)
-        {
-         
+        {         
             frmVendavc vc = new frmVendavc();                  
             vc.ShowDialog();
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEntradaMoeda));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl1r = new System.Windows.Forms.Label();
             this.lbl50c = new System.Windows.Forms.Label();
@@ -76,7 +77,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 52);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 205);
+            this.groupBox1.Size = new System.Drawing.Size(342, 205);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "[Moedas]";
@@ -238,16 +239,16 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(12, 263);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(300, 98);
+            this.groupBox4.Size = new System.Drawing.Size(342, 98);
             this.groupBox4.TabIndex = 82;
             this.groupBox4.TabStop = false;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.lblMoeda);
-            this.groupBox6.Location = new System.Drawing.Point(10, 39);
+            this.groupBox6.Location = new System.Drawing.Point(6, 39);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(275, 50);
+            this.groupBox6.Size = new System.Drawing.Size(330, 50);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             // 
@@ -272,9 +273,14 @@
             // 
             this.btnAdicionar.BackColor = System.Drawing.Color.White;
             this.btnAdicionar.Enabled = false;
+            this.btnAdicionar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnAdicionar.FlatAppearance.BorderSize = 2;
+            this.btnAdicionar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Location = new System.Drawing.Point(12, 367);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(300, 46);
+            this.btnAdicionar.Size = new System.Drawing.Size(342, 46);
             this.btnAdicionar.TabIndex = 83;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = false;
@@ -307,13 +313,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(324, 418);
+            this.ClientSize = new System.Drawing.Size(366, 418);
             this.Controls.Add(this.chkBaixo);
             this.Controls.Add(this.chkPDV);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;

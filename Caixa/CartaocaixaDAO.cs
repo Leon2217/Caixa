@@ -39,9 +39,10 @@ namespace Caixa
         public static Boolean verifica;
         public static string total;
         public static string total2;
+        public static string noite;
 
 
-        
+
 
 
         internal Cartaocaixa Carcai { get => carcai; set => carcai = value; }
@@ -68,6 +69,7 @@ namespace Caixa
         public static string Total2 { get => total2; set => total2 = value; }
         public static string Alisoft { get => alisoft; set => alisoft = value; }
         public static string Refsoft { get => refsoft; set => refsoft = value; }
+        public static string Noite { get => noite; set => noite = value; }
 
         public static string codcaixa;
 
@@ -114,6 +116,22 @@ namespace Caixa
             {
 
                 Total2 = tabela_memoria.Rows[0]["sum(valor)"].ToString();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Boolean testa3(DateTime data)
+        {
+            executarComando("Select sum(valor) from cartaocaixa cc inner join caixa c on c.id_caixa=cc.id_caixa inner join turno t on t.id_turno=c.id_turno where c.id_turno=3 and datainicio='" + data.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+
+                Noite = tabela_memoria.Rows[0]["sum(valor)"].ToString();
 
 
                 return true;
@@ -974,5 +992,8 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
+
+        
+
     }
 }

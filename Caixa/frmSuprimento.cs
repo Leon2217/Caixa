@@ -15,6 +15,8 @@ namespace Caixa
         suprimentos supri = new suprimentos();
         suprimentoDAO supriDAO = new suprimentoDAO();
         UsuarioDAO usuDao = new UsuarioDAO();
+        Auditoria aud = new Auditoria();
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         string valor;
         string login, tipo;
         Boolean update;
@@ -58,6 +60,13 @@ namespace Caixa
                         supri.Valor = txtValor.Text.ToString().Replace(".","");
                         supriDAO.inserir(supri);
                         MessageBox.Show("Informações salvas com sucesso !!!");
+
+                        aud.Acao = "INSERIU SUPRIMENTO";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+
                         ((frmOpcaoFecha)this.Owner).AtualizaDados();
 
                         this.Close();

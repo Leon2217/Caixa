@@ -20,10 +20,13 @@ namespace Caixa
         internal Recarga Rec { get => rec; set => rec = value; }
         public static string Totalrecarga { get => totalrecarga; set => totalrecarga = value; }
         public static string Totalrecarga2 { get => totalrecarga2; set => totalrecarga2 = value; }
+        public static string Totalrecarga3 { get => totalrecarga3; set => totalrecarga3 = value; }
 
         public static string totalrecarga;
 
         public static string totalrecarga2;
+
+        public static string totalrecarga3;
         private void executarComando(string comando)
         {
             tabela_memoria = new DataTable();
@@ -200,6 +203,22 @@ namespace Caixa
             try
             {
                 totalrecarga2 = tabela_memoria.Rows[0]["sum(valor_rec)"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region BUSCAR SOMA DE RECARGA POR TURNO
+        public Boolean Verificarecarga3(DateTime data)
+        {
+            executarComando("SELECT sum(valor_rec) FROM RECARGA R INNER JOIN CAIXA C ON C.ID_CAIXA=R.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=3 AND C.DATAINICIO='" + data.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                totalrecarga3 = tabela_memoria.Rows[0]["sum(valor_rec)"].ToString();
                 return true;
             }
             catch
