@@ -41,6 +41,9 @@
             this.lblValor = new System.Windows.Forms.Label();
             this.gvExibir = new System.Windows.Forms.DataGridView();
             this.btImprimir = new System.Windows.Forms.Button();
+            this.btnConferido = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,9 +183,11 @@
             this.gvExibir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
+            this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvExibir.Size = new System.Drawing.Size(935, 573);
             this.gvExibir.TabIndex = 0;
             this.gvExibir.TabStop = false;
+            this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 
             // btImprimir
@@ -199,12 +204,69 @@
             this.btImprimir.UseVisualStyleBackColor = false;
             this.btImprimir.Click += new System.EventHandler(this.btImprimir_Click);
             // 
+            // btnConferido
+            // 
+            this.btnConferido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConferido.BackColor = System.Drawing.Color.White;
+            this.btnConferido.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnConferido.FlatAppearance.BorderSize = 2;
+            this.btnConferido.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnConferido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnConferido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConferido.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConferido.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnConferido.Location = new System.Drawing.Point(125, 42);
+            this.btnConferido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnConferido.Name = "btnConferido";
+            this.btnConferido.Size = new System.Drawing.Size(127, 33);
+            this.btnConferido.TabIndex = 23;
+            this.btnConferido.Text = "CONFERIDO";
+            this.btnConferido.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnConferido.UseVisualStyleBackColor = false;
+            this.btnConferido.Visible = false;
+            this.btnConferido.Click += new System.EventHandler(this.btnConferido_Click);
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(259, 45);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(10, 26);
+            this.txtId.TabIndex = 24;
+            this.txtId.Visible = false;
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVoltar.BackColor = System.Drawing.Color.White;
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnVoltar.FlatAppearance.BorderSize = 2;
+            this.btnVoltar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnVoltar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnVoltar.Location = new System.Drawing.Point(95, 43);
+            this.btnVoltar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(22, 33);
+            this.btnVoltar.TabIndex = 25;
+            this.btnVoltar.Text = "V";
+            this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Visible = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // frmEs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(956, 663);
+            this.Controls.Add(this.btnVoltar);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.btnConferido);
             this.Controls.Add(this.btImprimir);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.lblValor);
@@ -247,5 +309,8 @@
         private System.Windows.Forms.Label lblValor;
         private System.Windows.Forms.DataGridView gvExibir;
         private System.Windows.Forms.Button btImprimir;
+        private System.Windows.Forms.Button btnConferido;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

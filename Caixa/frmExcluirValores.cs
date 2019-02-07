@@ -115,13 +115,9 @@ namespace Caixa
             }
         }
 
-        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-                txtId.Text = row.Cells["id_valor"].Value.ToString();
-            }
+            txtId.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
     }
 }

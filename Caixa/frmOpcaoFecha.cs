@@ -782,6 +782,7 @@ namespace Caixa
                             cd.Deb_db = "0,00";
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcDAO.Vc.Valor;
+                            cd.C = null;
 
                             cdDAO.Inserir(cd);
 
@@ -925,6 +926,7 @@ namespace Caixa
                                 cd.Deb_db = "0,00";
                                 cd.Responsa_db = UsuarioDAO.login;
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
 
                                 cdDAO.Inserir(cd);
                                 if (verDAO.Verifica() == true)
@@ -1070,6 +1072,7 @@ namespace Caixa
                             cd.Deb_db = "0,00";
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcDAO.Vc.Valor;
+                            cd.C = null;
 
                             cdDAO.Inserir(cd);
 

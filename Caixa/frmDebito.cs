@@ -249,6 +249,7 @@ namespace Caixa
                                 cd.Deb_db = "0,00";
                                 cd.Responsa_db = UsuarioDAO.login;
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #endregion
@@ -307,6 +308,7 @@ namespace Caixa
                                 cd.Deb_db = "0,00";
                                 cd.Responsa_db = UsuarioDAO.login;
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #endregion
@@ -362,6 +364,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #region GERAL
@@ -425,6 +428,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -489,6 +493,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 aud.Acao = "INSERIU MOV DEBITO";
@@ -514,6 +519,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -576,6 +582,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 aud.Acao = "INSERIU MOV DEBITO";
@@ -601,6 +608,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -663,6 +671,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 aud.Acao = "INSERIU MOV DEBITO";
@@ -688,6 +697,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -767,6 +777,7 @@ namespace Caixa
                                 cd.Deb_db = "0,00";
                                 cd.Responsa_db = UsuarioDAO.login;
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #endregion
@@ -825,6 +836,7 @@ namespace Caixa
                                 cd.Deb_db = "0,00";
                                 cd.Responsa_db = UsuarioDAO.login;
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #endregion
@@ -880,6 +892,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 #region GERAL
@@ -943,6 +956,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -1007,6 +1021,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 aud.Acao = "INSERIU MOV DEBITO";
@@ -1032,6 +1047,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
@@ -1094,6 +1110,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
 
                                 aud.Acao = "INSERIU MOV DEBITO";
@@ -1119,6 +1136,7 @@ namespace Caixa
                                 cd.Cred_db = "0,00";
                                 cd.Responsa_db = txtResponsa.Text.ToString();
                                 cd.Total = vcDAO.Vc.Valor;
+                                cd.C = null;
                                 cdDAO.Inserir(cd);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion

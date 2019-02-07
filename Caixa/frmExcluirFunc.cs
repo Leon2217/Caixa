@@ -393,11 +393,16 @@ namespace Caixa
 
         private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             string nomec;
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-                 nomec = row.Cells["NOME"].Value.ToString();
+                nomec = row.Cells["NOME"].Value.ToString();
 
                 var qrForm = from frm in Application.OpenForms.Cast<Form>()
                              where frm is frmPesquisaPessoa

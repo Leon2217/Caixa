@@ -120,6 +120,7 @@ namespace Caixa
                         aud.Responsavel = UsuarioDAO.login;
                         audDAO.Inserir(aud);
 
+                        txtValor.Clear();
                         gvExibir.DataSource = vopDAO.Listarvalores(operadora);                    
                 }
                 catch

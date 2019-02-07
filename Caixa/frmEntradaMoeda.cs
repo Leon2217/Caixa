@@ -186,6 +186,7 @@ namespace Caixa
                             cd.Cred_db = "0,00";
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                             #endregion
@@ -320,6 +321,7 @@ namespace Caixa
                             cd.Cred_db = (total5c + total10c + total25c + total50c + total1r).ToString().Replace(".", "");
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                             #endregion
@@ -391,6 +393,7 @@ namespace Caixa
                             cd.Deb_db = (total5c + total10c + total25c + total50c + total1r).ToString().Replace(".", "");
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                             #endregion
@@ -514,6 +517,7 @@ namespace Caixa
                             cd.Cred_db = "0,00";
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                             #endregion
@@ -608,6 +612,7 @@ namespace Caixa
                             cd.Deb_db = "0,00";
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                           
@@ -638,6 +643,7 @@ namespace Caixa
                             cd.Deb_db = (total5c + total10c + total25c + total50c + total1r).ToString().Replace(".", "");
                             cd.Responsa_db = UsuarioDAO.login;
                             cd.Total = vcxDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
 
                             #endregion

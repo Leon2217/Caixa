@@ -72,8 +72,10 @@
             this.gvExibir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
+            this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvExibir.Size = new System.Drawing.Size(575, 304);
             this.gvExibir.TabIndex = 20;
+            this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 

@@ -71,24 +71,7 @@ namespace Caixa
                         MessageBoxIcon.Question);
 
                     if (op == DialogResult.Yes)
-                    {
-                        #region CREDITO
-                 
-                        cred.Valor = txtValor.ToString().Replace(".","");
-                        cred.Desc_credito = txtDesc.Text.ToString();
-                        cred.Data = Convert.ToDateTime(mskData.Text);
-                        cred.Hora = Convert.ToDateTime(mskHr.Text);
-                        cred.Responsavel = txtResponsa.Text.ToString();
-                        credDAO.Inserir(cred);
-
-                        aud.Acao = "INSERIU MOV CREDITO";
-                        aud.Data = FechamentoDAO.data;
-                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                        aud.Responsavel = UsuarioDAO.login;
-                        audDAO.Inserir(aud);
-                        #endregion
-
-
+                    {                       
                         if (vcDAO.Verificavalor()==true)
                         {
                             vcDAO.Update(valor);
@@ -101,6 +84,7 @@ namespace Caixa
                             cd.Deb_db = "0,00";
                             cd.Responsa_db = txtResponsa.Text.ToString();
                             cd.Total = vcDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
                             ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                             #endregion
@@ -119,6 +103,7 @@ namespace Caixa
                             cd.Deb_db = "0,00";
                             cd.Responsa_db = txtResponsa.Text.ToString();
                             cd.Total = vcDAO.Vc.Valor;
+                            cd.C = null;
                             cdDAO.Inserir(cd);
                             ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                             #endregion
@@ -167,7 +152,7 @@ namespace Caixa
                         MessageBox.Show("Informações cadastradas com sucesso !!!");
                         Limpar();
 
-                        aud.Acao = "INSERIU CRÉDITO";
+                        aud.Acao = "INSERIU MOV CRÉDITO";
                         aud.Data = FechamentoDAO.data;
                         aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                         aud.Responsavel = UsuarioDAO.login;
@@ -176,7 +161,6 @@ namespace Caixa
                 }
                 catch
                 {
-
                     MessageBox.Show("Favor verificar as informações digitadas !!!");
                 }
             }
@@ -225,7 +209,6 @@ namespace Caixa
             cmbFornecedor.DisplayMember = "nome";
             cmbFornecedor.ValueMember = "ID";
             codpes = cmbFornecedor.SelectedValue.ToString();
-
         }
 
         private void frmCredito_Load(object sender, EventArgs e)

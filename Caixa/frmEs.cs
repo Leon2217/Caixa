@@ -17,6 +17,8 @@ namespace Caixa
     public partial class frmEs : Form
     {
         credDebDAO cdDAO = new credDebDAO();
+        UsuarioDAO usuDAO = new UsuarioDAO();
+
 
         DateTime de, at;
         DateTime data;
@@ -49,6 +51,10 @@ namespace Caixa
                     column.Width = 100; //tamanho fixo da coluna CRED
                 else if (column.DataPropertyName == "DEB")
                     column.Width = 100; //tamanho fixo da coluna DEB
+                else if (column.DataPropertyName == "C")
+                    column.Visible = false;
+                else if (column.DataPropertyName == "ID")
+                    column.Visible = false;
 
                 else
                 {
@@ -280,6 +286,10 @@ namespace Caixa
                     column.Width = 100; //tamanho fixo da coluna CRED
                 else if (column.DataPropertyName == "DEB")
                     column.Width = 100; //tamanho fixo da coluna DEB
+                else if (column.DataPropertyName == "C")
+                    column.Visible = false;
+                else if (column.DataPropertyName == "ID")
+                    column.Visible = false;
 
                 else
                 {
@@ -562,72 +572,21 @@ namespace Caixa
         }
 
         private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {        
-            if (e.Value != null && e.Value.Equals("Retirada de dinheiro")|| e.Value != null && e.Value.Equals("Fechamento PDV"))
+        {
+            foreach (DataGridViewRow row in gvExibir.Rows)
             {
-                if (e.RowIndex == 0)
-                {
-                    try
-                    {
-                        gvExibir.CurrentRow.DefaultCellStyle.BackColor = Color.LightBlue;
-                    }
-                    catch
-                    {
-
-                    }
-
-                }
-                else 
-                {
-                    gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;
-                }
-                
-            }
-            
-            if (e.Value != null && e.Value.Equals("Entrada de moeda") || e.Value != null && e.Value.Equals("Sangria de moeda")|| e.Value != null && e.Value.Equals("Troca de Moeda")|| e.Value != null && e.Value.Equals("Devolução moeda")|| e.Value != null && e.Value.Equals("Devolução")|| e.Value != null && e.Value.Equals("Entrada moeda PDV")|| e.Value != null && e.Value.Equals("Saída p/ caixa moeda") || e.Value != null && e.Value.Equals("Entrada caixa moeda"))
-            {
-
-                if (e.RowIndex == 0)
-                {
-                    try
-                    {
-                        
-                        gvExibir.CurrentRow.DefaultCellStyle.BackColor = Color.LightGreen;
-                    }
-                    catch
-                    {
-
-                    }
-                   
-                }
-                else
-                {
-
-                    
-                    gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                }              
-            }
-
-            if (e.Value != null && e.Value.Equals("Entrada sangria PDV"))
-            {
-                if (e.RowIndex == 0)
-                {
-                    try
-                    {
-
-                        gvExibir.CurrentRow.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                    }
-                    catch
-                    {
-
-                    }
-
-                }
-                else
-                {
-
-                    gvExibir.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                }
+                if (Convert.ToString(row.Cells[8].Value) == "C")
+                    row.DefaultCellStyle.BackColor = Color.Aqua;
+                if (Convert.ToString(row.Cells[2].Value) == "Fechamento PDV")
+                    row.DefaultCellStyle.BackColor = Color.LightBlue;
+                if (Convert.ToString(row.Cells[2].Value) == "Saída p/ caixa moeda")
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                if (Convert.ToString(row.Cells[2].Value) == "Entrada moeda PDV")
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                if (Convert.ToString(row.Cells[2].Value) == "Entrada caixa moeda")
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                if (Convert.ToString(row.Cells[2].Value) == "Entrada sangria PDV")
+                    row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
             }
 
         }
@@ -647,6 +606,10 @@ namespace Caixa
                     column.Width = 100; //tamanho fixo da coluna CRED
                 else if (column.DataPropertyName == "DEB")
                     column.Width = 100; //tamanho fixo da coluna DEB
+                else if (column.DataPropertyName == "C")
+                    column.Visible = false;
+                else if (column.DataPropertyName == "ID")
+                    column.Visible = false;
 
                 else
                 {
@@ -815,6 +778,10 @@ namespace Caixa
                     column.Width = 100; //tamanho fixo da coluna CRED
                 else if (column.DataPropertyName == "DEB")
                     column.Width = 100; //tamanho fixo da coluna DEB
+                else if (column.DataPropertyName == "C")
+                    column.Visible = false;
+                else if (column.DataPropertyName == "ID")
+                    column.Visible = false;
 
                 else
                 {
@@ -1000,18 +967,57 @@ namespace Caixa
             printDGV.Print_DataGridView(gvExibir);
         }
 
+
+        private void btnConferido_Click(object sender, EventArgs e)
+        {
+            string id = txtId.Text;
+            cdDAO.UpdateConferido(id);
+
+            gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.Aqua;
+                       
+        }     
+
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtId.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            string id = txtId.Text;
+            cdDAO.UpdateConferido2(id);
+
+   
+
+            gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.White;
+        }
+
         private void frmEs_Load(object sender, EventArgs e)
         {
-            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;         
+            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            string login = UsuarioDAO.login;
+            usuDAO.VerificaCargo(login);
+            if (usuDAO.Usu.Tipo == "Administrador")
+            {
+                btnConferido.Visible = true;
+                btnVoltar.Visible = true;
+            }
+            else
+            {
+                btnConferido.Visible = false;
+                btnVoltar.Visible = false;
+            }
 
             string datatela = DateTime.Now.ToShortDateString();
-            mskDe.Text = datatela;
             mskAté.Text = datatela;
+            mskDe.Text = datatela;
+            
 
             if (mskDe.MaskFull == true && mskAté.MaskFull == true)
             {
                 de = Convert.ToDateTime(mskDe.Text);
                 at = Convert.ToDateTime(mskAté.Text);
+
            
                     gvExibir.DataSource = cdDAO.ListarB(de, at);
 
@@ -1047,7 +1053,7 @@ namespace Caixa
             foreach (DataGridViewColumn column in gvExibir.Columns)
             {
                 if (column.DataPropertyName == "DESCR")
-                    column.Width = 330; //tamanho fixo da coluna DESCR
+                    column.Width = 330; //tamanho fixo da coluna DESCR                
                 else if (column.DataPropertyName == "DATA")
                     column.Width = 80; //tamanho fixo da coluna DATA
                 else if (column.DataPropertyName == "HORA")
@@ -1056,6 +1062,11 @@ namespace Caixa
                     column.Width = 100; //tamanho fixo da coluna CRED
                 else if (column.DataPropertyName == "DEB")
                     column.Width = 100; //tamanho fixo da coluna DEB
+                else if (column.DataPropertyName == "C")
+                    column.Visible = false;
+                else if (column.DataPropertyName == "ID")
+                    column.Visible = false;
+
 
                 else
                 {

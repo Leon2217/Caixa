@@ -3563,14 +3563,6 @@ namespace Caixa
             ExportarPDF(gvExibir, "planilha");
         }
 
-        private void gvExibir_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-                txtID.Text = row.Cells["ID"].Value.ToString();             
-            }
-        }
 
         private void gvExibir_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
         {
@@ -3611,6 +3603,11 @@ namespace Caixa
                     MessageBox.Show("Cancelado");
                 }
             }
+        }
+
+        private void gvExibir_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            txtID.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)

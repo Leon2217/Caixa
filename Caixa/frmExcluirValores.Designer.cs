@@ -49,9 +49,10 @@
             this.gvExibir.Location = new System.Drawing.Point(20, 50);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
+            this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvExibir.Size = new System.Drawing.Size(257, 168);
             this.gvExibir.TabIndex = 13;
-            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
+            this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             // 
             // label1
             // 

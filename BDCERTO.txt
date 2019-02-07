@@ -96,30 +96,6 @@ foreign key(id_operadora) references operadora(id_operadora) on delete
 cascade on update cascade
 );
 
-
-create table credito
-(
-id_credito int not null auto_increment,
-desc_credito text not null,
-valor text not null,
-hora time not null,
-data date not null,
-responsavel text not null,
-primary key(id_credito)
-);
-
-
-create table debito
-(
-id_debito int not null auto_increment,
-desc_debito text not null,
-valor text not null,
-hora time not null,
-data date not null,
-responsavel text not null,
-primary key(id_debito)
-);
-
 create table credito_debito
 (
 id_cd int not null auto_increment,
@@ -130,6 +106,7 @@ responsa_db text not null,
 cred_db text,
 deb_db text,
 total text not null,
+c text,
 primary key(id_cd)
 );
 

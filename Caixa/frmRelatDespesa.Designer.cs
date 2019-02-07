@@ -67,9 +67,10 @@
             this.gvExibir.Location = new System.Drawing.Point(12, 76);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
+            this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvExibir.Size = new System.Drawing.Size(588, 325);
             this.gvExibir.TabIndex = 22;
-            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
+            this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 
             // btnPaideFamilia

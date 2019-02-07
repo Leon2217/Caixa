@@ -2028,13 +2028,9 @@ namespace Caixa
             }
         }
 
-        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-                txtID.Text = row.Cells["ID"].Value.ToString();
-            }
+            txtID.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)

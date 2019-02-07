@@ -57,9 +57,6 @@ namespace Caixa
             string senha = txtSenha.Text;
             if (usuDAO.VerificaAdm(login, senha) == true)
             {
-
-
-
                 UsuarioDAO.login = usuDAO.Usu.Login_usu;
                 login = usuDAO.Usu.Login_usu;
 
@@ -76,14 +73,10 @@ namespace Caixa
                         FechamentoDAO.codturno = fecDAO.Fec.Id_turno.ToString();
                         FechamentoDAO.data = fecDAO.Fec.Data;
                         FechamentoDAO.valor = fecDAO.Fec.Valor;
-
                         
-
                         this.Hide();
                         InicialCaixa i = new InicialCaixa();
-                        i.ShowDialog();
-
-                  
+                        i.ShowDialog();                  
                 }
                 else
                 {

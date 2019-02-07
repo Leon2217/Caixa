@@ -173,7 +173,7 @@ namespace Caixa
                     column.Width = 40; //tamanho fixo da coluna ID
                 else if (column.DataPropertyName == "VALOR")
                     column.Width = 75; //tamanho fixo da coluna VALOR
-                
+
 
                 else
                 {
@@ -489,11 +489,12 @@ namespace Caixa
                         string hrtela = DateTime.Now.ToShortTimeString();
                         cd.Data = Convert.ToDateTime(datatela);
                         cd.Hora = Convert.ToDateTime(hrtela);
-                        cd.Desc_db = "Pagamento Fiado de "+fiadoDAO.nome;
+                        cd.Desc_db = "Pagamento Fiado de "+ fiadoDAO.nome;
                         cd.Cred_db = txtValorPago.Text.ToString().Replace(".", "");
                         cd.Deb_db = "0,00";
                         cd.Responsa_db = UsuarioDAO.login;
                         cd.Total = vcDAO.Vc.Valor;
+                        cd.C = null;
                         cdDAO.Inserir(cd);
                     }
 
@@ -615,11 +616,11 @@ namespace Caixa
 
         private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-                txtIdAtualizar.Text = row.Cells["ID"].Value.ToString();
-            }
+            //if (e.RowIndex >= 0)
+            //{
+            //    DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
+            //    txtIdAtualizar.Text = row.Cells["ID"].Value.ToString();
+            //}
         }
 
         private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -818,6 +819,11 @@ namespace Caixa
             frmRelatFiado v = new frmRelatFiado();
             v.Owner = this;
             v.ShowDialog();
+        }
+
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtIdAtualizar.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
     }
     

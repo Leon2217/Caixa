@@ -11,6 +11,7 @@ namespace Caixa
         int id_cd;
         DateTime data, hora;
         string desc_db, responsa_db, cred_db, deb_db, total;
+        char? c;
 
         public int Id_cd { get => id_cd; set => id_cd = value; }
         public DateTime Data { get => data; set => data = value; }
@@ -20,5 +21,6 @@ namespace Caixa
         public string Deb_db { get => deb_db; set => deb_db = value; }
         public string Total { get => total; set => total = value; }
         public DateTime Hora { get => hora; set => hora = value; }
+        public char? C { get => c; set => c = value; }
     }
 }
