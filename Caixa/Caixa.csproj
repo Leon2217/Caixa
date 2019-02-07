@@ -179,577 +179,577 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abertura.cs">
+    <Compile Include="Forms\Abertura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abertura.designer.cs">
+    <Compile Include="Forms\Abertura.designer.cs">
       <DependentUpon>Abertura.cs</DependentUpon>
     </Compile>
-    <Compile Include="AcessoEmail.cs" />
-    <Compile Include="assinada.cs" />
-    <Compile Include="assinadaDAO.cs" />
-    <Compile Include="fiado.cs" />
-    <Compile Include="fiadoDAO.cs" />
-    <Compile Include="Auditoria.cs" />
-    <Compile Include="AuditoriaDAO.cs" />
-    <Compile Include="Cartao.cs" />
-    <Compile Include="Cartaocaixa.cs" />
-    <Compile Include="CartaocaixaDAO.cs" />
-    <Compile Include="Cartaomaquina.cs" />
-    <Compile Include="CartaomaquinaDAO.cs" />
-    <Compile Include="CartoesDAO.cs" />
-    <Compile Include="Conexao.cs" />
-    <Compile Include="Contas.cs" />
-    <Compile Include="Contas2.cs" />
-    <Compile Include="Contas3.cs" />
-    <Compile Include="ContasDAO.cs" />
-    <Compile Include="Contato.cs" />
-    <Compile Include="ContatoDAO.cs" />
-    <Compile Include="CredDeb.cs" />
-    <Compile Include="credDebDAO.cs" />
-    <Compile Include="Credito.cs" />
-    <Compile Include="CreditoDAO.cs" />
-    <Compile Include="Criptografia.cs" />
-    <Compile Include="Debito.cs" />
-    <Compile Include="DebitoDAO.cs" />
-    <Compile Include="Despesa.cs" />
-    <Compile Include="DespesaDAO.cs" />
-    <Compile Include="DevMoeda.cs" />
-    <Compile Include="DevMoedaDAO.cs" />
-    <Compile Include="Diferenca.cs" />
-    <Compile Include="diferencaDAO.cs" />
-    <Compile Include="Dinheiro.cs" />
-    <Compile Include="DinheiroDAO.cs" />
-    <Compile Include="Endereco.cs" />
-    <Compile Include="EnderecoDAO.cs" />
-    <Compile Include="EntradaDev.cs" />
-    <Compile Include="EntradaDevDAO.cs" />
-    <Compile Include="Entradamoeda.cs" />
-    <Compile Include="EntradamoedaDAO.cs" />
-    <Compile Include="Falta.cs" />
-    <Compile Include="FaltaDAO.cs" />
-    <Compile Include="Fechamento.cs" />
-    <Compile Include="FechamentoDAO.cs" />
+    <Compile Include="Classes\AcessoEmail.cs" />
+    <Compile Include="Classes\assinada.cs" />
+    <Compile Include="ClassesDAO\assinadaDAO.cs" />
+    <Compile Include="Classes\fiado.cs" />
+    <Compile Include="ClassesDAO\fiadoDAO.cs" />
+    <Compile Include="Classes\Auditoria.cs" />
+    <Compile Include="ClassesDAO\AuditoriaDAO.cs" />
+    <Compile Include="Classes\Cartao.cs" />
+    <Compile Include="Classes\Cartaocaixa.cs" />
+    <Compile Include="ClassesDAO\CartaocaixaDAO.cs" />
+    <Compile Include="Classes\Cartaomaquina.cs" />
+    <Compile Include="ClassesDAO\CartaomaquinaDAO.cs" />
+    <Compile Include="ClassesDAO\CartoesDAO.cs" />
+    <Compile Include="Classes\Conexao.cs" />
+    <Compile Include="Classes\Contas.cs" />
+    <Compile Include="Classes\Contas2.cs" />
+    <Compile Include="Classes\Contas3.cs" />
+    <Compile Include="ClassesDAO\ContasDAO.cs" />
+    <Compile Include="Classes\Contato.cs" />
+    <Compile Include="ClassesDAO\ContatoDAO.cs" />
+    <Compile Include="Classes\CredDeb.cs" />
+    <Compile Include="ClassesDAO\credDebDAO.cs" />
+    <Compile Include="Classes\Credito.cs" />
+    <Compile Include="ClassesDAO\CreditoDAO.cs" />
+    <Compile Include="Classes\Criptografia.cs" />
+    <Compile Include="Classes\Debito.cs" />
+    <Compile Include="ClassesDAO\DebitoDAO.cs" />
+    <Compile Include="Classes\Despesa.cs" />
+    <Compile Include="ClassesDAO\DespesaDAO.cs" />
+    <Compile Include="Classes\DevMoeda.cs" />
+    <Compile Include="ClassesDAO\DevMoedaDAO.cs" />
+    <Compile Include="Classes\Diferenca.cs" />
+    <Compile Include="ClassesDAO\diferencaDAO.cs" />
+    <Compile Include="Classes\Dinheiro.cs" />
+    <Compile Include="ClassesDAO\DinheiroDAO.cs" />
+    <Compile Include="Classes\Endereco.cs" />
+    <Compile Include="ClassesDAO\EnderecoDAO.cs" />
+    <Compile Include="Classes\EntradaDev.cs" />
+    <Compile Include="ClassesDAO\EntradaDevDAO.cs" />
+    <Compile Include="Classes\Entradamoeda.cs" />
+    <Compile Include="ClassesDAO\EntradamoedaDAO.cs" />
+    <Compile Include="Classes\Falta.cs" />
+    <Compile Include="ClassesDAO\FaltaDAO.cs" />
+    <Compile Include="Classes\Fechamento.cs" />
+    <Compile Include="ClassesDAO\FechamentoDAO.cs" />
     <Compile Include="Form1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Form1.resx</DependentUpon>
     </Compile>
-    <Compile Include="frmAssinadas.cs">
+    <Compile Include="Forms\frmAssinadas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAssinadas.designer.cs">
+    <Compile Include="Forms\frmAssinadas.designer.cs">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadtipodespesa.cs">
+    <Compile Include="Forms\frmCadtipodespesa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadtipodespesa.Designer.cs">
+    <Compile Include="Forms\frmCadtipodespesa.Designer.cs">
       <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFiado.cs">
+    <Compile Include="Forms\frmFiado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFiado.designer.cs">
+    <Compile Include="Forms\frmFiado.designer.cs">
       <DependentUpon>frmFiado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadFunc.cs">
+    <Compile Include="Forms\frmCadFunc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadFunc.designer.cs">
+    <Compile Include="Forms\frmCadFunc.designer.cs">
       <DependentUpon>frmCadFunc.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadOperadora.cs">
+    <Compile Include="Forms\frmCadOperadora.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadOperadora.designer.cs">
+    <Compile Include="Forms\frmCadOperadora.designer.cs">
       <DependentUpon>frmCadOperadora.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCadusu.cs">
+    <Compile Include="Forms\frmCadusu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadusu.designer.cs">
+    <Compile Include="Forms\frmCadusu.designer.cs">
       <DependentUpon>frmCadusu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmContasPagas.cs">
+    <Compile Include="Forms\frmContasPagas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmContasPagas.Designer.cs">
+    <Compile Include="Forms\frmContasPagas.Designer.cs">
       <DependentUpon>frmContasPagas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCredito.cs">
+    <Compile Include="Forms\frmCredito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCredito.designer.cs">
+    <Compile Include="Forms\frmCredito.designer.cs">
       <DependentUpon>frmCredito.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDebito.cs">
+    <Compile Include="Forms\frmDebito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDebito.designer.cs">
+    <Compile Include="Forms\frmDebito.designer.cs">
       <DependentUpon>frmDebito.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDespesa.cs">
+    <Compile Include="Forms\frmDespesa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDespesa.Designer.cs">
+    <Compile Include="Forms\frmDespesa.Designer.cs">
       <DependentUpon>frmDespesa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDevoluçãodeMoeda.cs">
+    <Compile Include="Forms\frmDevoluçãodeMoeda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDevoluçãodeMoeda.designer.cs">
+    <Compile Include="Forms\frmDevoluçãodeMoeda.designer.cs">
       <DependentUpon>frmDevoluçãodeMoeda.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDinheiro.cs">
+    <Compile Include="Forms\frmDinheiro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDinheiro.designer.cs">
+    <Compile Include="Forms\frmDinheiro.designer.cs">
       <DependentUpon>frmDinheiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEntradaMoeda.cs">
+    <Compile Include="Forms\frmEntradaMoeda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEntradaMoeda.designer.cs">
+    <Compile Include="Forms\frmEntradaMoeda.designer.cs">
       <DependentUpon>frmEntradaMoeda.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEs.cs">
+    <Compile Include="Forms\frmEs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEs.designer.cs">
+    <Compile Include="Forms\frmEs.designer.cs">
       <DependentUpon>frmEs.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmESM.cs">
+    <Compile Include="Forms\frmESM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmESM.designer.cs">
+    <Compile Include="Forms\frmESM.designer.cs">
       <DependentUpon>frmESM.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExcluirFunc.cs">
+    <Compile Include="Forms\frmExcluirFunc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcluirFunc.Designer.cs">
+    <Compile Include="Forms\frmExcluirFunc.Designer.cs">
       <DependentUpon>frmExcluirFunc.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExcluirOperadora.cs">
+    <Compile Include="Forms\frmExcluirOperadora.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcluirOperadora.designer.cs">
+    <Compile Include="Forms\frmExcluirOperadora.designer.cs">
       <DependentUpon>frmExcluirOperadora.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExcluirUsu.cs">
+    <Compile Include="Forms\frmExcluirUsu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcluirUsu.designer.cs">
+    <Compile Include="Forms\frmExcluirUsu.designer.cs">
       <DependentUpon>frmExcluirUsu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExcluirValores.cs">
+    <Compile Include="Forms\frmExcluirValores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcluirValores.designer.cs">
+    <Compile Include="Forms\frmExcluirValores.designer.cs">
       <DependentUpon>frmExcluirValores.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFalta.cs">
+    <Compile Include="Forms\frmFalta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFalta.designer.cs">
+    <Compile Include="Forms\frmFalta.designer.cs">
       <DependentUpon>frmFalta.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGeral.cs">
+    <Compile Include="Forms\frmGeral.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGeral.Designer.cs">
+    <Compile Include="Forms\frmGeral.Designer.cs">
       <DependentUpon>frmGeral.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInventario.cs">
+    <Compile Include="Forms\frmInventario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInventario.designer.cs">
+    <Compile Include="Forms\frmInventario.designer.cs">
       <DependentUpon>frmInventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInventariorec.cs">
+    <Compile Include="Forms\frmInventariorec.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInventariorec.designer.cs">
+    <Compile Include="Forms\frmInventariorec.designer.cs">
       <DependentUpon>frmInventariorec.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMovimentoCaixa.cs">
+    <Compile Include="Forms\frmMovimentoCaixa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMovimentoCaixa.designer.cs">
+    <Compile Include="Forms\frmMovimentoCaixa.designer.cs">
       <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOpcaoFecha.cs">
+    <Compile Include="Forms\frmOpcaoFecha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOpcaoFecha.designer.cs">
+    <Compile Include="Forms\frmOpcaoFecha.designer.cs">
       <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOpValeCap.cs">
+    <Compile Include="Forms\frmOpValeCap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOpValeCap.designer.cs">
+    <Compile Include="Forms\frmOpValeCap.designer.cs">
       <DependentUpon>frmOpValeCap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOpçãodeMoeda.cs">
+    <Compile Include="Forms\frmOpçãodeMoeda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOpçãodeMoeda.designer.cs">
+    <Compile Include="Forms\frmOpçãodeMoeda.designer.cs">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPesquisaPessoa.cs">
+    <Compile Include="Forms\frmPesquisaPessoa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPesquisaPessoa.Designer.cs">
+    <Compile Include="Forms\frmPesquisaPessoa.Designer.cs">
       <DependentUpon>frmPesquisaPessoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPesquisaRecarga.cs">
+    <Compile Include="Forms\frmPesquisaRecarga.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPesquisaRecarga.designer.cs">
+    <Compile Include="Forms\frmPesquisaRecarga.designer.cs">
       <DependentUpon>frmPesquisaRecarga.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRecarga.cs">
+    <Compile Include="Forms\frmRecarga.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRecarga.designer.cs">
+    <Compile Include="Forms\frmRecarga.designer.cs">
       <DependentUpon>frmRecarga.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatCartao.cs">
+    <Compile Include="Forms\frmRelatCartao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatCartao.Designer.cs">
+    <Compile Include="Forms\frmRelatCartao.Designer.cs">
       <DependentUpon>frmRelatCartao.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatContas.cs">
+    <Compile Include="Forms\frmRelatContas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatContas.Designer.cs">
+    <Compile Include="Forms\frmRelatContas.Designer.cs">
       <DependentUpon>frmRelatContas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatDespesa.cs">
+    <Compile Include="Forms\frmRelatDespesa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatDespesa.Designer.cs">
+    <Compile Include="Forms\frmRelatDespesa.Designer.cs">
       <DependentUpon>frmRelatDespesa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatDif.cs">
+    <Compile Include="Forms\frmRelatDif.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatDif.Designer.cs">
+    <Compile Include="Forms\frmRelatDif.Designer.cs">
       <DependentUpon>frmRelatDif.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatFalta.cs">
+    <Compile Include="Forms\frmRelatFalta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatFalta.designer.cs">
+    <Compile Include="Forms\frmRelatFalta.designer.cs">
       <DependentUpon>frmRelatFalta.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatFiado.cs">
+    <Compile Include="Forms\frmRelatFiado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatFiado.Designer.cs">
+    <Compile Include="Forms\frmRelatFiado.Designer.cs">
       <DependentUpon>frmRelatFiado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatTaxa.cs">
+    <Compile Include="Forms\frmRelatTaxa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatTaxa.Designer.cs">
+    <Compile Include="Forms\frmRelatTaxa.Designer.cs">
       <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRelatVendavc.cs">
+    <Compile Include="Forms\frmRelatVendavc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelatVendavc.designer.cs">
+    <Compile Include="Forms\frmRelatVendavc.designer.cs">
       <DependentUpon>frmRelatVendavc.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSangria.cs">
+    <Compile Include="Forms\frmSangria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSangria.designer.cs">
+    <Compile Include="Forms\frmSangria.designer.cs">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSecreta.cs">
+    <Compile Include="Forms\frmSecreta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSecreta.Designer.cs">
+    <Compile Include="Forms\frmSecreta.Designer.cs">
       <DependentUpon>frmSecreta.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSecreta2.cs">
+    <Compile Include="Forms\frmSecreta2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSecreta2.Designer.cs">
+    <Compile Include="Forms\frmSecreta2.Designer.cs">
       <DependentUpon>frmSecreta2.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSuprimento.cs">
+    <Compile Include="Forms\frmSuprimento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSuprimento.designer.cs">
+    <Compile Include="Forms\frmSuprimento.designer.cs">
       <DependentUpon>frmSuprimento.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTaxa.cs">
+    <Compile Include="Forms\frmTaxa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTaxa.Designer.cs">
+    <Compile Include="Forms\frmTaxa.Designer.cs">
       <DependentUpon>frmTaxa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipo.cs">
+    <Compile Include="Forms\frmTipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipo.Designer.cs">
+    <Compile Include="Forms\frmTipo.Designer.cs">
       <DependentUpon>frmTipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmValorOperadora.cs">
+    <Compile Include="Forms\frmValorOperadora.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmValorOperadora.designer.cs">
+    <Compile Include="Forms\frmValorOperadora.designer.cs">
       <DependentUpon>frmValorOperadora.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVendavc.cs">
+    <Compile Include="Forms\frmVendavc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVendavc.designer.cs">
+    <Compile Include="Forms\frmVendavc.designer.cs">
       <DependentUpon>frmVendavc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Geral.cs" />
-    <Compile Include="GeralDAO.cs" />
+    <Compile Include="Classes\Geral.cs" />
+    <Compile Include="ClassesDAO\GeralDAO.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="InicialCaixa.cs">
+    <Compile Include="Forms\InicialCaixa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InicialCaixa.designer.cs">
+    <Compile Include="Forms\InicialCaixa.designer.cs">
       <DependentUpon>InicialCaixa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventario.cs" />
-    <Compile Include="InventarioDAO.cs" />
-    <Compile Include="Inventariorec.cs" />
-    <Compile Include="InventariorecDAO.cs" />
-    <Compile Include="Login.cs">
+    <Compile Include="Classes\Inventario.cs" />
+    <Compile Include="ClassesDAO\InventarioDAO.cs" />
+    <Compile Include="Classes\Inventariorec.cs" />
+    <Compile Include="ClassesDAO\InventariorecDAO.cs" />
+    <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.designer.cs">
+    <Compile Include="Forms\Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maquinas.cs" />
-    <Compile Include="MaquinasDAO.cs" />
-    <Compile Include="Marca.cs" />
-    <Compile Include="MarcaDAO.cs" />
-    <Compile Include="Operadora.cs" />
-    <Compile Include="OperadoraDAO.cs" />
-    <Compile Include="Pessoa.cs" />
-    <Compile Include="PessoaDAO.cs" />
-    <Compile Include="printDGV.cs" />
-    <Compile Include="PrintOptions.cs">
+    <Compile Include="Classes\Maquinas.cs" />
+    <Compile Include="ClassesDAO\MaquinasDAO.cs" />
+    <Compile Include="Classes\Marca.cs" />
+    <Compile Include="ClassesDAO\MarcaDAO.cs" />
+    <Compile Include="Classes\Operadora.cs" />
+    <Compile Include="ClassesDAO\OperadoraDAO.cs" />
+    <Compile Include="Classes\Pessoa.cs" />
+    <Compile Include="ClassesDAO\PessoaDAO.cs" />
+    <Compile Include="Classes\printDGV.cs" />
+    <Compile Include="Forms\PrintOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrintOptions.Designer.cs">
+    <Compile Include="Forms\PrintOptions.Designer.cs">
       <DependentUpon>PrintOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recarga.cs" />
-    <Compile Include="RecargaDAO.cs" />
-    <Compile Include="Relatfiado.cs" />
-    <Compile Include="relatfiadoDAO.cs" />
-    <Compile Include="relatSangria.cs">
+    <Compile Include="Classes\Recarga.cs" />
+    <Compile Include="ClassesDAO\RecargaDAO.cs" />
+    <Compile Include="Classes\Relatfiado.cs" />
+    <Compile Include="ClassesDAO\relatfiadoDAO.cs" />
+    <Compile Include="Forms\relatSangria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="relatSangria.Designer.cs">
+    <Compile Include="Forms\relatSangria.Designer.cs">
       <DependentUpon>relatSangria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Relattx.cs" />
-    <Compile Include="RelattxDAO.cs" />
-    <Compile Include="Sangria.cs" />
-    <Compile Include="SangriaDAO.cs" />
-    <Compile Include="suprimentoDAO.cs" />
-    <Compile Include="suprimentos.cs" />
-    <Compile Include="Taxas.cs" />
-    <Compile Include="TaxasDAO.cs" />
-    <Compile Include="Tipo.cs" />
-    <Compile Include="TipoDAO.cs" />
-    <Compile Include="Tipodespesa.cs" />
-    <Compile Include="TipodespesaDAO.cs" />
-    <Compile Include="Tipopessoa.cs" />
-    <Compile Include="TipopessoaDAO.cs" />
-    <Compile Include="totalcartao.cs">
+    <Compile Include="Classes\Relattx.cs" />
+    <Compile Include="ClassesDAO\RelattxDAO.cs" />
+    <Compile Include="Classes\Sangria.cs" />
+    <Compile Include="ClassesDAO\SangriaDAO.cs" />
+    <Compile Include="ClassesDAO\suprimentoDAO.cs" />
+    <Compile Include="Classes\suprimentos.cs" />
+    <Compile Include="Classes\Taxas.cs" />
+    <Compile Include="ClassesDAO\TaxasDAO.cs" />
+    <Compile Include="Classes\Tipo.cs" />
+    <Compile Include="ClassesDAO\TipoDAO.cs" />
+    <Compile Include="Classes\Tipodespesa.cs" />
+    <Compile Include="ClassesDAO\TipodespesaDAO.cs" />
+    <Compile Include="Classes\Tipopessoa.cs" />
+    <Compile Include="ClassesDAO\TipopessoaDAO.cs" />
+    <Compile Include="Forms\totalcartao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="totalcartao.designer.cs">
+    <Compile Include="Forms\totalcartao.designer.cs">
       <DependentUpon>totalcartao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Turno.cs" />
-    <Compile Include="TurnoDAO.cs" />
-    <Compile Include="Usuario.cs" />
-    <Compile Include="UsuarioDAO.cs" />
-    <Compile Include="validacnpj.cs" />
-    <Compile Include="validacpf.cs" />
-    <Compile Include="Valorcaixa.cs" />
-    <Compile Include="ValorcaixaDAO.cs" />
-    <Compile Include="Valorcxm.cs" />
-    <Compile Include="ValorcxmDAO.cs" />
-    <Compile Include="Valorgeral.cs" />
-    <Compile Include="ValorgeralDAO.cs" />
-    <Compile Include="Valoroperadora.cs" />
-    <Compile Include="ValoroperadoraDAO.cs" />
-    <Compile Include="VendaVC.cs" />
-    <Compile Include="VendaVCDAO.cs" />
-    <Compile Include="Verifica.cs" />
-    <Compile Include="VerificaDAO.cs" />
-    <EmbeddedResource Include="Abertura.resx">
+    <Compile Include="Classes\Turno.cs" />
+    <Compile Include="ClassesDAO\TurnoDAO.cs" />
+    <Compile Include="Classes\Usuario.cs" />
+    <Compile Include="ClassesDAO\UsuarioDAO.cs" />
+    <Compile Include="Classes\validacnpj.cs" />
+    <Compile Include="Classes\validacpf.cs" />
+    <Compile Include="Classes\Valorcaixa.cs" />
+    <Compile Include="ClassesDAO\ValorcaixaDAO.cs" />
+    <Compile Include="Classes\Valorcxm.cs" />
+    <Compile Include="ClassesDAO\ValorcxmDAO.cs" />
+    <Compile Include="Classes\Valorgeral.cs" />
+    <Compile Include="ClassesDAO\ValorgeralDAO.cs" />
+    <Compile Include="Classes\Valoroperadora.cs" />
+    <Compile Include="ClassesDAO\ValoroperadoraDAO.cs" />
+    <Compile Include="Classes\VendaVC.cs" />
+    <Compile Include="ClassesDAO\VendaVCDAO.cs" />
+    <Compile Include="Classes\Verifica.cs" />
+    <Compile Include="ClassesDAO\VerificaDAO.cs" />
+    <EmbeddedResource Include="Forms\Abertura.resx">
       <DependentUpon>Abertura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Form1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAssinadas.resx">
+    <EmbeddedResource Include="Forms\frmAssinadas.resx">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadtipodespesa.resx">
+    <EmbeddedResource Include="Forms\frmCadtipodespesa.resx">
       <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFiado.resx">
+    <EmbeddedResource Include="Forms\frmFiado.resx">
       <DependentUpon>frmFiado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadFunc.resx">
+    <EmbeddedResource Include="Forms\frmCadFunc.resx">
       <DependentUpon>frmCadFunc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadOperadora.resx">
+    <EmbeddedResource Include="Forms\frmCadOperadora.resx">
       <DependentUpon>frmCadOperadora.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadusu.resx">
+    <EmbeddedResource Include="Forms\frmCadusu.resx">
       <DependentUpon>frmCadusu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmContasPagas.resx">
+    <EmbeddedResource Include="Forms\frmContasPagas.resx">
       <DependentUpon>frmContasPagas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCredito.resx">
+    <EmbeddedResource Include="Forms\frmCredito.resx">
       <DependentUpon>frmCredito.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDebito.resx">
+    <EmbeddedResource Include="Forms\frmDebito.resx">
       <DependentUpon>frmDebito.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDespesa.resx">
+    <EmbeddedResource Include="Forms\frmDespesa.resx">
       <DependentUpon>frmDespesa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDevoluçãodeMoeda.resx">
+    <EmbeddedResource Include="Forms\frmDevoluçãodeMoeda.resx">
       <DependentUpon>frmDevoluçãodeMoeda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDinheiro.resx">
+    <EmbeddedResource Include="Forms\frmDinheiro.resx">
       <DependentUpon>frmDinheiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEntradaMoeda.resx">
+    <EmbeddedResource Include="Forms\frmEntradaMoeda.resx">
       <DependentUpon>frmEntradaMoeda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEs.resx">
+    <EmbeddedResource Include="Forms\frmEs.resx">
       <DependentUpon>frmEs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmESM.resx">
+    <EmbeddedResource Include="Forms\frmESM.resx">
       <DependentUpon>frmESM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcluirFunc.resx">
+    <EmbeddedResource Include="Forms\frmExcluirFunc.resx">
       <DependentUpon>frmExcluirFunc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcluirOperadora.resx">
+    <EmbeddedResource Include="Forms\frmExcluirOperadora.resx">
       <DependentUpon>frmExcluirOperadora.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcluirUsu.resx">
+    <EmbeddedResource Include="Forms\frmExcluirUsu.resx">
       <DependentUpon>frmExcluirUsu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcluirValores.resx">
+    <EmbeddedResource Include="Forms\frmExcluirValores.resx">
       <DependentUpon>frmExcluirValores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFalta.resx">
+    <EmbeddedResource Include="Forms\frmFalta.resx">
       <DependentUpon>frmFalta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGeral.resx">
+    <EmbeddedResource Include="Forms\frmGeral.resx">
       <DependentUpon>frmGeral.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInventario.resx">
+    <EmbeddedResource Include="Forms\frmInventario.resx">
       <DependentUpon>frmInventario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInventariorec.resx">
+    <EmbeddedResource Include="Forms\frmInventariorec.resx">
       <DependentUpon>frmInventariorec.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMovimentoCaixa.resx">
+    <EmbeddedResource Include="Forms\frmMovimentoCaixa.resx">
       <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOpcaoFecha.resx">
+    <EmbeddedResource Include="Forms\frmOpcaoFecha.resx">
       <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOpValeCap.resx">
+    <EmbeddedResource Include="Forms\frmOpValeCap.resx">
       <DependentUpon>frmOpValeCap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOpçãodeMoeda.resx">
+    <EmbeddedResource Include="Forms\frmOpçãodeMoeda.resx">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPesquisaPessoa.resx">
+    <EmbeddedResource Include="Forms\frmPesquisaPessoa.resx">
       <DependentUpon>frmPesquisaPessoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPesquisaRecarga.resx">
+    <EmbeddedResource Include="Forms\frmPesquisaRecarga.resx">
       <DependentUpon>frmPesquisaRecarga.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRecarga.resx">
+    <EmbeddedResource Include="Forms\frmRecarga.resx">
       <DependentUpon>frmRecarga.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatCartao.resx">
+    <EmbeddedResource Include="Forms\frmRelatCartao.resx">
       <DependentUpon>frmRelatCartao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatContas.resx">
+    <EmbeddedResource Include="Forms\frmRelatContas.resx">
       <DependentUpon>frmRelatContas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatDespesa.resx">
+    <EmbeddedResource Include="Forms\frmRelatDespesa.resx">
       <DependentUpon>frmRelatDespesa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatDif.resx">
+    <EmbeddedResource Include="Forms\frmRelatDif.resx">
       <DependentUpon>frmRelatDif.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatFalta.resx">
+    <EmbeddedResource Include="Forms\frmRelatFalta.resx">
       <DependentUpon>frmRelatFalta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatFiado.resx">
+    <EmbeddedResource Include="Forms\frmRelatFiado.resx">
       <DependentUpon>frmRelatFiado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatTaxa.es.resx">
+    <EmbeddedResource Include="Forms\frmRelatTaxa.es.resx">
       <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatTaxa.resx">
+    <EmbeddedResource Include="Forms\frmRelatTaxa.resx">
       <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelatVendavc.resx">
+    <EmbeddedResource Include="Forms\frmRelatVendavc.resx">
       <DependentUpon>frmRelatVendavc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSangria.resx">
+    <EmbeddedResource Include="Forms\frmSangria.resx">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSecreta.resx">
+    <EmbeddedResource Include="Forms\frmSecreta.resx">
       <DependentUpon>frmSecreta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSecreta2.resx">
+    <EmbeddedResource Include="Forms\frmSecreta2.resx">
       <DependentUpon>frmSecreta2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSuprimento.resx">
+    <EmbeddedResource Include="Forms\frmSuprimento.resx">
       <DependentUpon>frmSuprimento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTaxa.resx">
+    <EmbeddedResource Include="Forms\frmTaxa.resx">
       <DependentUpon>frmTaxa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipo.resx">
+    <EmbeddedResource Include="Forms\frmTipo.resx">
       <DependentUpon>frmTipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmValorOperadora.resx">
+    <EmbeddedResource Include="Forms\frmValorOperadora.resx">
       <DependentUpon>frmValorOperadora.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVendavc.resx">
+    <EmbeddedResource Include="Forms\frmVendavc.resx">
       <DependentUpon>frmVendavc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InicialCaixa.resx">
+    <EmbeddedResource Include="Forms\InicialCaixa.resx">
       <DependentUpon>InicialCaixa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintOptions.resx">
+    <EmbeddedResource Include="Forms\PrintOptions.resx">
       <DependentUpon>PrintOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -762,10 +762,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="relatSangria.resx">
+    <EmbeddedResource Include="Forms\relatSangria.resx">
       <DependentUpon>relatSangria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="totalcartao.resx">
+    <EmbeddedResource Include="Forms\totalcartao.resx">
       <DependentUpon>totalcartao.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Caixa_TemporaryKey.pfx" />
@@ -849,6 +849,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
