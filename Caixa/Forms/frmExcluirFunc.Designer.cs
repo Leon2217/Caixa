@@ -34,7 +34,7 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,8 +54,7 @@
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvExibir.Size = new System.Drawing.Size(733, 395);
             this.gvExibir.TabIndex = 105;
-            this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
-            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
+            this.gvExibir.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellDoubleClick);
             // 
             // txtNome
             // 
@@ -97,25 +96,25 @@
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             this.cmbTipo.TextChanged += new System.EventHandler(this.cmbTipo_TextChanged);
             // 
-            // button1
+            // btnVoltar
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Caixa.Properties.Resources.ic_arrow_back_128_28226;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(650, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 31);
-            this.button1.TabIndex = 111;
-            this.button1.Text = "Voltar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVoltar.BackColor = System.Drawing.Color.White;
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnVoltar.FlatAppearance.BorderSize = 2;
+            this.btnVoltar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVoltar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Image = global::Caixa.Properties.Resources.ic_arrow_back_128_28226;
+            this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVoltar.Location = new System.Drawing.Point(650, 15);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(95, 31);
+            this.btnVoltar.TabIndex = 111;
+            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // frmExcluirFunc
             // 
@@ -123,7 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(757, 451);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.gvExibir);
@@ -151,6 +150,6 @@
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.ComboBox cmbTipo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

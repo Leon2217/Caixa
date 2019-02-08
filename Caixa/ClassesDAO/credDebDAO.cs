@@ -107,7 +107,7 @@ namespace Caixa
         public DataTable ListarTudo()
         {
             DataTable listaDescripto;
-            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,responsa_db as RESP,desc_db as DESCR,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO;");
+            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_db as DESCR,responsa_db as RESP,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -116,8 +116,8 @@ namespace Caixa
 
                 linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
-                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["CRED"] = tabela_memoria.Rows[i]["CRED"].ToString();
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();

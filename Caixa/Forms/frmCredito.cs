@@ -107,7 +107,6 @@ namespace Caixa
                             #endregion
                         }
 
-
                         //GERAL
                         if (vgDAO.Verificavalor()==true)
                         {
@@ -125,6 +124,7 @@ namespace Caixa
                             ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                             #endregion
                         }
+
                         else
                         {
                             string zero = "0.00";

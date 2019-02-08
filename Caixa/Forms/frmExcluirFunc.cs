@@ -343,11 +343,6 @@ namespace Caixa
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void cmbTipo_TextChanged(object sender, EventArgs e)
         {
             #region FILTRA POR NOME
@@ -391,12 +386,7 @@ namespace Caixa
 
         }
 
-        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void gvExibir_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string nomec;
             if (e.RowIndex >= 0)
@@ -413,6 +403,11 @@ namespace Caixa
                     ((frmPesquisaPessoa)qrForm.First()).AtualizaNome(nomec);
                 }
             }
+            this.Close();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

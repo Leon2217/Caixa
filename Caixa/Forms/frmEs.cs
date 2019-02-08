@@ -973,7 +973,15 @@ namespace Caixa
             string id = txtId.Text;
             cdDAO.UpdateConferido(id);
 
-            gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.Aqua;
+            try
+            {
+                gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.Aqua;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Não há linha selecionada");
+            }
+          
                        
         }     
 
@@ -987,9 +995,17 @@ namespace Caixa
             string id = txtId.Text;
             cdDAO.UpdateConferido2(id);
 
+            try
+            {
+                gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.White;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Não há linha selecionada");
+            }
    
 
-            gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.White;
+            
         }
 
         private void frmEs_Load(object sender, EventArgs e)
