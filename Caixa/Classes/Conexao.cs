@@ -30,6 +30,7 @@ namespace Caixa
             //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "127.0.0.1", "root", "ALUNOS");
             //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql; pooling=false", "127.0.0.1", "root", "aluno@etep");
             // tenta estabelecer conectar
+
             try
             {
                 conectar = new MySqlConnection(configuracao);
