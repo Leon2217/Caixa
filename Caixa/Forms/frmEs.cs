@@ -237,7 +237,7 @@ namespace Caixa
                 foreach(DataGridViewCell cell in row.Cells)
                 {
 
-                    if (cell.ColumnIndex == 0)
+                    if (cell.ColumnIndex == 1)
                     {
                         DateTime d;
                         d = Convert.ToDateTime(cell.Value.ToString());
@@ -508,7 +508,7 @@ namespace Caixa
             {
                 for (j = 0; j < gvExibir.Columns.Count; j++)
                 {
-                    if (j == 0)
+                    if (j == 1)
                     {
                         data = Convert.ToDateTime(gvExibir.Rows[i].Cells[j].Value);
 
@@ -522,7 +522,7 @@ namespace Caixa
                     }
                 }   
             }
-            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("D2", "F300");
+            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("E2", "G300");
             foreach (Microsoft.Office.Interop.Excel.Range range in rng)
             {
                 if (range.Value != null)
