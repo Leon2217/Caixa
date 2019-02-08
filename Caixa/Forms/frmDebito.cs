@@ -13,8 +13,6 @@ namespace Caixa
     public partial class frmDebito : Form
     {
         #region INSTANCIAMENTO CLASSES
-        Debito deb = new Debito();
-        DebitoDAO debDAO = new DebitoDAO();
         ValorcaixaDAO vcDAO = new ValorcaixaDAO();
         CredDeb cd = new CredDeb();
         credDebDAO cdDAO = new credDebDAO();

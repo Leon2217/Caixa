@@ -28,7 +28,7 @@
     <UpdateUrl>http://localhost/Caixa/</UpdateUrl>
     <ProductName>Caixa</ProductName>
     <PublisherName>Leonardo Gabriel e Lucas Uzan</PublisherName>
-    <ApplicationRevision>108</ApplicationRevision>
+    <ApplicationRevision>110</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -207,11 +207,7 @@
     <Compile Include="ClassesDAO\ContatoDAO.cs" />
     <Compile Include="Classes\CredDeb.cs" />
     <Compile Include="ClassesDAO\credDebDAO.cs" />
-    <Compile Include="Classes\Credito.cs" />
-    <Compile Include="ClassesDAO\CreditoDAO.cs" />
     <Compile Include="Classes\Criptografia.cs" />
-    <Compile Include="Classes\Debito.cs" />
-    <Compile Include="ClassesDAO\DebitoDAO.cs" />
     <Compile Include="Classes\Despesa.cs" />
     <Compile Include="ClassesDAO\DespesaDAO.cs" />
     <Compile Include="Classes\DevMoeda.cs" />

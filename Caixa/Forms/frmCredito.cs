@@ -13,8 +13,6 @@ namespace Caixa
     public partial class frmCredito : Form
     {
         #region INSTANCIAMENTO CLASSES
-        Credito cred = new Credito();
-        CreditoDAO credDAO = new CreditoDAO();
         ValorcaixaDAO vcDAO = new ValorcaixaDAO();
         CredDeb cd = new CredDeb();
         credDebDAO cdDAO = new credDebDAO();

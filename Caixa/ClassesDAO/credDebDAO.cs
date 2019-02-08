@@ -95,6 +95,7 @@ namespace Caixa
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
                 linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
+      
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -159,13 +160,15 @@ namespace Caixa
                 DataRow linha = listaDescripto.NewRow();
 
 
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
-                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["CRED"] = tabela_memoria.Rows[i]["CRED"].ToString();
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -186,6 +189,7 @@ namespace Caixa
 
 
 
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -193,6 +197,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -211,6 +216,8 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
+
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -218,6 +225,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -236,14 +244,15 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
-
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
-                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["CRED"] = tabela_memoria.Rows[i]["CRED"].ToString();
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -262,14 +271,15 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
-
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
-                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
                 linha["CRED"] = tabela_memoria.Rows[i]["CRED"].ToString();
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -289,7 +299,7 @@ namespace Caixa
                 DataRow linha = listaDescripto.NewRow();
 
 
-
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -297,6 +307,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -315,6 +326,8 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
+
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -322,6 +335,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -340,8 +354,7 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
-
-
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -349,6 +362,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -367,6 +381,8 @@ namespace Caixa
             {
                 DataRow linha = listaDescripto.NewRow();
 
+
+                linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
                 linha["RESP"] = tabela_memoria.Rows[i]["RESP"].ToString();
@@ -374,6 +390,7 @@ namespace Caixa
                 linha["DEB"] = tabela_memoria.Rows[i]["DEB"].ToString();
                 linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["HORA"] = tabela_memoria.Rows[i]["HORA"].ToString();
+                linha["C"] = tabela_memoria.Rows[i]["C"].ToString();
 
                 listaDescripto.Rows.Add(linha);
             }
