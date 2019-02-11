@@ -3285,7 +3285,6 @@ namespace Caixa
             if (e.Value != null && e.Value.ToString().Contains("Atrasado"))
             {
                 e.CellStyle.ForeColor = Color.Red;
-
             }
 
             if (e.Value != null && e.Value.ToString().Contains("Pago"))
@@ -3564,10 +3563,6 @@ namespace Caixa
         }
 
 
-        private void gvExibir_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
-        {
-
-        }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
@@ -3608,6 +3603,11 @@ namespace Caixa
         private void gvExibir_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             txtID.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        private void gvExibir_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
+        {
+
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)

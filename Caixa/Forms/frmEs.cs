@@ -576,7 +576,7 @@ namespace Caixa
             foreach (DataGridViewRow row in gvExibir.Rows)
             {
                 if (Convert.ToString(row.Cells[8].Value) == "C")
-                    row.DefaultCellStyle.BackColor = Color.Aqua;
+                    row.Cells["DEB"].Style.ForeColor = Color.Red;
                 if (Convert.ToString(row.Cells[2].Value) == "Fechamento PDV")
                     row.DefaultCellStyle.BackColor = Color.LightBlue;
                 if (Convert.ToString(row.Cells[2].Value) == "Saída p/ caixa moeda")
@@ -975,7 +975,7 @@ namespace Caixa
 
             try
             {
-                gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.Aqua;
+                gvExibir.SelectedRows[0].Cells["DEB"].Style.ForeColor = Color.Red;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -997,7 +997,7 @@ namespace Caixa
 
             try
             {
-                gvExibir.SelectedRows[0].DefaultCellStyle.BackColor = Color.White;
+                gvExibir.SelectedRows[0].Cells["DEB"].Style.ForeColor = Color.Black;
             }
             catch (ArgumentOutOfRangeException)
             {
