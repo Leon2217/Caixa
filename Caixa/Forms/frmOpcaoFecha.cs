@@ -1113,7 +1113,7 @@ namespace Caixa
                                         DateTime data = FechamentoDAO.data;
                                         difDAO.Update(valor, data);
                                     }
-                                    else
+                                    else if (FechamentoDAO.codturno == "2")
                                     {
                                         difr.Id_caixa = Convert.ToInt32(FechamentoDAO.codcaixa);
                                         difr.Tarde = dif.ToString().Replace(".", "");

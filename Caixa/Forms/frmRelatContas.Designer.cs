@@ -250,7 +250,6 @@
             this.gvExibir.Size = new System.Drawing.Size(862, 421);
             this.gvExibir.TabIndex = 21;
             this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick_1);
-            this.gvExibir.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.gvExibir_CellErrorTextNeeded);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 
             // label5

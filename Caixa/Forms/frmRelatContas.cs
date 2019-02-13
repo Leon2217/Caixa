@@ -3605,11 +3605,6 @@ namespace Caixa
             txtID.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
 
-        private void gvExibir_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
-        {
-
-        }
-
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
             #region AJUSTE GRID
@@ -3954,8 +3949,6 @@ namespace Caixa
                 #endregion
             }
             #endregion
-
-
         }
     }
 }
