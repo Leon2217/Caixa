@@ -101,14 +101,10 @@
             this.Name = "frmOpçãodeMoeda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movimento de Moeda";
-            this.Load += new System.EventHandler(this.frmOpçãodeMoeda_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmOpçãodeMoeda_KeyDown);
             this.ResumeLayout(false);
-
         }
-
         #endregion
-
         private System.Windows.Forms.Button btnMovimento;
         private System.Windows.Forms.Button btnDev;
         private System.Windows.Forms.Button btnEntrada;

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-#pragma warning disable CS0105 // A diretiva using para "System.Windows.Forms" apareceu anteriormente neste namespace
-using System.Windows.Forms;
-#pragma warning restore CS0105 // A diretiva using para "System.Windows.Forms" apareceu anteriormente neste namespace
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
@@ -31,8 +22,6 @@ namespace Caixa
         int j;
         DateTime data;
         #endregion
-
-
 
         public frmGeral()
         {
@@ -74,7 +63,7 @@ namespace Caixa
                 #endregion
                 try
                 {
-                    #region SOMA TUDO
+                   #region SOMA TUDO
                     gerDAO.VerificaSoma();
                     func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
                     forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
@@ -96,17 +85,11 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
-
-
             }
             catch
             {
-
-            }
-
-            
+            }            
         }
 
         public static void Moeda(ref TextBox txt)
@@ -125,15 +108,11 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
             }
             catch (Exception)
             {
-
             }
         }
-
-
 
         private void cmbDescricao_TextChanged(object sender, EventArgs e)
         {
@@ -144,13 +123,10 @@ namespace Caixa
                     column.Width = 160; //tamanho fixo da coluna DESCR
                 else if (column.DataPropertyName == "DATA")
                     column.Width = 80; //tamanho fixo da coluna DESCR
-
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-
-
             }
             #endregion
 
@@ -166,7 +142,6 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskDe.Clear();
                 }
-
             }
             #endregion
 
@@ -182,7 +157,6 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskAté.Clear();
                 }
-
             }
             #endregion
 
@@ -218,7 +192,6 @@ namespace Caixa
                 {
 
                 }
-
                 #endregion
             }
             #endregion
@@ -475,10 +448,7 @@ namespace Caixa
                 #endregion
             }
             #endregion
-
         }
-
-
 
         private void cmbDescricao_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -805,11 +775,6 @@ namespace Caixa
             #endregion
         }
 
-        private void mskDe_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         public void ExportarPDF(DataGridView dgw, string filename)
         {
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
@@ -818,7 +783,6 @@ namespace Caixa
             pdftable.WidthPercentage = 100;
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdftable.DefaultCell.BorderWidth = 1;
-
 
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
             //Cabeçalho
@@ -835,7 +799,6 @@ namespace Caixa
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-
                     if (cell.ColumnIndex == 0)
                     {
                         DateTime d;
@@ -847,9 +810,6 @@ namespace Caixa
                     {
                         pdftable.AddCell(new Phrase(cell.Value.ToString(), text));
                     }
-
-
-
                 }
             }
             var savefiledialoge = new SaveFileDialog();
@@ -916,14 +876,11 @@ namespace Caixa
                         {
 
                         }
-                    }
-
-                   
+                    }                   
                     else
                     {
                         worksheet.Cells[i + 2, j + 1] = gvExibir.Rows[i].Cells[j].Value.ToString();
                     }
-
                 }
             }
             Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("F2:F300");
@@ -935,10 +892,8 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
-
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
-
                     }
                     else
                     {
@@ -958,10 +913,8 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
-
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
-
                     }
                     else
                     {
@@ -981,10 +934,8 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
-
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
-
                     }
                     else
                     {
@@ -1004,10 +955,8 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
-
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
-
                     }
                     else
                     {
@@ -1017,7 +966,6 @@ namespace Caixa
                     }
                 }
             }
-
 
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
@@ -1053,11 +1001,6 @@ namespace Caixa
             {
                 valor = txtAjuste.Text.ToString().Replace(".", "");
             }
-        }
-
-        private void cmbAjustes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -1148,8 +1091,7 @@ namespace Caixa
                 else
                 {
                     MessageBox.Show("Escolha se é débito ou crédito!!!");
-                }
-                   
+                }                   
             }
         }
 
@@ -1162,7 +1104,6 @@ namespace Caixa
                     column.Width = 160; //tamanho fixo da coluna DESCR
                 else if (column.DataPropertyName == "DATA")
                     column.Width = 80; //tamanho fixo da coluna DESCR
-
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -1184,7 +1125,6 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskDe.Clear();
                 }
-
             }
             #endregion
 
@@ -1200,7 +1140,6 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskAté.Clear();
                 }
-
             }
             #endregion
 

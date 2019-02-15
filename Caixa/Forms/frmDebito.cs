@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -68,23 +64,19 @@ namespace Caixa
             }
             catch (Exception)
             {
-
             }
         }
-
 
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
         private void txtDesc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-     
+        {     
         }
 
         private void txtValor_KeyDown(object sender, KeyEventArgs e)
@@ -138,7 +130,6 @@ namespace Caixa
             cmbFornecedor.DisplayMember = "nome";
             cmbFornecedor.ValueMember = "ID";
             codpes = cmbFornecedor.SelectedValue.ToString();
-
         }
 
         public void CarregarComboFunc()
@@ -157,7 +148,6 @@ namespace Caixa
             string hrtela = DateTime.Now.ToShortTimeString();
             mskData.Text = datatela;
             mskHr.Text = hrtela;
-
             txtResponsa.Text = UsuarioDAO.login;
             try
             {
@@ -167,8 +157,7 @@ namespace Caixa
             catch
             {
                 MessageBox.Show("Favor cadastrar fornecedores primeiro");
-            }
-          
+            }          
             cmbFornecedor.Text = "";
         }
 
@@ -1183,16 +1172,13 @@ namespace Caixa
                         #endregion
 
                         MessageBox.Show("Informações cadastradas com sucesso !!!");
-                        Limpar();
-                      
+                        Limpar();                      
                     }
                 }
                 catch
                 {
-
                 }
-            }
-                
+            }                
         }
 
         public void Limpar()
@@ -1254,9 +1240,7 @@ namespace Caixa
                 catch
                 {
 
-                }
-
-                
+                }                
             }
             else if (chkPag.Checked == true)
             {
@@ -1278,10 +1262,6 @@ namespace Caixa
 
         private void cmbFornecedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (cmbFornecedor.Text != string.Empty && cmbFornecedor.Enabled == true)
-            //{
-            //    f = cmbFornecedor.Text.ToString();
-            //}
             if (chkFuncionario.Checked == true || chkF.Checked == true)
             {
                 f = cmbFornecedor.Text;
@@ -1291,7 +1271,6 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
             }
             else
@@ -1323,8 +1302,7 @@ namespace Caixa
                     txtDesc.Clear();
                     chkMicrostation.Enabled = true;
                 }
-            }
-           
+            }           
         }
 
         private void chkMicrostation_CheckedChanged(object sender, EventArgs e)
@@ -1345,7 +1323,6 @@ namespace Caixa
                 chkFuncionario.Enabled = true;
                 chkOutros.Enabled = true;
             }
-
         }
 
         private void chkFuncionario_CheckedChanged(object sender, EventArgs e)
@@ -1363,7 +1340,6 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
             }
             else
@@ -1399,11 +1375,6 @@ namespace Caixa
                 chkF.Enabled = true;
                 chkFuncionario.Enabled = true;                
             }
-        }
-
-        private void cmbFornecedor_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

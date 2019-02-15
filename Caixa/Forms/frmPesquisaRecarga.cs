@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -20,7 +13,6 @@ namespace Caixa
         DateTime at;
         int j;
         DateTime data;
-
         string operadora;
         public frmPesquisaRecarga()
         {
@@ -31,10 +23,6 @@ namespace Caixa
         {
             try
             {
-                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-
-
-
                 string datatela = DateTime.Now.ToShortDateString();
                 mskAt.Text = datatela;
                 mskData.Text = datatela;
@@ -56,7 +44,6 @@ namespace Caixa
                                 column.Width = 60; //tamanho fixo da coluna HORA
                             else if (column.DataPropertyName == "DATA")
                                 column.Width = 70; //tamanho fixo da coluna DATA
-
                             else
                             {
                                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -66,15 +53,8 @@ namespace Caixa
                     }
                     catch
                     {
-
                     }
-
-
-
-
-                    this.gvExibir.Columns["valor_rec"].DefaultCellStyle
-        .Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                    this.gvExibir.Columns["valor_rec"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 else
                 {
@@ -88,20 +68,13 @@ namespace Caixa
                         {
 
                         }
-
-
-
-                        this.gvExibir.Columns["valor_rec"].DefaultCellStyle
-            .Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                        this.gvExibir.Columns["valor_rec"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
                 }
             }
             catch
             {
-    
             }
-            
         }
 
         public void ExportarPDF(DataGridView dgw, string filename)
@@ -218,7 +191,7 @@ namespace Caixa
             #endregion
 
             #region SOMENTE A PRIMEIRA DATA E OPERADORA
-            if (txtOperadora.Text!=string.Empty && mskData.MaskFull==true)
+            if (txtOperadora.Text != string.Empty && mskData.MaskFull == true)
             {
                 operadora = txtOperadora.Text;
                 gvExibir.DataSource = recDAO.Listarfiltro(de, operadora);
@@ -226,28 +199,28 @@ namespace Caixa
             #endregion
 
             #region SOMENTE A PRIMEIRA DATA 
-            if (mskData.MaskFull==true && txtOperadora.Text == string.Empty && mskAt.MaskFull==false)
+            if (mskData.MaskFull == true && txtOperadora.Text == string.Empty && mskAt.MaskFull == false)
             {
-                    gvExibir.DataSource = recDAO.ListarData(de);
+                gvExibir.DataSource = recDAO.ListarData(de);
             }
             #endregion
 
             #region SOMENTE OPERADORA PREECHIDA
-            if (txtOperadora.Text!=string.Empty && mskData.MaskFull == false && mskAt.MaskFull==false)
+            if (txtOperadora.Text != string.Empty && mskData.MaskFull == false && mskAt.MaskFull == false)
             {
-                    operadora = txtOperadora.Text;
-                    gvExibir.DataSource = recDAO.ListarOperadora(operadora);
+                operadora = txtOperadora.Text;
+                gvExibir.DataSource = recDAO.ListarOperadora(operadora);
             }
             #endregion
 
             #region TODOS VAZIOS
-            if (mskData.MaskFull == false && txtOperadora.Text == string.Empty && mskAt.MaskFull==false)
+            if (mskData.MaskFull == false && txtOperadora.Text == string.Empty && mskAt.MaskFull == false)
             {
                 gvExibir.DataSource = recDAO.Listartudo();
             }
             #endregion
 
-            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text==string.Empty)
+            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text == string.Empty)
             {
                 de = Convert.ToDateTime(mskData.Text);
                 at = Convert.ToDateTime(mskAt.Text);
@@ -263,7 +236,6 @@ namespace Caixa
 
                 gvExibir.DataSource = recDAO.ListarBO(de, at, operadora);
             }
-
         }
 
         private void mskData_TextChanged(object sender, EventArgs e)
@@ -297,7 +269,7 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskData.Clear();
                 }
-         
+
             }
             #endregion
 
@@ -313,7 +285,7 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskAt.Clear();
                 }
-     
+
             }
             #endregion
 
@@ -335,8 +307,8 @@ namespace Caixa
             #region SOMENTE OPERADORA PREENCHIDA
             if (txtOperadora.Text != string.Empty && mskData.MaskFull == false)
             {
-                    operadora = txtOperadora.Text;
-                    gvExibir.DataSource = recDAO.ListarOperadora(operadora);
+                operadora = txtOperadora.Text;
+                gvExibir.DataSource = recDAO.ListarOperadora(operadora);
             }
             #endregion
 
@@ -347,7 +319,7 @@ namespace Caixa
             }
             #endregion
 
-            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text==string.Empty)
+            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text == string.Empty)
             {
                 de = Convert.ToDateTime(mskData.Text);
                 at = Convert.ToDateTime(mskAt.Text);
@@ -472,7 +444,7 @@ namespace Caixa
             }
             #endregion
 
-            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text==string.Empty)
+            if (mskData.MaskFull == true && mskAt.MaskFull == true && txtOperadora.Text == string.Empty)
             {
                 de = Convert.ToDateTime(mskData.Text);
                 at = Convert.ToDateTime(mskAt.Text);
@@ -486,14 +458,14 @@ namespace Caixa
                 de = Convert.ToDateTime(mskData.Text);
                 at = Convert.ToDateTime(mskAt.Text);
 
-                gvExibir.DataSource = recDAO.ListarBO(de, at,operadora);
+                gvExibir.DataSource = recDAO.ListarBO(de, at, operadora);
             }
 
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-           #region EXCEL
+            #region EXCEL
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -22,13 +16,8 @@ namespace Caixa
         AuditoriaDAO audDAO = new AuditoriaDAO();
 
         string codop;
-
-#pragma warning disable CS0169 // O campo "frmRecarga.valor" nunca é usado
         string valor;
-#pragma warning restore CS0169 // O campo "frmRecarga.valor" nunca é usado
-
-       
-        
+          
         public frmRecarga()
         {
             InitializeComponent();
@@ -70,9 +59,6 @@ namespace Caixa
                     recDAO.Inserir(rec);
                     mskCel.Clear();
 
-
-
-
                     ((InicialCaixa)this.Owner).Atualizadados();
                     MessageBox.Show("Cadastro efetuado com sucesso !!!");
 
@@ -81,7 +67,6 @@ namespace Caixa
                     aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                     aud.Responsavel = UsuarioDAO.login;
                     audDAO.Inserir(aud);
-
                 }
                 catch
                 {
@@ -102,8 +87,6 @@ namespace Caixa
             cmbValor.DataSource = vopDAO.Listarvalores3(codop);
             cmbValor.DisplayMember = "valor";
             cmbValor.ValueMember = "id_valor";
-
-
         }
         private void frmRecarga_Load(object sender, EventArgs e)
         {
@@ -114,20 +97,13 @@ namespace Caixa
             }
             catch
             {
-
-            }
-       
+            }       
         }
 
         private void cmbOperadora_SelectedIndexChanged(object sender, EventArgs e)
         {
             codop = cmbOperadora.SelectedValue.ToString();
             CarregarComboValor();
-        }
-
-        private void mskCel_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-            
         }
 
         private void mskCel_TextChanged(object sender, EventArgs e)
@@ -145,9 +121,7 @@ namespace Caixa
             }
             catch
             {
-
-            }
-           
+            } 
         }
 
         private void btnInventário_Click(object sender, EventArgs e)

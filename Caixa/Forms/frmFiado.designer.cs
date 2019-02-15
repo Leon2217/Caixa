@@ -76,8 +76,6 @@
             this.gvExibir.Size = new System.Drawing.Size(575, 304);
             this.gvExibir.TabIndex = 20;
             this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
-            this.gvExibir.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellContentClick);
-            this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
             // 
             // label1
             // 
@@ -345,7 +343,6 @@
             this.Text = ".: Fiado";
             this.Load += new System.EventHandler(this.frmAssinadas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAssinadas_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmAssinadas_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

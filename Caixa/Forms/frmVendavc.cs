@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -19,11 +14,7 @@ namespace Caixa
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
 
-
-
-#pragma warning disable CS0169 // O campo "frmVendavc.form1" nunca é usado
         InicialCaixa form1;
-#pragma warning restore CS0169 // O campo "frmVendavc.form1" nunca é usado
         int qtd;
         double valor;
         double totalvc;
@@ -51,7 +42,6 @@ namespace Caixa
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-
             //update de qtd de estoque 
             if (invDAO.VerificaInventário() == true)
             {
@@ -123,30 +113,14 @@ namespace Caixa
                         {
                             ((InicialCaixa)qrForm.First()).Atualizadados();
                         }
-
-
-
-
-
-
-
-
                         MessageBox.Show("Dados salvos com sucesso");
                     }
-
                 }
             }
             else
             {
                 MessageBox.Show("Para realizar uma venda, é necessário atualizar o estoque primeiro !!!");
             }
-
-
-
-
-
-
-
         }
 
         private void txtQtd_ValueChanged(object sender, EventArgs e)
@@ -157,7 +131,6 @@ namespace Caixa
             }
             catch
             {
-
             }
         }
 

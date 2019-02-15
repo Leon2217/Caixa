@@ -83,10 +83,9 @@ namespace Caixa
             }
         }
 
-     
+
         private void frmContasPagas_Load(object sender, EventArgs e)
         {
-            
             gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             Moeda(ref txtValorVenc1);
             Moeda(ref txtValorVenc1);
@@ -99,13 +98,10 @@ namespace Caixa
             tipo = usuDAO.Usu.Tipo.ToString();
             #endregion
 
-
             if (tipo == "Operador" || tipo == "Operador\t")
-            {            
+            {
                 btnDespesa.Visible = false;
             }
-
-
 
             try
             {
@@ -113,17 +109,14 @@ namespace Caixa
             }
             catch
             {
-
             }
-            
- 
+
             try
             {
                 gvExibir.DataSource = contaDAO.ListarDiferenciado();
             }
             catch
             {
-
             }
         }
 
@@ -134,7 +127,6 @@ namespace Caixa
                 this.Close();
             }
 
-
             if (e.KeyValue.Equals(121))
             {
                 #region LOGIN
@@ -143,14 +135,12 @@ namespace Caixa
                 tipo = usuDAO.Usu.Tipo.ToString();
                 #endregion
 
-                if(tipo != "Operador")
+                if (tipo != "Operador")
                 {
                     frmDespesa des = new frmDespesa();
                     des.Owner = this;
                     des.ShowDialog();
                 }
-
-           
             }
         }
 
@@ -167,7 +157,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
@@ -178,20 +167,16 @@ namespace Caixa
                 chkPc.Enabled = false;
                 txtNf.Enabled = true;
                 txtNf.Visible = true;
-                
-            
-                    this.ProcessTabKey(true);
-                     
+
+                this.ProcessTabKey(true);
             }
             else
             {
                 chkPc.Enabled = true;
                 txtNf.Enabled = false;
                 txtNf.Visible = false;
-                
             }
         }
-
         private void chkPc_CheckedChanged(object sender, EventArgs e)
         {
             if (chkPc.Checked == true)
@@ -199,13 +184,11 @@ namespace Caixa
                 chkNf.Enabled = false;
                 txtNf.Enabled = false;
                 txtNf.Visible = false;
-                
             }
             else
             {
                 chkNf.Enabled = true;
                 txtNf.Enabled = true;
-               
             }
         }
 
@@ -216,7 +199,6 @@ namespace Caixa
             {
                 nf = txtNf.Text.ToString();
                 gvExibir.DataSource = contaDAO.ListarNF(nf);
-
             }
             else
             {
@@ -226,9 +208,7 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
-               
             }
         }
 
@@ -240,7 +220,6 @@ namespace Caixa
                 e.Handled = true;
             }
         }
-
         private void txtValor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(13))
@@ -264,9 +243,9 @@ namespace Caixa
             if (chkNf.Checked == true || chkPc.Checked == true)
             {
 
-                if(chkNf.Checked == true)
+                if (chkNf.Checked == true)
                 {
-                    if (txtNf.Text==string.Empty||mskData.MaskFull==false||txtValorVenc1.Text=="0,00")
+                    if (txtNf.Text == string.Empty || mskData.MaskFull == false || txtValorVenc1.Text == "0,00")
                     {
                         if (txtNf.Text == string.Empty)
                             txtNf.BackColor = Color.Red;
@@ -276,7 +255,6 @@ namespace Caixa
 
                         if (txtValorVenc1.Text == "0,00")
                             txtValorVenc1.BackColor = Color.Red;
-
                     }
                     else
                     {
@@ -284,7 +262,7 @@ namespace Caixa
                         {
                             DialogResult op;
 
-                            op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Fornecedor : " +fornecedor+"\n N°NF : " +nf+ "\n Valor : " +valor+" R$ "+ "\n Data Vencimento : " +data.ToShortDateString(),
+                            op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Fornecedor : " + fornecedor + "\n N°NF : " + nf + "\n Valor : " + valor + " R$ " + "\n Data Vencimento : " + data.ToShortDateString(),
                                 "Salvando!", MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question);
 
@@ -318,8 +296,6 @@ namespace Caixa
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
 
-                                   
-
                                     //2
                                     conta2.Data = Convert.ToDateTime(mskData2.Text);
                                     conta2.Id_pessoa = Convert.ToInt32(codpes);
@@ -338,7 +314,6 @@ namespace Caixa
 
                                 if (cmbParcela.SelectedIndex == 2)
                                 {
-
                                     conta.Data = Convert.ToDateTime(mskData.Text);
                                     conta.Id_pessoa = Convert.ToInt32(codpes);
                                     conta.Nf = txtNf.Text.ToString();
@@ -409,10 +384,9 @@ namespace Caixa
                             MessageBox.Show("Favor verificar as informações digitadas !!!");
                         }
                     }
-                 
                 }
 
-                if(chkPc.Checked == true)
+                if (chkPc.Checked == true)
                 {
                     if (mskData.MaskFull == false || txtValorVenc1.Text == "0,00")
                     {
@@ -428,7 +402,7 @@ namespace Caixa
                         {
                             DialogResult op;
 
-                            op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Fornecedor : " + fornecedor + "\n Pedido/Cheque"+"\n Valor : " + valor + " R$ " + "\n Data de vencimento : " + data.ToShortDateString(),
+                            op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Fornecedor : " + fornecedor + "\n Pedido/Cheque" + "\n Valor : " + valor + " R$ " + "\n Data de vencimento : " + data.ToShortDateString(),
                                 "Salvando!", MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question);
 
@@ -462,7 +436,7 @@ namespace Caixa
                                     conta.Status = "Em aberto";
                                     contaDAO.Inserir(conta);
 
-                                    
+
 
                                     //2
                                     conta2.Data = Convert.ToDateTime(mskData2.Text);
@@ -529,16 +503,13 @@ namespace Caixa
                                 chkNf.Checked = false;
                                 cmbParcela.SelectedIndex = 0;
                             }
-
                         }
                         catch
                         {
                             MessageBox.Show("Favor verificar as informações digitadas !!!");
                         }
                     }
-                    
                 }
-
             }
             else
             {
@@ -562,8 +533,6 @@ namespace Caixa
                     mskData.Clear();
                 }
 
-
-
                 if (txtValorVenc1.Enabled == true)
                 {
                     this.ProcessTabKey(true);
@@ -582,7 +551,6 @@ namespace Caixa
             {
 
             }
-         
         }
 
         private void btnRelatorio_Click(object sender, EventArgs e)
@@ -591,10 +559,8 @@ namespace Caixa
             rc.Owner = this;
             rc.ShowDialog();
         }
-
         private void cmbParcela_SelectedIndexChanged(object sender, EventArgs e)
         {
- 
             if (cmbParcela.SelectedIndex == 0)
             {
                 txtValorVenc1.Enabled = true;
@@ -604,7 +570,6 @@ namespace Caixa
                 txtValorVenc3.Enabled = false;
 
                 this.ProcessTabKey(true);
-
             }
 
             if (cmbParcela.SelectedIndex == 1)
@@ -630,11 +595,6 @@ namespace Caixa
             }
         }
 
-        private void txtValor_Leave(object sender, EventArgs e)
-        {
-           
-        }
-
         private void cmbParcela_TextChanged(object sender, EventArgs e)
         {
             if (cmbParcela.Text == string.Empty)
@@ -654,7 +614,7 @@ namespace Caixa
             {
                 valor = txtValorVenc1.Text;
             }
-           
+
         }
 
         private void txtValorVenc2_TextChanged(object sender, EventArgs e)
@@ -664,8 +624,6 @@ namespace Caixa
             {
                 valor2 = txtValorVenc2.Text;
             }
-
-
         }
 
         private void txtValorVenc3_TextChanged(object sender, EventArgs e)
@@ -673,7 +631,7 @@ namespace Caixa
             Moeda(ref txtValorVenc3);
             if (txtValorVenc3.Text != string.Empty)
             {
-                valor3=txtValorVenc3.Text;
+                valor3 = txtValorVenc3.Text;
             }
         }
 
@@ -682,8 +640,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-  
-
             }
         }
 
@@ -701,7 +657,7 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-         
+
             }
         }
 
@@ -727,7 +683,7 @@ namespace Caixa
 
         private void mskData2_TextChanged(object sender, EventArgs e)
         {
-           mskData2.BackColor = Color.Empty;
+            mskData2.BackColor = Color.Empty;
 
             if (mskData2.MaskFull == true)
             {
@@ -761,7 +717,6 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskDataem.Clear();
                 }
-
             }
         }
 
@@ -797,7 +752,6 @@ namespace Caixa
             if (e.Value != null && e.Value.ToString().Contains("Atrasado"))
             {
                 e.CellStyle.ForeColor = Color.Red;
-
             }
 
             if (e.Value != null && e.Value.ToString().Contains("Pago"))
@@ -809,7 +763,6 @@ namespace Caixa
             if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
             {
                 e.CellStyle.ForeColor = Color.Goldenrod;
-
             }
         }
 

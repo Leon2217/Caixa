@@ -29,7 +29,7 @@ namespace Caixa
         {
             DialogResult op;
 
-            op = MessageBox.Show("Você tem certeza dessas informações?" +"\n Valor : " + valor + " R$",
+            op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Valor : " + valor + " R$",
                 "Salvando!", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -40,7 +40,7 @@ namespace Caixa
                     if (tipo == "Administrador")
                     {
                         supri.Id_caixa = Convert.ToInt32(suprimentoDAO.codcaixa);
-                        supri.Valor = txtValor.Text.ToString().Replace(".","");
+                        supri.Valor = txtValor.Text.ToString().Replace(".", "");
                         supriDAO.update(supri);
                         MessageBox.Show("Dados alterados com sucesso !!!");
                         ((frmOpcaoFecha)this.Owner).AtualizaDados();
@@ -57,7 +57,7 @@ namespace Caixa
                     try
                     {
                         supri.Id_caixa = Convert.ToInt32(suprimentoDAO.codcaixa);
-                        supri.Valor = txtValor.Text.ToString().Replace(".","");
+                        supri.Valor = txtValor.Text.ToString().Replace(".", "");
                         supriDAO.inserir(supri);
                         MessageBox.Show("Informações salvas com sucesso !!!");
 
@@ -76,8 +76,6 @@ namespace Caixa
                         MessageBox.Show("Favor verificar as informações digitadas !!!");
                     }
                 }
-                
-    
             }
         }
 
@@ -91,10 +89,8 @@ namespace Caixa
                 usuDao.VerificaCargo(login);
                 tipo = usuDao.Usu.Tipo.ToString();
                 update = true;
-                txtValor.Text =supriDAO.Supri.Valor.ToString();
+                txtValor.Text = supriDAO.Supri.Valor.ToString();
             }
-
-
         }
 
         public static void Moeda(ref TextBox txt)
@@ -117,7 +113,6 @@ namespace Caixa
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -126,11 +121,6 @@ namespace Caixa
         {
             Moeda(ref txtValor);
             valor = txtValor.Text;
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void txtValor_KeyDown(object sender, KeyEventArgs e)
@@ -150,17 +140,11 @@ namespace Caixa
             }
         }
 
-        private void btnAdicionar_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
     }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -92,10 +87,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-      
-
 
             try
             {
@@ -121,48 +113,26 @@ namespace Caixa
                         column.Width = 90; //tamanho fixo da coluna VALOR
                     else if (column.DataPropertyName == "FORNECEDOR")
                         column.Width = 250; //tamanho fixo da coluna FORNECEDOR
-
-
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
                 }
                 #endregion
-
-
-
-
             }
             catch
             {
-
             }
-
         }
-
 
         private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs  e)
         {
             if (gvExibir.CurrentCell.Value.ToString() != "")
             {
-                //ContasDAO.codfudeu = Convert.ToInt32(gvExibir.CurrentCell.Tag);
-                //frmPesqAgen k = new frmPesqAgen();
-                //k.ShowDialog();
-
-
                 string msg = String.Format("Row: {0}, Column: {1}",
            gvExibir.CurrentCell.RowIndex,
            gvExibir.CurrentCell.ColumnIndex);
                 MessageBox.Show(msg, "Current Cell");
-
-
-
-
-
-
-
-
             }
         }
 
@@ -498,9 +468,6 @@ namespace Caixa
                 gvExibir.DataSource = contasDAO.ListarTudo();
             }
             #endregion
-
-
-
         }
 
         private void chkNf_CheckedChanged(object sender, EventArgs e)
@@ -3086,25 +3053,20 @@ namespace Caixa
             {
                 txtn.Enabled = true;
             }
-
         }
 
         private void btnAt_Click(object sender, EventArgs e)
         {
             if (txtID.Enabled == true)
             {
-
                 if (cmbS.Text == string.Empty || txtID.Text == string.Empty)
                 {
                     MessageBox.Show("Favor preencher ou NF ou ID !!!");
-
-
                 }
                 else
                 {
                     try
                     {
-
                         DialogResult op;
 
                         op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
@@ -3159,8 +3121,6 @@ namespace Caixa
                                     #endregion
                                 }
                                 #endregion
-
-
                             }
                             else
                             {
@@ -3189,14 +3149,11 @@ namespace Caixa
                 if (cmbS.Text == string.Empty || txtn.Text == string.Empty)
                 {
                     MessageBox.Show("Favor preencher ou NF ou ID !!!");
-
-
                 }
                 else
                 {
                     try
                     {
-
                         DialogResult op;
 
                         op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
@@ -3251,8 +3208,6 @@ namespace Caixa
                                     #endregion
                                 }
                                 #endregion
-
-
                             }
                             else
                             {
@@ -3272,12 +3227,10 @@ namespace Caixa
 
         private void cmbS_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (cmbS.Text != string.Empty)
             {
                 st = cmbS.Text.ToString();
             }
-
         }
 
         private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -3287,22 +3240,19 @@ namespace Caixa
                 e.CellStyle.ForeColor = Color.Red;
             }
 
-            if (e.Value != null && e.Value.ToString().Contains("Pago"))
+            else if (e.Value != null && e.Value.ToString().Contains("Pago"))
             {
                 e.CellStyle.ForeColor = Color.Green;
-
             }
 
-            if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
+            else if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
             {
                 e.CellStyle.ForeColor = Color.Goldenrod;
-
             }
         }
 
         private void txtn_TextChanged(object sender, EventArgs e)
-        {
-           
+        {           
             if (txtn.Text != string.Empty)
             {
                 txtID.Enabled = false;
@@ -3503,10 +3453,7 @@ namespace Caixa
             {
                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, text));
                 cell.BackgroundColor = new iTextSharp.text.BaseColor(240, 240, 240);
-                pdftable.AddCell(cell);
-
-                
-
+                pdftable.AddCell(cell);                
             }
 
             //Linha
@@ -3525,9 +3472,7 @@ namespace Caixa
                         }
                         catch
                         {
-
-                        }
-                        
+                        }                        
                     }
                     else
                     {
@@ -3549,20 +3494,13 @@ namespace Caixa
                     pdfdoc.Close();
                     stream.Close();
                 }
-
             }
         }
-
-
-
-
 
         private void btnPaideFamilia_Click(object sender, EventArgs e)
         {
             ExportarPDF(gvExibir, "planilha");
         }
-
-
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
