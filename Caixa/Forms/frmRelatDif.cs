@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -35,7 +41,9 @@ namespace Caixa
         private void frmRelatDif_Load(object sender, EventArgs e)
         {
             try
-            {              
+            {
+                
+
                 #region DATAS
                 string datatela = DateTime.Now.ToShortDateString();
                 mskAté.Text = datatela;
@@ -75,6 +83,7 @@ namespace Caixa
             }
             catch
             {
+
             }
         }
 
@@ -343,18 +352,28 @@ namespace Caixa
         }
 
         private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {   
+        {
+            
             if (e.Value != null && e.Value.ToString().Contains("-"))
             {
-                e.CellStyle.ForeColor = Color.Red;                       
+                e.CellStyle.ForeColor = Color.Red;
+                       
             }
             else
             {
                 if(e.Value != null && e.Value.ToString().Contains("/")==false)
                 {
                     e.CellStyle.ForeColor = Color.Green;
-                }                                                
+                }
+                                                
             }
+
+
+       
+
+
+
+
         }
     }
 }

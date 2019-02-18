@@ -220,6 +220,7 @@ namespace Caixa
 
 
             #endregion
+
         }
 
         private void InicialCaixa_Load(object sender, EventArgs e)
@@ -826,6 +827,7 @@ namespace Caixa
 
             if (e.KeyValue.Equals(117))
             {
+
                 frmOpcaoFecha f = new frmOpcaoFecha();
                 f.ShowDialog();
             }
@@ -934,6 +936,7 @@ namespace Caixa
             frmFalta fta = new frmFalta();
             fta.Owner = this;
             fta.ShowDialog();
+
         }
         private void btnContas_Click(object sender, EventArgs e)
         {
@@ -1001,6 +1004,7 @@ namespace Caixa
             }
             else
             {
+
             }
         }
 
@@ -1045,6 +1049,9 @@ namespace Caixa
                 s.Owner = this;
                 s.ShowDialog();
             }
+
+
+
         }
 
         private void restaurarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1083,6 +1090,7 @@ namespace Caixa
                 {
                     MessageBox.Show(string.Format("erro:  {0}", ex.Message));
                 }
+
                 frmSecreta2 s2 = new frmSecreta2();
                 s2.Owner = this;
                 s2.ShowDialog();

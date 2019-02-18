@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -44,6 +51,8 @@ namespace Caixa
             cmbCartao.DisplayMember = "CART";
             cmbCartao.ValueMember = "ID";
             cmbCartao.Text = "";
+  
+
         }
 
         public void CarregarComboMaq()
@@ -64,7 +73,7 @@ namespace Caixa
 
 
             if (tipo == "Operador" || tipo == "Operador\t")
-            {
+            {            
                 btnTaxa.Visible = false;
             }
 
@@ -234,7 +243,7 @@ namespace Caixa
             #region BANDEIRA E TURNO
             if (mskDe.MaskFull == false && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text == string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarBT(codturno, codmarca);
+                gvExibir.DataSource = ccDAO.ListarBT(codturno , codmarca);
             }
             #endregion
 
@@ -257,7 +266,7 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                gvExibir.DataSource = ccDAO.ListarB(de,at);
             }
             #endregion
 
@@ -266,7 +275,7 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarBB(de, at, codmarca);
+                gvExibir.DataSource = ccDAO.ListarBB(de, at,codmarca);
             }
             #endregion
 
@@ -312,7 +321,7 @@ namespace Caixa
             #region BANDEIRA, TURNO E MAQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text == string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(codmarca, codturno, codmaq);
+                gvExibir.DataSource = ccDAO.ListarBTM(codmarca, codturno,codmaq);
             }
             #endregion
 
@@ -321,7 +330,7 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text != string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarBBT(de, at, codmarca, codturno);
+                gvExibir.DataSource = ccDAO.ListarBBT(de, at, codmarca,codturno);
             }
             #endregion
 
@@ -346,7 +355,7 @@ namespace Caixa
             #region DE,BANDEIRA, TURNO E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text == string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDBTC(de, codmarca, codturno, codmarca2);
+                gvExibir.DataSource = ccDAO.ListarDBTC(de, codmarca, codturno,codmarca2);
             }
             #endregion
 
@@ -360,7 +369,7 @@ namespace Caixa
             #region DE,BANDEIRA, TURNO E MAQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDBMT(de, codmarca, codmaq, codturno);
+                gvExibir.DataSource = ccDAO.ListarDBMT(de, codmarca, codmaq,codturno);
             }
             #endregion
 
@@ -374,7 +383,7 @@ namespace Caixa
             #region DE,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDBMTC(de, codmarca, codmaq, codturno, codmarca2);
+                gvExibir.DataSource = ccDAO.ListarDBMTC(de,codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
 
@@ -403,12 +412,14 @@ namespace Caixa
                 tipo = usuDAO.Usu.Tipo.ToString();
                 #endregion
 
+
                 if (tipo != "Operador")
                 {
                     frmRelatTaxa rlt = new frmRelatTaxa();
                     rlt.Owner = this;
                     rlt.ShowDialog();
                 }
+              
             }
         }
 
@@ -964,7 +975,7 @@ namespace Caixa
             #region DE,BANDEIRA E TURNO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text == string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDBT(de, codmarca, codturno);
+                gvExibir.DataSource = ccDAO.ListarDBT(de, codmarca,codturno);
             }
             #endregion
 
@@ -1068,6 +1079,7 @@ namespace Caixa
                 gvExibir.DataSource = ccDAO.ListarDBMTC(de, codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
+
 
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
@@ -1742,6 +1754,7 @@ namespace Caixa
             }
             #endregion
 
+
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
             {
@@ -2078,12 +2091,14 @@ namespace Caixa
             }
             #endregion
 
+
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
             {
                 gvExibir.DataSource = ccDAO.ListarBBMTC(de, at, codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
+
         }
 
         private void cmbMaquina_TextChanged(object sender, EventArgs e)
@@ -2767,6 +2782,7 @@ namespace Caixa
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdftable.DefaultCell.BorderWidth = 1;
 
+
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
             //Cabeçalho
             foreach (DataGridViewColumn column in dgw.Columns)
@@ -2781,8 +2797,8 @@ namespace Caixa
             foreach (DataGridViewRow row in dgw.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
-                {
-                    pdftable.AddCell(new Phrase(cell.Value.ToString(), text));
+                {                 
+                        pdftable.AddCell(new Phrase(cell.Value.ToString(), text));                 
                 }
             }
             var savefiledialoge = new SaveFileDialog();
@@ -2799,8 +2815,10 @@ namespace Caixa
                     pdfdoc.Close();
                     stream.Close();
                 }
+
             }
         }
+
 
         private void btnPaideFamilia_Click(object sender, EventArgs e)
         {
@@ -2813,12 +2831,15 @@ namespace Caixa
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
 
+
+
             try
             {
                 worksheet = workbook.Sheets["Sheet1"];
             }
             catch
             {
+
             }
 
             worksheet = workbook.ActiveSheet;
@@ -2828,16 +2849,26 @@ namespace Caixa
             {
                 worksheet.Cells[1, i] = gvExibir.Columns[i - 1].HeaderText;
                 worksheet.StandardWidth = 17;
+
+
+
+
             }
 
             for (int i = 0; i < gvExibir.Rows.Count; i++)
             {
                 for (j = 0; j < gvExibir.Columns.Count; j++)
                 {
-                    worksheet.Cells[i + 2, j + 1] = gvExibir.Rows[i].Cells[j].Value.ToString();
+                    
+
+
+
+
+                        worksheet.Cells[i + 2, j + 1] = gvExibir.Rows[i].Cells[j].Value.ToString();
+                    
                 }
             }
-
+         
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
             foda.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous, Microsoft.Office.Interop.Excel.XlBorderWeight.xlMedium, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic);
@@ -2845,6 +2876,9 @@ namespace Caixa
             Microsoft.Office.Interop.Excel.Borders bd = cells.Borders;
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
+
+
+
 
             var saveFileDialoge = new SaveFileDialog();
             saveFileDialoge.FileName = "Planilha";
@@ -2854,14 +2888,17 @@ namespace Caixa
                 workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
             app.Quit();
+
+
+
         }
 
         private void btnTaxa_Click(object sender, EventArgs e)
-        {
-            frmRelatTaxa rlt = new frmRelatTaxa();
-            rlt.Owner = this;
-            rlt.ShowDialog();
-
+        {        
+                frmRelatTaxa rlt = new frmRelatTaxa();
+                rlt.Owner = this;
+                rlt.ShowDialog();
+            
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)
@@ -3144,7 +3181,7 @@ namespace Caixa
                 cmbCartao.Text != string.Empty && cmbTurno.Text != string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarBBCT(de, at, codmarca, codmarca2, codturno);
+                gvExibir.DataSource = ccDAO.ListarBBCT(de, at, codmarca, codmarca2,codturno);
             }
             #endregion
 
@@ -3153,7 +3190,7 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text != string.Empty && cmbMaquina.Text != string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarBBTM(de, at, codmarca, codturno, codmaq);
+                gvExibir.DataSource = ccDAO.ListarBBTM(de, at, codmarca, codturno,codmaq);
             }
             #endregion
 
@@ -3167,7 +3204,7 @@ namespace Caixa
             #region DE, BANDEIRA, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDBMC(de, codmarca, codmaq, codmarca2);
+                gvExibir.DataSource = ccDAO.ListarDBMC(de, codmarca, codmaq,codmarca2);
             }
             #endregion
 
@@ -3181,7 +3218,7 @@ namespace Caixa
             #region BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == false && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarBTMC(codmarca, codturno, codmaq, codmarca2);
+                gvExibir.DataSource = ccDAO.ListarBTMC(codmarca, codturno, codmaq,codmarca2);
             }
             #endregion
 
@@ -3195,7 +3232,7 @@ namespace Caixa
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
             {
-                gvExibir.DataSource = ccDAO.ListarBBMTC(de, at, codmarca, codmaq, codturno, codmarca2);
+                gvExibir.DataSource = ccDAO.ListarBBMTC(de,at,codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
         }

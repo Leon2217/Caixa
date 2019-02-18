@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -14,7 +17,9 @@ namespace Caixa
         TipodespesaDAO tpdesDAO = new TipodespesaDAO();
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
+
         #endregion
+
         string nome;
 
         public frmCadtipodespesa()
@@ -28,6 +33,11 @@ namespace Caixa
             {
                 this.Close();
             }
+        }
+
+        private void frmCadtipodespesa_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -69,6 +79,9 @@ namespace Caixa
                             ((frmDespesa)qrForm.First()).AtualizaDados();
                         }
                     }
+
+
+
                 }
                 catch
                 {
@@ -80,11 +93,6 @@ namespace Caixa
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             txtNome.BackColor = Color.Empty;
-        }
-
-        private void frmCadtipodespesa_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

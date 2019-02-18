@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -67,13 +74,19 @@ namespace Caixa
             InitializeComponent();
         }
 
+
+
+
         private void btnDinheiro_Click(object sender, EventArgs e)
         {
             DinheiroDAO.abre = "DR";
             frmDinheiro d = new frmDinheiro();
             d.Owner = this;
             d.ShowDialog();
+
         }
+
+
 
         public void AtualizaDados()
         {
@@ -225,6 +238,12 @@ namespace Caixa
             #endregion
         }
 
+        private void btnSalvarefechar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         public static void Moeda(ref TextBox txt)
         {
             string n = string.Empty;
@@ -241,9 +260,11 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
+
             }
             catch (Exception)
             {
+
             }
         }
         public void frmOpcaoFecha_Load(object sender, EventArgs e)
@@ -252,6 +273,8 @@ namespace Caixa
             codcaixa = DinheiroDAO.codcaixa;
             DateTime data = FechamentoDAO.data;
             fec.Id_caixa = Convert.ToInt32(codcaixa);
+
+
 
             try
             {
@@ -285,6 +308,7 @@ namespace Caixa
             }
             catch
             {
+
             }
 
             #region SANGRIA
@@ -296,6 +320,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
             }
             #endregion
@@ -309,7 +334,11 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
+
+
+
             }
             #endregion
             #region DINHEIRO
@@ -322,7 +351,10 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
+
+
             }
 
             #endregion
@@ -336,6 +368,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
             }
             else
@@ -354,7 +387,9 @@ namespace Caixa
                 }
                 catch
                 {
-                }               
+
+                }
+               
             }
             #endregion
             #region ASSINADAS
@@ -364,9 +399,12 @@ namespace Caixa
                 julio = Convert.ToDouble(assinadaDAO.julio.ToString().Replace('.', ','));
                 assinadas = Convert.ToDouble(assinadaDAO.assinada.ToString().Replace('.', ','));
                 Caclularass();
+
             }
             #endregion
             #region CARTÕES
+
+
             if (carcai.testa(data) == true)
             {
                 try
@@ -375,11 +413,13 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 if (FechamentoDAO.codturno == "1")
                 {
                     btnCartão.Text = "F3 - Cartão" + "\n Total : " + totalmanhacart.ToString("C2");
                 }
+
             }
 
 
@@ -428,7 +468,12 @@ namespace Caixa
 
             Calcdif();
             #endregion
+
+
         }
+
+
+
 
         public void TotalCart()
         {
@@ -466,15 +511,23 @@ namespace Caixa
             v = txtValorRelat.Text;
             if (txtValorRelat.Text == string.Empty)
             {
+
                 lblDif.Text = string.Empty;
+
             }
             else
             {
+
                 Calcdif();
             }
+
+
+
+
         }
         public void Calcdif()
         {
+
             double valor;
 
             valor = Convert.ToDouble(txtValorRelat.Text);
@@ -487,7 +540,12 @@ namespace Caixa
             {
                 dif = ((totalgaveta + total + classm + julio + assinadas + totaltarde) - (valor));
                 lblDif.Text = "Diferença : " + dif.ToString("C2");
+
             }
+
+
+
+
         }
 
         private void txtValorRelat_KeyPress(object sender, KeyPressEventArgs e)
@@ -511,6 +569,7 @@ namespace Caixa
             frmDinheiro d = new frmDinheiro();
             d.Owner = this;
             d.ShowDialog();
+
         }
 
         private void frmOpcaoFecha_KeyDown(object sender, KeyEventArgs e)
@@ -521,6 +580,7 @@ namespace Caixa
                 frmDinheiro d = new frmDinheiro();
                 d.Owner = this;
                 d.ShowDialog();
+
             }
             if (e.KeyValue.Equals(113))
             {
@@ -528,24 +588,29 @@ namespace Caixa
                 frmDinheiro d = new frmDinheiro();
                 d.Owner = this;
                 d.ShowDialog();
+
             }
             if (e.KeyValue.Equals(114))
             {
                 totalcartao t = new totalcartao();
                 t.Owner = this;
                 t.ShowDialog();
+
             }
             if (e.KeyValue.Equals(115))
             {
                 frmFiado a = new frmFiado();
                 a.Owner = this;
                 a.ShowDialog();
+
             }
             if (e.KeyValue.Equals(116))
-            {         
-                frmSuprimento s = new frmSuprimento();
-                s.Owner = this;
-                s.ShowDialog();
+            {
+            
+                //frmSuprimento s = new frmSuprimento();
+                //s.Owner = this;
+                //s.ShowDialog();
+
             }
 
             if (e.KeyValue.Equals(117))
@@ -557,8 +622,15 @@ namespace Caixa
             }
             if (e.KeyValue.Equals(27))
             {
+
                 this.Close();
             }
+
+            if (e.KeyValue.Equals(122))
+            {
+
+            }
+
 
             if (e.KeyValue.Equals(121))
             {
@@ -586,6 +658,7 @@ namespace Caixa
                             //btnSalvar.Enabled = false;
                             //((frmOpcaoFecha)this.Owner).AtualizaDados();
                         }
+
                     }
                     catch
                     {
@@ -593,6 +666,7 @@ namespace Caixa
                     }
                 }
             }
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -630,7 +704,8 @@ namespace Caixa
                                 fecDAO.Updatevalor(valor, codcaixa);
                                 FechamentoDAO.valor = valor.ToString().Replace(",", ".");
                                 lblDif.Visible = true;
-                                btnValor.Enabled = true;                                 
+                                btnValor.Enabled = true;
+                                 
                             }
                             else
                             {
@@ -644,7 +719,8 @@ namespace Caixa
                             fecDAO.Updatevalor(valor, codcaixa);
                             FechamentoDAO.valor = valor.ToString().Replace(",", ".");
                             lblDif.Visible = true;
-                            btnValor.Enabled = true;                           
+                            btnValor.Enabled = true;
+                           
 
                             if (tipo == "Administrador")
                             {
@@ -655,6 +731,10 @@ namespace Caixa
                                 txtValorRelat.Enabled = false;
                             }
                         }
+
+
+
+
                     }
                 }
                 catch
@@ -662,7 +742,11 @@ namespace Caixa
                     MessageBox.Show("Erro !!!");
                 }
             }
+
+
+
         }
+
         private void btnValor_Click(object sender, EventArgs e)
         {
             DialogResult op;
@@ -688,6 +772,7 @@ namespace Caixa
                             vcDAO.Update(dinheiro);
                             vcDAO.Verificavalor();
                          
+
                             string datatela = DateTime.Now.ToShortDateString();
                             string hrtela = DateTime.Now.ToShortTimeString();
                             cd.Data = Convert.ToDateTime(datatela);
@@ -706,6 +791,7 @@ namespace Caixa
                             {
                                 vgDAO.Update(total.ToString());
                                 vgDAO.Verificavalor();
+
 
                                 #region GERAL
                                 string datatela1 = DateTime.Now.ToShortDateString();
@@ -740,6 +826,7 @@ namespace Caixa
 
                                 #endregion
                             }
+
                             #endregion
 
                             if (verDAO.Verifica() == true)
@@ -789,9 +876,14 @@ namespace Caixa
                                             difDAO.Inserir(difr);
                                         }
                                     }
+
+                                    
+
+
                                 }
                                 catch
                                 {
+
                                 }
                             }
                             MessageBox.Show("Informações cadastradas com sucesso !!!");
@@ -802,7 +894,10 @@ namespace Caixa
                             aud.Responsavel = UsuarioDAO.login;
                             audDAO.Inserir(aud);
                         }
-                        #endregion                        
+
+                        #endregion
+
+                        
                     }
                     else
                     {
@@ -820,6 +915,7 @@ namespace Caixa
                             {
                                 vcDAO.Update(dinheiro);
                                 vcDAO.Verificavalor();
+
 
                                 string datatela = DateTime.Now.ToShortDateString();
                                 string hrtela = DateTime.Now.ToShortTimeString();
@@ -877,9 +973,11 @@ namespace Caixa
                                             difr.Manha = "";
                                             difDAO.Inserir(difr);
                                         }
+
                                     }
                                     catch
                                     {
+
                                     }
                                 }
                                 MessageBox.Show("Informações cadastradas com sucesso !!!");
@@ -890,6 +988,7 @@ namespace Caixa
                                 aud.Responsavel = UsuarioDAO.login;
                                 audDAO.Inserir(aud);
                             }
+
                             #endregion
 
                             #region GERAL
@@ -936,8 +1035,13 @@ namespace Caixa
                         else
                         {
                             MessageBox.Show("Não existe valor de retirada");
-                        }                      
+                        }
+
+
+                      
                     }
+
+
                 }
                 else
                 {
@@ -958,6 +1062,7 @@ namespace Caixa
                             vcDAO.Update(dinheiro);
                             vcDAO.Verificavalor();
                          
+
                             string datatela = DateTime.Now.ToShortDateString();
                             string hrtela = DateTime.Now.ToShortTimeString();
                             cd.Data = Convert.ToDateTime(datatela);
@@ -1018,6 +1123,7 @@ namespace Caixa
                                 }
                                 catch
                                 {
+
                                 }
                             }
                             MessageBox.Show("Informações cadastradas com sucesso !!!");
@@ -1029,7 +1135,7 @@ namespace Caixa
                             audDAO.Inserir(aud);
                             #endregion
                             
-                           #region GERAL
+                        #region GERAL
                             if (vgDAO.Verificavalor() == true)
                             {
                                 vgDAO.Update(total.ToString());
@@ -1070,11 +1176,13 @@ namespace Caixa
 
                             #endregion
                         }
+
                     }
                     else
                     {
                         MessageBox.Show("Não existe valor de retirada");
                     }
+
                 }
             }
         }

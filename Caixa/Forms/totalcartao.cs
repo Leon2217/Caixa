@@ -22,7 +22,7 @@ namespace Caixa
         #endregion
 
         #region VAR
-        String login, tipo;
+        String login,tipo;
         Boolean update;
         string codmaq;
         double valor1;
@@ -43,14 +43,22 @@ namespace Caixa
         double valor16;
         double valor17;
         double valor18;
+#pragma warning disable CS0169 // O campo "totalcartao.vl" nunca é usado
         double vl;
+#pragma warning restore CS0169 // O campo "totalcartao.vl" nunca é usado
+#pragma warning disable CS0169 // O campo "totalcartao.por" nunca é usado
         double por;
+#pragma warning restore CS0169 // O campo "totalcartao.por" nunca é usado
         string codcart;
         double total;
         double totalcred;
         double totalref;
+#pragma warning disable CS0169 // O campo "totalcartao.taxa" nunca é usado
         double taxa;
+#pragma warning restore CS0169 // O campo "totalcartao.taxa" nunca é usado
+#pragma warning disable CS0169 // O campo "totalcartao.totaltx" nunca é usado
         double totaltx;
+#pragma warning restore CS0169 // O campo "totalcartao.totaltx" nunca é usado
         #endregion
         public totalcartao()
         {
@@ -58,13 +66,14 @@ namespace Caixa
         }
         public void Calcular()
         {
-            total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15 + valor16 + valor17 + valor18;
-            totalcred = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8;
-            totalref = valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15 + valor16 + valor17 + valor18;
+            total = valor1 + valor2 + valor3 + valor4+valor5+valor6+valor7+valor8+valor9+valor10+valor11+valor12+valor13+valor14+valor15+valor16+valor17+valor18;
+            totalcred = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7+valor8;
+            totalref =valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15+valor16+valor17+valor18;
             lblCart.Text = "= " + totalcred.ToString("C2");
-            lblTotal.Text = "Total : " + total.ToString("C2");
+            lblTotal.Text = "Total : " +total.ToString("C2");
             lblRef.Text = "= " + totalref.ToString("C2");
         }
+
 
         public static void Moeda(ref TextBox txt)
         {
@@ -82,10 +91,11 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
+                
             }
-            catch (Exception)
+            catch(Exception)
             {
+
             }
         }
 
@@ -401,12 +411,14 @@ namespace Caixa
                 tipo = usuDAO.Usu.Tipo.ToString();
                 update = true;
 
+
                 try
                 {
                     txtVsCred.Text = CartaocaixaDAO.vscred.ToString();
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -414,6 +426,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -421,6 +434,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -428,6 +442,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -435,6 +450,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -442,6 +458,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -449,6 +466,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -456,6 +474,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -463,6 +482,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -470,6 +490,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -477,6 +498,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -484,6 +506,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -491,6 +514,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -498,6 +522,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -505,6 +530,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
 
                 try
@@ -513,6 +539,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -520,14 +547,20 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
+
                     txtRefsoft.Text = CartaocaixaDAO.refsoft.ToString();
                 }
                 catch
                 {
+
                 }
+
+
+
             }
             else
             {
@@ -544,6 +577,7 @@ namespace Caixa
                 usuDAO.VerificaCargo(login);
                 tipo = usuDAO.Usu.Tipo.ToString();
                 update = true;
+
 
                 txtVsCred.Text = CartaocaixaDAO.vscred.ToString();
                 txtVsDeb.Text = CartaocaixaDAO.vsdeb.ToString();
@@ -563,6 +597,7 @@ namespace Caixa
                 txtTicketali.Text = CartaocaixaDAO.fakeline.ToString();
                 txtAlisoft.Text = CartaocaixaDAO.alisoft.ToString();
                 txtRefsoft.Text = CartaocaixaDAO.refsoft.ToString();
+
             }
         }
 
@@ -590,7 +625,7 @@ namespace Caixa
             Moeda(ref txtRefsoft);
 
             string codcaixa = CartaocaixaDAO.codcaixa;
-            if (carcaiDAO.vercarcai(codcaixa, codmaq) == true)
+            if (carcaiDAO.vercarcai(codcaixa, codmaq)==true)
             {
                 login = UsuarioDAO.login;
                 usuDAO.VerificaCargo(login);
@@ -603,6 +638,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -610,6 +646,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -617,6 +654,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -624,6 +662,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -631,6 +670,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -638,6 +678,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -645,6 +686,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -652,6 +694,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -659,6 +702,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -666,6 +710,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -673,6 +718,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -680,6 +726,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -687,6 +734,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -694,6 +742,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -701,6 +750,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
 
                 try
@@ -709,6 +759,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -716,6 +767,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
                 try
                 {
@@ -724,22 +776,33 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
+               
+                
+      
+            
             }
         }
+
+
+
+
+
         private void txtVsCred_TextChanged(object sender, EventArgs e)
         {
 
             Moeda(ref txtVsCred);
             if (txtVsCred.Text != string.Empty)
             {
-                valor1 = Convert.ToDouble(txtVsCred.Text);
+              valor1 =Convert.ToDouble(txtVsCred.Text);
                 Calcular();
-            }
-            else
+            }else
             {
                 lblTotal.Text = string.Empty;
             }
+         
+     
         }
 
         private void txtVsDeb_TextChanged(object sender, EventArgs e)
@@ -754,6 +817,8 @@ namespace Caixa
             {
                 lblTotal.Text = string.Empty;
             }
+
+           
         }
         private void txtEcredito_TextChanged(object sender, EventArgs e)
         {
@@ -783,7 +848,7 @@ namespace Caixa
         }
         private void txtMsCred_TextChanged(object sender, EventArgs e)
         {
-            Moeda(ref txtMsCred);
+           Moeda(ref txtMsCred);
             if (txtMsCred.Text != string.Empty)
             {
                 valor5 = Convert.ToDouble(txtMsCred.Text);
@@ -793,6 +858,8 @@ namespace Caixa
             {
                 lblTotal.Text = string.Empty;
             }
+
+          
         }
         private void txtMsDeb_TextChanged(object sender, EventArgs e)
         {
@@ -807,7 +874,8 @@ namespace Caixa
                 lblTotal.Text = string.Empty;
             }
         }
-
+       
+       
         private void txtHcredito_TextChanged(object sender, EventArgs e)
         {
             Moeda(ref txtHcredito);
@@ -885,9 +953,9 @@ namespace Caixa
             else
             {
                 lblTotal.Text = string.Empty;
-            }
+            }       
         }
-        private void txtEldebito_TextChanged(object sender, EventArgs e)
+         private void txtEldebito_TextChanged(object sender, EventArgs e)
         {
             Moeda(ref txtEldebito);
             if (txtEldebito.Text != string.Empty)
@@ -898,7 +966,7 @@ namespace Caixa
             else
             {
                 lblTotal.Text = string.Empty;
-            }
+            }        
         }
         private void txtVrali_TextChanged(object sender, EventArgs e)
         {
@@ -924,7 +992,7 @@ namespace Caixa
             else
             {
                 lblTotal.Text = string.Empty;
-            }
+            }         
         }
         private void txtVsCred_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -995,7 +1063,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1003,7 +1073,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1011,7 +1083,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1019,7 +1093,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1027,7 +1103,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1035,7 +1113,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -1043,16 +1123,18 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
         private void txtVsCred_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(13))
-            {
-                this.ProcessTabKey(true);
-                e.Handled = true;
+            {                             
+                    this.ProcessTabKey(true);
+                    e.Handled = true;
             }
         }
 
@@ -1060,7 +1142,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+          
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1070,7 +1152,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+         
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1080,7 +1162,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+             
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1090,6 +1172,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
+       
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1099,7 +1182,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+     
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1109,7 +1192,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+   
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1119,7 +1202,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+    
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1129,7 +1212,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+              
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1139,7 +1222,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+             
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1149,7 +1232,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+            
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1159,7 +1242,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+            
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1169,7 +1252,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+     
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1179,7 +1262,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+                
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1189,7 +1272,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(13))
             {
-
+               
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
@@ -1205,7 +1288,7 @@ namespace Caixa
                     {
 
                         codcart = "1";
-                        carcai.Valor = txtVsCred.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtVsCred.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1224,7 +1307,7 @@ namespace Caixa
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
                         rtx.Valor = txtVsCred.Text.ToString().Replace(".", "");
                         rtx.Valor_ct = totaltx.ToString().Replace(".", "");
-                        rtx.Id_maquina = Convert.ToInt32(codmaq);
+                        rtx.Id_maquina=Convert.ToInt32(codmaq);
                         rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         rtxDAO.Update(rtx);
 
@@ -1242,7 +1325,7 @@ namespace Caixa
                     if (txtVsDeb.Text != string.Empty)
                     {
                         codcart = "2";
-                        carcai.Valor = txtVsDeb.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtVsDeb.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1278,7 +1361,7 @@ namespace Caixa
                     if (txtMsCred.Text != string.Empty)
                     {
                         codcart = "3";
-                        carcai.Valor = txtMsCred.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtMsCred.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1314,7 +1397,7 @@ namespace Caixa
                     if (txtMsDeb.Text != string.Empty)
                     {
                         codcart = "4";
-                        carcai.Valor = txtMsDeb.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtMsDeb.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1350,7 +1433,7 @@ namespace Caixa
                     if (txtEdebito.Text != string.Empty)
                     {
                         codcart = "5";
-                        carcai.Valor = txtEdebito.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtEdebito.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1363,6 +1446,7 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
+
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1371,6 +1455,7 @@ namespace Caixa
                         rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         rtx.Id_maquina = Convert.ToInt32(codmaq);
                         rtxDAO.Update(rtx);
+
                     }
                     else
                     {
@@ -1385,7 +1470,7 @@ namespace Caixa
                     if (txtEcredito.Text != string.Empty)
                     {
                         codcart = "6";
-                        carcai.Valor = txtEcredito.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtEcredito.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1397,6 +1482,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1420,7 +1506,7 @@ namespace Caixa
                     if (txtHcredito.Text != string.Empty)
                     {
                         codcart = "7";
-                        carcai.Valor = txtHcredito.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtHcredito.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1432,6 +1518,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1455,7 +1542,7 @@ namespace Caixa
                     if (txtEali.Text != string.Empty)
                     {
                         codcart = "8";
-                        carcai.Valor = txtEali.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtEali.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1467,6 +1554,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1490,7 +1578,7 @@ namespace Caixa
                     if (txtEref.Text != string.Empty)
                     {
                         codcart = "9";
-                        carcai.Valor = txtEref.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtEref.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1502,6 +1590,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1524,7 +1613,7 @@ namespace Caixa
                     if (txtSali.Text != string.Empty)
                     {
                         codcart = "10";
-                        carcai.Valor = txtSali.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtSali.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1536,6 +1625,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1559,7 +1649,7 @@ namespace Caixa
                     if (txtSref.Text != string.Empty)
                     {
                         codcart = "11";
-                        carcai.Valor = txtSref.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtSref.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1571,6 +1661,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1594,7 +1685,7 @@ namespace Caixa
                     if (txtTref.Text != string.Empty)
                     {
                         codcart = "12";
-                        carcai.Valor = txtTref.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtTref.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1606,6 +1697,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1629,7 +1721,7 @@ namespace Caixa
                     if (txtEldebito.Text != string.Empty)
                     {
                         codcart = "14";
-                        carcai.Valor = txtEldebito.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtEldebito.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1641,6 +1733,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1664,7 +1757,7 @@ namespace Caixa
                     if (txtVrref.Text != string.Empty)
                     {
                         codcart = "15";
-                        carcai.Valor = txtVrref.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtVrref.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1700,7 +1793,7 @@ namespace Caixa
                     if (txtVrali.Text != string.Empty)
                     {
                         codcart = "16";
-                        carcai.Valor = txtVrali.Text.ToString().Replace(".", "");
+                        carcai.Valor = txtVrali.Text.ToString().Replace(".","");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
                         carcai.Id_maquina = Convert.ToInt32(codmaq);
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
@@ -1856,8 +1949,11 @@ namespace Caixa
             {
                 try
                 {
+
+
                     if (txtVsCred.Text != string.Empty)
                     {
+
                         codcart = "1";
                         carcai.Valor = txtVsCred.Text.ToString().Replace(".", "");
                         carcai.Id_cartao = Convert.ToInt32(codcart);
@@ -1871,7 +1967,8 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
-                        
+
+
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1880,6 +1977,7 @@ namespace Caixa
                         rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         rtx.Id_maquina = Convert.ToInt32(codmaq);
                         rtxDAO.Inserir(rtx);
+
                     }
                     else
                     {
@@ -1891,6 +1989,7 @@ namespace Caixa
                         carcaiDAO.inserir(carcai);
                     }
 
+
                     if (txtVsDeb.Text != string.Empty)
                     {
                         codcart = "2";
@@ -1900,12 +1999,14 @@ namespace Caixa
                         carcai.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         carcaiDAO.inserir(carcai);
 
+
                         vl = Convert.ToDouble(txtVsDeb.Text.ToString().Replace(".", ""));
 
                         txDAO.VerificaTaxa(codcart);
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1940,6 +2041,7 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -2259,6 +2361,7 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
+
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -2499,6 +2602,7 @@ namespace Caixa
                 {
                     MessageBox.Show($"Erro inesperado, {p.Message}");
                 }
+              
 
                 aud.Acao = "INSERIU CART";
                 aud.Data = FechamentoDAO.data;
@@ -2511,16 +2615,21 @@ namespace Caixa
                     ((frmOpcaoFecha)this.Owner).AtualizaDados();
                     Atualizadados();
                 }
-                catch
+                catch 
                 {
+                   
                 }
-            }
+               
+               
+            }               
         }
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -2544,7 +2653,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(27))
             {
-                this.Close();
+                    this.Close();
             }
 
             if (e.KeyValue.Equals(122))
@@ -3206,7 +3315,7 @@ namespace Caixa
                                 rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                                 rtx.Id_maquina = Convert.ToInt32(codmaq);
                                 rtxDAO.Update(rtx);
-                            }
+                            }                                                      
                             else
                             {
                                 codcart = "19";
@@ -3329,6 +3438,7 @@ namespace Caixa
                                 por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -3719,6 +3829,7 @@ namespace Caixa
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
+
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
                                 rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -3752,6 +3863,7 @@ namespace Caixa
                                 por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -3787,6 +3899,7 @@ namespace Caixa
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
+
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
                                 rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -3820,6 +3933,7 @@ namespace Caixa
                                 por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
+
 
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -3855,6 +3969,7 @@ namespace Caixa
                                 taxa = (vl * (por / 100));
                                 totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
+
                                 rtx.Data = FechamentoDAO.data;
                                 rtx.Id_cartao = Convert.ToInt32(codcart);
                                 rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -3876,7 +3991,7 @@ namespace Caixa
                             }
                             MessageBox.Show("Informações salvas com sucesso!!!");
                         }
-                        catch (NullReferenceException)
+                        catch (NullReferenceException nulo)
                         {
                             MessageBox.Show($"ERRO: FOI IMPOSSÍVEL SALVAR ALGUNS VALORES, CONFIRA SE HÁ TAXAS CADASTRADAS E DEPOIS TENTE NOVAMENTE");
                         }
@@ -3897,10 +4012,14 @@ namespace Caixa
                         }
                         catch
                         {
+
                         }
+                      
+
                     }
                 }
             }
+
         }
 
         private void txtTicketali_TextChanged(object sender, EventArgs e)
@@ -3987,7 +4106,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
@@ -3995,13 +4116,16 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 
         private void btnRelat_Click(object sender, EventArgs e)
         {
-            frmRelatCartao rlc = new frmRelatCartao();
+
+           frmRelatCartao rlc = new frmRelatCartao();
             rlc.Owner = this;
             rlc.ShowDialog();
         }
@@ -4026,6 +4150,7 @@ namespace Caixa
             txtTicketali.Clear();
             txtAlisoft.Clear();
             txtRefsoft.Clear();
+         
         }
     }
 }

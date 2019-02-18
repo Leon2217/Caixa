@@ -116,6 +116,7 @@
             this.mskCel.Name = "mskCel";
             this.mskCel.Size = new System.Drawing.Size(132, 26);
             this.mskCel.TabIndex = 2;
+            this.mskCel.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskCel_MaskInputRejected);
             this.mskCel.TextChanged += new System.EventHandler(this.mskCel_TextChanged);
             this.mskCel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCel_KeyDown);
             // 

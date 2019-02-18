@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
 {
     public partial class frmOpValeCap : Form
     {
+ 
         public frmOpValeCap()
         {
             InitializeComponent();
@@ -56,6 +64,11 @@ namespace Caixa
             frmRelatVendavc r = new frmRelatVendavc();
             r.Owner = this;
             r.ShowDialog();
+        }
+
+        private void frmOpValeCap_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

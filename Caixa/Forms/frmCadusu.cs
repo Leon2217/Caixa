@@ -92,6 +92,7 @@ namespace Caixa
                     MessageBox.Show("Favor verificar as informações digitadas !!!");
                 }
             }
+
         }
 
         private void txtLogin_TextChanged(object sender, EventArgs e)
@@ -114,6 +115,7 @@ namespace Caixa
             {
                 txtLogin.BackColor = Color.Empty;
             }
+
         }
 
         private void txtSenha_TextChanged(object sender, EventArgs e)
@@ -138,6 +140,8 @@ namespace Caixa
                 cmbCargo.Enabled = false;
                 cmbCargo.SelectedIndex = 0;
             }
+
+
             Conexao.criar_Conexao();
         }
         public void Limpar()
@@ -178,6 +182,7 @@ namespace Caixa
                 e.Handled = true;
             }
         }
+
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(13))
@@ -186,6 +191,7 @@ namespace Caixa
                 e.Handled = true;
             }
         }
+
         private void txtSenha_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(13))

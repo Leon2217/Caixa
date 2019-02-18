@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -54,7 +61,10 @@ namespace Caixa
                         else
                         {
                             MessageBox.Show("Você não possui privilégios o suficiente para alterar !!!");
-                        }                           
+                        }
+
+                           
+
                     }
                     else
                     {
@@ -69,7 +79,8 @@ namespace Caixa
                         txtJulio.Clear();
                         ((frmOpcaoFecha)this.Owner).AtualizaDados();
                         this.Close();
-                    }                   
+                    }
+                    
                 }
                 catch (FormatException)
                 {
@@ -91,6 +102,7 @@ namespace Caixa
 
             }
         }
+
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
@@ -116,6 +128,8 @@ namespace Caixa
                 tipo = usuDAO.Usu.Tipo.ToString();
                 update = true;
             }
+
+
         }
         public static void Moeda(ref TextBox txt)
         {

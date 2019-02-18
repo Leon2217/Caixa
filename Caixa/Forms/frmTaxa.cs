@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -12,6 +19,7 @@ namespace Caixa
         AuditoriaDAO audDAO = new AuditoriaDAO();
 
         #endregion
+
 
         public frmTaxa()
         {
@@ -130,6 +138,8 @@ namespace Caixa
                 tx.Dias = txtDiaDebito.Value.ToString();
                 txDAO.Update(tx);
                 #endregion
+
+
 
                 MessageBox.Show("Informações atualizadas com sucesso !!!");
 
@@ -258,6 +268,8 @@ namespace Caixa
                 aud.Responsavel = UsuarioDAO.login;
                 audDAO.Inserir(aud);
             }
+
+
         }
 
         public static void Moeda(ref TextBox txt)
@@ -559,7 +571,9 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
+
                 e.Handled = true;
+
             }
         }
 

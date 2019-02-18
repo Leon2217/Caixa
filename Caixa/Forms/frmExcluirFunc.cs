@@ -52,7 +52,9 @@ namespace Caixa
             }
             catch
             {
+
             }
+
         }
 
         private void frmExcluirFunc_Load(object sender, EventArgs e)
@@ -85,14 +87,19 @@ namespace Caixa
             }
             catch
             {
-            }            
+
+            }
+            
         }
+
        
+
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
+
             }
         }
 
@@ -126,6 +133,7 @@ namespace Caixa
 
                 gvExibir.DataSource = pesDAO.ListarT();
             }
+
             #region AJUSTE GRID
             foreach (DataGridViewColumn column in gvExibir.Columns)
             {
@@ -137,20 +145,167 @@ namespace Caixa
                     column.Width = 160; //tamanho fixo da coluna FISJUR
                 else if (column.DataPropertyName == "CATEGORIA")
                     column.Width = 100; //tamanho fixo da coluna FISJUR
+
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             #endregion
-        }      
+
+        }
+
+        //private void txtId_TextChanged(object sender, EventArgs e)
+        //{
+        //    txtId.BackColor = Color.Empty;
+        //    if (txtId.Text != string.Empty)
+        //    {
+        //      id = txtId.Text.ToString();
+        //    }
+
+
+        //}
+
+        //private void btnExcluir_Click(object sender, EventArgs e)
+        //{
+        //    if (txtId.Text == string.Empty)
+        //    {
+        //        txtId.BackColor = Color.Red;
+        //        MessageBox.Show("Favor preencher o ID da pessoa");
+        //    }
+        //    else
+        //    {
+        //        DialogResult op;
+
+        //        op = MessageBox.Show("Deseja realmente excluir?",
+        //            "Excluir?", MessageBoxButtons.YesNo,
+        //            MessageBoxIcon.Question);
+
+        //        if (op == DialogResult.Yes)
+        //        {
+        //            pesDAO.Excluir(id);
+        //            MessageBox.Show("Excluído com sucesso !!!");
+        //            txtId.Text = string.Empty;
+        //            cmbTipo.SelectedIndex = 0;
+        //            txtNome.Clear();
+        //            gvExibir.DataSource = pesDAO.ListarID(tipo);
+
+        //            aud.Acao = "EXCLUIU PESSOA";
+        //            aud.Data = FechamentoDAO.data;
+        //            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+        //            aud.Responsavel = UsuarioDAO.login;
+        //            audDAO.Inserir(aud);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Cancelado");
+        //        }
+        //    }
+        //}
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar) || char.IsSeparator(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                e.Handled = true;
+
             }
+        }
+
+        private void chkFunc_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (chkFunc.Checked == true)
+            //{
+            //    chkFornecedor.Enabled = false;
+              
+            //}
+            //else
+            //{
+            //    chkFornecedor.Enabled = true;
+            //}
+
+            //#region SOMENTE FUNCIONARIO
+            //if (txtNome.Text == string.Empty && chkFunc.Checked == true && chkFornecedor.Checked == false)
+            //{
+            //    tipo = "Func";
+            //    gvExibir.DataSource = pesDAO.ListarTipo(tipo);
+            //}
+            //#endregion
+
+            //#region TODOS VAZIOS
+            //if (txtNome.Text == string.Empty && chkFornecedor.Checked == false && chkFunc.Checked == false)
+            //{
+            //    gvExibir.DataSource = pesDAO.ListarExcluir();
+            //}
+            //#endregion
+
+            //#region SOMENTE FUNCIONARIO E NOME
+            //if (txtNome.Text != string.Empty && chkFunc.Checked == true && chkFornecedor.Checked == false)
+            //{
+            //    nome = txtNome.Text;
+            //    tipo = "Func";
+            //    gvExibir.DataSource = pesDAO.ListarTN(tipo, nome);
+            //}
+            //#endregion
+
+            //#region SOMENTE FORNECEDOR E NOME
+            //if (txtNome.Text != string.Empty && chkFunc.Checked == false && chkFornecedor.Checked == true)
+            //{
+            //    nome = txtNome.Text;
+            //    tipo = "Fornecedor";
+            //    gvExibir.DataSource = pesDAO.ListarTN(tipo, nome);
+            //}
+            //#endregion
+
+        }
+
+        private void chkFornecedor_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (chkFornecedor.Checked == true)
+            //{
+            //    chkFunc.Enabled = false;
+              
+            //}
+            //else
+            //{
+            //    chkFunc.Enabled = true;
+            //}
+
+            //#region SOMENTE FORNECEDOR
+            //if (txtNome.Text == string.Empty && chkFunc.Checked == false && chkFornecedor.Checked == true)
+            //{
+            //    tipo = "Fornecedor";
+            //    gvExibir.DataSource = pesDAO.ListarTipo(tipo);
+            //}
+            //#endregion
+
+            //#region TODOS VAZIOS
+            //if (txtNome.Text == string.Empty && chkFornecedor.Checked == false && chkFunc.Checked == false)
+            //{
+            //    gvExibir.DataSource = pesDAO.ListarExcluir();
+            //}
+            //#endregion
+
+            //#region SOMENTE FUNCIONARIO E NOME
+            //if (txtNome.Text != string.Empty && chkFunc.Checked == true && chkFornecedor.Checked == false)
+            //{
+            //    nome = txtNome.Text;
+            //    tipo = "Func";
+            //    gvExibir.DataSource = pesDAO.ListarTN(tipo, nome);
+            //}
+            //#endregion
+
+            //#region SOMENTE FORNECEDOR E NOME
+            //if (txtNome.Text != string.Empty && chkFunc.Checked == false && chkFornecedor.Checked == true)
+            //{
+            //    nome = txtNome.Text;
+            //    tipo = "Fornecedor";
+            //    gvExibir.DataSource = pesDAO.ListarTN(tipo, nome);
+            //}
+            //#endregion
+
+
+
         }
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,9 +335,12 @@ namespace Caixa
             #endregion
 
             if (txtNome.Text == string.Empty && cmbTipo.Text == string.Empty)
-            {              
+            {
+                
                 gvExibir.DataSource = pesDAO.ListarT();
             }
+
+
         }
 
         private void cmbTipo_TextChanged(object sender, EventArgs e)
@@ -225,6 +383,7 @@ namespace Caixa
                 }
             }
             #endregion
+
         }
 
         private void gvExibir_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -246,10 +405,11 @@ namespace Caixa
             }
             this.Close();
         }
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
-}
+    }
 

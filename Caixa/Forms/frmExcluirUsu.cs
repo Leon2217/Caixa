@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -26,7 +32,9 @@ namespace Caixa
             }
             catch
             {
+
             }
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -63,14 +71,15 @@ namespace Caixa
                 }
             }
         }
-            
+
         private void txtId_TextChanged(object sender, EventArgs e)
         {
             txtId.BackColor = Color.Empty;
             if (txtId.Text != string.Empty)
             {
                   id = txtId.Text.ToString();
-            }          
+            }
+           
         }
 
         private void frmExcluirUsu_KeyDown(object sender, KeyEventArgs e)
@@ -86,6 +95,7 @@ namespace Caixa
             if (!(char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
+
             }
         }
 

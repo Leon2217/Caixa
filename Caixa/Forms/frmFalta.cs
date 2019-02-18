@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -51,10 +58,11 @@ namespace Caixa
                 mskData.Text = DateTime.Now.ToShortDateString();
               
                 CarregarComboNome();
-            }
-            catch
+            }catch
             {
+
             }
+           
         }
 
         private void chkIntegral_CheckedChanged(object sender, EventArgs e)
@@ -71,6 +79,8 @@ namespace Caixa
                 chkTarde.Enabled = true;
                 chkParcial.Enabled = true;
             }
+
+           
         }
 
         private void chkParcial_CheckedChanged(object sender, EventArgs e)
@@ -83,7 +93,8 @@ namespace Caixa
                 mskDe.Visible = true;
                 mskAte.Visible = true;
                 lblDe.Visible = true;
-                lblAt.Visible = true;               
+                lblAt.Visible = true;
+                
             }
             else
             {
@@ -262,6 +273,7 @@ namespace Caixa
                 MessageBox.Show("Favor escolher um dos períodos acima !!!");
             }
             #endregion
+
         }
 
         private void cmbNome_SelectedIndexChanged(object sender, EventArgs e)

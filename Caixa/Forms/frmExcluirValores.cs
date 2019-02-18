@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
 {
     public partial class frmExcluirValores : Form
     {
+
         OperadoraDAO opDAO = new OperadoraDAO();
         ValoroperadoraDAO vopDAO = new ValoroperadoraDAO();
         Auditoria aud = new Auditoria();
@@ -21,7 +28,8 @@ namespace Caixa
         }
 
         public void CarregarComboOperadora()
-        { 
+        {
+
             cmbOperadora.DataSource = opDAO.Listartudo();
             cmbOperadora.DisplayMember = "operadora";
             cmbOperadora.ValueMember = "id_operadora";
@@ -33,10 +41,13 @@ namespace Caixa
             try
             {
                 CarregarComboOperadora();
+                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             catch
             {
+
             }
+       
         }
 
         private void cmbOperadora_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,6 +103,7 @@ namespace Caixa
             if (!(char.IsNumber(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
+
             }
         }
 

@@ -96,6 +96,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmSecreta2";
             this.Text = ".: Confirmar Restauração";
+            this.Load += new System.EventHandler(this.frmSecreta2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

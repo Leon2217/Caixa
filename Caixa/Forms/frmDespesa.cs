@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
 {
     public partial class frmDespesa : Form
     {
+
         #region INSTANCIAMENTO CLASSES
         Despesa desp = new Despesa();
         DespesaDAO despDAO = new DespesaDAO();
@@ -15,6 +21,7 @@ namespace Caixa
         TipodespesaDAO tpdesDAO = new TipodespesaDAO();
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
+
         #endregion
 
         #region VAR
@@ -27,6 +34,7 @@ namespace Caixa
         DateTime data;
         int numparc;
         #endregion
+
 
         public frmDespesa()
         {
@@ -65,6 +73,7 @@ namespace Caixa
             }
         }
 
+
         public void CarregarComboFunc()
         {
             cmbOp.DataSource = pesDAO.ListarFU();
@@ -91,6 +100,7 @@ namespace Caixa
             codtp = cmbOp.SelectedValue.ToString();
             tipo = cmbOp.Text;
         }
+
 
         private void chkF_CheckedChanged(object sender, EventArgs e)
         {
@@ -120,7 +130,8 @@ namespace Caixa
                 catch
                 {
 
-                }              
+                }
+              
             }
         }
 
@@ -202,7 +213,8 @@ namespace Caixa
                             {
                                 desp.Id_tipodespesa = Convert.ToInt32(codtp);
                                 despDAO.Inserir2(desp);                                
-                            }                            
+                            }
+                            
                         }
                         MessageBox.Show("Informações salvas com sucesso !!!");
                         Limpar();
@@ -220,6 +232,7 @@ namespace Caixa
                 }
             }
         }
+
         private void txtDesc_TextChanged(object sender, EventArgs e)
         {
             txtDesc.BackColor = Color.Empty;
@@ -228,6 +241,7 @@ namespace Caixa
                 desc = txtDesc.Text;
             }
         }
+
         private void cmbOp_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbOp.BackColor = Color.Empty;
@@ -254,7 +268,10 @@ namespace Caixa
                 {
 
                 }
-            }                   
+            }
+                
+           
+         
         }
 
         private void mskData_TextChanged(object sender, EventArgs e)
@@ -270,9 +287,11 @@ namespace Caixa
                 {
                     MessageBox.Show("Data inválida !!!");
                     mskData.Clear();
-                }               
+                }
+               
             }
         }
+
         private void frmDespesa_Load(object sender, EventArgs e)
         {
             Moeda(ref txtValor);
@@ -292,6 +311,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
             }
             else
@@ -304,7 +324,9 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
+
             }
         }
 
@@ -315,7 +337,8 @@ namespace Caixa
             if (txtValor.Text != string.Empty)
             {
                 valor = txtValor.Text;
-            }         
+            }
+            
         }
 
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
@@ -323,6 +346,7 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
+
             }
         }
 
@@ -341,7 +365,9 @@ namespace Caixa
             }
             catch
             {
-            }  
+
+            }
+   
         }          
 
 
@@ -407,6 +433,7 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
             }
             else
@@ -419,7 +446,9 @@ namespace Caixa
                 }
                 catch
                 {
+
                 }
+
             }
         }
     }

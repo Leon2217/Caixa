@@ -101,6 +101,7 @@
             this.Name = "frmOpValeCap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Vale Cap";
+            this.Load += new System.EventHandler(this.frmOpValeCap_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmOpValeCap_KeyDown);
             this.ResumeLayout(false);
 

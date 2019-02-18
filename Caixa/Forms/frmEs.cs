@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+
 
 namespace Caixa
 {
@@ -11,12 +18,18 @@ namespace Caixa
     {
         credDebDAO cdDAO = new credDebDAO();
         UsuarioDAO usuDAO = new UsuarioDAO();
+
+
         DateTime de, at;
         DateTime data;
-
+#pragma warning disable CS0169 // O campo "frmEs.cred" nunca é usado
+        string cred;
         string descr;
+
         string credito;
         string debito;
+#pragma warning restore CS0169 // O campo "frmEs.cred" nunca é usado
+
         int j;
         public frmEs()
         {
@@ -49,6 +62,7 @@ namespace Caixa
                 }
             }
             #endregion
+
 
             #region DE
             if (mskDe.MaskFull == true)
@@ -205,6 +219,7 @@ namespace Caixa
             pdftable.WidthPercentage = 100;
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdftable.DefaultCell.BorderWidth = 1;
+
 
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
             //Cabeçalho
@@ -437,12 +452,35 @@ namespace Caixa
             {
                 this.Close();
             }
+
+
         }
+
+    
+
+        private void frmEs_Resize(object sender, EventArgs e)
+        {
+//            if (this.WindowState == FormWindowState.Maximized)
+//            {
+//                foreach (DataGridViewColumn c in gvExibir.Columns)
+//                {
+//#pragma warning disable CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
+//                    c.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, GraphicsUnit.Pixel);
+//#pragma warning restore CS0104 // "Font" é uma referência ambígua entre "System.Drawing.Font" e "iTextSharp.text.Font"
+//                }
+//            }
+        }
+
+     
+
         private void btnExport_Click(object sender, EventArgs e)
-        {           
+        {
+            
             Microsoft.Office.Interop.Excel._Application app =new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            
+         
 
             try
             {
@@ -450,6 +488,7 @@ namespace Caixa
             }
             catch
             {
+
             }
 
             worksheet = workbook.ActiveSheet;
@@ -458,7 +497,11 @@ namespace Caixa
             for(int i = 1; i < gvExibir.Columns.Count+1; i++)
             {
                 worksheet.Cells[1,i] = gvExibir.Columns[i - 1].HeaderText;
-                worksheet.StandardWidth = 17;
+                worksheet.StandardWidth =17;
+
+   
+                
+
             }
 
             for (int i = 0; i < gvExibir.Rows.Count; i++)
@@ -468,6 +511,7 @@ namespace Caixa
                     if (j == 1)
                     {
                         data = Convert.ToDateTime(gvExibir.Rows[i].Cells[j].Value);
+
 
                         worksheet.Cells[i + 2, j + 1] = data.ToString("MM/dd/yyyy");                   
                     }
@@ -487,8 +531,10 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
+
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
+
                     }
                     else
                     {
@@ -508,6 +554,7 @@ namespace Caixa
             Microsoft.Office.Interop.Excel.Borders bd = cells.Borders;
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
+
 
             var saveFileDialoge = new SaveFileDialog();
             saveFileDialoge.FileName ="Planilha";
@@ -541,6 +588,7 @@ namespace Caixa
                 if (Convert.ToString(row.Cells[2].Value) == "Entrada sangria PDV")
                     row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
             }
+
         }
 
         private void txtDesc_TextChanged(object sender, EventArgs e)
@@ -889,6 +937,8 @@ namespace Caixa
             #endregion
         }
 
+
+
         public static void Moeda(ref TextBox txt)
         {
             string n = string.Empty;
@@ -908,6 +958,7 @@ namespace Caixa
             }
             catch (Exception)
             {
+
             }
         }
 
@@ -915,6 +966,7 @@ namespace Caixa
         {
             printDGV.Print_DataGridView(gvExibir);
         }
+
 
         private void btnConferido_Click(object sender, EventArgs e)
         {
@@ -928,7 +980,9 @@ namespace Caixa
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Não há linha selecionada");
-            }                                
+            }
+          
+                       
         }     
 
         private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -948,7 +1002,10 @@ namespace Caixa
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Não há linha selecionada");
-            }             
+            }
+   
+
+            
         }
 
         private void frmEs_Load(object sender, EventArgs e)
@@ -971,28 +1028,43 @@ namespace Caixa
             mskAté.Text = datatela;
             mskDe.Text = datatela;
             
+
             if (mskDe.MaskFull == true && mskAté.MaskFull == true)
             {
                 de = Convert.ToDateTime(mskDe.Text);
                 at = Convert.ToDateTime(mskAté.Text);
-           
-                gvExibir.DataSource = cdDAO.ListarB(de, at);
 
-                this.gvExibir.Columns["CRED"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.gvExibir.Columns["DEB"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.gvExibir.Columns["TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+           
+                    gvExibir.DataSource = cdDAO.ListarB(de, at);
+
+                this.gvExibir.Columns["CRED"].DefaultCellStyle
+    .Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
+                this.gvExibir.Columns["DEB"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                this.gvExibir.Columns["TOTAL"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             }
             else
             {
                 if (mskDe.MaskFull == false || mskAté.MaskFull == false)
                 {                  
-                    gvExibir.DataSource = cdDAO.ListarTudo();
+                        gvExibir.DataSource = cdDAO.ListarTudo();
 
-                    this.gvExibir.Columns["CRED"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.gvExibir.Columns["DEB"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.gvExibir.Columns["TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.gvExibir.Columns["CRED"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    this.gvExibir.Columns["DEB"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    this.gvExibir.Columns["TOTAL"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
             }
+
             #region AJUSTE GRID
             foreach (DataGridViewColumn column in gvExibir.Columns)
             {
@@ -1010,6 +1082,8 @@ namespace Caixa
                     column.Visible = false;
                 else if (column.DataPropertyName == "ID")
                     column.Visible = false;
+
+
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

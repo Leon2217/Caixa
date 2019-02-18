@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -10,7 +17,9 @@ namespace Caixa
     {
         VendaVCDAO vcDAO = new VendaVCDAO();
         DateTime data;
+#pragma warning disable CS0169 // O campo "frmRelatVendavc.dt" nunca é usado
         DateTime dt;
+#pragma warning restore CS0169 // O campo "frmRelatVendavc.dt" nunca é usado
         int j;
         public frmRelatVendavc()
         {
@@ -19,19 +28,26 @@ namespace Caixa
 
         private void frmRelatVendavc_Load(object sender, EventArgs e)
         {
+
             try
             {
                 gvExibir.DataSource = vcDAO.ListarTudo();
 
-                this.gvExibir.Columns["VALOR"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.gvExibir.Columns["TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                this.gvExibir.Columns["VALOR"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                this.gvExibir.Columns["TOTAL"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 string datatela = DateTime.Now.ToShortDateString();
                 mskData.Text = datatela;
             }
             catch
             {
+
             }
+        
+
         }
 
         public void ExportarPDF(DataGridView dgw, string filename)
@@ -109,7 +125,8 @@ namespace Caixa
                 }
 
                 gvExibir.DataSource = vcDAO.ListarData(data);
-            }          
+            }
+          
         }
 
         private void frmRelatVendavc_KeyDown(object sender, KeyEventArgs e)
@@ -136,6 +153,7 @@ namespace Caixa
             }
             catch
             {
+
             }
 
             worksheet = workbook.ActiveSheet;
@@ -154,7 +172,10 @@ namespace Caixa
                     {
                         data = Convert.ToDateTime(gvExibir.Rows[i].Cells[j].Value);
 
+
                         worksheet.Cells[i + 2, j + 1] = data.ToString("MM/dd/yyyy");
+
+
                     }
                     else
                     {
@@ -173,11 +194,14 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
+
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
+
                     }
                     else
                     {
+
                         //the percent values were decimals with commas in the string       
                         string temp = "R$ " + range.Value.ToString();
                         temp = temp.Replace(",", ".");
@@ -194,6 +218,9 @@ namespace Caixa
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
 
+
+
+
             var saveFileDialoge = new SaveFileDialog();
             saveFileDialoge.FileName = "Planilha";
             saveFileDialoge.DefaultExt = ".xlsx";
@@ -203,5 +230,6 @@ namespace Caixa
             }
             app.Quit();
         }
+
     }
 }

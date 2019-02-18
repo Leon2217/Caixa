@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -65,7 +72,8 @@ namespace Caixa
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             try
-            {               
+            {
+               
                 DialogResult op;
 
                 op = MessageBox.Show("Você tem certeza dessas informações?",
@@ -88,7 +96,9 @@ namespace Caixa
                         aud.Responsavel = UsuarioDAO.login;
                         audDAO.Inserir(aud);
 
-                        MessageBox.Show("Informações salvas com sucesso!!!");                      
+                        MessageBox.Show("Informações salvas com sucesso!!!");
+
+                      
                     }
                     catch
                     {
@@ -144,6 +154,8 @@ namespace Caixa
 
                             #endregion
 
+
+
                             //GERAL
                             if (vgDAO.Verificavalor() == true)
                             {
@@ -176,12 +188,17 @@ namespace Caixa
 
                                 #endregion
                             }
+
+
                         }
                     }
                     catch
                     {
 
-                    }            
+                    }
+                    
+                  
+
                 }
             }
             catch
@@ -190,6 +207,7 @@ namespace Caixa
             }
 
             Close();
+
         }
 
         private void txtSangria_TextChanged(object sender, EventArgs e)

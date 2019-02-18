@@ -154,6 +154,7 @@
             this.Text = ".: Cadastro de valores";
             this.Load += new System.EventHandler(this.frmValorOperadora_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmValorOperadora_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmValorOperadora_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

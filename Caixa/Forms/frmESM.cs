@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -32,6 +39,7 @@ namespace Caixa
                     gvExibir.DataSource = edDAO.ListarTudo();
                 }
             }
+
             #region AJUSTE GRID
             foreach (DataGridViewColumn column in gvExibir.Columns)
             {
@@ -41,10 +49,13 @@ namespace Caixa
                     column.Width = 80; //tamanho fixo da coluna DESCR
                 else if (column.DataPropertyName == "HORA")
                     column.Width = 60; //tamanho fixo da coluna DESCR
+
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
+
+
             }
             #endregion
         }
@@ -64,6 +75,7 @@ namespace Caixa
                     gvExibir.DataSource = edDAO.ListarTudo();
                 }
             }
+
             #region AJUSTE GRID
             foreach (DataGridViewColumn column in gvExibir.Columns)
             {
@@ -73,6 +85,7 @@ namespace Caixa
                     column.Width = 80; //tamanho fixo da coluna DESCR
                 else if (column.DataPropertyName == "HORA")
                     column.Width = 60; //tamanho fixo da coluna DESCR
+
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -212,6 +225,14 @@ namespace Caixa
                     }
                 }
             }
+
+
+
+
+
+
+
+
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
             foda.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous, Microsoft.Office.Interop.Excel.XlBorderWeight.xlMedium, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic);
@@ -219,6 +240,10 @@ namespace Caixa
             Microsoft.Office.Interop.Excel.Borders bd = cells.Borders;
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
+
+
+
+
 
             var saveFileDialoge = new SaveFileDialog();
             saveFileDialoge.FileName = "Planilha";
@@ -240,15 +265,18 @@ namespace Caixa
 
         private void frmESM_Load(object sender, EventArgs e)
         {
-            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+             //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             string datatela = DateTime.Now.ToShortDateString();
             mskDe.Text = datatela;
             mskAté.Text = datatela;
 
+
+           
             if (mskDe.MaskFull == true && mskAté.MaskFull == true)
             {
                 de = Convert.ToDateTime(mskDe.Text);
                 at = Convert.ToDateTime(mskAté.Text);
+
 
                 try
                 {
@@ -277,14 +305,24 @@ namespace Caixa
                 {
 
                 }
-                this.gvExibir.Columns["ENTRADA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.gvExibir.Columns["SAIDA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                this.gvExibir.Columns["TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
+
+                this.gvExibir.Columns["ENTRADA"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                this.gvExibir.Columns["SAIDA"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                this.gvExibir.Columns["TOTAL"].DefaultCellStyle
+.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             }
             else
             {
                 if (mskDe.MaskFull == false || mskAté.MaskFull == false)
                 {
+
                     try
                     {
                         gvExibir.DataSource = edDAO.ListarTudo();
@@ -293,11 +331,21 @@ namespace Caixa
                     {
 
                     }
-                    this.gvExibir.Columns["ENTRADA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.gvExibir.Columns["SAIDA"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.gvExibir.Columns["TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+          
+
+                    this.gvExibir.Columns["ENTRADA"].DefaultCellStyle
+    .Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    this.gvExibir.Columns["SAIDA"].DefaultCellStyle
+    .Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    this.gvExibir.Columns["TOTAL"].DefaultCellStyle
+    .Alignment = DataGridViewContentAlignment.MiddleRight;
+
                 }
             }
         }
+
+
     }
 }

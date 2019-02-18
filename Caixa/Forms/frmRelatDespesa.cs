@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -43,6 +49,7 @@ namespace Caixa
             }
         }
 
+
         public void CarregarComboPessoa()
         {
             cmbPessoa.DataSource = pesDAO.ListarTDP();
@@ -79,6 +86,7 @@ namespace Caixa
             }
             catch
             {
+
             }
         }
 
@@ -1158,16 +1166,19 @@ namespace Caixa
             if (e.Value != null && e.Value.ToString().Contains("Atrasado"))
             {
                 e.CellStyle.ForeColor = Color.Red;
+
             }
 
             if (e.Value != null && e.Value.ToString().Contains("Pago"))
             {
                 e.CellStyle.ForeColor = Color.Green;
+
             }
 
             if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
             {
                 e.CellStyle.ForeColor = Color.Goldenrod;
+
             }
         }
 
@@ -1510,6 +1521,8 @@ namespace Caixa
                                 #endregion
                             }
                             #endregion
+
+
                         }
                         else
                         {
@@ -1540,6 +1553,7 @@ namespace Caixa
             }
         }
 
+
         public void ExportarPDF(DataGridView dgw, string filename)
         {
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
@@ -1548,6 +1562,7 @@ namespace Caixa
             pdftable.WidthPercentage = 100;
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdftable.DefaultCell.BorderWidth = 1;
+
 
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
             //Cabeçalho
@@ -1564,6 +1579,7 @@ namespace Caixa
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
+
                     if (cell.ColumnIndex == 1)
                     {
                         DateTime d;
@@ -1575,6 +1591,9 @@ namespace Caixa
                     {
                         pdftable.AddCell(new Phrase(cell.Value.ToString(), text));
                     }
+
+
+
                 }
             }
             var savefiledialoge = new SaveFileDialog();
@@ -1591,6 +1610,7 @@ namespace Caixa
                     pdfdoc.Close();
                     stream.Close();
                 }
+
             }
         }
 

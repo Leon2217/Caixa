@@ -148,6 +148,7 @@ namespace Caixa
                 else
                 {
                     MessageBox.Show("Usuário incorreto ou senha incorreta!");
+                    txtLogin.Clear();
                     txtSenha.Clear();
                 }
             }

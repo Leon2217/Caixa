@@ -14,6 +14,7 @@ namespace Caixa
         DateTime data_em, data2, data3;
         DateTime data;
 
+
         public int Id_contas { get => id_contas; set => id_contas = value; }
         public int Id_pessoa { get => id_pessoa; set => id_pessoa = value; }
         public string Valor { get => valor; set => valor = value; }

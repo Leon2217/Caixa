@@ -288,7 +288,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Entrada e Saída";
             this.Load += new System.EventHandler(this.frmEs_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEs_KeyDown);          
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEs_KeyDown);
+            this.Resize += new System.EventHandler(this.frmEs_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
