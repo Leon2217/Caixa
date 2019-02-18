@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -12,7 +8,6 @@ namespace Caixa
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
         Falta falta = new Falta();
-
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;

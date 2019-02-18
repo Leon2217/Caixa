@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections;
-using System.Data;
-using System.Text;
 
 namespace Caixa
 {
@@ -86,7 +84,6 @@ namespace Caixa
             }
             finally
             {
-
             }
         }
 
@@ -109,8 +106,7 @@ namespace Caixa
                 ColumnWidths.Clear();
                 ColumnTypes.Clear();
                 CellHeight = 0;
-                RowsPerPage = 0;
-                
+                RowsPerPage = 0;    
 
                 // Para vários tipos de colunas
                 CellButton = new Button();
@@ -134,7 +130,7 @@ namespace Caixa
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+    
         private static void PrintDoc_PrintPage(object sender,
                     System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -200,7 +196,7 @@ namespace Caixa
                                     Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top -
                             e.Graphics.MeasureString(PrintTitle, new Font(dgv.Font,
                                     FontStyle.Bold), e.MarginBounds.Width).Height - 13);
-                           
+
 
                             String s = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
 
@@ -294,13 +290,10 @@ namespace Caixa
                                         - 16, CellHeight), StrFormatComboBox);
                             }
 
-
                             // Desenha as margens das células
                             e.Graphics.DrawRectangle(Pens.Black, new Rectangle((int)ColumnLefts[i],
                                     tmpTop, (int)ColumnWidths[i], CellHeight));
-
                             i++;
-
                         }
                         tmpTop += CellHeight;
                     }

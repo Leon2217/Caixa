@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
-using System;
 
 namespace Caixa
 {
@@ -69,9 +68,7 @@ namespace Caixa
         {
             executarComando("DELETE FROM VALOR_OPERADORA WHERE id_valor ='" + id + "';");
         }
-        #endregion
-
-        
+        #endregion      
 
         #region LISTA OS VALORES POR ID DA OPERADORA
         public DataTable Listarvalores3(string id)

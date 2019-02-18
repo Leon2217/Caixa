@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -16,7 +12,6 @@ namespace Caixa
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
-
 
         public static string vscred;
         public static string vsdeb;
@@ -41,10 +36,6 @@ namespace Caixa
         public static string total2;
         public static string noite;
 
-
-
-
-
         internal Cartaocaixa Carcai { get => carcai; set => carcai = value; }
 
         public static string Codcaixa { get => codcaixa; set => codcaixa = value; }
@@ -62,7 +53,6 @@ namespace Caixa
         public static string Sodexoref { get => sodexoref; set => sodexoref = value; }
         public static string Ticket { get => ticket; set => ticket = value; }
         public static string Vrali { get => vrali; set => vrali = value; }
-
         public static bool Verifica { get => verifica; set => verifica = value; }
         public static string Vrrefei { get => vrrefei; set => vrrefei = value; }
         public static string Fakeline { get => fakeline; set => fakeline = value; }
@@ -80,7 +70,6 @@ namespace Caixa
             executar_comando = new MySqlCommandBuilder(comando_sql);
             comando_sql.Fill(tabela_memoria);
         }
-
 
         public void inserir(Cartaocaixa carcai)
         {
@@ -130,10 +119,7 @@ namespace Caixa
             executarComando("Select sum(valor) from cartaocaixa cc inner join caixa c on c.id_caixa=cc.id_caixa inner join turno t on t.id_turno=c.id_turno where c.id_turno=3 and datainicio='" + data.ToString("yyyy/MM/dd") + "';");
             try
             {
-
                 Noite = tabela_memoria.Rows[0]["sum(valor)"].ToString();
-
-
                 return true;
             }
             catch
@@ -187,8 +173,6 @@ namespace Caixa
                 alisoft= tabela_memoria.Rows[16]["valor"].ToString();
                 refsoft = tabela_memoria.Rows[17]["valor"].ToString();
 
-
-               
                 return true;
             }
             catch
@@ -209,8 +193,7 @@ namespace Caixa
                 }
 
 
-            }
-           
+            }  
         }
 
         #region LISTAR TUDO
@@ -235,8 +218,6 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
-
 
         #region LISTAR DE
         public DataTable ListarDe(DateTime de)
@@ -991,9 +972,6 @@ namespace Caixa
             #endregion
             return listaDescripto;
         }
-        #endregion
-
-        
-
+        #endregion     
     }
 }

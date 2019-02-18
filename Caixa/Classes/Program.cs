@@ -26,7 +26,6 @@ namespace Caixa
                 Application.SetCompatibleTextRenderingDefault(false);
                 UsuarioDAO.Existe = false;
                 Application.Run(new frmCadusu());
-
             }     
         }
     }

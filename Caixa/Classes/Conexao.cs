@@ -41,7 +41,6 @@ namespace Caixa
                 return ("Erro ao conectar " + erro);
             }
 
-
             // criar um banco em branco na memória
             MySqlDataReader banco = null;
 
@@ -64,7 +63,6 @@ namespace Caixa
                     banco.Close();
                 }
             }
-
             return ("Conexão OK!!!");
         }
     }

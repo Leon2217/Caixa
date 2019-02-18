@@ -201,9 +201,6 @@ on delete cascade on update cascade
 );
 
 
-
-
-
 create table tipo_pessoa
 (
 id_tipo int not null,

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -17,12 +13,10 @@ namespace Caixa
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
 
-
         public static string tp0;
         public static string tp1;
         public static string tp2;
         public static string tp3;
-
 
         internal Pessoa Pes { get => pes; set => pes = value; }
         DataTable listapessoa;
@@ -132,7 +126,6 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
 
         #region LISTA TODAS AS PESSOAS LIKE
         public DataTable ListarT()
@@ -308,7 +301,6 @@ namespace Caixa
         }
         #endregion
 
-
         #region VERIFICA CPF E CNPJ
         public Boolean VerificaCPFNJ(string cpf)
         {
@@ -389,10 +381,10 @@ namespace Caixa
             }
         }
         #endregion
+
         #region MAXID
         public Boolean VerificaID()
         {
-
             executarComando("select MAX(id_pessoa) from PESSOA;");
             try
             {
@@ -475,9 +467,6 @@ namespace Caixa
             return listaDescripto;
         }
 
-
-
-
         #region LISTA TODAS AS PESSOAS COM ID DO TIPO
         public DataTable ListarIDT(string id)
         {
@@ -496,9 +485,6 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
-
-
 
         #region LISTA TODAS AS PESSOAS LIKE
         public DataTable ListarNM(string nome)
@@ -520,7 +506,6 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
 
         #region VERIFICA TIPOS
         public Boolean VerificaTipo(string cpf)
@@ -556,8 +541,6 @@ namespace Caixa
                 }
             }
         }
-        #endregion
-
-        
+        #endregion     
     }
 }

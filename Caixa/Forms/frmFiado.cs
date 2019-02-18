@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -33,21 +27,12 @@ namespace Caixa
 
         string nome;
         string codcaixa;
-#pragma warning disable CS0649 // Campo "frmFiado.tipo" nunca é atribuído e sempre terá seu valor padrão null
         string tipo;
-#pragma warning restore CS0649 // Campo "frmFiado.tipo" nunca é atribuído e sempre terá seu valor padrão null
-#pragma warning disable CS0169 // O campo "frmFiado.login" nunca é usado
         string login;
-#pragma warning restore CS0169 // O campo "frmFiado.login" nunca é usado
         string codpes;
         string id;
-#pragma warning disable CS0649 // Campo "frmFiado.update" nunca é atribuído e sempre terá seu valor padrão false
         Boolean update;
-#pragma warning restore CS0649 // Campo "frmFiado.update" nunca é atribuído e sempre terá seu valor padrão false
-#pragma warning disable CS0169 // O campo "frmFiado.de" nunca é usado
-        DateTime de;
-#pragma warning restore CS0169 // O campo "frmFiado.de" nunca é usado
-       
+        DateTime de;       
         int j;
 
         public frmFiado()
@@ -57,7 +42,6 @@ namespace Caixa
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-
             DialogResult op;
 
             op = MessageBox.Show("Você tem certeza dessas informações?",
@@ -72,36 +56,26 @@ namespace Caixa
                     {
 
                         if (tipo == "Administrador")
-                        {
-                 
-                        
-                         
+                        {                         
                             assDAO.Alterar(ass);
                             MessageBox.Show("Dados alterados com sucesso !!!");
                            
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
-
                         }
                         else
                         {
                             MessageBox.Show("Você não possui privilégios o suficiente para alterar !!!");
                         }
-
-                           
-
                     }
                     else
-                    {
-                 
-                      
+                    {                      
                         assDAO.Inserir(ass);
                         MessageBox.Show("Informações salvas com sucesso !!!");
                        
                         ((frmOpcaoFecha)this.Owner).AtualizaDados();
                         this.Close();
-                    }
-                    
+                    }                    
                 }
                 catch (FormatException)
                 {
@@ -109,18 +83,12 @@ namespace Caixa
                 }        
             }
         }
-        private void txtValor_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
 
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
@@ -128,8 +96,7 @@ namespace Caixa
         {
             cmbCliente.DataSource = pesDAO.ListarClientes();
             cmbCliente.DisplayMember = "NOME";
-            cmbCliente.ValueMember = "ID";
-            
+            cmbCliente.ValueMember = "ID";            
         }
 
         public void CarregarComboID()
@@ -143,11 +110,8 @@ namespace Caixa
             }
             catch
             {
-
-            }
-         
+            }         
         }
-
 
         private void frmAssinadas_Load(object sender, EventArgs e)
         {
@@ -158,12 +122,9 @@ namespace Caixa
             }
             catch
             {
-
             }
-
           
             string datatela = DateTime.Now.ToShortDateString();
-
             gvExibir.DataSource = assDAO.ListarTudo();
 
             #region AJUSTE GRID
@@ -173,22 +134,16 @@ namespace Caixa
                     column.Width = 40; //tamanho fixo da coluna ID
                 else if (column.DataPropertyName == "VALOR")
                     column.Width = 75; //tamanho fixo da coluna VALOR
-
-
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             #endregion
-            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             Moeda(ref txtValor);
             Moeda(ref txtValorPago);
             codcaixa = assinadaDAO.codcaixa;
-           
-
-
         }
         public static void Moeda(ref TextBox txt)
         {
@@ -206,17 +161,10 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
             }
             catch (Exception)
             {
-
             }
-        }
-
-        private void frmAssinadas_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void frmAssinadas_KeyDown(object sender, KeyEventArgs e)
@@ -287,7 +235,6 @@ namespace Caixa
             }
             catch
             {
-
             }
 
             if (cmbCliente.Text != string.Empty)
@@ -313,7 +260,6 @@ namespace Caixa
             }
             catch
             {
-
             }
             
             if (cmbCliente.Text != string.Empty)
@@ -341,12 +287,10 @@ namespace Caixa
                 }
             }
             #endregion
-
         }
 
         private void btnSalvarc_Click(object sender, EventArgs e)
         {
-
             if (assDAO.Verificafiado(codpes) == true)
             {
                 if (cmbCliente.Text == string.Empty || txtValor.Text == "0,00")
@@ -438,17 +382,8 @@ namespace Caixa
                     }
                 }
             }
-
-
-
-
-
-
-
-
            
         }
-
         private void txtValor_TextChanged_2(object sender, EventArgs e)
         {
             txtValor.BackColor = Color.Empty;
@@ -469,15 +404,12 @@ namespace Caixa
             {
                 try
                 {
-
                     ass.Id_pessoa = Convert.ToInt32(txtIdAtualizar.Text);
                     ass.Valor = txtValorPago.Text.ToString().Replace(".", "");
                     assDAO.Update2(ass);
                     assDAO.VerificaNome(ass);
 
                     gvExibir.DataSource = assDAO.ListarTudo();
-
-
 
                     if (vcDAO.Verificavalor() == true)
                     {
@@ -499,8 +431,6 @@ namespace Caixa
                     }
 
                         #endregion
-
-
 
                         #region GERAL
                         if (vgDAO.Verificavalor() == true)
@@ -563,7 +493,6 @@ namespace Caixa
             pdftable.HorizontalAlignment = Element.ALIGN_LEFT;
             pdftable.DefaultCell.BorderWidth = 1;
 
-
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
             //Cabeçalho
             foreach (DataGridViewColumn column in dgw.Columns)
@@ -591,9 +520,6 @@ namespace Caixa
                     {
                         pdftable.AddCell(new Phrase(cell.Value.ToString(), text));
                     }
-
-
-
                 }
             }
             var savefiledialoge = new SaveFileDialog();
@@ -610,36 +536,8 @@ namespace Caixa
                     pdfdoc.Close();
                     stream.Close();
                 }
-
             }
         }
-
-        private void gvExibir_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.RowIndex >= 0)
-            //{
-            //    DataGridViewRow row = this.gvExibir.Rows[e.RowIndex];
-            //    txtIdAtualizar.Text = row.Cells["ID"].Value.ToString();
-            //}
-        }
-
-        private void gvExibir_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            //if (e.Value != null && e.Value.ToString().Contains("Pago"))
-            //    if (e.Value != null && e.Value.ToString().Contains("Pago"))
-            //        if (e.Value != null && e.Value.ToString().Contains("Pago"))
-            //{
-            //    e.CellStyle.ForeColor = Color.Green;
-
-            //}
-
-            //if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
-            //{
-            //    e.CellStyle.ForeColor = Color.Goldenrod;
-
-            //}
-        }
-
         private void txtId_TextChanged(object sender, EventArgs e)
         {
             if (txtId.Text != string.Empty)
@@ -652,76 +550,19 @@ namespace Caixa
                 CarregarComboNome();
                 cmbCliente.Text = "";
             }
-
-
         }
-
-        //private void mskData_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        //{
-
-        //}
-
-        //private void mskData_TextChanged(object sender, EventArgs e)
-        //{
-        //    #region DE
-        //    if (mskData.MaskFull == true)
-        //    {
-        //        try
-        //        {
-        //            de = Convert.ToDateTime(mskData.Text);
-        //        }
-        //        catch
-        //        {
-        //            MessageBox.Show("Data inválida !!!");
-        //            mskData.Clear();
-        //        }
-
-        //    }
-        //    #endregion
-
-        //    try
-        //    {
-        //        codpes = cmbCliente.SelectedValue.ToString();
-        //        nome = cmbCliente.Text;
-        //    }
-        //    catch
-        //    {
-
-        //    }
-       
-        //    if (cmbCliente.Text != string.Empty && mskData.MaskFull == false)
-        //    {
-        //        gvExibir.DataSource = assDAO.ListarNome(nome);
-        //    }
-
-
-        //    if (mskData.MaskFull == true && cmbCliente.Text != string.Empty)
-        //    {
-        //        gvExibir.DataSource = assDAO.ListarND(nome, de);
-        //    }
-
-        //    if (mskData.MaskFull == false && cmbCliente.Text == string.Empty)
-        //    {
-        //        gvExibir.DataSource = assDAO.ListarTudo();
-
-        //    }
-        //}
 
         private void btnExport_Click(object sender, EventArgs e)
         {
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
-
-
             try
             {
                 worksheet = workbook.Sheets["Sheet1"];
             }
             catch
             {
-
             }
 
             worksheet = workbook.ActiveSheet;
@@ -731,10 +572,6 @@ namespace Caixa
             {
                 worksheet.Cells[1, i] = gvExibir.Columns[i - 1].HeaderText;
                 worksheet.StandardWidth = 17;
-
-
-
-
             }
 
             for (int i = 0; i < gvExibir.Rows.Count; i++)
@@ -753,14 +590,11 @@ namespace Caixa
                     bool isNumber = int.TryParse(range.Value.ToString().Trim(), out number);
                     if (isNumber)
                     {
-
                         range.NumberFormat = "#,###.00 €";
                         range.Value = number;
-
                     }
                     else
                     {
-
                         //the percent values were decimals with commas in the string       
                         string temp = "R$ " + range.Value.ToString();
                         temp = temp.Replace(",", ".");
@@ -769,8 +603,6 @@ namespace Caixa
                 }
             }
 
-
-
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
             foda.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous, Microsoft.Office.Interop.Excel.XlBorderWeight.xlMedium, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic);
@@ -778,9 +610,6 @@ namespace Caixa
             Microsoft.Office.Interop.Excel.Borders bd = cells.Borders;
             bd.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             bd.Weight = 2d;
-
-
-
 
             var saveFileDialoge = new SaveFileDialog();
             saveFileDialoge.FileName = "Planilha";
@@ -795,12 +624,6 @@ namespace Caixa
         private void btnPaideFamilia_Click(object sender, EventArgs e)
         {
             ExportarPDF(gvExibir, "planilha");
-        }
-
-
-        private void cmbS_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           //status = cmbS.Text;
         }
 
         private void txtValorPago_TextChanged(object sender, EventArgs e)
@@ -825,6 +648,5 @@ namespace Caixa
         {
             txtIdAtualizar.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
         }
-    }
-    
+    }   
 }

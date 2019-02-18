@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -243,7 +239,6 @@ namespace Caixa
         }
         #endregion
 
-
         #region VERIFICA A SOMA DE TODOS OS CREDITOS
         public Boolean VerificaSC()
         {
@@ -355,10 +350,6 @@ namespace Caixa
             }
         }
         #endregion
-
-
-
-
 
         #region VERIFICA A SOMA DE(DE) TODOS OS CREDITOS
         public Boolean VerificaDC(DateTime de)
@@ -472,7 +463,6 @@ namespace Caixa
         }
         #endregion
 
-
         #region VERIFICA A SOMA DE(BTN) TODOS OS CREDITOS
         public Boolean VerificaBC(DateTime de, DateTime at)
         {
@@ -584,8 +574,6 @@ namespace Caixa
             }
         }
         #endregion
-
-
 
         #region INTERVALO SODEXO
         public Boolean IntervaloSD()
@@ -720,8 +708,6 @@ namespace Caixa
         }
         #endregion
 
-
-
         #region VERIFICA SODEXO
         public Boolean SDX(DateTime de)
         {
@@ -854,7 +840,5 @@ namespace Caixa
             }
         }
         #endregion
-
-
     }
 }

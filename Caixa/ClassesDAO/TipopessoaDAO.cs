@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace Caixa
@@ -27,7 +22,6 @@ namespace Caixa
             comando_sql.Fill(tabela_memoria);
         }
 
-
         #region INSERIR TIPOPESSOA
         public void Inserir(Tipopessoa tp)
         {
@@ -41,8 +35,5 @@ namespace Caixa
             executarComando("DELETE FROM TIPO_PESSOA WHERE id_pessoa ='" + id + "';");
         }
         #endregion
-
-
-
     }
 }
