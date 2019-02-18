@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -19,7 +15,6 @@ namespace Caixa
 
         internal Operadoras Op { get => op; set => op = value; }
 
-
         private void executarComando(string comando)
         {
             tabela_memoria = new DataTable();
@@ -27,6 +22,7 @@ namespace Caixa
             executar_comando = new MySqlCommandBuilder(comando_sql);
             comando_sql.Fill(tabela_memoria);
         }
+
         #region VERIFICA SE O NOME JÁ FOI CADASTRADO
         public Boolean Verificaexiste(string nome)
         {
@@ -43,8 +39,6 @@ namespace Caixa
             }
         }
         #endregion
-
-        
 
         #region INSERIR OPERADORA
         public void Inserir(Operadoras op)
@@ -69,10 +63,7 @@ namespace Caixa
             }
             return listaDescripto;
         }
-        #endregion
-
-
-
+        #endregion        
 
         #region LISTA TODAS AS OPERADORAS
         public DataTable Listartudo()

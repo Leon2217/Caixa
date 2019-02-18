@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -55,7 +51,6 @@ namespace Caixa
         {
             executarComando("DELETE FROM CONTAS WHERE id_contas ='" + id + "' || NF='"+n +"';");
         }
-
 
         #region INSERIR CONTA
         public void Inserir(Contas con)

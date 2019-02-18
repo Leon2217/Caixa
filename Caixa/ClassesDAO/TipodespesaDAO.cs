@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +7,6 @@ namespace Caixa
     class TipodespesaDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
-
         Tipodespesa tipodespesa = new Tipodespesa();
 
         MySqlDataAdapter comando_sql;
@@ -42,7 +37,6 @@ namespace Caixa
             try
             {
                 tipodespesa.Nome = tabela_memoria.Rows[0]["nome"].ToString();
-
                 return true;
             }
             catch

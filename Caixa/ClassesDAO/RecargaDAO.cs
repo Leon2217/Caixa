@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +7,7 @@ namespace Caixa
     class RecargaDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
-       Recarga rec = new Recarga();
+        Recarga rec = new Recarga();
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
@@ -34,6 +30,7 @@ namespace Caixa
             executar_comando = new MySqlCommandBuilder(comando_sql);
             comando_sql.Fill(tabela_memoria);
         }
+
         #region INSERIR RECARGA
         public void Inserir(Recarga rec)
         {
@@ -227,7 +224,5 @@ namespace Caixa
             }
         }
         #endregion
-
-
     }
 }

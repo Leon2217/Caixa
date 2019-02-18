@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +7,6 @@ namespace Caixa
     class relatfiadoDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
-
         Relatfiado rlf = new Relatfiado();      
 
         MySqlDataAdapter comando_sql;
@@ -172,6 +167,5 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -27,7 +23,6 @@ namespace Caixa
             comando_sql.Fill(tabela_memoria);
         }
 
-
         public DataTable ListarTudo()
         {
             DataTable listaDescripto;
@@ -43,7 +38,6 @@ namespace Caixa
             }
             return listaDescripto;
         }
-
         public DataTable ListarOutro(string cartao,string codmaq)
         {
             DataTable listaDescripto;
@@ -59,7 +53,6 @@ namespace Caixa
             }
             return listaDescripto;
         }
-
 
         public Boolean Verificacart(string cartao,string codmaq)
         {
@@ -88,7 +81,5 @@ namespace Caixa
                 return false;
             }
         }
-
-
     }
 }

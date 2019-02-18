@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -13,7 +9,6 @@ namespace Caixa
         Criptografia cripto = new Criptografia("MICROSTATION");
         Tipos tipo = new Tipos();
         
-
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
@@ -91,7 +86,5 @@ namespace Caixa
             }
             return listaDescripto;
         }
-
-
     }
 }

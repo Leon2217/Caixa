@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -12,7 +8,6 @@ namespace Caixa
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
         Verificas ver = new Verificas();
-
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
@@ -45,7 +40,6 @@ namespace Caixa
         }
         #endregion
 
-
         #region INSERIR DE VERIFICA
         public void Inserir(Verificas ver)
         {
@@ -59,6 +53,5 @@ namespace Caixa
             executarComando("UPDATE VERIFICA SET VERIFICA='" + ver.Verifica.ToString() + "';");
         }
         #endregion
-
     }
 }

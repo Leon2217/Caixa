@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -16,8 +12,6 @@ namespace Caixa
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
-
-
 
         public static string nome;
         internal fiado Ass { get => ass; set => ass = value; }
@@ -54,30 +48,7 @@ namespace Caixa
             }
         }
         #endregion
-
-        //#region BUSCAR OK
-        //public Boolean Buscar(string codcaixa)
-        //{
-        //    executarComando("select classm,julio,assinada from fiado a inner join caixa ca on ca.id_caixa=a.id_caixa where ca.id_caixa='"+codcaixa+ "';");
-        //    try
-        //    {
-        //        classm =tabela_memoria.Rows[0]["classm"].ToString();
-        //        julio=tabela_memoria.Rows[0]["julio"].ToString();
-        //        assinada= tabela_memoria.Rows[0]["assinada"].ToString();
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-        //#endregion
-
-        public void Alterar(fiado ass)
-        {
-            //executarComando("update fiado set classm='"+"','"+"' where id_caixa='" + ass.Id_caixa + "';");
-        }
-
+   
         public DataTable ListarTudo()
         {
             DataTable listaDescripto;
@@ -91,7 +62,6 @@ namespace Caixa
                 linha["NOME"] = tabela_memoria.Rows[i]["NOME"].ToString();
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();      
                 linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
-
 
                 listaDescripto.Rows.Add(linha);
             }
@@ -113,16 +83,10 @@ namespace Caixa
                 linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
                 linha["ID"] = tabela_memoria.Rows[i]["ID"].ToString();
 
-
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
         }
-
-        //public void Update(fiado ass)
-        //{
-        //    executarComando("UPDATE fiado SET valor='" + ass.Status + "' WHERE id_fiado='" + ass.Id_fiado + "';");
-        //}
 
         public void Update(fiado ass)
         {
@@ -133,37 +97,14 @@ namespace Caixa
         {
             executarComando("UPDATE fiado SET valor=valor-'" + ass.Valor.ToString().Replace(",", ".") + "' where id_pessoa='" + ass.Id_pessoa + "';");
         }
-
-
-        //#region VERIFICA O VALOR DO ID
-        //public Boolean Verificavalor(string id)
-        //{
-        //    executarComando("SELECT valor FROM fiado where id_fiado='" + id + "';");
-        //    try
-        //    {
-        //        Ass.Valor = tabela_memoria.Rows[0]["valor"].ToString();
-        //            return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-        //#endregion
-
-
+ 
         #region VERIFICA NOME
         public Boolean VerificaNome(fiado ass)
         {
-
             executarComando("select nome from pessoa where id_pessoa='"+ass.Id_pessoa+"';");
             try
-            {
-             
-                nome= tabela_memoria.Rows[0]["nome"].ToString();
-               
-
-
+            {           
+                nome= tabela_memoria.Rows[0]["nome"].ToString();               
                 return true;
             }
             catch
@@ -172,6 +113,5 @@ namespace Caixa
             }
         }
         #endregion
-
     }
 }

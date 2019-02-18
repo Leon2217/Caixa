@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -71,7 +67,6 @@ namespace Caixa
         }
         #endregion
 
-
         public DataTable ListarB(DateTime de,DateTime at)
         {
             DataTable listaDescripto;
@@ -81,7 +76,6 @@ namespace Caixa
             }
             catch
             {
-
             }
             
             listaDescripto = tabela_memoria.Clone();
@@ -89,7 +83,6 @@ namespace Caixa
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
             {
                 DataRow linha = listaDescripto.NewRow();
-
                
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
@@ -108,6 +101,5 @@ namespace Caixa
             }
             return listaDescripto;
         }
-
     }
 }

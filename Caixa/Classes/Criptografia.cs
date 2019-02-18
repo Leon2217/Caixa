@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 
 namespace Caixa
@@ -22,7 +19,6 @@ namespace Caixa
         private ICryptoTransform Decryptor { get { return _decryptor; } }
         private ICryptoTransform Encryptor { get { return _encryptor; } }
 
-
         public Criptografia(string password)
         {
             //Definindo o método de codificação para compilar a criptografia
@@ -34,9 +30,7 @@ namespace Caixa
             _cipher.Padding = PaddingMode.PKCS7;
             _decryptor = _cipher.CreateDecryptor(_password, IV);
             _encryptor = _cipher.CreateEncryptor(_password, IV);
-
         }
-
 
         public string Decrypt(string text)
         {
@@ -58,7 +52,6 @@ namespace Caixa
                 return null;
             }
         }
-
 
         public string Encrypt(string text)
         {

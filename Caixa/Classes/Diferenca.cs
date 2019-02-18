@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Caixa
+﻿namespace Caixa
 {
     class Diferenca
     {
         int id_diferenca, id_caixa;
         string manha, tarde;
-
 
         public int Id_diferenca { get => id_diferenca; set => id_diferenca = value; }
         public int Id_caixa { get => id_caixa; set => id_caixa = value; }

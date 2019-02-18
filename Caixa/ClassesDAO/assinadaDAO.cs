@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -16,7 +12,6 @@ namespace Caixa
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
-
      
         public static string Codcaixa { get => codcaixa; set => codcaixa = value; }
         public static string Classm { get => classm; set => classm = value; }
@@ -92,7 +87,6 @@ namespace Caixa
             executarComando("delete from sangria;");
             executarComando("delete from suprimento;");
             executarComando("delete from venda_vc;");
-
         }
         #endregion
 
@@ -137,7 +131,6 @@ namespace Caixa
         #region VERIFICA CARGO
         public Boolean VerificaT(string senha)
         {
-
             executarComando("select * from temporaria where chave='" + senha + "';");
             try
             {

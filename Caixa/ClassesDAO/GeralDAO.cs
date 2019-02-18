@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -166,7 +162,6 @@ namespace Caixa
         }
         #endregion
 
-
         #region LISTAR TUDO
         public DataTable ListarTudo()
         {
@@ -312,6 +307,5 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
     }
 }

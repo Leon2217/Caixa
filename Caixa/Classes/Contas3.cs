@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caixa
 {
@@ -13,7 +9,6 @@ namespace Caixa
         string valor2, valor3, valor4;
         DateTime data_em, data2, data3;
         DateTime data;
-
 
         public int Id_contas { get => id_contas; set => id_contas = value; }
         public int Id_pessoa { get => id_pessoa; set => id_pessoa = value; }

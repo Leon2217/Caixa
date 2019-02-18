@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -11,8 +7,7 @@ namespace Caixa
     class DinheiroDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
-         Dinheiro dinh = new Dinheiro();
-
+        Dinheiro dinh = new Dinheiro();
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
@@ -52,8 +47,6 @@ namespace Caixa
             executarComando("SELECT * FROM gaveta WHERE id_caixa='" + codcaixa + "';");
             try
             {
-
-
                 dinh.Id_qtd = Convert.ToInt32(tabela_memoria.Rows[0]["id_qtd"].ToString());
                 dinh.Id_caixa = Convert.ToInt32(tabela_memoria.Rows[0]["id_caixa"].ToString());
                 dinh.Nota_100 = Convert.ToInt32(tabela_memoria.Rows[0]["nota_100"].ToString());
@@ -75,14 +68,11 @@ namespace Caixa
             }
         }
 
-
         public Boolean Verificadinheiro(string codcaixa)
         {
             executarComando("SELECT * FROM DINHEIRO WHERE id_caixa='" + codcaixa + "';");
             try
             {
-
-
                 dinh.Id_qtd = Convert.ToInt32(tabela_memoria.Rows[0]["id_qtd"].ToString());
                 dinh.Id_caixa = Convert.ToInt32(tabela_memoria.Rows[0]["id_caixa"].ToString());
                 dinh.Nota_100 = Convert.ToInt32(tabela_memoria.Rows[0]["nota_100"].ToString());
@@ -171,12 +161,10 @@ namespace Caixa
 
         #endregion
 
-
         public void Inserirgaveta(Dinheiro dinh)
         {
             executarComando("INSERT INTO gaveta VALUES(0,'" + dinh.Id_caixa + "','" + dinh.Nota_100 + "','" + dinh.Nota_50 + "','" + dinh.Nota_20 + "','" + dinh.Nota_10 + "','" + dinh.Nota_5 + "','" + dinh.Nota_2 + "','" + dinh.Moeda_1 + "','" + dinh.Moeda_50 + "','" + dinh.Moeda_25 + "','" + dinh.Moeda_10 + "','" + dinh.Moeda_5 + "','" + dinh.Total + "');");
         }
-
 
         public Boolean Verificatotalgaveta(string codcaixa)
         {
@@ -214,8 +202,6 @@ namespace Caixa
             try
             {
                 Dinh.Total = tabela_memoria.Rows[0]["TOTAL"].ToString();
-
-
                 return true;
             }
             catch

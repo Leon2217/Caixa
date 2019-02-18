@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -18,8 +14,6 @@ namespace Caixa
         DataTable tabela_memoria;
 
         internal Sangria San { get => san; set => san = value; }
-
-
 
         public static string totalsangria;
         private void executarComando(string comando)
@@ -219,6 +213,5 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
-
     }
 }

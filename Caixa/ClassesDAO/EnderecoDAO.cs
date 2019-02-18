@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -55,6 +51,7 @@ namespace Caixa
         }
 
         #endregion
+
         #region VERIFICA ID
         public Boolean VerificaID(string id)
         {
@@ -77,7 +74,6 @@ namespace Caixa
             }
         }
         #endregion
-
 
         #region VERIFICA ID
         public Boolean VerificaID2(string id)
@@ -106,8 +102,5 @@ namespace Caixa
         {
             executarComando("DELETE FROM ENDERECO WHERE id_pessoa ='" + id_pessoa + "' and(tipo='cobranca' or tipo='entrega');");
         }
-
-
-
     }
 }

@@ -24,7 +24,6 @@ namespace Caixa
                 cliente.Port = 587;
                 cliente.Credentials = new NetworkCredential(email, senha);
 
-
                 MailMessage message = new MailMessage();
                 message.Sender = new MailAddress(email, titulo);
                 message.From = new MailAddress(email, titulo);
@@ -32,7 +31,6 @@ namespace Caixa
                 message.Subject = assunto;
                 message.Body = mensagem;
                 message.IsBodyHtml = false;
-
 
                 cliente.Send(message);
 

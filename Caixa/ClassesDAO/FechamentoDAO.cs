@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -12,7 +8,6 @@ namespace Caixa
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
         Fechamento fec = new Fechamento();
-
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
@@ -67,7 +62,6 @@ namespace Caixa
             executarComando("UPDATE CAIXA SET VALOR_RELAT='" + valor.ToString().Replace(",",".") + "' WHERE ID_CAIXA='" + codcaixa + "';");
         }
 
-
         public Boolean VerificaCaixa(string login)
         {
             executarComando("select id_caixa,id_turno,datainicio,valor_relat from caixa WHERE responsavel='" + login+"' and status='Aberto';");
@@ -81,7 +75,6 @@ namespace Caixa
             }
             catch
             {
-
                 return false;
             }
         }
@@ -100,7 +93,6 @@ namespace Caixa
             }
             catch
             {
-
                 return false;
             }
         }
@@ -118,7 +110,6 @@ namespace Caixa
             }
             catch
             {
-
                 return false;
             }
         }
@@ -141,9 +132,5 @@ namespace Caixa
         {
             executarComando("UPDATE CAIXA SET RESPONSAVEL='" + fec.Responsavel + "' WHERE ID_CAIXA='" + fec.Id_caixa + "';");
         }
-
-
-
-
     }
 }
