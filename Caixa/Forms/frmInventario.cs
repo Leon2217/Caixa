@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -42,11 +35,9 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -55,7 +46,6 @@ namespace Caixa
             Conexao.criar_Conexao();
             Moeda(ref txtValor);
             txtQtd.ResetText();
-  
         }
 
         private void txtValor_TextChanged(object sender, EventArgs e)
@@ -103,7 +93,6 @@ namespace Caixa
                         MessageBox.Show("Dados alterados com sucesso !!!");
                         Limpar();
 
-
                         aud.Acao = "ATUALIZOU INVENTARIO VALECAP";
                         aud.Data = FechamentoDAO.data;
                         aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
@@ -113,11 +102,8 @@ namespace Caixa
                     catch (FormatException)
                     {
                         MessageBox.Show("Favor verificar as informações digitadas !!!");
-
                     }
-                }
-
-             
+                }            
             }
             else
             {
@@ -138,7 +124,6 @@ namespace Caixa
                     inv.Qtd_est = Convert.ToInt32(txtQtd.Text);
                     inv.Valor_vc = txtValor.Text.ToString().Replace(".","");
                     invDAO.Inserir(inv);
-                    //((InicialCaixa)this.Owner).Atualizadados();
                     MessageBox.Show("Dados salvos com sucesso !!!");
                     Limpar();
 
@@ -160,7 +145,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 

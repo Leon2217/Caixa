@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -44,8 +39,6 @@ namespace Caixa
         Geral ger = new Geral();
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
-
-
         #endregion
         public frmEntradaMoeda()
         {
@@ -149,7 +142,7 @@ namespace Caixa
 
                     #endregion
 
-                    if (cxmDAO.Verificavalor()==true)
+                    if (cxmDAO.Verificavalor() == true)
                     {
                         if (chkBaixo.Checked == true)
                         {
@@ -158,12 +151,8 @@ namespace Caixa
                             cxmDAO.Update(cxm);
                             #endregion
 
-
-                           
-
-
-                                #region SUBTRAINDO DO CAIXA NORMAL
-                                if (vcxDAO.Verificavalor() == true)
+                            #region SUBTRAINDO DO CAIXA NORMAL
+                            if (vcxDAO.Verificavalor() == true)
                             {
                                 string valor = (total5c + total10c + total25c + total50c + total1r).ToString().Replace(".", "");
                                 vcxDAO.Update2(valor);
@@ -245,14 +234,13 @@ namespace Caixa
                             edDAO.Inserir(ed);
                             #endregion
 
-
                             #region GERAL
                             if (vgDAO.Verificavalor() == true)
                             {
                                 string valor = (total5c + total10c + total25c + total50c + total1r).ToString().Replace(".", "");
                                 vgDAO.Update2(valor);
                                 vgDAO.Verificavalor();
-                                
+
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
                                 ger.Desc_g = "";
                                 ger.Cred_g = "0.00";
@@ -261,8 +249,6 @@ namespace Caixa
                                 ger.Func = "0,00";
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
-
-                                
                             }
                             else
                             {
@@ -274,17 +260,15 @@ namespace Caixa
                                 vgDAO.Update2(valor.ToString().Replace(".", ""));
                                 vgDAO.Verificavalor();
 
-                                
-
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
                                 ger.Desc_g = "";
                                 ger.Cred_g = "0,00";
                                 ger.Deb_g = valor.ToString().Replace(".", "");
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
-
-                                #endregion
                             }
+                                #endregion
+                            
 
                             Limpar();
                         }
@@ -354,7 +338,7 @@ namespace Caixa
                                 vgDAO.Update(valor.ToString().Replace(".", ""));
                                 vgDAO.Verificavalor();
 
-                                
+
 
                                 ger.Data = Convert.ToDateTime(FechamentoDAO.data);
                                 ger.Desc_g = "CRÉDITO CAIXA MOEDA";
@@ -365,7 +349,7 @@ namespace Caixa
                                 ger.Total = vgDAO.Vg.Valor;
                                 gerDAO.Inserir(ger);
 
-                                
+
                             }
                             #endregion
 
@@ -473,10 +457,7 @@ namespace Caixa
                             #endregion
 
                             Limpar();
-
-                            
                         }
-
                     }
                     else
                     {
@@ -615,7 +596,7 @@ namespace Caixa
                             cd.C = null;
                             cdDAO.Inserir(cd);
 
-                          
+
 
                             #endregion
 
@@ -658,7 +639,7 @@ namespace Caixa
                             if (txt5Centavos.Text == string.Empty)
                             {
                                 ed.Moeda_5 = 0;
-                              
+
                             }
                             else
                             {
@@ -708,7 +689,7 @@ namespace Caixa
                             edDAO.Inserir(ed);
 
 
-                           
+
                             #endregion
 
                             #region SANGRIA
@@ -728,10 +709,7 @@ namespace Caixa
 
                             Limpar();
                         }
-
-
                     }
-
                 }
             }
             catch
@@ -851,9 +829,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -861,9 +837,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -871,9 +845,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -881,9 +853,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 

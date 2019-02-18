@@ -58,7 +58,6 @@
             this.cmbFornecedor.Size = new System.Drawing.Size(238, 28);
             this.cmbFornecedor.TabIndex = 7;
             this.cmbFornecedor.SelectedIndexChanged += new System.EventHandler(this.cmbFornecedor_SelectedIndexChanged);
-            this.cmbFornecedor.TextChanged += new System.EventHandler(this.cmbFornecedor_TextChanged);
             // 
             // chkF
             // 

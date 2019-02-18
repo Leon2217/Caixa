@@ -121,7 +121,6 @@
             this.mskDe.Name = "mskDe";
             this.mskDe.Size = new System.Drawing.Size(100, 26);
             this.mskDe.TabIndex = 10;
-            this.mskDe.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskDe_MaskInputRejected);
             this.mskDe.TextChanged += new System.EventHandler(this.mskDe_TextChanged);
             // 
             // lblDe
@@ -292,7 +291,6 @@
             this.cmbAjustes.Name = "cmbAjustes";
             this.cmbAjustes.Size = new System.Drawing.Size(108, 28);
             this.cmbAjustes.TabIndex = 27;
-            this.cmbAjustes.SelectedIndexChanged += new System.EventHandler(this.cmbAjustes_SelectedIndexChanged);
             // 
             // txtAjuste
             // 

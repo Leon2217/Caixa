@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -19,8 +12,6 @@ namespace Caixa
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
        
-
-
         string valor;
 
         public frmInventariorec()
@@ -44,11 +35,9 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -60,11 +49,8 @@ namespace Caixa
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
-
             if (irDAO.VerificaInventário() == true)
             {
-
                 DialogResult op;
 
                 op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Valor : " + valor + " R$",
@@ -73,9 +59,6 @@ namespace Caixa
 
                 if (op == DialogResult.Yes)
                 {
-
-
-
                     try
                     {
                         ir.Total = txtValor.Text.ToString().Replace(".", "");
@@ -87,11 +70,9 @@ namespace Caixa
                         aud.Responsavel = UsuarioDAO.login;
                         audDAO.Inserir(aud);
 
-
                         rec.Id_caixa = FechamentoDAO.codcaixa;
                         rec.Operadora = "-";
                         rec.Valor_rec = "0.00";
-
                    
                         rec.N_telefone = "-";
                         rec.Descricao = "Inventário";
@@ -101,16 +82,8 @@ namespace Caixa
 
                         recDAO.Inserir(rec);
 
-                       
-
-
-
-
-
                         Limpar();
-                        MessageBox.Show("Informações salvas com sucesso !!!");
-
-      
+                        MessageBox.Show("Informações salvas com sucesso !!!");      
                     }
                     catch
                     {
@@ -118,7 +91,6 @@ namespace Caixa
                     }
                 }
             }
-
             else
             {
                 DialogResult ip;
@@ -166,18 +138,15 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
         private void txtValor_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyValue.Equals(13))
             {
                 this.ProcessTabKey(true);
-                e.Handled = true;
-                
+                e.Handled = true;                
             }
         }
 

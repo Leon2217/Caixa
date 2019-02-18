@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -17,7 +10,7 @@ namespace Caixa
         UsuarioDAO usuDao = new UsuarioDAO();
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
-      
+
         int qtd1;
         int qtd2;
         int qtd3;
@@ -58,12 +51,12 @@ namespace Caixa
 
         public void Calcular()
         {
-            total = (qtd1 * 0.05)+(qtd2*0.1)+(qtd3*0.25)+(qtd4*0.5)+(qtd5*1)+(qtd6*2)+(qtd7*5)+(qtd8*10)+(qtd9*20)+(qtd10*50)+(qtd11*100);
+            total = (qtd1 * 0.05) + (qtd2 * 0.1) + (qtd3 * 0.25) + (qtd4 * 0.5) + (qtd5 * 1) + (qtd6 * 2) + (qtd7 * 5) + (qtd8 * 10) + (qtd9 * 20) + (qtd10 * 50) + (qtd11 * 100);
             lblTotal.Text = "Total : " + total.ToString("C2");
             total2r = (qtd6 * 2);
             lbl2.Text = "= " + total2r.ToString("C2");
             total5r = (qtd7 * 5);
-            lbl5.Text= "= " + total5r.ToString("C2");
+            lbl5.Text = "= " + total5r.ToString("C2");
             total10r = (qtd8 * 10);
             lbl10.Text = "= " + total10r.ToString("C2");
             total20r = (qtd9 * 20);
@@ -72,7 +65,6 @@ namespace Caixa
             lbl50.Text = "= " + total50r.ToString("C2");
             total100r = (qtd11 * 100);
             lbl100.Text = "= " + total100r.ToString("C2");
-
 
             total5c = (qtd1 * 0.05);
             lbl5c.Text = "= " + total5c.ToString("C2");
@@ -93,9 +85,8 @@ namespace Caixa
             lblNota.Text = "= " + totalnota.ToString("C2");
 
             totalmoeda = total5c + total10c + total25c + total50c + total1r;
-            lblMoeda.Text= "= " + totalmoeda.ToString("C2");
+            lblMoeda.Text = "= " + totalmoeda.ToString("C2");
         }
-
 
         private void frmDinheiro_Load(object sender, EventArgs e)
         {
@@ -124,9 +115,7 @@ namespace Caixa
                     txt25Centavos.Text = dinDAO.Dinh.Moeda_25.ToString();
                     txt50Centavos.Text = dinDAO.Dinh.Moeda_50.ToString();
                     Calcular();
-
                 }
-
             }
             else
             {
@@ -149,11 +138,8 @@ namespace Caixa
                     txt25Centavos.Text = dinDAO.Dinh.Moeda_25.ToString();
                     txt50Centavos.Text = dinDAO.Dinh.Moeda_50.ToString();
                     Calcular();
-
                 }
             }
-          
-          
         }
 
         private void txt5Centavos_TextChanged(object sender, EventArgs e)
@@ -165,10 +151,9 @@ namespace Caixa
             }
             else
             {
-                qtd1 =0;
+                qtd1 = 0;
                 Calcular();
             }
-      
         }
 
         private void txt10Centavos_TextChanged(object sender, EventArgs e)
@@ -315,9 +300,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -325,9 +308,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -335,9 +316,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -345,9 +324,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -355,9 +332,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -365,9 +340,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -375,9 +348,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -385,9 +356,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -395,7 +364,6 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
             }
         }
@@ -404,9 +372,7 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
@@ -414,22 +380,19 @@ namespace Caixa
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
-
                 e.Handled = true;
-
             }
         }
 
         private void btninserir_Click(object sender, EventArgs e)
         {
-
             DialogResult op;
 
             op = MessageBox.Show("Você tem certeza?",
                 "Salvando e saindo", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-                  if (op == DialogResult.Yes)
+            if (op == DialogResult.Yes)
             {
                 if (update == true)
                 {
@@ -657,10 +620,6 @@ namespace Caixa
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
                             this.Close();
                         }
-
-                      
-
-
                     }
                     else
                     {
@@ -774,13 +733,11 @@ namespace Caixa
                             string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                             dinDAO.updatetotal(codqtd);
 
-
                             aud.Acao = "INSERIU DINHEIRO";
                             aud.Data = FechamentoDAO.data;
                             aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                             aud.Responsavel = UsuarioDAO.login;
                             audDAO.Inserir(aud);
-
 
                             MessageBox.Show("Informações salvas com sucesso!!!");
                             ((frmOpcaoFecha)this.Owner).AtualizaDados();
@@ -788,7 +745,6 @@ namespace Caixa
                         }
                         catch
                         {
-
                         }
                     }
                     else
@@ -911,10 +867,8 @@ namespace Caixa
                         }
                         catch
                         {
-
                         }
                     }
-                 
                 }
             }
         }
@@ -924,10 +878,9 @@ namespace Caixa
         }
 
         private void frmDinheiro_KeyDown(object sender, KeyEventArgs e)
-            {
+        {
             if (e.KeyValue.Equals(27))
             {
-
                 DialogResult op;
 
                 op = MessageBox.Show("Você tem certeza?",
@@ -1176,10 +1129,6 @@ namespace Caixa
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
                                 this.Close();
                             }
-
-
-
-
                         }
                         else
                         {
@@ -1293,13 +1242,11 @@ namespace Caixa
                                 string codqtd = dinDAO.Dinh.Id_qtd.ToString();
                                 dinDAO.updatetotal(codqtd);
 
-
                                 aud.Acao = "INSERIU DINHEIRO";
                                 aud.Data = FechamentoDAO.data;
                                 aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                                 aud.Responsavel = UsuarioDAO.login;
                                 audDAO.Inserir(aud);
-
 
                                 MessageBox.Show("Informações salvas com sucesso!!!");
                                 ((frmOpcaoFecha)this.Owner).AtualizaDados();
@@ -1430,7 +1377,6 @@ namespace Caixa
 
                             }
                         }
-
                     }
                 }
             }
@@ -1541,7 +1487,5 @@ namespace Caixa
             frmOpcaoFecha f = new frmOpcaoFecha();
             f.ShowDialog();
         }
-
-       
     }
 }

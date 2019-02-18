@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -465,9 +458,6 @@ namespace Caixa
                     {
                         pdftable.AddCell(new Phrase(cell.Value.ToString(), text));
                     }
-
-
-
                 }
             }
             var savefiledialoge = new SaveFileDialog();

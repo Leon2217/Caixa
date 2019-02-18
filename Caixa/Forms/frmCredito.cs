@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -184,7 +178,6 @@ namespace Caixa
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -223,13 +216,11 @@ namespace Caixa
             {
                 CarregarComboFornecedor();
                 cmbFornecedor.SelectedIndex = -1;
-
             }
             catch
             {
                 MessageBox.Show("Favor cadastrar fornecedores primeiro");
-            }
-    
+            }    
             cmbFornecedor.Text = "";
         }
 
@@ -253,9 +244,7 @@ namespace Caixa
             {
                 this.ProcessTabKey(true);
                 e.Handled = true;
-            }
-
-            
+            }            
         }
 
         private void txtDesc_KeyDown(object sender, KeyEventArgs e)
@@ -306,7 +295,6 @@ namespace Caixa
         {
             txtDesc.BackColor = Color.Empty;
             desc = txtDesc.Text.ToString();
-
         }
 
         private void mskData_TextChanged(object sender, EventArgs e)
@@ -325,11 +313,6 @@ namespace Caixa
         {
             txtResponsa.BackColor = Color.Empty;
             responsa = txtResponsa.Text;
-        }
-
-        private void mskData_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
         }
 
         private void txtResponsa_KeyPress(object sender, KeyPressEventArgs e)

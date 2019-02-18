@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -52,8 +45,6 @@ namespace Caixa
             cmbCart.DisplayMember = "CART";
             cmbCart.ValueMember = "ID";
             cmbCart.Text = "";
-
-
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -182,7 +173,6 @@ namespace Caixa
             }
             catch
             {
-
             }
    
             cmbBandeira.Text = "";
@@ -193,7 +183,6 @@ namespace Caixa
             }
             catch
             {
-
             }
 
             try
@@ -204,9 +193,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-
 
             try
             {
@@ -216,9 +203,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-
 
             try
             {
@@ -228,9 +213,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-
 
             try
             {
@@ -240,9 +223,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-
 
             try
             {
@@ -252,7 +233,6 @@ namespace Caixa
             }
             catch
             {
-
             }
 
             try
@@ -263,7 +243,6 @@ namespace Caixa
             }
             catch
             {
-
             }
 
             try
@@ -274,10 +253,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-
-
 
             try
             {
@@ -285,9 +261,7 @@ namespace Caixa
             }
             catch
             {
-
             }
-            
         }
 
         private void cmbBandeira_SelectedIndexChanged(object sender, EventArgs e)
@@ -465,9 +439,7 @@ namespace Caixa
 
             #region BETWEEN
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCart.Text == string.Empty)
-            {
-
-           
+            {           
                     gvExibir.DataSource = rlxDAO.ListarBT(de, at);
 
                     #region Label (BTW) Crédito
@@ -549,9 +521,7 @@ namespace Caixa
                     #endregion
 
                     lblTotal.Text = (cred + deb + sd + vr + tk + el).ToString("C2");
-              
-    
-                
+               
             }
             #endregion
 
@@ -948,8 +918,6 @@ namespace Caixa
 
         private void cmbCart_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -1935,11 +1903,6 @@ namespace Caixa
 
             }
             #endregion
-
-
-
-
-
         }
         public void Limpar()
         {

@@ -4,9 +4,6 @@ using System.Diagnostics;
 
 namespace Caixa
 {
-
-
-
     public partial class Abertura : Form
     {
         FechamentoDAO fecDAO = new FechamentoDAO();
@@ -23,7 +20,6 @@ namespace Caixa
         string codper;
         string login;
         DateTime data_hora;
-
 
         public Abertura()
         {
@@ -55,8 +51,7 @@ namespace Caixa
         }
 
         private void btnAbrir_Click(object sender, EventArgs e)
-        {
-            
+        {           
             if (cmbTurno.SelectedIndex == 0)
             {
                 codper = "1";
@@ -76,8 +71,7 @@ namespace Caixa
             tipo = usuDao.Usu.Tipo.ToString();
 
             if (tipo == "Administrador")
-            {
-           
+            {           
                 if (fecDAO.Verifica(codper, data) == true)
                 {
                     #region ABRIR ABERTO
@@ -119,7 +113,6 @@ namespace Caixa
                     #region ABRIR FECHADO
                     if (fecDAO.VerificaCaixa2(codper, data) == true)
                     {
-
                         DialogResult op;
 
                         op = MessageBox.Show("Deseja reabri-lo?",
@@ -227,11 +220,7 @@ namespace Caixa
                         }
 
                     }
-                }
-
-
-
-                
+                }               
             }
             else
             {
@@ -270,15 +259,13 @@ namespace Caixa
                     else
                     {
                         MessageBox.Show("Esse caixa já foi aberto por : " + fecDAO.Fec.Responsavel);
-                    }
-                   
+                    }                  
                 }
                 else
                 {
                     #region ABRIR FECHADO
                     if (fecDAO.VerificaCaixa2(codper, data) == true)
                     {
-
                         DialogResult op;
 
                         op = MessageBox.Show("Deseja reabri-lo?",
@@ -327,7 +314,6 @@ namespace Caixa
                         #region ABRE UM NOVO
                         try
                         {
-
                             verDAO.Verifica();
 
                             if (verDAO.Ver.Verifica == "NAO")
@@ -391,16 +377,6 @@ namespace Caixa
                     }
                 }
             }
-
-
-
-
-            
-
-
-
-
-
         }
 
         private void mskData_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -501,7 +477,6 @@ namespace Caixa
 
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             frmCadusu u = new frmCadusu();

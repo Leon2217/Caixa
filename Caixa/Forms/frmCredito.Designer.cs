@@ -142,8 +142,7 @@
             this.mskData.Mask = "00/00/0000";
             this.mskData.Name = "mskData";
             this.mskData.Size = new System.Drawing.Size(100, 26);
-            this.mskData.TabIndex = 3;
-            this.mskData.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskData_MaskInputRejected);
+            this.mskData.TabIndex = 3;            
             this.mskData.TextChanged += new System.EventHandler(this.mskData_TextChanged);
             this.mskData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskData_KeyDown);
             // 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Net.Mail;
 using System.Net;
 using System.Text.RegularExpressions;

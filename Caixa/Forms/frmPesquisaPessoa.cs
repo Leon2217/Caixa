@@ -1,36 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
 {
     public partial class frmPesquisaPessoa : Form
     {
-
         #region INSTANCIAMENTO DE CLASSES
         Pessoa pes = new Pessoa();
         PessoaDAO pesDAO = new PessoaDAO();
         TipoDAO tpDAO = new TipoDAO();
         Auditoria aud = new Auditoria();
-        AuditoriaDAO audDAO = new AuditoriaDAO();     
+        AuditoriaDAO audDAO = new AuditoriaDAO();
         TipopessoaDAO tpsDAO = new TipopessoaDAO();
         Tipopessoa tp = new Tipopessoa();
         Endereco end = new Endereco();
-        EnderecoDAO endDAO=new EnderecoDAO();
+        EnderecoDAO endDAO = new EnderecoDAO();
         #endregion
 
-#pragma warning disable CS0414 // O campo "frmPesquisaPessoa.update" é atribuído, mas seu valor nunca é usado
         Boolean update;
-#pragma warning restore CS0414 // O campo "frmPesquisaPessoa.update" é atribuído, mas seu valor nunca é usado
-#pragma warning disable CS0169 // O campo "frmPesquisaPessoa.Pesquisa" nunca é usado
         Boolean Pesquisa;
-#pragma warning restore CS0169 // O campo "frmPesquisaPessoa.Pesquisa" nunca é usado
         string codtp;
         string codtp2;
         string codtp3;
@@ -56,7 +46,6 @@ namespace Caixa
             cmbTipo1.DisplayMember = "tipo";
             cmbTipo1.ValueMember = "ID";
             codtp = cmbTipo1.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo2()
@@ -65,7 +54,6 @@ namespace Caixa
             cmbTipo2.DisplayMember = "tipo";
             cmbTipo2.ValueMember = "ID";
             codtp2 = cmbTipo2.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo3()
@@ -74,7 +62,6 @@ namespace Caixa
             cmbTipo3.DisplayMember = "tipo";
             cmbTipo3.ValueMember = "ID";
             codtp3 = cmbTipo3.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo4()
@@ -83,7 +70,6 @@ namespace Caixa
             cmbTipo4.DisplayMember = "tipo";
             cmbTipo4.ValueMember = "ID";
             codtp4 = cmbTipo4.SelectedValue.ToString();
-
         }
 
         private void mskCpfPesquisa_TextChanged(object sender, EventArgs e)
@@ -95,15 +81,12 @@ namespace Caixa
             else
             {
                 mskCnpjPesquisa.Enabled = false;
-               
             }
 
             if (mskCpfPesquisa.MaskFull == true)
             {
                 if (pesDAO.VerificaCPFNJ(mskCpfPesquisa.Text) == true)
                 {
-      
-
                     txtN.Text = pesDAO.Pes.N_casa.ToString();
                     txtNome.Text = pesDAO.Pes.Nome;
                     txtIm.Text = pesDAO.Pes.Im;
@@ -119,7 +102,6 @@ namespace Caixa
                     mskTel.Text = pesDAO.Pes.Tel;
                     txtEmail.Text = pesDAO.Pes.Email;
                     txtObs.Text = pesDAO.Pes.Obs;
-                   
 
                     update = true;
 
@@ -145,8 +127,6 @@ namespace Caixa
                     cmbTipo1.Enabled = true;
                     txtNome.Visible = true;
                     lblNome.Visible = true;
-
-
 
                     pesDAO.VerificaTipo(mskCpfPesquisa.Text);
                     try
@@ -181,34 +161,16 @@ namespace Caixa
                     {
                         cmbTipo4.Text = "";
                     }
-
-
-
-
-
                 }
                 else
                 {
-                   
-                 
                 }
-
-
             }
             else
             {
-              
-                
-
-
-
-
                 mskCpfPesquisa.BackColor = Color.Empty;
 
                 update = false;
-                
-
-
 
                 txtN.Clear();
                 txtNome.Clear();
@@ -250,14 +212,7 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 txtNome.Visible = false;
                 lblNome.Visible = false;
-
-
-
             }
-
-
-
-
         }
 
         private void mskCnpjPesquisa_TextChanged(object sender, EventArgs e)
@@ -353,31 +308,13 @@ namespace Caixa
                     {
                         cmbTipo4.Text = "";
                     }
-
-
-
-
-
-
-
-
                 }
                 else
                 {
-
-
                 }
-
-
             }
             else
             {
-
-
-
-
-
-
                 mskCnpjPesquisa.BackColor = Color.Empty;
 
                 update = false;
@@ -424,12 +361,8 @@ namespace Caixa
                 txtNome.Visible = false;
                 lblFantasia.Visible = false;
                 lblNome.Visible = false;
-
-
             }
-
-        
-    }
+        }
 
         private void frmPesquisaPessoa_Load(object sender, EventArgs e)
         {
@@ -445,7 +378,7 @@ namespace Caixa
         public void AtualizaNome(string nome)
         {
             chkNome.Checked = true;
-            txtPesqNome.Text = nome;          
+            txtPesqNome.Text = nome;
         }
 
         public void Bloq()
@@ -471,11 +404,10 @@ namespace Caixa
             cmbTipo3.Enabled = false;
             cmbTipo4.Enabled = false;
             txtIe.Enabled = false;
-            
         }
         public void Limpar()
         {
-            txtN.Clear();     mskCpfPesquisa.Clear();    mskCnpjPesquisa.Clear();
+            txtN.Clear(); mskCpfPesquisa.Clear(); mskCnpjPesquisa.Clear();
             txtNome.Clear();
             txtRs.Clear();
             txtCidade.Clear();
@@ -484,7 +416,7 @@ namespace Caixa
             txtFornecimento.Clear();
             txtIe.Text = "Isento";
             txtIm.Clear();
-            mskCel.Clear();           
+            mskCel.Clear();
             mskTel.Clear();
             txtObs.Clear();
             txtBairro.Clear();
@@ -506,7 +438,6 @@ namespace Caixa
             chkCpfCnpj.Checked = false;
             chkNome.Checked = false;
             txtPesqNome.Visible = false;
-            
         }
 
         private void chkIe_CheckedChanged(object sender, EventArgs e)
@@ -576,7 +507,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo2_SelectedIndexChanged(object sender, EventArgs e)
@@ -604,7 +534,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo4_SelectedIndexChanged(object sender, EventArgs e)
@@ -632,7 +561,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo1_TextChanged(object sender, EventArgs e)
@@ -660,7 +588,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo3_TextChanged(object sender, EventArgs e)
@@ -688,7 +615,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo2_TextChanged(object sender, EventArgs e)
@@ -716,7 +642,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo4_TextChanged(object sender, EventArgs e)
@@ -728,7 +653,6 @@ namespace Caixa
                 cmbTipo3.Enabled = false;
                 cmbTipo3.Text = "";
             }
-
             if (cmbTipo3.Text != string.Empty)
                 cmbTipo2.Enabled = true;
             else
@@ -736,7 +660,6 @@ namespace Caixa
                 cmbTipo2.Enabled = false;
                 cmbTipo2.Text = "";
             }
-
             if (cmbTipo2.Text != string.Empty)
                 cmbTipo4.Enabled = true;
             else
@@ -744,7 +667,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -762,9 +684,7 @@ namespace Caixa
                     pesDAO.ExcluirNome(txtPesqNome.Text, txtCpfnj.Text);
                     MessageBox.Show("Excluído com sucesso !!!");
 
-
                     Bloq();
-
 
                     aud.Acao = "EXCLUIU PESSOA";
                     aud.Data = FechamentoDAO.data;
@@ -774,7 +694,6 @@ namespace Caixa
                 }
                 else
                 {
-                   
                 }
             }
 
@@ -791,9 +710,7 @@ namespace Caixa
                     pesDAO.Excluir(mskCpfPesquisa.Text);
                     MessageBox.Show("Excluído com sucesso !!!");
 
-
                     Bloq();
-
 
                     aud.Acao = "EXCLUIU PESSOA FÍSICA";
                     aud.Data = FechamentoDAO.data;
@@ -803,14 +720,12 @@ namespace Caixa
                 }
                 else
                 {
-      
                 }
             }
             else
             {
                 if (mskCnpjPesquisa.MaskFull == true)
                 {
-
                     DialogResult op;
 
                     op = MessageBox.Show("Deseja realmente excluir?",
@@ -822,9 +737,7 @@ namespace Caixa
                         pesDAO.Excluir(mskCnpjPesquisa.Text);
                         MessageBox.Show("Excluído com sucesso !!!");
 
-
                         Bloq();
-
 
                         aud.Acao = "EXCLUIU PESSOA JURÍDICA";
                         aud.Data = FechamentoDAO.data;
@@ -834,15 +747,9 @@ namespace Caixa
                     }
                     else
                     {
-
                     }
-
-                    
-
                 }
             }
-
-           
         }
 
         private void frmPesquisaPessoa_KeyDown(object sender, KeyEventArgs e)
@@ -857,43 +764,43 @@ namespace Caixa
         {
             #region FÍSICO
             if (mskCpfPesquisa.MaskFull == true)
-            {                
+            {
+                if (txtNome.Text == string.Empty)
+                {
                     if (txtNome.Text == string.Empty)
-                {                                                             
-                        if (txtNome.Text == string.Empty)
-                            txtNome.BackColor = Color.Red;
+                        txtNome.BackColor = Color.Red;
 
-                       
 
-                        MessageBox.Show("Favor preencher o campo em vermelho!!!");
 
-                    }
-                    else
-                    {                      
-                            try
-                            {
-                                pes.Nome = txtNome.Text;
-                                pes.Tipo = "Física";
-                                pes.Cpfnj = mskCpfPesquisa.Text;
-                                pes.Im = txtIm.Text;
-                                pes.Ie = txtIe.Text;
-                                pes.Fornecimento = txtFornecimento.Text;
-                                pes.Rs = txtRs.Text;
+                    MessageBox.Show("Favor preencher o campo em vermelho!!!");
 
-                                pes.Email = txtEmail.Text;
-                                pes.Cel = mskCel.Text;
-                                pes.Tel = mskTel.Text;
-                                pes.Obs = txtObs.Text;
+                }
+                else
+                {
+                    try
+                    {
+                        pes.Nome = txtNome.Text;
+                        pes.Tipo = "Física";
+                        pes.Cpfnj = mskCpfPesquisa.Text;
+                        pes.Im = txtIm.Text;
+                        pes.Ie = txtIe.Text;
+                        pes.Fornecimento = txtFornecimento.Text;
+                        pes.Rs = txtRs.Text;
 
-                                pesDAO.Update(pes);
-                                //pesDAO.VerificaID();
+                        pes.Email = txtEmail.Text;
+                        pes.Cel = mskCel.Text;
+                        pes.Tel = mskTel.Text;
+                        pes.Obs = txtObs.Text;
 
-                                //end.Tipo = "Primário";
-                                end.Cep = mskCep.Text;
-                                end.Uf = txtUf.Text;
-                                end.Cidade = txtCidade.Text;
-                                end.Bairro = txtBairro.Text;
-                                end.Rua = txtRua.Text;
+                        pesDAO.Update(pes);
+                        //pesDAO.VerificaID();
+
+                        //end.Tipo = "Primário";
+                        end.Cep = mskCep.Text;
+                        end.Uf = txtUf.Text;
+                        end.Cidade = txtCidade.Text;
+                        end.Bairro = txtBairro.Text;
+                        end.Rua = txtRua.Text;
                         try
                         {
                             end.N_casa = Convert.ToInt32(txtN.Text);
@@ -902,164 +809,164 @@ namespace Caixa
                         {
 
                         }
-                               
-                                end.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                endDAO.Update3(end);
 
-                            string id = pesDAO.Pes.Id_pessoa.ToString();
+                        end.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                        endDAO.Update3(end);
 
-                            tpsDAO.Excluir(id);
+                        string id = pesDAO.Pes.Id_pessoa.ToString();
 
-                            if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text != string.Empty)
+                        tpsDAO.Excluir(id);
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text != string.Empty)
+                        {
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
                             {
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                               
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo4.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                            }
-
-                                if (cmbTipo1.Text != string.Empty && cmbTipo3.Text == string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
-                                {
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                                    
-                                }
-
-                            if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
-                            {
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                     
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                           
-                            }
-
-                            if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text == string.Empty)
-                            {
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                               
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                              
-
-                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-                           
-                            }
-      
-                                MessageBox.Show("Informações atualizadas com sucesso!");
-
-                                Bloq();
-
-
-                                aud.Acao = "ATUALIZOU PESSOA FÍSICA";
-                                aud.Data = FechamentoDAO.data;
-                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                                aud.Responsavel = UsuarioDAO.login;
-                                audDAO.Inserir(aud);
+                                tpsDAO.Inserir(tp);
                             }
                             catch
                             {
-                                MessageBox.Show("Favor verificar as informações digitadas!!!");
+
                             }
-                       
+
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo4.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text == string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                            tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        MessageBox.Show("Informações atualizadas com sucesso!");
+
+                        Bloq();
+
+
+                        aud.Acao = "ATUALIZOU PESSOA FÍSICA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
                     }
+                    catch
+                    {
+                        MessageBox.Show("Favor verificar as informações digitadas!!!");
+                    }
+
+                }
             }
             #endregion
 
@@ -1077,33 +984,33 @@ namespace Caixa
 
                     }
                     else
-                        {                            
-                                try
-                                {
-                                    pes.Nome = txtNome.Text;
-                                    pes.Tipo = "Jurídica";
-                                    pes.Cpfnj = mskCnpjPesquisa.Text;
-                                    pes.Im = txtIm.Text;
-                                    pes.Ie = txtIe.Text;
-                                    pes.Rs = txtRs.Text;
-                                    pes.Fornecimento = txtFornecimento.Text;
+                    {
+                        try
+                        {
+                            pes.Nome = txtNome.Text;
+                            pes.Tipo = "Jurídica";
+                            pes.Cpfnj = mskCnpjPesquisa.Text;
+                            pes.Im = txtIm.Text;
+                            pes.Ie = txtIe.Text;
+                            pes.Rs = txtRs.Text;
+                            pes.Fornecimento = txtFornecimento.Text;
 
 
 
-                                    pes.Email = txtEmail.Text;
-                                    pes.Cel = mskCel.Text;
-                                    pes.Tel = mskTel.Text;
-                                    pes.Obs = txtObs.Text;
+                            pes.Email = txtEmail.Text;
+                            pes.Cel = mskCel.Text;
+                            pes.Tel = mskTel.Text;
+                            pes.Obs = txtObs.Text;
 
-                                    pesDAO.Update(pes);
-                                    //pesDAO.VerificaID();
+                            pesDAO.Update(pes);
+                            //pesDAO.VerificaID();
 
-                                    end.Tipo = "Primário";
-                                    end.Cep = mskCep.Text;
-                                    end.Uf = txtUf.Text;
-                                    end.Cidade = txtCidade.Text;
-                                    end.Bairro = txtBairro.Text;
-                                    end.Rua = txtRua.Text;
+                            end.Tipo = "Primário";
+                            end.Cep = mskCep.Text;
+                            end.Uf = txtUf.Text;
+                            end.Cidade = txtCidade.Text;
+                            end.Bairro = txtBairro.Text;
+                            end.Rua = txtRua.Text;
                             try
                             {
                                 end.N_casa = Convert.ToInt32(txtN.Text);
@@ -1112,223 +1019,16 @@ namespace Caixa
                             {
 
                             }
-                                 
-                                    end.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    endDAO.Update3(end);
 
-                                tpsDAO.Excluir(pesDAO.Pes.Id_pessoa.ToString());
-
-                                if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text != string.Empty)
-                                {
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo4.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                }
-
-                                if (cmbTipo1.Text != string.Empty && cmbTipo3.Text == string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
-                                {
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                    tpsDAO.Inserir(tp);
-                                }
-
-                                if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
-                                {
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                    tpsDAO.Inserir(tp);
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                    tpsDAO.Inserir(tp);
-                                }
-
-                                if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text == string.Empty)
-                                {
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                    tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
-                                    try
-                                    {
-                                        tpsDAO.Inserir(tp);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                }
-
-                                MessageBox.Show("Informações atualizadas com sucesso!");
-
-                                    Bloq();
-
-
-                                    aud.Acao = "ATUALIZOU PESSOA JURÍDICA";
-                                    aud.Data = FechamentoDAO.data;
-                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                                    aud.Responsavel = UsuarioDAO.login;
-                                    audDAO.Inserir(aud);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Favor verificar as informações digitadas!!!");
-                                }
-                          
-
-                        }
-
-                    }
-       
-
-                    
-
-                    
-                }
-            #endregion
-
-            #region NOME
-            if (txtPesqNome.Text != string.Empty)
-            {
-                if (txtNome.Text == string.Empty)
-                {
-                    if (txtNome.Text == string.Empty)
-                        txtNome.BackColor = Color.Red;
-
-                    MessageBox.Show("Favor preencher o campo em vermelho!!!");
-
-                }
-                else
-                {                   
-                        try
-                        {
-                            pes.Nome = txtNome.Text;
-                            pes.Tipo = lblFisJur.Text;
-                            pes.Cpfnj = txtCpfnj.Text;
-                            pes.Im = txtIm.Text;
-                            pes.Ie = txtIe.Text;
-                            pes.Fornecimento = txtFornecimento.Text;
-                            pes.Rs = txtRs.Text;
-
-                            pes.Email = txtEmail.Text;
-                            pes.Cel = mskCel.Text;
-                            pes.Tel = mskTel.Text;
-                            pes.Obs = txtObs.Text;
-
-                            pesDAO.Update(pes);
-                   
-                            end.Cep = mskCep.Text;
-                            end.Uf = txtUf.Text;
-                            end.Cidade = txtCidade.Text;
-                            end.Bairro = txtBairro.Text;
-                            end.Rua = txtRua.Text;
-                        try
-                        {
-                            end.N_casa = Convert.ToInt32(txtN.Text);
-                        }
-                        catch
-                        {
-
-                        }
-                           
                             end.Id_pessoa = pesDAO.Pes.Id_pessoa;
                             endDAO.Update3(end);
 
-                     
-
-                            if(pesDAO.Listapessoa == null)
-                            {
-                                  id = pesDAO.Pes.Id_pessoa.ToString();
-                            }
-                            else
-                            {
-                                id = pesDAO.Listapessoa.Rows[i]["ID"].ToString();
-                            }
-
-
-
-                            tpsDAO.Excluir(id);
+                            tpsDAO.Excluir(pesDAO.Pes.Id_pessoa.ToString());
 
                             if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text != string.Empty)
                             {
 
-                                if (pesDAO.Listapessoa == null)
-                                {
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                }
-                                else
-                                {
-                                    tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
-                                }
-
-                            
-
-
-
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
                                 try
                                 {
@@ -1339,8 +1039,7 @@ namespace Caixa
 
                                 }
 
-
-                              
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
                                 try
                                 {
@@ -1351,7 +1050,7 @@ namespace Caixa
 
                                 }
 
-                               
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
                                 try
                                 {
@@ -1362,7 +1061,7 @@ namespace Caixa
 
                                 }
 
-         
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo4.SelectedValue);
                                 try
                                 {
@@ -1377,79 +1076,27 @@ namespace Caixa
                             if (cmbTipo1.Text != string.Empty && cmbTipo3.Text == string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
                             {
 
-                                if (pesDAO.Listapessoa == null)
-                                {
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                }
-                                else
-                                {
-                                    tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
-                                }
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-
+                                tpsDAO.Inserir(tp);
                             }
 
                             if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
                             {
 
-
-
-                                if (pesDAO.Listapessoa == null)
-                                {
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                }
-                                else
-                                {
-                                    tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
-                                }
-
-
-
-
-
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
+                                tpsDAO.Inserir(tp);
 
-                                }
-
-
-                       
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
-                                try
-                                {
-                                    tpsDAO.Inserir(tp);
-                                }
-                                catch
-                                {
-
-                                }
-
+                                tpsDAO.Inserir(tp);
                             }
 
                             if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text == string.Empty)
                             {
 
-                                if (pesDAO.Listapessoa == null)
-                                {
-                                    tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
-                                }
-                                else
-                                {
-                                    tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
-                                }
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
                                 try
                                 {
@@ -1459,7 +1106,8 @@ namespace Caixa
                                 {
 
                                 }
-                              
+
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
                                 try
                                 {
@@ -1470,6 +1118,7 @@ namespace Caixa
 
                                 }
 
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
                                 tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
                                 try
                                 {
@@ -1479,7 +1128,6 @@ namespace Caixa
                                 {
 
                                 }
-
                             }
 
                             MessageBox.Show("Informações atualizadas com sucesso!");
@@ -1487,7 +1135,7 @@ namespace Caixa
                             Bloq();
 
 
-                            aud.Acao = "ATUALIZAR PESSOA";
+                            aud.Acao = "ATUALIZOU PESSOA JURÍDICA";
                             aud.Data = FechamentoDAO.data;
                             aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                             aud.Responsavel = UsuarioDAO.login;
@@ -1497,7 +1145,266 @@ namespace Caixa
                         {
                             MessageBox.Show("Favor verificar as informações digitadas!!!");
                         }
-                  
+
+
+                    }
+
+                }
+
+
+
+
+
+            }
+            #endregion
+
+            #region NOME
+            if (txtPesqNome.Text != string.Empty)
+            {
+                if (txtNome.Text == string.Empty)
+                {
+                    if (txtNome.Text == string.Empty)
+                        txtNome.BackColor = Color.Red;
+
+                    MessageBox.Show("Favor preencher o campo em vermelho!!!");
+
+                }
+                else
+                {
+                    try
+                    {
+                        pes.Nome = txtNome.Text;
+                        pes.Tipo = lblFisJur.Text;
+                        pes.Cpfnj = txtCpfnj.Text;
+                        pes.Im = txtIm.Text;
+                        pes.Ie = txtIe.Text;
+                        pes.Fornecimento = txtFornecimento.Text;
+                        pes.Rs = txtRs.Text;
+
+                        pes.Email = txtEmail.Text;
+                        pes.Cel = mskCel.Text;
+                        pes.Tel = mskTel.Text;
+                        pes.Obs = txtObs.Text;
+
+                        pesDAO.Update(pes);
+
+                        end.Cep = mskCep.Text;
+                        end.Uf = txtUf.Text;
+                        end.Cidade = txtCidade.Text;
+                        end.Bairro = txtBairro.Text;
+                        end.Rua = txtRua.Text;
+                        try
+                        {
+                            end.N_casa = Convert.ToInt32(txtN.Text);
+                        }
+                        catch
+                        {
+
+                        }
+
+                        end.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                        endDAO.Update3(end);
+
+
+
+                        if (pesDAO.Listapessoa == null)
+                        {
+                            id = pesDAO.Pes.Id_pessoa.ToString();
+                        }
+                        else
+                        {
+                            id = pesDAO.Listapessoa.Rows[i]["ID"].ToString();
+                        }
+
+
+
+                        tpsDAO.Excluir(id);
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text != string.Empty)
+                        {
+
+                            if (pesDAO.Listapessoa == null)
+                            {
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            }
+                            else
+                            {
+                                tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
+                            }
+
+
+
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo4.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text == string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+                            if (pesDAO.Listapessoa == null)
+                            {
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            }
+                            else
+                            {
+                                tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
+                            }
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text == string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+
+
+                            if (pesDAO.Listapessoa == null)
+                            {
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            }
+                            else
+                            {
+                                tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
+                            }
+
+
+
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        if (cmbTipo1.Text != string.Empty && cmbTipo3.Text != string.Empty && cmbTipo2.Text != string.Empty && cmbTipo4.Text == string.Empty)
+                        {
+
+                            if (pesDAO.Listapessoa == null)
+                            {
+                                tp.Id_pessoa = pesDAO.Pes.Id_pessoa;
+                            }
+                            else
+                            {
+                                tp.Id_pessoa = Convert.ToInt32(pesDAO.Listapessoa.Rows[i]["ID"].ToString());
+                            }
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo1.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo3.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            tp.Id_tipo = Convert.ToInt32(cmbTipo2.SelectedValue);
+                            try
+                            {
+                                tpsDAO.Inserir(tp);
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+
+                        MessageBox.Show("Informações atualizadas com sucesso!");
+
+                        Bloq();
+
+
+                        aud.Acao = "ATUALIZAR PESSOA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Favor verificar as informações digitadas!!!");
+                    }
+
                 }
             }
             #endregion
@@ -1717,7 +1624,7 @@ namespace Caixa
         private void chkCpfCnpj_CheckedChanged(object sender, EventArgs e)
         {
             Bloq();
-            if(chkCpfCnpj.Checked == true)
+            if (chkCpfCnpj.Checked == true)
             {
                 lblCpf.Visible = true;
                 lblCnpjPesq.Visible = true;
@@ -1739,12 +1646,11 @@ namespace Caixa
 
         private void chkNome_CheckedChanged(object sender, EventArgs e)
         {
-
             Bloq();
-            if(chkNome.Checked == true)
+            if (chkNome.Checked == true)
             {
                 lblNomee.Visible = true;
-               txtPesqNome.Visible = true;
+                txtPesqNome.Visible = true;
                 chkCpfCnpj.Enabled = false;
                 btnAnt.Visible = true;
                 btnProx.Visible = true;
@@ -1788,9 +1694,8 @@ namespace Caixa
                 mskTel.Text = pesDAO.Listapessoa.Rows[i]["tel"].ToString();
                 mskCel.Text = pesDAO.Listapessoa.Rows[i]["cel"].ToString();
                 txtObs.Text = pesDAO.Listapessoa.Rows[i]["obs"].ToString();
-                txtRs.Text = pesDAO.Listapessoa.Rows[i]["rs"].ToString();                        
+                txtRs.Text = pesDAO.Listapessoa.Rows[i]["rs"].ToString();
             }
-
             else
             {
                 btnProx.Enabled = false;
@@ -1834,7 +1739,6 @@ namespace Caixa
             {
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void btnAnt_Click(object sender, EventArgs e)
@@ -1845,7 +1749,6 @@ namespace Caixa
 
             if (i >= 0)
             {
-
                 codpes = pesDAO.Listapessoa.Rows[i]["ID"].ToString();
 
                 txtCpfnj.Text = pesDAO.Listapessoa.Rows[i]["cpfnj"].ToString();
@@ -1870,7 +1773,7 @@ namespace Caixa
 
                 if (i == 0)
                 {
-                   btnAnt.Enabled = false;
+                    btnAnt.Enabled = false;
                 }
 
                 pesDAO.VerificaTipo(txtCpfnj.Text);
@@ -1908,7 +1811,6 @@ namespace Caixa
                 }
             }
         }
-
         private void txtRua_TextChanged(object sender, EventArgs e)
         {
             txtRua.BackColor = Color.Empty;
@@ -1941,7 +1843,7 @@ namespace Caixa
 
         private void txtN_TextChanged(object sender, EventArgs e)
         {
-           txtN.BackColor = Color.Empty;
+            txtN.BackColor = Color.Empty;
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
@@ -1975,7 +1877,7 @@ namespace Caixa
                     codpes = pesDAO.Pes.Id_pessoa.ToString();
 
                     lblFisJur.Text = pesDAO.Pes.Fisjur.ToString();
-                    txtCpfnj.Text = pesDAO.Pes.Cpfnj.ToString(); 
+                    txtCpfnj.Text = pesDAO.Pes.Cpfnj.ToString();
                     txtN.Text = pesDAO.Pes.N_casa.ToString();
                     txtNome.Text = pesDAO.Pes.Nome;
                     txtIm.Text = pesDAO.Pes.Im;
@@ -1991,7 +1893,6 @@ namespace Caixa
                     mskTel.Text = pesDAO.Pes.Tel;
                     txtEmail.Text = pesDAO.Pes.Email;
                     txtObs.Text = pesDAO.Pes.Obs;
-
 
                     update = true;
 
@@ -2020,33 +1921,19 @@ namespace Caixa
                     txtCpfnj.Visible = true;
                     lblCpfNj.Visible = true;
 
-
-                   
-
-
-
-
-
-
-
                     if (pesDAO.Listapessoa != null)
                     {
                         qtdRegistro = pesDAO.Listapessoa.Rows.Count;
 
-
                         i = 0;
 
                         btnProx.Enabled = true;
-
                     }
                     else
                     {
                         btnProx.Enabled = false;
                         btnAnt.Enabled = false;
-
-
                     }
-
 
                     pesDAO.VerificaTipo(txtCpfnj.Text);
                     try
@@ -2081,13 +1968,6 @@ namespace Caixa
                     {
                         cmbTipo4.Text = "";
                     }
-
-
-                   
-
-
-
-
                 }
                 else
                 {
@@ -2112,7 +1992,6 @@ namespace Caixa
                     cmbTipo4.Text = "";
                     txtCpfnj.Clear();
                     lblFisJur.Text = "";
-                    
 
                     txtN.Enabled = false;
                     txtNome.Enabled = false;
@@ -2138,26 +2017,13 @@ namespace Caixa
                     lblCpfNj.Visible = false;
                     btnProx.Enabled = false;
                     btnAnt.Enabled = false;
-
-
                 }
-
-
             }
             else
             {
-
-
-
-
-
-
                 txtPesqNome.BackColor = Color.Empty;
 
                 update = false;
-
-
-
 
                 txtN.Clear();
                 txtNome.Clear();
@@ -2205,9 +2071,6 @@ namespace Caixa
                 lblNome.Visible = false;
                 btnProx.Enabled = false;
                 btnAnt.Enabled = false;
-
-
-
             }
         }
     }

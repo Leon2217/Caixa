@@ -126,7 +126,6 @@ namespace Caixa
         public void InserirT(string senha)
         {
             executarComando("insert into temporaria values('"+senha+"');");
-
         }
 
         #region VERIFICA CARGO
@@ -148,8 +147,6 @@ namespace Caixa
         public void DeletaT()
         {
             executarComando("delete from temporaria;");
-
-
         }
     }
 }

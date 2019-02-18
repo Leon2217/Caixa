@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -42,14 +35,11 @@ namespace Caixa
                 v = Convert.ToDouble(n) / 100;
                 txt.Text = string.Format("{0:N}", v);
                 txt.SelectionStart = txt.Text.Length;
-
             }
             catch (Exception)
             {
-
             }
         }
-
 
         private void frmValorOperadora_Load(object sender, EventArgs e)
         {
@@ -57,18 +47,13 @@ namespace Caixa
             {
                 Moeda(ref txtValor);
                 CarregarComboOperadora();
-                //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-
             }
             catch
             {
-
-            }
-          
+            }          
         }
         public void CarregarComboOperadora()
         {
-
             cmbOperadora.DataSource = opDAO.Listartudo();
             cmbOperadora.DisplayMember = "operadora";
             cmbOperadora.ValueMember = "id_operadora";
@@ -93,7 +78,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
@@ -107,7 +91,6 @@ namespace Caixa
 
             if (op == DialogResult.Yes)
             {
-
                 try
                 {                   
                         vop.Id_operadora = Convert.ToInt32(codop);
@@ -127,20 +110,7 @@ namespace Caixa
                 {
                     MessageBox.Show("Favor verificar as informações digitadas !!!");
                 }
-               
-            
-
-
-
             }
-        }
-
-        private void frmValorOperadora_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-
-
-
         }
 
         private void frmValorOperadora_KeyDown(object sender, KeyEventArgs e)

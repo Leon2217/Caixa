@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -60,7 +53,6 @@ namespace Caixa
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -232,7 +224,6 @@ namespace Caixa
                     MessageBox.Show("Favor verificar as informações digitadas !!!");
                 }
             }
-
         }
 
         private void frmSangria_KeyDown(object sender, KeyEventArgs e)

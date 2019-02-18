@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -64,21 +57,17 @@ namespace Caixa
             try
             {
                 vcDAO.Verificavalor();
-                double valor = Convert.ToDouble(vcDAO.Vc.Valor.ToString().Replace('.', ','));
-             
+                double valor = Convert.ToDouble(vcDAO.Vc.Valor.ToString().Replace('.', ','));             
             }
             catch
             {
-
-            }
-           
+            }           
         }
 
         public void AtualizaDados()
         {
             vcDAO.Verificavalor();
-            double valor = Convert.ToDouble(vcDAO.Vc.Valor.ToString().Replace('.',','));
-           
+            double valor = Convert.ToDouble(vcDAO.Vc.Valor.ToString().Replace('.',','));           
         }
 
         private void btnMovimento_Click(object sender, EventArgs e)

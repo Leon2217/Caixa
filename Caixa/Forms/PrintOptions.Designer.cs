@@ -114,7 +114,6 @@
             this.Name = "PrintOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Opção de Impressão";
-            this.Load += new System.EventHandler(this.PrintOptions_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

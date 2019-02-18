@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -61,9 +55,6 @@ namespace Caixa
                         audDAO.Inserir(aud);
 
                     }
-
-
-
                 }
                 catch
                 {
@@ -82,7 +73,6 @@ namespace Caixa
             if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsSeparator(e.KeyChar)))
             {
                e.Handled = true;
-
             }
         }
 
