@@ -47,5 +47,10 @@ namespace Caixa
             foreach (string field in availableFields)
                 chklst.Items.Add(field, true);
         }
+
+        private void PrintOptions_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

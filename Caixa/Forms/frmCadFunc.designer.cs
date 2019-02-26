@@ -221,8 +221,6 @@
             this.tabPage1.Size = new System.Drawing.Size(744, 461);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
-            
             // 
             // lblFantasia
             // 
@@ -525,7 +523,6 @@
             this.mskCpf.Size = new System.Drawing.Size(122, 26);
             this.mskCpf.TabIndex = 3;
             this.mskCpf.Visible = false;
-            this.mskCpf.TextAlignChanged += new System.EventHandler(this.mskCpf_TextAlignChanged);
             this.mskCpf.TextChanged += new System.EventHandler(this.mskCpf_TextChanged);
             this.mskCpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCpf_KeyDown);
             // 
@@ -847,7 +844,7 @@
             this.cmbTipo5.Name = "cmbTipo5";
             this.cmbTipo5.Size = new System.Drawing.Size(215, 28);
             this.cmbTipo5.TabIndex = 144;
-            this.cmbTipo5.SelectedIndexChanged += new System.EventHandler(this.cmbTipo5_SelectedIndexChanged);            
+            this.cmbTipo5.SelectedIndexChanged += new System.EventHandler(this.cmbTipo5_SelectedIndexChanged);
             this.cmbTipo5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTipo5_KeyDown);
             // 
             // label35

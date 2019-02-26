@@ -156,7 +156,7 @@ namespace Caixa
             }
             catch
             {
-                MessageBox.Show("Favor cadastrar fornecedores primeiro");
+
             }          
             cmbFornecedor.Text = "";
         }

@@ -274,7 +274,6 @@ namespace Caixa
             #endregion
         }
 
-
         public void ExportarPDF(DataGridView dgw, string filename)
         {
             #region PDF

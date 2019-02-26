@@ -1218,7 +1218,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1227,7 +1226,6 @@ namespace Caixa
                         rtx.Id_maquina = Convert.ToInt32(codmaq);
                         rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         rtxDAO.Update(rtx);
-
                     }
                     else
                     {
@@ -1254,7 +1252,6 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
-
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1291,7 +1288,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1326,7 +1322,6 @@ namespace Caixa
                         por = Convert.ToDouble(txDAO.Taxas.Taxa.ToString().Replace('.', ','));
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
-
 
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
@@ -1783,7 +1778,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1818,7 +1812,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -1845,7 +1838,6 @@ namespace Caixa
                     aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                     aud.Responsavel = UsuarioDAO.login;
                     audDAO.Inserir(aud);
-
                 }
                 else
                 {
@@ -1975,7 +1967,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -2010,7 +2001,6 @@ namespace Caixa
                         taxa = (vl * (por / 100));
                         totaltx = Convert.ToDouble((vl - taxa).ToString("#0.00"));
 
-
                         rtx.Data = FechamentoDAO.data;
                         rtx.Id_cartao = Convert.ToInt32(codcart);
                         rtx.Taxa = txDAO.Taxas.Taxa.ToString().Replace('.', ',');
@@ -2019,7 +2009,6 @@ namespace Caixa
                         rtx.Id_caixa = Convert.ToInt32(CartaocaixaDAO.codcaixa);
                         rtx.Id_maquina = Convert.ToInt32(codmaq);
                         rtxDAO.Inserir(rtx);
-
                     }
                     else
                     {

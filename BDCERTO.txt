@@ -221,6 +221,7 @@ foreign key(id_pessoa) references pessoa(id_pessoa)
 on delete cascade on update cascade
 );
 
+
 create table relatfiado
 (
 id_fiado int not null auto_increment,
@@ -298,7 +299,6 @@ primary key(id_falta),
 foreign key(id_pessoa) references pessoa(id_pessoa)
 on delete cascade on update cascade
 );
-
 
 
 create table entrada_moeda
@@ -421,7 +421,6 @@ primary key(id_vc),
 foreign key(id_caixa) references caixa(id_caixa)
 on delete cascade on update cascade
 );
-
 
 
 create table verifica
@@ -633,15 +632,12 @@ chave text not null
 executarComando("delete a.* FROM assinadas a INNER JOIN caixa c on c.id_caixa = a.id_caixa;");
 
 
-
-
 DELETE assinadas.*,auditoria.*,contas.*,credito.*,credito_debito.*,debito.*,
 despesa.*,dev_moeda.*,diferenca.*,dinheiro.*,entrada_dev.*,entrada_moeda.*,falta.*,
 fiado.*,gaveta.*,geral.*,inventario.*,inventario_rec.*,recarga.*,relatfiado.*,relattx.*,sangria.*,
 suprimento.*,venda_vc.* from assinadas,auditoria,contas,credito,credito_debito,debito,despesa,dev_moeda,
 diferenca,dinheiro,entrada_dev,entrada_moeda,falta,fiado,gaveta,geral,inventario,inventario_rec,recarga,
 relatfiado,relattx,sangria,suprimento,venda_vc;
-
 
 
 
@@ -662,19 +658,7 @@ CADASTRAR USUÁRIO
 CADASTRAR TIPOS DE PESSOA(FUNCIONÁRIO, CLIENTE, FORNECEDOR, CLIENTE E FORNECEDOR)
 
 
-
-
-
-
-
-
 select c.cartao,cc.valor from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno;
-
-
-
-
-
-
 
 
 select c.cartao,cc.valor from cartaocaixa cc inner join cartao c

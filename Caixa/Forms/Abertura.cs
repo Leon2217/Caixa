@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using Caixa.Classes;
 
 namespace Caixa
 {
@@ -252,7 +255,6 @@ namespace Caixa
                         aud.Responsavel = UsuarioDAO.login;
                         audDAO.Inserir(aud);
 
-                        this.Hide();
                         InicialCaixa i = new InicialCaixa();
                         i.ShowDialog();
                     }
@@ -428,35 +430,116 @@ namespace Caixa
 
         private void btnBackup_Click(object sender, EventArgs e)
         {
-            DialogResult op;
-
-            op = MessageBox.Show("Deseja realmente fazer o Backup?",
-                "Backup?", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (op == DialogResult.Yes)
+            if (Directory.Exists("c:\\CaixaBackupTemp"))
+            { }
+            else
             {
-                Process myProcess = new Process();
+                Directory.CreateDirectory("c:\\CaixaBackupTemp");
+            }
+            string path = "c:\\CaixaBackupTemp";
 
-                try
-                {
-                    myProcess.StartInfo.UseShellExecute = false;
-                    myProcess.StartInfo.FileName = "C:\\Backup Mysql\\back_up.bat";
-                    myProcess.StartInfo.CreateNoWindow = true;
-                    myProcess.Start();
+            MysqlBackup_Restore(path, "backup");
 
-                    MessageBox.Show("Backup realizado com sucesso");
-                }
+            //corre uma thread com o processo que faz o backup ou restore
+            System.Threading.Thread.Sleep(420);
 
-                catch
-                {
-                    MessageBox.Show("Por favor verifique se existe uma pasta chamada \"Backup Mysql\" no diretório C:, caso contrário contate um administrador ");
-                }
+            //quando executar fara o codigo seguinte
+            //exemplo do path
+
+            //corre uma thread com o processo que faz o backup ou restore
+            Thread t = new Thread(delegate () { MySqlProcess(path, "backup"); });
+            t.Start();
+        }
+
+        private static void MysqlBackup_Restore(string path, string type)
+        {
+            //Caminho onde o mysql esta instalado
+            string cmd = "\"C:/Arquivos de programas/MySQL/MySQL Server 5.1/bin/";
+
+            //create a bath file to run the script database.
+            StreamWriter sw = File.CreateText(path + "\\CaixaBackup.cmd");
+            //sw.WriteLine("c:");
+            sw.WriteLine("c:");
+            sw.WriteLine("cd\\");
+            sw.WriteLine("cd " + cmd);
+
+            string caminhoTemporario;
+            string arquivoTemporario;
+
+            if (type == "backup")
+            {
+                string dt = System.DateTime.Now.ToString().Replace("/", "_").Replace(":", "-").Replace(" ", "--");
+                arquivoTemporario = "BackupCaixa" + dt;
+                caminhoTemporario = path + "\\BackupCaixa" + dt + ".sql";
+                arquivoTemporario = "BackupCaixa" + dt;
+
+                Backup.DataBackup = dt;
+                //se for backup
+                sw.WriteLine("mysqldump.exe -uroot -pCoxinha#2019 --databases caixa1 > " + caminhoTemporario);
+                sw.WriteLine("");
             }
             else
             {
-
+                arquivoTemporario = "c:\\CaixaBackupTemp\\restaurar.sql";
+                //se for restore
+                sw.WriteLine("mysql -uroot -pCoxinha#2019 < " + arquivoTemporario);
+                sw.WriteLine("");
             }
+
+            sw.Close();
+        }
+
+        private static void MySqlProcess(string Path, string tipo)
+        {
+            try
+            {
+                //cria o processo a correr o MySqlbackup.cmd
+                Process.Start(Path + "\\CaixaBackup.cmd");
+
+                System.Threading.Thread.Sleep(420);
+                if (tipo == "restore")
+                {
+                    System.Threading.Thread.Sleep(420);
+                    File.Delete("c:\\CaixaBackupTemp\\restaurar.sql");
+                    File.Delete("c:\\CaixaBackupTemp\\CaixaBackup.cmd");
+
+                    Directory.Delete("c:\\CaixaBackupTemp");
+                }
+
+                System.Threading.Thread.Sleep(420);
+                if (tipo == "backup")
+                {
+                    //cria o processo a correr o MySqlbackup.cmd
+                    Process.Start(Path + "\\CaixaBackup.cmd");
+
+                    string caminhoTemporario;
+                    string arquivoTemporario;
+                    string path = "c:\\CaixaBackupTemp";
+                    caminhoTemporario = path + "\\BackupCaixa" + Backup.DataBackup + ".sql";
+                    arquivoTemporario = "BackupCaixa" + Backup.DataBackup;
+
+                    int count2 = 0;
+
+                    while (count2 != 1)
+                    {
+                        try
+                        {
+                            File.Move(caminhoTemporario, Backup.LocalBackup + arquivoTemporario + ".sql");
+
+                            File.Delete("c:\\CaixaBackupTemp\\restaurar.sql");
+                            File.Delete("c:\\CaixaBackupTemp\\CaixaBackup.cmd");
+
+                            Directory.Delete("c:\\CaixaBackupTemp");
+                            count2 = 1;
+                        }
+                        catch
+                        {
+                            count2 = 0;
+                        }
+                    }
+                }
+            }
+            catch { }
         }
 
         private void btnEsgotar_Click(object sender, EventArgs e)
@@ -482,11 +565,6 @@ namespace Caixa
             frmCadusu u = new frmCadusu();
             u.Owner = this;
             u.ShowDialog();
-        }
-
-        private void mskData_Leave(object sender, EventArgs e)
-        {          
-
-        }
+        }         
     }
 }

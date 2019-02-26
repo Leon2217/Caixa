@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Caixa
@@ -55,14 +53,6 @@ namespace Caixa
 
                         txtTipo.Clear();
                         gvExibir.DataSource = tpDAO.Listartudo();
-                        var qrForm = from frm in Application.OpenForms.Cast<Form>()
-                                     where frm is frmCadFunc
-                                     select frm;
-
-                        if (qrForm != null && qrForm.Count() > 0)
-                        {
-                            ((frmCadFunc)qrForm.First()).AtualizaDados();
-                        }
                     }
                 }
                 catch

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using System.IO;
+using System.Threading;
 
 namespace Caixa
 {
@@ -972,121 +975,40 @@ namespace Caixa
             tipo.ShowDialog();
         }
 
-        private void backupToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult op;
+            #region senha e enviar email
+            #region geradordeSenha
 
-            op = MessageBox.Show("Deseja realmente fazer o Backup?",
-                "Backup", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[4];
+            var random = new Random();
 
-            if (op == DialogResult.Yes)
+            for (int i = 0; i < stringChars.Length; i++)
             {
-                Process myProcess = new Process();
-
-                try
-                {
-                    myProcess.StartInfo.UseShellExecute = false;
-                    myProcess.StartInfo.FileName = "C:\\Backup Mysql\\back_up.bat";
-                    myProcess.StartInfo.CreateNoWindow = true;
-                    myProcess.Start();
-
-                    MessageBox.Show("Backup realizado com sucesso");
-                }
-
-                catch
-                {
-                    MessageBox.Show("ERRO 01P4598F1: CONTATE O ADMINISTRADOR");
-                }
+                stringChars[i] = chars[random.Next(chars.Length)];
             }
-            else
+
+            string finalString = new String(stringChars);
+
+            string senhagerada = finalString;
+            #endregion
+            assDAO.DeletaT();
+            assDAO.InserirT(senhagerada);
+            String mensagemEmail = senhagerada;
+            try
             {
+                email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
             }
-        }
-
-        private void limparBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult op;
-
-            op = MessageBox.Show("Tem certeza que deseja continuar? Caso continue, aguarde um momento até que a senha seja disponibilizada para o procedimento.",
-                "------------------------ATENÇÃO------------------------", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (op == DialogResult.Yes)
+            catch (Exception ex)
             {
-                #region geradordeSenha
-
-                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                var stringChars = new char[4];
-                var random = new Random();
-
-                for (int i = 0; i < stringChars.Length; i++)
-                {
-                    stringChars[i] = chars[random.Next(chars.Length)];
-                }
-
-                string finalString = new String(stringChars);
-
-                string senhagerada = finalString;
-                #endregion
-                assDAO.DeletaT();
-                assDAO.InserirT(senhagerada);
-                String mensagemEmail = senhagerada;
-                try
-                {
-                    email.enviarEmail(mensagemEmail, "sucessohelder@gmail.com");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("erro:  {0}", ex.Message));
-                }
-
-                frmSecreta s = new frmSecreta();
-                s.Owner = this;
-                s.ShowDialog();
+                MessageBox.Show(string.Format("erro:  {0}", ex.Message));
             }
-        }
+            #endregion
 
-        private void restaurarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult op;
-
-            op = MessageBox.Show("Tem certeza que deseja continuar? Caso continue, aguarde um momento até que a senha seja disponibilizada para o procedimento.",
-                "------------------------ATENÇÃO------------------------", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (op == DialogResult.Yes)
-            {
-                #region geradordeSenha
-
-                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                var stringChars = new char[4];
-                var random = new Random();
-
-                for (int i = 0; i < stringChars.Length; i++)
-                {
-                    stringChars[i] = chars[random.Next(chars.Length)];
-                }
-
-                string finalString = new String(stringChars);
-
-                string senhagerada = finalString;
-                #endregion
-                assDAO.DeletaT();
-                assDAO.InserirT(senhagerada);
-                String mensagemEmail = senhagerada;
-                try
-                {
-                    email.enviarEmail(mensagemEmail, "sucessohelder@gmail.com");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("erro:  {0}", ex.Message));
-                }
-                frmSecreta2 s2 = new frmSecreta2();
-                s2.Owner = this;
-                s2.ShowDialog();
-            }
+            frmBackup bkp = new frmBackup();
+            bkp.Owner = this;
+            bkp.ShowDialog();
         }
     }
 }

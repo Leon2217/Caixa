@@ -46,6 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gvExibir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gvExibir.Location = new System.Drawing.Point(13, 69);

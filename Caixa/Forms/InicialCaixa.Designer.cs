@@ -43,9 +43,6 @@
             this.usuárioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.limparBancoDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restaurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblOperador = new System.Windows.Forms.Label();
             this.lblTurno = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -174,34 +171,10 @@
             // 
             // backupToolStripMenuItem
             // 
-            this.backupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backupToolStripMenuItem1,
-            this.limparBancoDeDadosToolStripMenuItem,
-            this.restaurarToolStripMenuItem});
             this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
             this.backupToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.backupToolStripMenuItem.Text = "Backup";
-            // 
-            // backupToolStripMenuItem1
-            // 
-            this.backupToolStripMenuItem1.Name = "backupToolStripMenuItem1";
-            this.backupToolStripMenuItem1.Size = new System.Drawing.Size(244, 24);
-            this.backupToolStripMenuItem1.Text = "Backup";
-            this.backupToolStripMenuItem1.Click += new System.EventHandler(this.backupToolStripMenuItem1_Click);
-            // 
-            // limparBancoDeDadosToolStripMenuItem
-            // 
-            this.limparBancoDeDadosToolStripMenuItem.Name = "limparBancoDeDadosToolStripMenuItem";
-            this.limparBancoDeDadosToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.limparBancoDeDadosToolStripMenuItem.Text = "Limpar banco de dados";
-            this.limparBancoDeDadosToolStripMenuItem.Click += new System.EventHandler(this.limparBancoDeDadosToolStripMenuItem_Click);
-            // 
-            // restaurarToolStripMenuItem
-            // 
-            this.restaurarToolStripMenuItem.Name = "restaurarToolStripMenuItem";
-            this.restaurarToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.restaurarToolStripMenuItem.Text = "Restaurar";
-            this.restaurarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
+            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // lblOperador
             // 
@@ -477,8 +450,5 @@
         private System.Windows.Forms.ToolStripMenuItem tiposToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem limparBancoDeDadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem restaurarToolStripMenuItem;
     }
 }

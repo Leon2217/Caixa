@@ -179,6 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Backup.cs" />
     <Compile Include="Forms\Abertura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +237,12 @@
     </Compile>
     <Compile Include="Forms\frmAssinadas.designer.cs">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBackup.Designer.cs">
+      <DependentUpon>frmBackup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCadtipodespesa.cs">
       <SubType>Form</SubType>
@@ -465,18 +472,6 @@
     <Compile Include="Forms\frmSangria.designer.cs">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmSecreta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmSecreta.Designer.cs">
-      <DependentUpon>frmSecreta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmSecreta2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmSecreta2.Designer.cs">
-      <DependentUpon>frmSecreta2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmSuprimento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +596,9 @@
     <EmbeddedResource Include="Forms\frmAssinadas.resx">
       <DependentUpon>frmAssinadas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBackup.resx">
+      <DependentUpon>frmBackup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCadtipodespesa.resx">
       <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
     </EmbeddedResource>
@@ -718,12 +716,6 @@
     <EmbeddedResource Include="Forms\frmSangria.resx">
       <DependentUpon>frmSangria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSecreta.resx">
-      <DependentUpon>frmSecreta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSecreta2.resx">
-      <DependentUpon>frmSecreta2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSuprimento.resx">
       <DependentUpon>frmSuprimento.cs</DependentUpon>
     </EmbeddedResource>
@@ -826,6 +818,9 @@
     <None Include="Resources\Accounting_icon-icons.com_74682.ico" />
     <None Include="Resources\apps_printer_15747 %281%29.png" />
     <None Include="Resources\apps_printer_15747.png" />
+    <None Include="Resources\databackup_theapplication_dedatos_3366 %281%291.png" />
+    <None Include="Resources\backup-restore256_24925 %281%29.png" />
+    <None Include="Resources\remove_delete_database_16698.png" />
     <Content Include="UpgradeLog.htm" />
     <Content Include="UpgradeLog2.htm" />
     <Content Include="UpgradeLog3.htm" />

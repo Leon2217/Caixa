@@ -50,7 +50,6 @@
             this.mskData.TabIndex = 2;
             this.mskData.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskData_MaskInputRejected);
             this.mskData.TextChanged += new System.EventHandler(this.mskData_TextChanged);
-            this.mskData.Leave += new System.EventHandler(this.mskData_Leave);
             // 
             // lblData
             // 

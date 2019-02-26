@@ -175,7 +175,7 @@
             this.chkSenha.Location = new System.Drawing.Point(227, 61);
             this.chkSenha.Name = "chkSenha";
             this.chkSenha.Size = new System.Drawing.Size(15, 14);
-            this.chkSenha.TabIndex = 13;
+            this.chkSenha.TabIndex = 9;
             this.chkSenha.UseVisualStyleBackColor = true;
             this.chkSenha.CheckedChanged += new System.EventHandler(this.chkSenha_CheckedChanged);
             // 

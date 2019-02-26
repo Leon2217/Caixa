@@ -245,7 +245,6 @@ namespace Caixa
             if (cmbCliente.Text == string.Empty)
             {
                 gvExibir.DataSource = assDAO.ListarTudo();
-
             }
 
         }

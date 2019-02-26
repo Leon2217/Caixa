@@ -69,9 +69,7 @@ namespace Caixa
             executarComando("delete from assinadas;");
             executarComando("delete from auditoria;");
             executarComando("delete from contas;");
-            executarComando("delete from credito;");
             executarComando("delete from credito_debito;");
-            executarComando("delete from debito;");
             executarComando("delete from despesa;");
             executarComando("delete from dev_moeda;");
             executarComando("delete from diferenca;");
@@ -95,10 +93,8 @@ namespace Caixa
         {
             executarComando("delete a.* FROM assinadas a INNER JOIN caixa c on c.id_caixa = a.id_caixa WHERE c.datainicio BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "'; ");
             executarComando("delete from auditoria WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
-            executarComando("delete from contas WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
-            executarComando("delete from credito WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "'; ");
-            executarComando("delete from credito_debito WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
-            executarComando("delete from debito WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            executarComando("delete from contas WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");           
+            executarComando("delete from credito_debito WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");          
             executarComando("delete from despesa WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             executarComando("delete from dev_moeda WHERE data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             executarComando("delete d.* from diferenca d INNER JOIN caixa c on c.id_caixa = d.id_caixa WHERE c.datainicio BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");

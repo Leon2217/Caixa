@@ -103,6 +103,7 @@
             this.Text = "Movimento de Moeda";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmOpçãodeMoeda_KeyDown);
             this.ResumeLayout(false);
+
         }
         #endregion
         private System.Windows.Forms.Button btnMovimento;

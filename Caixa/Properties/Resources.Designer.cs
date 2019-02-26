@@ -183,6 +183,16 @@ namespace Caixa.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backup_restore256_24925__1_ {
+            get {
+                object obj = ResourceManager.GetObject("backup-restore256_24925 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bk {
             get {
                 object obj = ResourceManager.GetObject("bk", resourceCulture);
@@ -366,6 +376,16 @@ namespace Caixa.Properties {
         internal static System.Drawing.Bitmap databackup_theapplication_dedatos_3366__1_ {
             get {
                 object obj = ResourceManager.GetObject("databackup_theapplication_dedatos_3366 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap databackup_theapplication_dedatos_3366__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("databackup_theapplication_dedatos_3366 (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -586,6 +606,16 @@ namespace Caixa.Properties {
         internal static System.Drawing.Bitmap question_icon_icons1 {
             get {
                 object obj = ResourceManager.GetObject("question_icon-icons1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remove_delete_database_16698 {
+            get {
+                object obj = ResourceManager.GetObject("remove_delete_database_16698", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

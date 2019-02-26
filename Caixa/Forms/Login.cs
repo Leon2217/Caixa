@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace Caixa
 {
@@ -17,7 +9,6 @@ namespace Caixa
         Fechamento fec = new Fechamento();
         FechamentoDAO fecDAO = new FechamentoDAO();
      
-
         public Login()
         {
             InitializeComponent();
@@ -25,27 +16,10 @@ namespace Caixa
 
         private void btnLogar_Click(object sender, EventArgs e)
         {
-            //string login = txtLogin.Text;
-            //string senha = txtSenha.Text;
-            //if(usuDAO.VerificaAdm(login,senha)==true)
-            //{
-            //    UsuarioDAO.login = usuDAO.Usu.Login_usu;
-            //    this.Hide();
-            //    totalcartao c = new totalcartao();
-            //    c.ShowDialog();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Fudeu");
-            //}
-
             InicialCaixa i = new InicialCaixa();
             i.ShowDialog();
-
         }
-
-     
-
+    
         private void Login_Load(object sender, EventArgs e)
         {
            Conexao.criar_Conexao();
@@ -84,8 +58,6 @@ namespace Caixa
                     Abertura a = new Abertura();
                     a.ShowDialog();
                 }
-
-
             }
             else
             {
@@ -98,9 +70,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(27))
             {
-                Application.Exit();
-                
-
+                Application.Exit();               
             }
         }
 
@@ -112,9 +82,6 @@ namespace Caixa
                 string senha = txtSenha.Text;
                 if (usuDAO.VerificaAdm(login, senha) == true)
                 {
-
-
-
                     UsuarioDAO.login = usuDAO.Usu.Login_usu;
                     login = usuDAO.Usu.Login_usu;
 
@@ -142,8 +109,6 @@ namespace Caixa
                         Abertura a = new Abertura();
                         a.ShowDialog();
                     }
-
-
                 }
                 else
                 {

@@ -130,6 +130,9 @@
   <data name="Login_37128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login_37128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="apps_printer_15747" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps_printer_15747.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="coin_money_icon-icons.com_51091" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\coin_money_icon-icons.com_51091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -181,6 +184,9 @@
   <data name="apps_printer_15747 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\apps_printer_15747 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="databackup_theapplication_dedatos_3366 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\databackup_theapplication_dedatos_3366 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Accounting_icon-icons.com_74682" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Accounting_icon-icons.com_74682.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,9 +204,6 @@
   </data>
   <data name="next-5_icon-icons.com_69490" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\next-5_icon-icons.com_69490.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ghostview_search_document_6161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ghostview_search_document_6161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="databackup_theapplication_dedatos_3366 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\databackup_theapplication_dedatos_3366 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,6 +229,9 @@
   <data name="question_icon-icons.com_69970" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question_icon-icons.com_69970.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="backup-restore256_24925 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backup-restore256_24925 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ic_cancel_128_28318" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_cancel_128_28318.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -243,6 +249,9 @@
   </data>
   <data name="search_find_lupa_21889" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_find_lupa_21889.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="go-back256_24856" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\go-back256_24856.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_find_lupa_218891" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_find_lupa_218891.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -307,8 +316,8 @@
   <data name="businessapplication_distributor_report_document_negocio_2319 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\businessapplication_distributor_report_document_negocio_2319 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="go-back256_24856" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go-back256_24856.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ghostview_search_document_6161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghostview_search_document_6161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_find_lupa_218892" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_find_lupa_218892.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,7 +334,7 @@
   <data name="eraser_46865" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eraser_46865.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="apps_printer_15747" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps_printer_15747.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="remove_delete_database_16698" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove_delete_database_16698.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -336,18 +336,6 @@ namespace Caixa
             #endregion
         }
 
-        public void AtualizaDados()
-        {
-            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            try
-            {
-                //gvExibir.DataSource = pesDAO.ListarNT();
-            }
-            catch
-            {
-
-            }
-        }
         private void frmCadFunc_Load(object sender, EventArgs e)
         {        
             CarregarComboTipo5();
@@ -358,12 +346,11 @@ namespace Caixa
             tipExp.InitialDelay = 500;
             tipExp.AutoPopDelay = 3000;
             tipExp.SetToolTip(this.btnCadastrar, "Salvar Informações");
-            tipExp.SetToolTip(this.btnLimpar, "Cancelar");
+            tipExp.SetToolTip(this.btnLimpar, "Cancelar/Limpar Campos");
             tipExp.SetToolTip(this.btnPesq, "Pesquisar/Alterar");
 
             cmbTipo5.Text = "";
             cmbTipo6.Text = "";
-
         }
 
         private void btnTipo_Click(object sender, EventArgs e)
@@ -372,11 +359,6 @@ namespace Caixa
             tp.Owner = this;
             tp.ShowDialog();
 
-        }
-
-        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //codtp = cmbTipo.SelectedValue.ToString();
         }
 
         private void rdbFis_CheckedChanged(object sender, EventArgs e)
@@ -397,7 +379,6 @@ namespace Caixa
                 CarregarComboTipo3();
                 CarregarComboTipo4();
                 
-
                 cmbTipo3.Text = "";
                 cmbTipo2.Text = "";
                 cmbTipo4.Text = "";
@@ -451,7 +432,6 @@ namespace Caixa
             cmbTipo2.DisplayMember = "tipo";
             cmbTipo2.ValueMember = "ID";
             codtp2 = cmbTipo2.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo3()
@@ -460,7 +440,6 @@ namespace Caixa
             cmbTipo3.DisplayMember = "tipo";
             cmbTipo3.ValueMember = "ID";
             codtp3 = cmbTipo3.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo4()
@@ -469,7 +448,6 @@ namespace Caixa
             cmbTipo4.DisplayMember = "tipo";
             cmbTipo4.ValueMember = "ID";
             codtp4 = cmbTipo4.SelectedValue.ToString();
-
         }
 
         public void CarregarComboTipo5()
@@ -498,7 +476,6 @@ namespace Caixa
             }
             catch
             {
-
             }
         }
 
@@ -514,7 +491,6 @@ namespace Caixa
         {
             if (rdbJur.Checked == true)
             {
-
                 lblCpf.Visible = false;
                 mskCpf.Visible = false;
                 lblCnpj.Visible = true;
@@ -667,11 +643,6 @@ namespace Caixa
             }
         }      
 
-        private void mskCpf_Leave(object sender, EventArgs e)
-        {
-
-        }
-
         private void mskCpf_TextChanged(object sender, EventArgs e)
         {
             if (mskCpf.MaskFull == true)
@@ -763,7 +734,6 @@ namespace Caixa
                             string CpfSenha = mskCpf.Text.Substring(0, 3);
                             btnCadastrar.Enabled = true;
                         }
-
                     }
                     else
                     {
@@ -778,7 +748,6 @@ namespace Caixa
             else
             {
                 gvExibir.DataSource = null;
-                //lblEmpresa.Text = "";
 
                 mskCnpj.BackColor = Color.Empty;
                 pctCerto.Visible = false;
@@ -806,15 +775,9 @@ namespace Caixa
             Limpar();
 
             Pesquisa = false;
-            //chkCli.Checked = false;
-            //chkFornecedor.Checked = false;
-            //chkFunc.Checked = false;
             rdbFis.Checked = false;
             rdbJur.Checked = false;
             txtN.Enabled = false;
-            //chkCli.Enabled = false;
-            //chkFornecedor.Enabled = false;
-            //chkFunc.Enabled = false;
             txtNome.Enabled = false;
             mskCep.Enabled = false;
             txtUf.Enabled = false;
@@ -837,12 +800,6 @@ namespace Caixa
        
             cmbTipo1.Enabled = false;
 
-            //chkFunc2.Visible = false;
-            //chkFunc2.Checked = false;
-            //chkFornecedor2.Checked = false;
-            //chkFornecedor2.Visible = false;
-            //chkCli2.Checked = false;
-            //chkCli2.Visible = false;
             txtEmailc.Enabled = false;
             txtEmailc.Clear();
             txtNomeec.Clear();
@@ -857,7 +814,6 @@ namespace Caixa
         public void Bloq()
         {
             Limpar();
-
 
             rdbFis.Checked = false;
             rdbJur.Checked = false;
@@ -1019,7 +975,6 @@ namespace Caixa
                 }
                 #endregion
             }
-
         }
 
         private void txtUf_TextChanged(object sender, EventArgs e)
@@ -1032,15 +987,12 @@ namespace Caixa
             rdbFis.Enabled = true;
             rdbJur.Enabled = true;
             mskCep.Enabled = true;
-            //txtUf.Enabled = true;
             txtCidade.Enabled = true;
             txtBairro.Enabled = true;
             txtEmail.Enabled = true;
-            //txtRua.Enabled = true;
             mskCel.Enabled = true;
             mskTel.Enabled = true;
             txtObs.Enabled = true;
-            //txtN.Enabled = true;
         }
 
         private void txtIm_KeyDown(object sender, KeyEventArgs e)
@@ -1132,8 +1084,7 @@ namespace Caixa
 
         private void txtCidade_TextChanged(object sender, EventArgs e)
         {
-            txtCidade.BackColor = Color.Empty;
-           
+            txtCidade.BackColor = Color.Empty;          
         }
 
         private void mskCel_TextChanged(object sender, EventArgs e)
@@ -1273,7 +1224,6 @@ namespace Caixa
 
                 if (op == DialogResult.Yes)
                 {
-
                     if (rdbFis.Checked == true)
                     {
                         pesDAO.ExcluirCpfnj(mskCpf.Text);
@@ -1300,14 +1250,12 @@ namespace Caixa
                             aud.Responsavel = UsuarioDAO.login;
                             audDAO.Inserir(aud);
                         }
-
                     }
                 }
                 else
                 {
                 }
             }
-
         }
 
         private void btnNovoc_Click(object sender, EventArgs e)
@@ -1385,7 +1333,6 @@ namespace Caixa
                 txtNomeec.Enabled = true;
                 txtDepartamento.Enabled = true;
                 updatec = true;
-
             }
         }
 
@@ -1408,21 +1355,17 @@ namespace Caixa
 
                 btnNovoc.Enabled = true;
 
-
                 aud.Acao = "EXCLUIU CONTATO";
                 aud.Data = FechamentoDAO.data;
                 aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                 aud.Responsavel = UsuarioDAO.login;
                 audDAO.Inserir(aud);
-
             }
             else
             {
-
             }
         }
         
-
         private void txtN_TextChanged(object sender, EventArgs e)
         {
             txtN.BackColor = Color.Empty;
@@ -1442,16 +1385,6 @@ namespace Caixa
             Pesquisa = true;
             rdbFis.Enabled = true;
             rdbJur.Enabled = true;
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mskCpf_TextAlignChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1491,7 +1424,6 @@ namespace Caixa
             txtNe.Enabled = false;
             txtRuaE.Enabled = false;
 
-
             mskCepC.Clear();
             txtBairroC.Clear();
             txtCompC.Clear();
@@ -1514,7 +1446,6 @@ namespace Caixa
 
         private void btnSalvarEnd_Click(object sender, EventArgs e)
         {
-
             if(PesquisaEnd == true)
             {
                 try
@@ -1532,10 +1463,7 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
-
-
                 try
                 {
                     end.Bairro = txtBairroee.Text;
@@ -1551,7 +1479,6 @@ namespace Caixa
                 }
                 catch
                 {
-
                 }
             }
             else
@@ -1586,12 +1513,10 @@ namespace Caixa
                     end.Complemento = txtComplementoE.Text;
                     endDAO.Inserir(end);
                     
-
                     MessageBox.Show("Cadastrado com sucesso!!!");
                 }
                 catch
                 {
-
                 }
             }   
         }
@@ -1626,8 +1551,6 @@ namespace Caixa
                 txtCidadeC.Clear();
             }
         }
-
-
 
         public void limparend()
         {
@@ -1716,11 +1639,9 @@ namespace Caixa
                 aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                 aud.Responsavel = UsuarioDAO.login;
                 audDAO.Inserir(aud);
-
             }
             else
             {
-
             }
         }
 
@@ -1749,7 +1670,6 @@ namespace Caixa
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
             }
-
         }
 
         private void cmbTipo3_SelectedIndexChanged(object sender, EventArgs e)
@@ -2113,7 +2033,6 @@ namespace Caixa
             txtNe.Enabled = false;
             txtRuaE.Enabled = false;
 
-
             mskCepC.Clear();
             txtBairroC.Clear();
             txtCompC.Clear();
@@ -2157,7 +2076,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
@@ -2166,7 +2084,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 
