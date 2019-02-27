@@ -61,7 +61,7 @@
             this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackup.Image = global::Caixa.Properties.Resources.databackup_theapplication_dedatos_3366__1_1;
             this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBackup.Location = new System.Drawing.Point(16, 54);
+            this.btnBackup.Location = new System.Drawing.Point(15, 54);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(130, 55);
             this.btnBackup.TabIndex = 114;
@@ -80,7 +80,7 @@
             this.btnRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestaurar.Image = global::Caixa.Properties.Resources.backup_restore256_24925__1_;
             this.btnRestaurar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRestaurar.Location = new System.Drawing.Point(172, 54);
+            this.btnRestaurar.Location = new System.Drawing.Point(171, 54);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(130, 55);
             this.btnRestaurar.TabIndex = 115;
@@ -118,7 +118,7 @@
             this.lblerro5.BackColor = System.Drawing.Color.White;
             this.lblerro5.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblerro5.ForeColor = System.Drawing.Color.Red;
-            this.lblerro5.Location = new System.Drawing.Point(223, 56);
+            this.lblerro5.Location = new System.Drawing.Point(222, 56);
             this.lblerro5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblerro5.Name = "lblerro5";
             this.lblerro5.Size = new System.Drawing.Size(16, 19);
@@ -188,6 +188,7 @@
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // frmBackup
             // 
@@ -212,7 +213,6 @@
             this.Name = "frmBackup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Backup";
-            this.Load += new System.EventHandler(this.frmBackup_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBackup_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

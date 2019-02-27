@@ -188,11 +188,6 @@ namespace Caixa
             }
         }
 
-        private void frmBackup_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void chkSenha_CheckedChanged(object sender, EventArgs e)
         {
             #region MOSTRA SENHA
@@ -228,20 +223,20 @@ namespace Caixa
             }
             else
             {
-                MessageBox.Show("As senhas não conferem");
+                MessageBox.Show("As senhas não conferem...");
             }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void frmBackup_KeyDown(object sender, KeyEventArgs e)
-        {
+        {         
             if (e.KeyValue.Equals(27))
             {
-                this.Close();
+                Close();
             }
         }
     }

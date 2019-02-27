@@ -484,6 +484,12 @@
     <Compile Include="Forms\frmTaxa.Designer.cs">
       <DependentUpon>frmTaxa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmTelaSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTelaSplash.designer.cs">
+      <DependentUpon>frmTelaSplash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmTipo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -721,6 +727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTaxa.resx">
       <DependentUpon>frmTaxa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTelaSplash.resx">
+      <DependentUpon>frmTelaSplash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTipo.resx">
       <DependentUpon>frmTipo.cs</DependentUpon>

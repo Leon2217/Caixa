@@ -996,6 +996,11 @@ namespace Caixa
             assDAO.DeletaT();
             assDAO.InserirT(senhagerada);
             String mensagemEmail = senhagerada;
+
+            frmTelaSplash sp = new frmTelaSplash();
+            sp.Owner = this;
+            sp.ShowDialog();
+
             try
             {
                 email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
@@ -1004,11 +1009,7 @@ namespace Caixa
             {
                 MessageBox.Show(string.Format("erro:  {0}", ex.Message));
             }
-            #endregion
-
-            frmBackup bkp = new frmBackup();
-            bkp.Owner = this;
-            bkp.ShowDialog();
+            #endregion           
         }
     }
 }

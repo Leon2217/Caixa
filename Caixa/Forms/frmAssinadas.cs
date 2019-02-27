@@ -22,7 +22,6 @@ namespace Caixa
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-
             DialogResult op;
 
             op = MessageBox.Show("Você tem certeza dessas informações?"+"\n Assinadas : " +valor+" R$"+"\n Class : "+valor2+ " R$"+"\n Julio Simões : "+valor3+" R$",
@@ -189,11 +188,6 @@ namespace Caixa
                 this.ProcessTabKey(true);
                 e.Handled = true;
             }
-        }
-
-        private void frmAssinadas_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void frmAssinadas_KeyDown(object sender, KeyEventArgs e)

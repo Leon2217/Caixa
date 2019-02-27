@@ -123,7 +123,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(238, 167);
+            this.ClientSize = new System.Drawing.Size(238, 156);
             this.Controls.Add(this.txtJulio);
             this.Controls.Add(this.lblJulio);
             this.Controls.Add(this.btnSalvar);
@@ -140,7 +140,6 @@
             this.Text = ".: Valor das assinadas";
             this.Load += new System.EventHandler(this.frmAssinadas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAssinadas_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmAssinadas_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

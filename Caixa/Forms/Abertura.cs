@@ -381,16 +381,6 @@ namespace Caixa
             }
         }
 
-        private void mskData_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void cmbTurno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void mskData_TextChanged(object sender, EventArgs e)
         {
             try
@@ -542,24 +532,6 @@ namespace Caixa
             catch { }
         }
 
-        private void btnEsgotar_Click(object sender, EventArgs e)
-        {
-            DialogResult op;
-
-            op = MessageBox.Show("É Recomendável fazer o Backup antes, pois irá perder algumas informações........ Deseja continuar?",
-                "------AVISO-------", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (op == DialogResult.Yes)
-            {
-                assDAO.DeletaTudo();
-                Application.Restart();
-            }
-            else
-            {
-
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             frmCadusu u = new frmCadusu();

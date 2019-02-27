@@ -89,7 +89,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(288, 246);
+            this.ClientSize = new System.Drawing.Size(283, 246);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtTipo);

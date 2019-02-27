@@ -48,7 +48,6 @@
             this.mskData.Name = "mskData";
             this.mskData.Size = new System.Drawing.Size(138, 29);
             this.mskData.TabIndex = 2;
-            this.mskData.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskData_MaskInputRejected);
             this.mskData.TextChanged += new System.EventHandler(this.mskData_TextChanged);
             // 
             // lblData
@@ -83,7 +82,6 @@
             this.cmbTurno.Name = "cmbTurno";
             this.cmbTurno.Size = new System.Drawing.Size(138, 32);
             this.cmbTurno.TabIndex = 3;
-            this.cmbTurno.TextChanged += new System.EventHandler(this.cmbTurno_TextChanged);
             // 
             // lblUsuario
             // 
@@ -169,7 +167,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(236, 162);
+            this.ClientSize = new System.Drawing.Size(236, 163);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBackup);
             this.Controls.Add(this.txtUsu);

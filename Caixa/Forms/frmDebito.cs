@@ -1188,7 +1188,6 @@ namespace Caixa
             string hrtela = DateTime.Now.ToShortTimeString();
             mskData.Text = datatela;
             mskHr.Text = hrtela;
-            txtResponsa.Clear();
             chkFuncionario.Checked = false;
             chkMicrostation.Checked = false;
             chkPag.Checked = false;
