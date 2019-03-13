@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
-using MySql.Data.MySqlClient;
-using System.IO;
-using System.Threading;
 
 namespace Caixa
 {
@@ -1004,6 +1001,7 @@ namespace Caixa
             try
             {
                 email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
+                //email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
             }
             catch (Exception ex)
             {

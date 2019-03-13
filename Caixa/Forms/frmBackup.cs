@@ -16,8 +16,6 @@ namespace Caixa
             InitializeComponent();
         }
 
-
-
         private static void MysqlBackup_Restore(string path, string type)
         {
             //Caminho onde o mysql esta instalado
@@ -168,7 +166,7 @@ namespace Caixa
                     catch
                     {
                         MessageBox.Show("Por favor apague o arquivo 'Restaurar.sql' no diretório c:\\CaixaBackupTemp\\restaurar.sql, e tente novamente. ");
-                    }                                     
+                    }
                 }
                 else
                 {
@@ -233,7 +231,7 @@ namespace Caixa
         }
 
         private void frmBackup_KeyDown(object sender, KeyEventArgs e)
-        {         
+        {
             if (e.KeyValue.Equals(27))
             {
                 Close();

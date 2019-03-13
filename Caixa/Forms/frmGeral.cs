@@ -826,7 +826,6 @@ namespace Caixa
                     pdfdoc.Close();
                     stream.Close();
                 }
-
             }
         }
 

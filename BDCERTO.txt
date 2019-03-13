@@ -1,4 +1,4 @@
-//drop database caixa;
+/*drop database caixa;*/
 
 create database caixa1;
 

@@ -60,7 +60,6 @@ namespace Caixa
         {
             Moeda(ref txtSangria);
             valor = txtSangria.Text.ToString().Replace(".", "");
-
         }
 
         private void txtSangria_KeyPress(object sender, KeyPressEventArgs e)
@@ -68,7 +67,6 @@ namespace Caixa
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
-
             }
         }
 

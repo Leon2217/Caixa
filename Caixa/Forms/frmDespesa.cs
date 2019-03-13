@@ -185,8 +185,7 @@ namespace Caixa
                     if (op == DialogResult.Yes)
                     {
                         for(int i = 0; i < numparc; i++)
-                        {
-                       
+                        {                       
                                 DateTime datavenc = data.AddMonths(i);
                                 desp.Descr = txtDesc.Text;
                                 desp.Data = datavenc;

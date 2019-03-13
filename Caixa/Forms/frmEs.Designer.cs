@@ -206,7 +206,6 @@
             // 
             // btnConferido
             // 
-            this.btnConferido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConferido.BackColor = System.Drawing.Color.White;
             this.btnConferido.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnConferido.FlatAppearance.BorderSize = 2;
@@ -237,7 +236,6 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVoltar.BackColor = System.Drawing.Color.White;
             this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
             this.btnVoltar.FlatAppearance.BorderSize = 2;
@@ -288,7 +286,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Entrada e Saída";
             this.Load += new System.EventHandler(this.frmEs_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEs_KeyDown);          
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEs_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
