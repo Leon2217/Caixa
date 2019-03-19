@@ -148,7 +148,7 @@ namespace Caixa
         public DataTable ListarDesc(string descr)
         {
             DataTable listaDescripto;
-            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,responsa_db as RESP,desc_db as DESCR,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE desc_db LIKE '" + descr + "%';");
+            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_db as DESCR,responsa_db as RESP,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE desc_db LIKE '" + descr + "%';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -233,7 +233,7 @@ namespace Caixa
         public DataTable ListarValor(string credito, string debito)
         {
             DataTable listaDescripto;
-            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,responsa_db as RESP,desc_db as DESCR,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE (cred_db LIKE '" + credito.ToString().Replace(',','.') + "%' OR deb_db LIKE '" + debito.ToString().Replace(',', '.') + "%');");
+            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_db as DESCR,responsa_db as RESP,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE (cred_db LIKE '" + credito.ToString().Replace(',','.') + "%' OR deb_db LIKE '" + debito.ToString().Replace(',', '.') + "%');");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -260,7 +260,7 @@ namespace Caixa
         public DataTable ListarDescValor(string descr, string credito, string debito)
         {
             DataTable listaDescripto;
-            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,responsa_db as RESP,desc_db as DESCR,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE desc_db LIKE '" + descr + "%' AND  (cred_db LIKE '" + credito.ToString().Replace(',', '.') + "%' OR deb_db LIKE '" + debito.ToString().Replace(',', '.') + "%');");
+            executarComando("SELECT id_cd as ID, DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_db as DESCR,responsa_db as RESP,IF(cred_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(cred_db, 2), '.', '|'), ',', '.'), '|', ','))) as CRED,IF(deb_db=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(deb_db, 2), '.', '|'), ',', '.'), '|', ','))) as DEB,Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ',')) as TOTAL, TIME_FORMAT(hora,'%H:%i') as HORA, c as C FROM CREDITO_DEBITO WHERE desc_db LIKE '" + descr + "%' AND  (cred_db LIKE '" + credito.ToString().Replace(',', '.') + "%' OR deb_db LIKE '" + debito.ToString().Replace(',', '.') + "%');");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
