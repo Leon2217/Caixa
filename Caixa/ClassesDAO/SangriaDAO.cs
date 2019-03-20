@@ -213,5 +213,106 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
+
+
+        //VERIFICA SANGRIA
+
+        #region VERIFICA A SOMA DE TUDO
+        public Boolean VerificaSoma()
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno =1;");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE TUDO TURNO 2
+        public Boolean VerificaSoma2()
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno =2;");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E DE
+        public Boolean VerificaSD(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno=1 and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+            
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E DE TURNO 2
+        public Boolean VerificaSD2(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno=2 and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E BETWEEN
+        public Boolean VerificaSB(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno=1 and cx.datainicio BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E BETWEEN TURNO 2
+        public Boolean VerificaSB2(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS VALOR from sangria s inner join caixa cx on cx.id_caixa=s.id_caixa inner join turno t on t.id_turno=cx.id_turno where t.id_turno=2 and cx.datainicio BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                San.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion       
     }
 }

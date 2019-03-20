@@ -9,7 +9,8 @@ namespace Caixa
     public partial class relatSangria : Form
     {
         #region VAR
-        DateTime de, at, data; 
+        DateTime de, at, data;
+        double manha, tarde;
         int j;
         #endregion
 
@@ -80,13 +81,68 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE 2
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region LISTAR SANGRIA TARDE DE
             if (mskDe.MaskFull == true && cmbTurno.Text == "Tarde" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -94,6 +150,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == "Manhã" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -101,13 +184,68 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == string.Empty)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region BTN MANHA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Manhã")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -115,6 +253,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Tarde")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -122,8 +287,37 @@ namespace Caixa
             if (mskDe.MaskFull == false && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarTudoSangria();
+
+                #region SOMA TUDO
+                try
+                {
+                    sanDAO.VerificaSoma();
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA TUDO2
+                try
+                {
+                    sanDAO.VerificaSoma2();
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
+
+            lblTotalS.Text = (manha + tarde).ToString("C2");
         }
 
         private void mskAté_TextChanged(object sender, EventArgs e)
@@ -178,13 +372,70 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
+
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
+
 
             #region LISTAR SANGRIA TARDE DE
             if (mskDe.MaskFull == true && cmbTurno.Text == "Tarde" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -192,6 +443,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == "Manhã" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -199,13 +477,68 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == string.Empty)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region BTN MANHA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Manhã")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -213,6 +546,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Tarde")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -220,8 +580,37 @@ namespace Caixa
             if (mskDe.MaskFull == false && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarTudoSangria();
+
+                #region SOMA TUDO
+                try
+                {
+                    sanDAO.VerificaSoma();
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA TUDO2
+                try
+                {
+                    sanDAO.VerificaSoma2();
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
+
+            lblTotalS.Text = (manha + tarde).ToString("C2");
         }
 
         private void cmbTurno_SelectedIndexChanged(object sender, EventArgs e)
@@ -276,13 +665,69 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
+
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region LISTAR SANGRIA TARDE DE
             if (mskDe.MaskFull == true && cmbTurno.Text == "Tarde" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -290,6 +735,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == "Manhã" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -297,13 +769,68 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == string.Empty)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region BTN MANHA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Manhã")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -311,6 +838,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Tarde")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -318,8 +872,37 @@ namespace Caixa
             if (mskDe.MaskFull == false && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarTudoSangria();
+
+                #region SOMA TUDO
+                try
+                {
+                    sanDAO.VerificaSoma();
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA TUDO2
+                try
+                {
+                    sanDAO.VerificaSoma2();
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
+
+            lblTotalS.Text = (manha + tarde).ToString("C2");
         }
 
         private void cmbTurno_TextChanged(object sender, EventArgs e)
@@ -374,13 +957,69 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
+
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region LISTAR SANGRIA TARDE DE
             if (mskDe.MaskFull == true && cmbTurno.Text == "Tarde" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -388,6 +1027,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && cmbTurno.Text == "Manhã" && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaDe(de);
+
+                #region SOMA de
+                try
+                {
+                    sanDAO.VerificaSD(de);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA DE
+                try
+                {
+                    sanDAO.VerificaSD2(de);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -395,13 +1061,68 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == string.Empty)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
+
             #endregion
 
             #region BTN MANHA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Manhã")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManhaBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -409,6 +1130,33 @@ namespace Caixa
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbTurno.Text == "Tarde")
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTardeBtn(de, at);
+
+                #region SOMA B
+                try
+                {
+                    sanDAO.VerificaSB(de, at);
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA B2
+                try
+                {
+                    sanDAO.VerificaSB2(de, at);
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
@@ -416,8 +1164,37 @@ namespace Caixa
             if (mskDe.MaskFull == false && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarTudoSangria();
+
+                #region SOMA TUDO
+                try
+                {
+                    sanDAO.VerificaSoma();
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+                #region SOMA TUDO2
+                try
+                {
+                    sanDAO.VerificaSoma2();
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
+
+            lblTotalS.Text = (manha + tarde).ToString("C2");
         }
 
         public void ExportarPDF(DataGridView dgw, string filename)
@@ -552,7 +1329,38 @@ namespace Caixa
             string datatela = DateTime.Now.ToShortDateString();
             mskAté.Text = datatela;
             mskDe.Text = datatela;
-            #endregion            
+            #endregion
+
+            //BTNSANGRIA
+            #region SOMA B
+            try
+            {
+                sanDAO.VerificaSB(de, at);
+                manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                lblManhaS.Text = manha.ToString("C2");
+            }
+            catch
+            {
+
+            }
+
+            #endregion
+
+            #region SOMA B2
+            try
+            {
+                sanDAO.VerificaSB2(de, at);
+                tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                lblTardeS.Text = tarde.ToString("C2");
+            }
+            catch
+            {
+
+            }
+
+            #endregion
+
+            lblTotalS.Text = (manha + tarde).ToString("C2");
         }
     }
 }

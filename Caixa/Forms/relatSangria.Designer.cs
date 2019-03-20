@@ -38,6 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTurno = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblManha = new System.Windows.Forms.Label();
+            this.lblTarde = new System.Windows.Forms.Label();
+            this.lblManhaS = new System.Windows.Forms.Label();
+            this.lblTardeS = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalS = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,12 +166,74 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Turno:";
             // 
+            // lblManha
+            // 
+            this.lblManha.AutoSize = true;
+            this.lblManha.Location = new System.Drawing.Point(362, 230);
+            this.lblManha.Name = "lblManha";
+            this.lblManha.Size = new System.Drawing.Size(66, 20);
+            this.lblManha.TabIndex = 29;
+            this.lblManha.Text = "Manhã :";
+            // 
+            // lblTarde
+            // 
+            this.lblTarde.AutoSize = true;
+            this.lblTarde.Location = new System.Drawing.Point(362, 280);
+            this.lblTarde.Name = "lblTarde";
+            this.lblTarde.Size = new System.Drawing.Size(62, 20);
+            this.lblTarde.TabIndex = 29;
+            this.lblTarde.Text = "Tarde  :";
+            // 
+            // lblManhaS
+            // 
+            this.lblManhaS.AutoSize = true;
+            this.lblManhaS.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblManhaS.Location = new System.Drawing.Point(362, 255);
+            this.lblManhaS.Name = "lblManhaS";
+            this.lblManhaS.Size = new System.Drawing.Size(65, 20);
+            this.lblManhaS.TabIndex = 30;
+            this.lblManhaS.Text = "R$ 0,00";
+            // 
+            // lblTardeS
+            // 
+            this.lblTardeS.AutoSize = true;
+            this.lblTardeS.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblTardeS.Location = new System.Drawing.Point(362, 300);
+            this.lblTardeS.Name = "lblTardeS";
+            this.lblTardeS.Size = new System.Drawing.Size(65, 20);
+            this.lblTardeS.TabIndex = 31;
+            this.lblTardeS.Text = "R$ 0,00";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(362, 371);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(52, 20);
+            this.lblTotal.TabIndex = 32;
+            this.lblTotal.Text = "Total :";
+            // 
+            // lblTotalS
+            // 
+            this.lblTotalS.AutoSize = true;
+            this.lblTotalS.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblTotalS.Location = new System.Drawing.Point(362, 391);
+            this.lblTotalS.Name = "lblTotalS";
+            this.lblTotalS.Size = new System.Drawing.Size(0, 20);
+            this.lblTotalS.TabIndex = 31;
+            // 
             // relatSangria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(461, 432);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblTotalS);
+            this.Controls.Add(this.lblTardeS);
+            this.Controls.Add(this.lblManhaS);
+            this.Controls.Add(this.lblTarde);
+            this.Controls.Add(this.lblManha);
             this.Controls.Add(this.cmbTurno);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.gvExibir);
@@ -204,5 +272,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbTurno;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblManha;
+        private System.Windows.Forms.Label lblTarde;
+        private System.Windows.Forms.Label lblManhaS;
+        private System.Windows.Forms.Label lblTardeS;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTotalS;
     }
 }
