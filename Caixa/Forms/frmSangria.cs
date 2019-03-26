@@ -105,7 +105,6 @@ namespace Caixa
                         cdDAO.Inserir(cd);
 
                         #endregion
-
                         #region GERAL
                         if (vgDAO.Verificavalor() == true)
                         {
@@ -164,7 +163,6 @@ namespace Caixa
                         cdDAO.Inserir(cd);
 
                         #endregion
-
                         #region GERAL
                         if (vgDAO.Verificavalor() == true)
                         {
@@ -204,7 +202,6 @@ namespace Caixa
                         #endregion
                     }
 
-
                     MessageBox.Show("Informações salvas com sucesso !!!");
 
                     aud.Acao = "INSERIU SANGRIA";
@@ -214,8 +211,6 @@ namespace Caixa
                     audDAO.Inserir(aud);
 
                     ((InicialCaixa)this.Owner).Atualizadados();
-
-                    this.Close();
                 }
                 catch (FormatException)
                 {

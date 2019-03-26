@@ -404,7 +404,6 @@ namespace Caixa
 
             #endregion
 
-
             #region LISTAR SANGRIA TARDE DE
             if (mskDe.MaskFull == true && cmbTurno.Text == "Tarde" && mskAté.MaskFull == false)
             {

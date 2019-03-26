@@ -108,9 +108,9 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(332, 95);
+            this.btnExport.Location = new System.Drawing.Point(332, 116);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(95, 45);
+            this.btnExport.Size = new System.Drawing.Size(95, 66);
             this.btnExport.TabIndex = 20;
             this.btnExport.Text = "Gerar Excel";
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -130,7 +130,7 @@
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
             this.btnPaideFamilia.Location = new System.Drawing.Point(332, 44);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
-            this.btnPaideFamilia.Size = new System.Drawing.Size(95, 45);
+            this.btnPaideFamilia.Size = new System.Drawing.Size(95, 66);
             this.btnPaideFamilia.TabIndex = 21;
             this.btnPaideFamilia.Text = "Gerar .PDF";
             this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;

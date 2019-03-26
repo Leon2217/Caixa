@@ -99,10 +99,6 @@ namespace Caixa
         {        
             try
             {
-                #region ALINHA
-                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                #endregion
-
                 #region DATAS
                 string datatela = DateTime.Now.ToShortDateString();
                 mskAté.Text = datatela;
@@ -157,8 +153,6 @@ namespace Caixa
             {
             }
         }
-
-
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {

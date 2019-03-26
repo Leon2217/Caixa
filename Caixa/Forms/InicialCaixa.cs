@@ -85,9 +85,6 @@ namespace Caixa
                 {
 
                 }
-
-
-
             }
             #endregion
             #region RECARGA
@@ -224,6 +221,20 @@ namespace Caixa
 
         private void InicialCaixa_Load(object sender, EventArgs e)
         {
+            //DateTime dataatual = DateTime.Now;
+            //DateTime endlicense = Convert.ToDateTime("21/03/2019");
+
+            //if (endlicense > dataatual)
+            //{
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Licensa expirada! Contate o Desenvolvedor.");
+            //    Application.Exit();
+            //}
+
+
             #region SODEXO
             if (rlxDAO.SDX(FechamentoDAO.data) == false)
             {
@@ -574,17 +585,17 @@ namespace Caixa
             lblOperador.Text = "Bem vindo, " + UsuarioDAO.login + ".";
             if (FechamentoDAO.codturno == "1")
             {
-                lblTurno.Text = "Turno:" + " Manhã";
+                lblTurno.Text = "Turno: Manhã";
             }
 
             if (FechamentoDAO.codturno == "2")
             {
-                lblTurno.Text = "Turno:" + " Tarde";
+                lblTurno.Text = "Turno: Tarde";
             }
 
             if (FechamentoDAO.codturno == "3")
             {
-                lblTurno.Text = "Turno:" + " Noite";
+                lblTurno.Text = "Turno: Noite";
             }
 
             #region SANGRIA
@@ -1000,8 +1011,8 @@ namespace Caixa
 
             try
             {
-                email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
-                //email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
+                //email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
+                email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
             }
             catch (Exception ex)
             {

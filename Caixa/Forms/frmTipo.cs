@@ -36,7 +36,7 @@ namespace Caixa
                 {
                     if (tpDAO.Verificaexiste(nome) == true)
                     {
-                        MessageBox.Show("O tipo " + nome + " já foi cadastrada no sistema !!!");
+                        MessageBox.Show("O tipo " + nome + " já foi cadastrado no sistema !!!");
                         txtTipo.Clear();
                     }
                     else

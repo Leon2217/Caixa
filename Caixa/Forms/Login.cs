@@ -70,7 +70,7 @@ namespace Caixa
         {
             if (e.KeyValue.Equals(27))
             {
-                Application.Exit();               
+                Application.Exit();
             }
         }
 

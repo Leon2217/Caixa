@@ -168,6 +168,7 @@
             // 
             // lblManha
             // 
+            this.lblManha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblManha.AutoSize = true;
             this.lblManha.Location = new System.Drawing.Point(362, 230);
             this.lblManha.Name = "lblManha";
@@ -177,6 +178,7 @@
             // 
             // lblTarde
             // 
+            this.lblTarde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTarde.AutoSize = true;
             this.lblTarde.Location = new System.Drawing.Point(362, 280);
             this.lblTarde.Name = "lblTarde";
@@ -186,6 +188,8 @@
             // 
             // lblManhaS
             // 
+            this.lblManhaS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblManhaS.AutoSize = true;
             this.lblManhaS.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblManhaS.Location = new System.Drawing.Point(362, 255);
@@ -196,6 +200,7 @@
             // 
             // lblTardeS
             // 
+            this.lblTardeS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTardeS.AutoSize = true;
             this.lblTardeS.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblTardeS.Location = new System.Drawing.Point(362, 300);
@@ -206,6 +211,7 @@
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(362, 371);
             this.lblTotal.Name = "lblTotal";
@@ -215,6 +221,7 @@
             // 
             // lblTotalS
             // 
+            this.lblTotalS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalS.AutoSize = true;
             this.lblTotalS.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblTotalS.Location = new System.Drawing.Point(362, 391);

@@ -10,29 +10,29 @@ namespace Caixa
         {
             InitializeComponent();
 
-            //inicaliza o timer
+            //Inicializa o timer
             tmrTelaSplash.Start();
-            //coloca o tempo de excução
+            //Coloca o intervalo de tempo
             tmrTelaSplash.Interval = 1000;
 
-            //diz a minima e a maxima do progressBar
+            //Diz a minima e a máxima do progressBar
             pgbtime.Minimum = 0;
             pgbtime.Maximum = 500;
         }
 
         private void tmrTelaSplash_Tick(object sender, EventArgs e)
         {
-            //se o valor da progressBar for menor que a maxima estipulada
+            //Se o valor da progressBar for menor que a maxima estipulada
             if (pgbtime.Value < pgbtime.Maximum)
             {
-                //é adiconado a mesma o valor atual mais algum número multiplo da maxima
+                //É adicionado a mesma o valor atual mais algum número multiplo da maxima
                 pgbtime.Value = pgbtime.Value + 500;
             }
             else if (pgbtime.Value == pgbtime.Maximum)
             {
-                //para o timer
+                //Parando o timer
                 tmrTelaSplash.Stop();
-                //vai pra tela de backup
+                //Indo para frmBackup
                 Visible = false;
                 frmBackup bkp = new frmBackup();
                 bkp.ShowDialog();

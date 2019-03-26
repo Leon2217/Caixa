@@ -79,7 +79,7 @@ namespace Caixa
                 {
                     #region ABRIR ABERTO
                     login = UsuarioDAO.login;
-
+                    
                     usuDao.VerificaCargo(login);
                     tipo = usuDao.Usu.Tipo.ToString();
 
