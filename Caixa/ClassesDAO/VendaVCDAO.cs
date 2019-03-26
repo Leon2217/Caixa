@@ -99,7 +99,7 @@ namespace Caixa
             return listaDescripto;
         }
 
-        #region BUSCAR SOMA DE RECARGA POR TURNO1
+        #region BUSCAR SOMA DE VENDA_VC POR TURNO1
         public Boolean VerificaVenda(DateTime data)
         {
             executarComando("SELECT sum(total_vc) FROM VENDA_VC V INNER JOIN CAIXA C ON C.ID_CAIXA=V.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=1 AND C.DATAINICIO='" + data.ToString("yyyy/MM/dd") + "';");
@@ -115,7 +115,7 @@ namespace Caixa
         }
         #endregion
 
-        #region BUSCAR SOMA DE RECARGA POR TURNO2
+        #region BUSCAR SOMA DE VENDA_VC POR TURNO2
         public Boolean VerificaVenda2(DateTime data)
         {
             executarComando("SELECT sum(total_vc) FROM VENDA_VC V INNER JOIN CAIXA C ON C.ID_CAIXA=V.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=2 AND C.DATAINICIO='" + data.ToString("yyyy/MM/dd") + "';");
@@ -131,7 +131,7 @@ namespace Caixa
         }
         #endregion
 
-        #region BUSCAR SOMA DE RECARGA POR TURNO3
+        #region BUSCAR SOMA DE VENDA_VC POR TURNO3
         public Boolean VerificaVenda3(DateTime data)
         {
             executarComando("SELECT sum(total_vc) FROM VENDA_VC V INNER JOIN CAIXA C ON C.ID_CAIXA=V.ID_CAIXA INNER JOIN TURNO T ON C.ID_TURNO=T.ID_TURNO WHERE t.ID_TURNO=3 AND C.DATAINICIO='" + data.ToString("yyyy/MM/dd") + "';");
@@ -146,5 +146,36 @@ namespace Caixa
             }
         }
         #endregion
+        public DataTable VerificaTotalLabelTudo()
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT sum(total_vc) FROM VENDA_VC;");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+                vvc.Total_vc = tabela_memoria.Rows[i]["sum(total_vc)"].ToString();
+
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+
+        public DataTable VerificaTotalLabel(DateTime data)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT sum(total_vc) FROM VENDA_VC WHERE YEARWEEK(DATA,0)=YEARWEEK('" + data.ToString("yyyy/MM/dd") + "',0);");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+                vvc.Total_vc = tabela_memoria.Rows[i]["sum(total_vc)"].ToString();
+
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
     }
 }

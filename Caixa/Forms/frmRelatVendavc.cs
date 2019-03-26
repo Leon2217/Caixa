@@ -9,8 +9,10 @@ namespace Caixa
     public partial class frmRelatVendavc : Form
     {
         VendaVCDAO vcDAO = new VendaVCDAO();
+        VendaVC vc = new VendaVC();
         DateTime data;
         DateTime dt;
+        double total;
         int j;
         public frmRelatVendavc()
         {
@@ -95,6 +97,17 @@ namespace Caixa
             if (mskData.MaskFull == false)
             {
                 gvExibir.DataSource = vcDAO.ListarTudo();
+
+                try
+                {
+                    vcDAO.VerificaTotalLabelTudo();
+                    total = Convert.ToDouble(vcDAO.Vvc.Total_vc.ToString().Replace(".", ""));
+                    lblTotalV.Text = total.ToString("C2");
+                }
+                catch
+                {
+
+                }
             }
             else
             {
@@ -109,6 +122,17 @@ namespace Caixa
                 }
 
                 gvExibir.DataSource = vcDAO.ListarData(data);
+                try
+                {
+                    vcDAO.VerificaTotalLabel(data);
+                    total = Convert.ToDouble(vcDAO.Vvc.Total_vc.ToString().Replace(".", ""));
+                    lblTotalV.Text = total.ToString("C2");
+                }
+                catch
+                {
+
+                }
+             
             }          
         }
 

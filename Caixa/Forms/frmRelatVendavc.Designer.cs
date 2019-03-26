@@ -34,6 +34,8 @@
             this.mskData = new System.Windows.Forms.MaskedTextBox();
             this.btnPaideFamilia = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalV = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,12 +122,35 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(342, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Total :";
+            // 
+            // lblTotalV
+            // 
+            this.lblTotalV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalV.AutoSize = true;
+            this.lblTotalV.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalV.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblTotalV.Location = new System.Drawing.Point(342, 39);
+            this.lblTotalV.Name = "lblTotalV";
+            this.lblTotalV.Size = new System.Drawing.Size(0, 20);
+            this.lblTotalV.TabIndex = 32;
+            // 
             // frmRelatVendavc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(840, 526);
+            this.Controls.Add(this.lblTotalV);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnPaideFamilia);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.mskData);
@@ -154,5 +179,7 @@
         private System.Windows.Forms.MaskedTextBox mskData;
         private System.Windows.Forms.Button btnPaideFamilia;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalV;
     }
 }
