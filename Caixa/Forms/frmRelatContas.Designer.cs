@@ -52,6 +52,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtn = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.lblAtrasado = new System.Windows.Forms.Label();
+            this.lblApagar = new System.Windows.Forms.Label();
+            this.lblCountatrasado = new System.Windows.Forms.Label();
+            this.lblCountemaberto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -352,12 +356,54 @@
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // lblAtrasado
+            // 
+            this.lblAtrasado.AutoSize = true;
+            this.lblAtrasado.ForeColor = System.Drawing.Color.Red;
+            this.lblAtrasado.Location = new System.Drawing.Point(878, 193);
+            this.lblAtrasado.Name = "lblAtrasado";
+            this.lblAtrasado.Size = new System.Drawing.Size(82, 20);
+            this.lblAtrasado.TabIndex = 30;
+            this.lblAtrasado.Text = "Atrasado: ";
+            // 
+            // lblApagar
+            // 
+            this.lblApagar.AutoSize = true;
+            this.lblApagar.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblApagar.Location = new System.Drawing.Point(878, 237);
+            this.lblApagar.Name = "lblApagar";
+            this.lblApagar.Size = new System.Drawing.Size(91, 20);
+            this.lblApagar.TabIndex = 31;
+            this.lblApagar.Text = "Em aberto: ";
+            // 
+            // lblCountatrasado
+            // 
+            this.lblCountatrasado.AutoSize = true;
+            this.lblCountatrasado.ForeColor = System.Drawing.Color.Red;
+            this.lblCountatrasado.Location = new System.Drawing.Point(966, 193);
+            this.lblCountatrasado.Name = "lblCountatrasado";
+            this.lblCountatrasado.Size = new System.Drawing.Size(0, 20);
+            this.lblCountatrasado.TabIndex = 32;
+            // 
+            // lblCountemaberto
+            // 
+            this.lblCountemaberto.AutoSize = true;
+            this.lblCountemaberto.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblCountemaberto.Location = new System.Drawing.Point(966, 237);
+            this.lblCountemaberto.Name = "lblCountemaberto";
+            this.lblCountemaberto.Size = new System.Drawing.Size(0, 20);
+            this.lblCountemaberto.TabIndex = 33;
+            // 
             // frmRelatContas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(1070, 523);
+            this.Controls.Add(this.lblCountemaberto);
+            this.Controls.Add(this.lblCountatrasado);
+            this.Controls.Add(this.lblApagar);
+            this.Controls.Add(this.lblAtrasado);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.txtn);
             this.Controls.Add(this.label7);
@@ -420,5 +466,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtn;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Label lblAtrasado;
+        private System.Windows.Forms.Label lblApagar;
+        private System.Windows.Forms.Label lblCountatrasado;
+        private System.Windows.Forms.Label lblCountemaberto;
     }
 }

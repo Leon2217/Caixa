@@ -645,5 +645,39 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
+
+        #region VERIFICA A QTD DE CONTAS ATRASADAS
+        public Boolean VerificaAtrasado()
+        {
+            executarComando("select count(*) as QTD from contas where status = 'Atrasado';");
+            try
+            {
+                Con.N = Convert.ToInt32(tabela_memoria.Rows[0]["QTD"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A QTD DE CONTAS EM ABERTO
+        public Boolean VerificaEmAberto()
+        {
+            executarComando("select count(*) as QTD from contas where status = 'Em aberto';");
+            try
+            {
+                Con.N = Convert.ToInt32(tabela_memoria.Rows[0]["QTD"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+
     }
 }

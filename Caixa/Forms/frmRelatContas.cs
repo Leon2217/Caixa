@@ -32,6 +32,7 @@ namespace Caixa
         string id;
         string st;
         string n;
+        int atrasado, emaberto;
         int j;
         DateTime data;
         DateTime data2;
@@ -84,6 +85,16 @@ namespace Caixa
                 CarregarComboFornecedor();
                 cmbFornecedor.SelectedIndex = -1;
                 contasDAO.UpdateAtrasado();
+
+                contasDAO.VerificaAtrasado();
+                atrasado = Convert.ToInt32(contasDAO.Con.N.ToString().Replace(".", ""));
+                lblCountatrasado.Text = atrasado.ToString();
+
+                contasDAO.VerificaEmAberto();
+                emaberto = Convert.ToInt32(contasDAO.Con.N.ToString().Replace(".", ""));
+                lblCountemaberto.Text = emaberto.ToString();
+
+
             }
             catch
             {
