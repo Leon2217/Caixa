@@ -49,8 +49,6 @@
             this.cmbS = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAt = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtn = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.lblAtrasado = new System.Windows.Forms.Label();
             this.lblEmaberto = new System.Windows.Forms.Label();
@@ -260,7 +258,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(878, 315);
+            this.label5.Location = new System.Drawing.Point(878, 347);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 22;
@@ -269,7 +267,7 @@
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Location = new System.Drawing.Point(919, 312);
+            this.txtID.Location = new System.Drawing.Point(919, 344);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(139, 26);
             this.txtID.TabIndex = 23;
@@ -316,29 +314,6 @@
             this.btnAt.UseVisualStyleBackColor = false;
             this.btnAt.Click += new System.EventHandler(this.btnAt_Click);
             // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(878, 349);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 20);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "NF:";
-            // 
-            // txtn
-            // 
-            this.txtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtn.Location = new System.Drawing.Point(919, 346);
-            this.txtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtn.MaxLength = 10;
-            this.txtn.Name = "txtn";
-            this.txtn.Size = new System.Drawing.Size(139, 26);
-            this.txtn.TabIndex = 28;
-            this.txtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtn.TextChanged += new System.EventHandler(this.txtn_TextChanged);
-            // 
             // btnExcluir
             // 
             this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -360,7 +335,7 @@
             // 
             this.lblAtrasado.AutoSize = true;
             this.lblAtrasado.ForeColor = System.Drawing.Color.Red;
-            this.lblAtrasado.Location = new System.Drawing.Point(878, 193);
+            this.lblAtrasado.Location = new System.Drawing.Point(878, 215);
             this.lblAtrasado.Name = "lblAtrasado";
             this.lblAtrasado.Size = new System.Drawing.Size(82, 20);
             this.lblAtrasado.TabIndex = 30;
@@ -370,7 +345,7 @@
             // 
             this.lblEmaberto.AutoSize = true;
             this.lblEmaberto.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblEmaberto.Location = new System.Drawing.Point(878, 237);
+            this.lblEmaberto.Location = new System.Drawing.Point(878, 259);
             this.lblEmaberto.Name = "lblEmaberto";
             this.lblEmaberto.Size = new System.Drawing.Size(87, 20);
             this.lblEmaberto.TabIndex = 31;
@@ -380,7 +355,7 @@
             // 
             this.lblCountatrasado.AutoSize = true;
             this.lblCountatrasado.ForeColor = System.Drawing.Color.Red;
-            this.lblCountatrasado.Location = new System.Drawing.Point(966, 193);
+            this.lblCountatrasado.Location = new System.Drawing.Point(966, 215);
             this.lblCountatrasado.Name = "lblCountatrasado";
             this.lblCountatrasado.Size = new System.Drawing.Size(0, 20);
             this.lblCountatrasado.TabIndex = 32;
@@ -389,7 +364,7 @@
             // 
             this.lblCountemaberto.AutoSize = true;
             this.lblCountemaberto.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblCountemaberto.Location = new System.Drawing.Point(966, 237);
+            this.lblCountemaberto.Location = new System.Drawing.Point(966, 259);
             this.lblCountemaberto.Name = "lblCountemaberto";
             this.lblCountemaberto.Size = new System.Drawing.Size(0, 20);
             this.lblCountemaberto.TabIndex = 33;
@@ -405,8 +380,6 @@
             this.Controls.Add(this.lblEmaberto);
             this.Controls.Add(this.lblAtrasado);
             this.Controls.Add(this.btnExcluir);
-            this.Controls.Add(this.txtn);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnAt);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbS);
@@ -463,8 +436,6 @@
         private System.Windows.Forms.ComboBox cmbS;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAt;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtn;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Label lblAtrasado;
         private System.Windows.Forms.Label lblEmaberto;

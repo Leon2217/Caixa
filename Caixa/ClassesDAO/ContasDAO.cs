@@ -47,9 +47,10 @@ namespace Caixa
         }
         #endregion
 
-        public void Excluir(string id, string n)
+
+        public void Excluir(string id)
         {
-            executarComando("DELETE FROM CONTAS WHERE id_contas ='" + id + "' || NF='"+n +"';");
+            executarComando("DELETE FROM CONTAS WHERE id_contas ='" + id + "';");
         }
 
         #region INSERIR CONTA
@@ -610,14 +611,7 @@ namespace Caixa
         {
             executarComando("UPDATE CONTAS SET STATUS='" + status + "' where id_contas='" + id + "';");
         }
-        #endregion
-
-        #region UPDATE STATUS PELA NF
-        public void UpdateStatusNF(string status, string nf)
-        {
-            executarComando("UPDATE CONTAS SET STATUS='" + status + "' where NF='" + nf + "';");
-        }
-        #endregion
+        #endregion        
 
         #region UPDATE CONTAS
         public void UpdateAtrasado()
@@ -677,7 +671,5 @@ namespace Caixa
             }
         }
         #endregion
-
-
     }
 }

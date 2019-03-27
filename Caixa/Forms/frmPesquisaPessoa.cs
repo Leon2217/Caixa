@@ -587,7 +587,7 @@ namespace Caixa
             {
                 cmbTipo4.Enabled = false;
                 cmbTipo4.Text = "";
-            }
+            }           
         }
 
         private void cmbTipo3_TextChanged(object sender, EventArgs e)

@@ -36,13 +36,8 @@ namespace Caixa
         int j;
         DateTime data;
         DateTime data2;
-#pragma warning disable CS0169 // O campo "frmRelatContas.data3" nunca é usado
         DateTime data3;
-#pragma warning restore CS0169 // O campo "frmRelatContas.data3" nunca é usado
-#pragma warning disable CS0169 // O campo "frmRelatContas.data4" nunca é usado
         DateTime data4;
-#pragma warning restore CS0169 // O campo "frmRelatContas.data4" nunca é usado
-
         #endregion
 
         public frmRelatContas()
@@ -51,11 +46,11 @@ namespace Caixa
         }
 
         public void CarregarComboStatus()
-        {           
+        {
             //cmbS.DataSource = contasDAO.ListarStatus(id);
             //cmbS.DisplayMember = "STATUS";
             //cmbS.ValueMember = "STATUS";
-  
+
         }
 
 
@@ -136,7 +131,7 @@ namespace Caixa
             }
         }
 
-        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs  e)
+        private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gvExibir.CurrentCell.Value.ToString() != "")
             {
@@ -2730,7 +2725,7 @@ namespace Caixa
             }
             #endregion
         }
-      
+
 
         public void AtualizaDados()
         {
@@ -3057,190 +3052,102 @@ namespace Caixa
             if (txtID.Text != string.Empty)
             {
                 id = txtID.Text.ToString();
-                txtn.Enabled = false;
                 CarregarComboStatus();
-            }
-            else
-            {
-                txtn.Enabled = true;
             }
         }
 
         private void btnAt_Click(object sender, EventArgs e)
         {
-            if (txtID.Enabled == true)
+            if (cmbS.Text == string.Empty || txtID.Text == string.Empty)
             {
-                if (cmbS.Text == string.Empty || txtID.Text == string.Empty)
-                {
-                    MessageBox.Show("Favor preencher ou NF ou ID !!!");
-                }
-                else
-                {
-                    try
-                    {
-                        DialogResult op;
-
-                        op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
-                            "Alterando!", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question);
-
-                        if (op == DialogResult.Yes)
-                        {
-                            if (st == "Pago")
-                            {
-                                //PEGA AS INFO'S DO ID
-
-                                contasDAO.Verificavalor(id);
-                                string valor = contasDAO.Con.Valor.ToString();
-                                DateTime data = contasDAO.Con.Data;
-                                contasDAO.UpdateStatus(st, id);
-
-                                #region GERAL
-                                if (vgDAO.Verificavalor() == true)
-                                {
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-                                    #region GERAL
-                                    ger.Data = data;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
-
-                                    #endregion
-                                }
-                                else
-                                {
-                                    string zero = "0.00";
-                                    vgDAO.Inserir(zero);
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-
-                                    #region GERAL
-                                    ger.Data = data;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
-
-                                    #endregion
-                                }
-                                #endregion
-                            }
-                            else
-                            {
-                                contasDAO.UpdateStatus(st, id);
-                            }
-
-                            MessageBox.Show("Atualizado com sucesso !!!");
-
-
-                            contasDAO.VerificaAtrasado();
-                            atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
-                            lblCountatrasado.Text = atrasado.ToString();
-
-                            contasDAO.VerificaEmAberto();
-                            emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
-                            lblCountemaberto.Text = emaberto.ToString();
-
-                            aud.Acao = "PAGOU CONTA";
-                            aud.Data = FechamentoDAO.data;
-                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                            aud.Responsavel = UsuarioDAO.login;
-                            audDAO.Inserir(aud);
-                            AtualizaDados();
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Erro ;)");
-                    }
-                }
+                MessageBox.Show("Favor preencher o ID !!!");
             }
             else
             {
+                try
+                {
+                    DialogResult op;
 
-                if (cmbS.Text == string.Empty || txtn.Text == string.Empty)
-                {
-                    MessageBox.Show("Favor preencher ou NF ou ID !!!");
-                }
-                else
-                {
-                    try
+                    op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
+                        "Alterando!", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (op == DialogResult.Yes)
                     {
-                        DialogResult op;
-
-                        op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
-                            "Alterando!", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question);
-
-                        if (op == DialogResult.Yes)
+                        if (st == "Pago")
                         {
-                            if (st == "Pago")
+                            //PEGA AS INFO'S DO ID
+
+                            contasDAO.Verificavalor(id);
+                            string valor = contasDAO.Con.Valor.ToString();
+                            DateTime data = contasDAO.Con.Data;
+                            contasDAO.UpdateStatus(st, id);
+
+                            #region GERAL
+                            if (vgDAO.Verificavalor() == true)
                             {
-                                //PEGA AS INFO'S DO ID
-
-                                contasDAO.Verificavalor(id);
-                                string valor = contasDAO.Con.Valor.ToString();
-                                DateTime data = contasDAO.Con.Data;
-                                contasDAO.UpdateStatus(st, id);
-
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
                                 #region GERAL
-                                if (vgDAO.Verificavalor() == true)
-                                {
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-                                    #region GERAL
-                                    ger.Data = data;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
+                                ger.Data = data;
+                                ger.Desc_g = "NF";
+                                ger.Deb_g = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Forn = valor;
+                                ger.Func = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
 
-                                    #endregion
-                                }
-                                else
-                                {
-                                    string zero = "0.00";
-                                    vgDAO.Inserir(zero);
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-
-                                    #region GERAL
-                                    ger.Data = data;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
-
-                                    #endregion
-                                }
                                 #endregion
                             }
                             else
                             {
-                                contasDAO.UpdateStatus(st, id);
+                                string zero = "0.00";
+                                vgDAO.Inserir(zero);
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+
+                                #region GERAL
+                                ger.Data = data;
+                                ger.Desc_g = "NF";
+                                ger.Deb_g = "0,00";
+                                ger.Forn = valor;
+                                ger.Func = "0,00";
+                                ger.Cred_g = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+
+                                #endregion
                             }
-                            MessageBox.Show("Atualizado com sucesso !!!");
-                            AtualizaDados();
+                            #endregion
                         }
+                        else
+                        {
+                            contasDAO.UpdateStatus(st, id);
+                        }
+
+                        MessageBox.Show("Atualizado com sucesso !!!");
+
+
+                        contasDAO.VerificaAtrasado();
+                        atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
+                        lblCountatrasado.Text = atrasado.ToString();
+
+                        contasDAO.VerificaEmAberto();
+                        emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
+                        lblCountemaberto.Text = emaberto.ToString();
+
+                        aud.Acao = "PAGOU CONTA";
+                        aud.Data = FechamentoDAO.data;
+                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                        aud.Responsavel = UsuarioDAO.login;
+                        audDAO.Inserir(aud);
+                        AtualizaDados();
                     }
-                    catch
-                    {
-                        MessageBox.Show("Erro ;)");
-                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Erro ;)");
                 }
             }
         }
@@ -3268,19 +3175,6 @@ namespace Caixa
             else if (e.Value != null && e.Value.ToString().Contains("Em aberto"))
             {
                 e.CellStyle.ForeColor = Color.Goldenrod;
-            }
-        }
-
-        private void txtn_TextChanged(object sender, EventArgs e)
-        {           
-            if (txtn.Text != string.Empty)
-            {
-                txtID.Enabled = false;
-                n = txtn.Text.ToString();
-            }
-            else
-            {
-                txtID.Enabled = true;
             }
         }
 
@@ -3346,7 +3240,7 @@ namespace Caixa
                     {
                         worksheet.Cells[i + 2, j + 1] = gvExibir.Rows[i].Cells[j].Value.ToString();
                     }
-           
+
                 }
             }
             Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("F2:F300");
@@ -3464,7 +3358,7 @@ namespace Caixa
         public void ExportarPDF(DataGridView dgw, string filename)
         {
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
-            PdfPTable pdftable = new PdfPTable(new float[] { 1, 1, 3, 1 , 1 ,1 , 1 });
+            PdfPTable pdftable = new PdfPTable(new float[] { 1, 1, 3, 1, 1, 1, 1 });
             pdftable.DefaultCell.Padding = 3;
             pdftable.WidthPercentage = 100;
             iTextSharp.text.Font text = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
@@ -3473,7 +3367,7 @@ namespace Caixa
             {
                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, text));
                 cell.BackgroundColor = new iTextSharp.text.BaseColor(240, 240, 240);
-                pdftable.AddCell(cell);                
+                pdftable.AddCell(cell);
             }
 
             //Linha
@@ -3482,7 +3376,7 @@ namespace Caixa
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (cell.ColumnIndex == 3 || cell.ColumnIndex==4)
+                    if (cell.ColumnIndex == 3 || cell.ColumnIndex == 4)
                     {
                         try
                         {
@@ -3492,7 +3386,7 @@ namespace Caixa
                         }
                         catch
                         {
-                        }                        
+                        }
                     }
                     else
                     {
@@ -3524,10 +3418,10 @@ namespace Caixa
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == string.Empty && txtn.Text == string.Empty)
+            if (txtID.Text == string.Empty)
             {
                 txtID.BackColor = Color.Red;
-                MessageBox.Show("Favor preencher o ID ou NF da conta");
+                MessageBox.Show("Favor preencher o ID");
             }
             else
             {
@@ -3539,11 +3433,19 @@ namespace Caixa
 
                 if (op == DialogResult.Yes)
                 {
-                    contasDAO.Excluir(id, n);
+                    contasDAO.Excluir(id);
                     MessageBox.Show("Excluído com sucesso !!!");
                     txtID.Text = string.Empty;
-                    txtn.Text = string.Empty;
                     gvExibir.DataSource = contasDAO.ListarTudo();
+
+
+                    contasDAO.VerificaAtrasado();
+                    atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
+                    lblCountatrasado.Text = atrasado.ToString();
+
+                    contasDAO.VerificaEmAberto();
+                    emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
+                    lblCountemaberto.Text = emaberto.ToString();
 
                     aud.Acao = "EXCLUIU CONTA";
                     aud.Data = FechamentoDAO.data;
