@@ -27,6 +27,7 @@ namespace Caixa
         string st;
         string id;
         DateTime data;
+        int atrasado, emaberto;
         int j;
         #endregion
 
@@ -52,7 +53,6 @@ namespace Caixa
 
         private void frmRelatDespesa_Load(object sender, EventArgs e)
         {
-            //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             try
             {
                 despDAO.UpdateAtrasado();
@@ -60,6 +60,14 @@ namespace Caixa
                 CarregarComboPessoa();
                 cmbPessoa.SelectedIndex = -1;
                 cmbS.SelectedIndex = -1;
+
+                despDAO.VerificaAtrasado();
+                atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());
+                lblCountatrasado.Text = atrasado.ToString();
+
+                despDAO.VerificaEmAberto();
+                emaberto = Convert.ToInt32(despDAO.Desp.N.ToString());
+                lblCountEmaberto.Text = emaberto.ToString();
 
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
@@ -1517,7 +1525,15 @@ namespace Caixa
                         }
                         MessageBox.Show("Atualizado com sucesso !!!");
                         txtID.Clear();
-                        AtualizaDados();                                
+                        AtualizaDados();
+
+                        despDAO.VerificaAtrasado();
+                        atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());
+                        lblCountatrasado.Text = atrasado.ToString();
+
+                        despDAO.VerificaEmAberto();
+                        emaberto = Convert.ToInt32(despDAO.Desp.N.ToString());
+                        lblCountEmaberto.Text = emaberto.ToString();
                     }
                 }
                 catch

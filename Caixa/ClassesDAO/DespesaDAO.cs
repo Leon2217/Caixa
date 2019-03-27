@@ -468,5 +468,37 @@ namespace Caixa
             executarComando("UPDATE DESPESA SET STATUS='Atrasado' where data<curdate() and status!='Pago';");
         }
         #endregion
+
+        #region VERIFICA A QTD DE DESPESA ATRASADAS
+        public Boolean VerificaAtrasado()
+        {
+            executarComando("select count(*) as QTD from despesa where status = 'Atrasado';");
+            try
+            {
+                Desp.N = Convert.ToInt32(tabela_memoria.Rows[0]["QTD"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A QTD DE DESPESA EM ABERTO
+        public Boolean VerificaEmAberto()
+        {
+            executarComando("select count(*) as QTD from despesa where status = 'Em aberto';");
+            try
+            {
+                Desp.N = Convert.ToInt32(tabela_memoria.Rows[0]["QTD"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

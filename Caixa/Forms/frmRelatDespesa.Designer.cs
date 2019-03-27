@@ -48,6 +48,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.ChkFr = new System.Windows.Forms.CheckBox();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblCountatrasado = new System.Windows.Forms.Label();
+            this.lblCountEmaberto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvExibir.Size = new System.Drawing.Size(588, 325);
+            this.gvExibir.Size = new System.Drawing.Size(588, 390);
             this.gvExibir.TabIndex = 22;
             this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);
@@ -204,7 +208,7 @@
             this.btnAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAt.Location = new System.Drawing.Point(610, 320);
+            this.btnAt.Location = new System.Drawing.Point(610, 385);
             this.btnAt.Name = "btnAt";
             this.btnAt.Size = new System.Drawing.Size(181, 39);
             this.btnAt.TabIndex = 33;
@@ -216,7 +220,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(606, 263);
+            this.label6.Location = new System.Drawing.Point(606, 328);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 20);
             this.label6.TabIndex = 32;
@@ -230,7 +234,7 @@
             this.cmbS.Items.AddRange(new object[] {
             "Em aberto",
             "Pago"});
-            this.cmbS.Location = new System.Drawing.Point(610, 286);
+            this.cmbS.Location = new System.Drawing.Point(610, 351);
             this.cmbS.Name = "cmbS";
             this.cmbS.Size = new System.Drawing.Size(181, 28);
             this.cmbS.TabIndex = 31;
@@ -239,7 +243,7 @@
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Location = new System.Drawing.Point(642, 234);
+            this.txtID.Location = new System.Drawing.Point(642, 299);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(149, 26);
             this.txtID.TabIndex = 30;
@@ -249,7 +253,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(606, 237);
+            this.label5.Location = new System.Drawing.Point(606, 302);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 29;
@@ -275,7 +279,7 @@
             this.btnExcluir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnExcluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Location = new System.Drawing.Point(610, 365);
+            this.btnExcluir.Location = new System.Drawing.Point(610, 430);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(181, 39);
             this.btnExcluir.TabIndex = 35;
@@ -283,12 +287,54 @@
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(606, 183);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 20);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "Atrasado: ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Goldenrod;
+            this.label8.Location = new System.Drawing.Point(606, 228);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 20);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Em aberto:";
+            // 
+            // lblCountatrasado
+            // 
+            this.lblCountatrasado.AutoSize = true;
+            this.lblCountatrasado.ForeColor = System.Drawing.Color.Red;
+            this.lblCountatrasado.Location = new System.Drawing.Point(694, 183);
+            this.lblCountatrasado.Name = "lblCountatrasado";
+            this.lblCountatrasado.Size = new System.Drawing.Size(0, 20);
+            this.lblCountatrasado.TabIndex = 38;
+            // 
+            // lblCountEmaberto
+            // 
+            this.lblCountEmaberto.AutoSize = true;
+            this.lblCountEmaberto.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblCountEmaberto.Location = new System.Drawing.Point(694, 228);
+            this.lblCountEmaberto.Name = "lblCountEmaberto";
+            this.lblCountEmaberto.Size = new System.Drawing.Size(0, 20);
+            this.lblCountEmaberto.TabIndex = 39;
+            // 
             // frmRelatDespesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(802, 413);
+            this.ClientSize = new System.Drawing.Size(802, 478);
+            this.Controls.Add(this.lblCountEmaberto);
+            this.Controls.Add(this.lblCountatrasado);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.ChkFr);
             this.Controls.Add(this.btnAt);
@@ -343,5 +389,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox ChkFr;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCountatrasado;
+        private System.Windows.Forms.Label lblCountEmaberto;
     }
 }

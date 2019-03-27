@@ -87,11 +87,11 @@ namespace Caixa
                 contasDAO.UpdateAtrasado();
 
                 contasDAO.VerificaAtrasado();
-                atrasado = Convert.ToInt32(contasDAO.Con.N.ToString().Replace(".", ""));
+                atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
                 lblCountatrasado.Text = atrasado.ToString();
 
                 contasDAO.VerificaEmAberto();
-                emaberto = Convert.ToInt32(contasDAO.Con.N.ToString().Replace(".", ""));
+                emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
                 lblCountemaberto.Text = emaberto.ToString();
 
 
@@ -3139,6 +3139,15 @@ namespace Caixa
                             }
 
                             MessageBox.Show("Atualizado com sucesso !!!");
+
+
+                            contasDAO.VerificaAtrasado();
+                            atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
+                            lblCountatrasado.Text = atrasado.ToString();
+
+                            contasDAO.VerificaEmAberto();
+                            emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
+                            lblCountemaberto.Text = emaberto.ToString();
 
                             aud.Acao = "PAGOU CONTA";
                             aud.Data = FechamentoDAO.data;

@@ -53,7 +53,7 @@
             this.txtn = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.lblAtrasado = new System.Windows.Forms.Label();
-            this.lblApagar = new System.Windows.Forms.Label();
+            this.lblEmaberto = new System.Windows.Forms.Label();
             this.lblCountatrasado = new System.Windows.Forms.Label();
             this.lblCountemaberto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
@@ -366,15 +366,15 @@
             this.lblAtrasado.TabIndex = 30;
             this.lblAtrasado.Text = "Atrasado: ";
             // 
-            // lblApagar
+            // lblEmaberto
             // 
-            this.lblApagar.AutoSize = true;
-            this.lblApagar.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblApagar.Location = new System.Drawing.Point(878, 237);
-            this.lblApagar.Name = "lblApagar";
-            this.lblApagar.Size = new System.Drawing.Size(91, 20);
-            this.lblApagar.TabIndex = 31;
-            this.lblApagar.Text = "Em aberto: ";
+            this.lblEmaberto.AutoSize = true;
+            this.lblEmaberto.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblEmaberto.Location = new System.Drawing.Point(878, 237);
+            this.lblEmaberto.Name = "lblEmaberto";
+            this.lblEmaberto.Size = new System.Drawing.Size(87, 20);
+            this.lblEmaberto.TabIndex = 31;
+            this.lblEmaberto.Text = "Em aberto:";
             // 
             // lblCountatrasado
             // 
@@ -402,7 +402,7 @@
             this.ClientSize = new System.Drawing.Size(1070, 523);
             this.Controls.Add(this.lblCountemaberto);
             this.Controls.Add(this.lblCountatrasado);
-            this.Controls.Add(this.lblApagar);
+            this.Controls.Add(this.lblEmaberto);
             this.Controls.Add(this.lblAtrasado);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.txtn);
@@ -467,7 +467,7 @@
         private System.Windows.Forms.TextBox txtn;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Label lblAtrasado;
-        private System.Windows.Forms.Label lblApagar;
+        private System.Windows.Forms.Label lblEmaberto;
         private System.Windows.Forms.Label lblCountatrasado;
         private System.Windows.Forms.Label lblCountemaberto;
     }
