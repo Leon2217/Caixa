@@ -1011,8 +1011,8 @@ namespace Caixa
 
             try
             {
-                //email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
-                email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
+                email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
+                //email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
             }
             catch (Exception ex)
             {

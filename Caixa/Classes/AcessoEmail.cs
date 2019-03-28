@@ -12,10 +12,10 @@ namespace Caixa
             try
             {
                 String email, senha, assunto, titulo;
-                email = "grupoti321@outlook.com";
-                senha = "amaralfrango1";
+                email = "softwarecaixa@outlook.com";
+                senha = "3148487g";
                 assunto = "SENHA";
-                titulo = "SENHA SECRETA APAGAR BANCO";
+                titulo = "SENHA PARA APAGAR OU RESTAURAR BANCO";
 
                 SmtpClient cliente = new SmtpClient();
                 cliente.Host = "smtp.live.com";
