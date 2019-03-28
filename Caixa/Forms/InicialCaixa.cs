@@ -1005,19 +1005,20 @@ namespace Caixa
             assDAO.InserirT(senhagerada);
             String mensagemEmail = senhagerada;
 
-            frmTelaSplash sp = new frmTelaSplash();
-            sp.Owner = this;
-            sp.ShowDialog();
 
             try
             {
-                email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
-                //email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
+                //email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
+                email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(string.Format("erro:  {0}", ex.Message));
             }
+
+            frmTelaSplash sp = new frmTelaSplash();
+            sp.Owner = this;
+            sp.ShowDialog();
             #endregion           
         }
     }
