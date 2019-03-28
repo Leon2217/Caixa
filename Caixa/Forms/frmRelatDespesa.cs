@@ -2009,6 +2009,14 @@ namespace Caixa
                     MessageBox.Show("Excluído com sucesso !!!");
                     txtID.Text = string.Empty;
 
+                    despDAO.VerificaAtrasado();
+                    atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());
+                    lblCountatrasado.Text = atrasado.ToString();
+
+                    despDAO.VerificaEmAberto();
+                    emaberto = Convert.ToInt32(despDAO.Desp.N.ToString());
+                    lblCountEmaberto.Text = emaberto.ToString();
+
                     gvExibir.DataSource = despDAO.ListarTudo();
 
                     aud.Acao = "EXCLUIU DESPESA";
@@ -2016,6 +2024,7 @@ namespace Caixa
                     aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                     aud.Responsavel = UsuarioDAO.login;
                     audDAO.Inserir(aud);
+
                 }
                 else
                 {
