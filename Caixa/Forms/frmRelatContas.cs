@@ -3089,7 +3089,7 @@ namespace Caixa
                                 vgDAO.Update2(valor);
                                 vgDAO.Verificavalor();
                                 #region GERAL
-                                ger.Data = data;
+                                ger.Data = DateTime.Today;
                                 ger.Desc_g = "NF";
                                 ger.Deb_g = "0,00";
                                 ger.Cred_g = "0,00";
@@ -3108,7 +3108,7 @@ namespace Caixa
                                 vgDAO.Verificavalor();
 
                                 #region GERAL
-                                ger.Data = data;
+                                ger.Data = DateTime.Today;
                                 ger.Desc_g = "NF";
                                 ger.Deb_g = "0,00";
                                 ger.Forn = valor;
