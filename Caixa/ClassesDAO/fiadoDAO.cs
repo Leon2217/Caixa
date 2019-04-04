@@ -31,11 +31,6 @@ namespace Caixa
         }
         #endregion
 
-        public void Alterar(fiado ass)
-        {
-            //executarComando("update fiado set classm='"+"','"+"' where id_caixa='" + ass.Id_caixa + "';");
-        }
-
         #region VERIFICA O VALOR DO ID
         public Boolean Verificafiado(string id)
         {

@@ -96,7 +96,6 @@
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(0, 20);
             this.lblTotal.TabIndex = 65;
-            this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
             // 
             // btninserir
             // 

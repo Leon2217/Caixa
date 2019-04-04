@@ -90,7 +90,6 @@
             this.Name = "frmCadOperadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Operadora";
-            this.Load += new System.EventHandler(this.frmCadOperadora_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadOperadora_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

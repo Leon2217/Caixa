@@ -44,11 +44,6 @@ namespace Caixa
             InitializeComponent();
         }
 
-        private void lblTotal_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void Calcular()
         {
             total = (qtd1 * 0.05) + (qtd2 * 0.1) + (qtd3 * 0.25) + (qtd4 * 0.5) + (qtd5 * 1) + (qtd6 * 2) + (qtd7 * 5) + (qtd8 * 10) + (qtd9 * 20) + (qtd10 * 50) + (qtd11 * 100);

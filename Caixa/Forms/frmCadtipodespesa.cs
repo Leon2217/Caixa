@@ -81,10 +81,5 @@ namespace Caixa
         {
             txtNome.BackColor = Color.Empty;
         }
-
-        private void frmCadtipodespesa_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

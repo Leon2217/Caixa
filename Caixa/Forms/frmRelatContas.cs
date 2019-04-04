@@ -45,15 +45,6 @@ namespace Caixa
             InitializeComponent();
         }
 
-        public void CarregarComboStatus()
-        {
-            //cmbS.DataSource = contasDAO.ListarStatus(id);
-            //cmbS.DisplayMember = "STATUS";
-            //cmbS.ValueMember = "STATUS";
-
-        }
-
-
         private void frmRelatContas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(27))
@@ -3052,7 +3043,6 @@ namespace Caixa
             if (txtID.Text != string.Empty)
             {
                 id = txtID.Text.ToString();
-                CarregarComboStatus();
             }
         }
 

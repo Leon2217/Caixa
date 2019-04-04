@@ -38,51 +38,7 @@ namespace Caixa
         public frmFiado()
         {
             InitializeComponent();
-        }
-
-        private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-            DialogResult op;
-
-            op = MessageBox.Show("Você tem certeza dessas informações?",
-                "Salvando!", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (op == DialogResult.Yes)
-            {
-                try
-                {
-                    if (update == true)
-                    {
-
-                        if (tipo == "Administrador")
-                        {                         
-                            assDAO.Alterar(ass);
-                            MessageBox.Show("Dados alterados com sucesso !!!");
-                           
-                            ((frmOpcaoFecha)this.Owner).AtualizaDados();
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Você não possui privilégios o suficiente para alterar !!!");
-                        }
-                    }
-                    else
-                    {                      
-                        assDAO.Inserir(ass);
-                        MessageBox.Show("Informações salvas com sucesso !!!");
-                       
-                        ((frmOpcaoFecha)this.Owner).AtualizaDados();
-                        this.Close();
-                    }                    
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Favor verificar as informações digitadas !!!");
-                }        
-            }
-        }
+        }        
 
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {

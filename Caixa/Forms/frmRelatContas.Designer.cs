@@ -245,7 +245,7 @@
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gvExibir.Location = new System.Drawing.Point(12, 93);
+            this.gvExibir.Location = new System.Drawing.Point(46, 93);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

@@ -84,10 +84,5 @@ namespace Caixa
                 e.Handled = true;
             }
         }
-
-        private void frmCadOperadora_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

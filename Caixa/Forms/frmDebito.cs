@@ -75,10 +75,6 @@ namespace Caixa
             }
         }
 
-        private void txtDesc_KeyPress(object sender, KeyPressEventArgs e)
-        {     
-        }
-
         private void txtValor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue.Equals(13))

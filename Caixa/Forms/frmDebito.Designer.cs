@@ -111,7 +111,6 @@
             this.txtDesc.TabIndex = 8;
             this.txtDesc.TextChanged += new System.EventHandler(this.txtDesc_TextChanged);
             this.txtDesc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDesc_KeyDown);
-            this.txtDesc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesc_KeyPress);
             // 
             // txtValor
             // 

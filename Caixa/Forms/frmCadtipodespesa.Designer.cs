@@ -87,7 +87,6 @@
             this.Name = "frmCadtipodespesa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".: Tipo Despesa";
-            this.Load += new System.EventHandler(this.frmCadtipodespesa_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadtipodespesa_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
