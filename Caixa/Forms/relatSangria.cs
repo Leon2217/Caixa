@@ -86,8 +86,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -129,8 +137,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -171,8 +187,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    };
                 }
                 catch
                 {
@@ -213,8 +237,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -257,8 +289,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -300,8 +340,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -343,8 +391,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSoma();
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -437,8 +493,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -480,8 +544,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -522,8 +594,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    };
                 }
                 catch
                 {
@@ -564,8 +644,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -608,8 +696,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -651,8 +747,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -694,8 +798,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSoma();
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -788,8 +900,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -831,8 +951,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -873,8 +1001,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    };
                 }
                 catch
                 {
@@ -915,8 +1051,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -959,8 +1103,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1002,8 +1154,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1045,8 +1205,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSoma();
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1139,8 +1307,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1182,8 +1358,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1224,8 +1408,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD(de);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    };
                 }
                 catch
                 {
@@ -1266,8 +1458,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1310,8 +1510,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1353,8 +1561,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB(de, at);
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1396,8 +1612,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSoma();
-                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblManhaS.Text = manha.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        manha = 0.00;
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
+                    else
+                    {
+                        manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblManhaS.Text = manha.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1572,8 +1796,16 @@ namespace Caixa
             try
             {
                 sanDAO.VerificaSB(de, at);
-                manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                lblManhaS.Text = manha.ToString("C2");
+                if (sanDAO.San.Valor.ToString() == string.Empty)
+                {
+                    manha = 0.00;
+                    lblManhaS.Text = manha.ToString("C2");
+                }
+                else
+                {
+                    manha = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblManhaS.Text = manha.ToString("C2");
+                }
             }
             catch
             {
