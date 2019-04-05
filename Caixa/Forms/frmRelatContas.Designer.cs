@@ -245,11 +245,11 @@
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gvExibir.Location = new System.Drawing.Point(46, 93);
+            this.gvExibir.Location = new System.Drawing.Point(12, 89);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvExibir.Size = new System.Drawing.Size(862, 421);
+            this.gvExibir.Size = new System.Drawing.Size(862, 425);
             this.gvExibir.TabIndex = 21;
             this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick_1);
             this.gvExibir.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvExibir_CellFormatting);

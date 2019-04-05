@@ -99,8 +99,16 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -130,12 +138,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -164,12 +180,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -202,8 +226,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -237,8 +270,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -271,8 +313,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -301,12 +352,21 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA TUDO2
+                #region SOMA TUDO 2
                 try
                 {
                     sanDAO.VerificaSoma2();
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -353,26 +413,25 @@ namespace Caixa
 
             }
             #endregion                            
-          
-            #region SOMENTE TURNO TARDE
-            if (cmbTurno.Text == "Tarde" && mskDe.MaskFull == false && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = sanDAO.ListarSangriaTarde();
-            }
-            #endregion
 
-            #region SOMENTE TURNO MANHÃ
+            #region SOMENTE TURNO MANHA
             if (cmbTurno.Text == "Manhã" && mskDe.MaskFull == false && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaManha();
             }
             #endregion
 
+            #region SOMENTE TURNO TARDE
+            if (cmbTurno.Text == "Tarde" && mskDe.MaskFull == false && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = sanDAO.ListarSangriaTarde();
+            }
+            #endregion           
+
             #region LISTAR SANGRIA DE
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
-
 
                 #region SOMA de
                 try
@@ -387,12 +446,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -422,12 +489,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -456,12 +531,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -494,8 +577,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -529,8 +621,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -563,8 +664,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -593,12 +703,21 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA TUDO2
+                #region SOMA TUDO 2
                 try
                 {
                     sanDAO.VerificaSoma2();
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -658,13 +777,12 @@ namespace Caixa
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTarde();
             }
-            #endregion
+            #endregion           
 
             #region LISTAR SANGRIA DE
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
-
 
                 #region SOMA de
                 try
@@ -679,12 +797,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -714,12 +840,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -748,12 +882,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -786,8 +928,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -821,8 +972,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -855,8 +1015,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -885,12 +1054,21 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA TUDO2
+                #region SOMA TUDO 2
                 try
                 {
                     sanDAO.VerificaSoma2();
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -950,13 +1128,12 @@ namespace Caixa
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaTarde();
             }
-            #endregion
+            #endregion           
 
             #region LISTAR SANGRIA DE
             if (mskDe.MaskFull == true && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = sanDAO.ListarSangriaDe(de);
-
 
                 #region SOMA de
                 try
@@ -971,12 +1148,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1006,12 +1191,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1040,12 +1233,20 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA DE
+                #region SOMA DE 2
                 try
                 {
                     sanDAO.VerificaSD2(de);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
                 }
                 catch
                 {
@@ -1078,8 +1279,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -1113,8 +1323,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -1147,8 +1366,17 @@ namespace Caixa
                 try
                 {
                     sanDAO.VerificaSB2(de, at);
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -1177,12 +1405,21 @@ namespace Caixa
                 }
 
                 #endregion
-                #region SOMA TUDO2
+                #region SOMA TUDO 2
                 try
                 {
                     sanDAO.VerificaSoma2();
-                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                    lblTardeS.Text = tarde.ToString("C2");
+                    if (sanDAO.San.Valor.ToString() == string.Empty)
+                    {
+                        tarde = 0.00;
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+                    else
+                    {
+                        tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                        lblTardeS.Text = tarde.ToString("C2");
+                    }
+
                 }
                 catch
                 {
@@ -1349,8 +1586,16 @@ namespace Caixa
             try
             {
                 sanDAO.VerificaSB2(de, at);
-                tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
-                lblTardeS.Text = tarde.ToString("C2");
+                if (sanDAO.San.Valor.ToString() == string.Empty)
+                {
+                    tarde = 0.00;
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
+                else
+                {
+                    tarde = Convert.ToDouble(sanDAO.San.Valor.ToString().Replace(".", ""));
+                    lblTardeS.Text = tarde.ToString("C2");
+                }
             }
             catch
             {
