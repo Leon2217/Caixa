@@ -307,5 +307,200 @@ namespace Caixa
             return listaDescripto;
         }
         #endregion
+
+        #region LISTAR SÓ FORNECEDOR
+        public DataTable ListarForn()
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FORN NOT IN('0.00');");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+
+
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR SÓ FUNCIONÁRIO
+        public DataTable ListarFunc()
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00');");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+
+
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR DE FUNC
+        public DataTable ListarDEFunc(DateTime data)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND data='" + data.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR DE FORN
+        public DataTable ListarDEForn(DateTime data)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FORN NOT IN('0.00') AND data='" + data.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR BETWEEN FUNC
+        public DataTable ListarBFunc(DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR BETWEEN  FORN
+        public DataTable ListarBForn(DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FORN NOT IN('0.00') AND data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR FORNFUNC
+        public DataTable ListarFornFunc()
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND FORN NOT IN('0.00');");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+
+
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR DE FORNFUNC
+        public DataTable ListarDEFornFunc(DateTime data)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND FORN NOT IN('0.00') AND data='" + data.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
+
+        #region LISTAR BETWEEN FORNFUNC
+        public DataTable ListarBTNFornFunc(DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FORN NOT IN('0.00') AND FUNC NOT IN('0.00') AND data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+                linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
+                linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
+                linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
+                linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                listaDescripto.Rows.Add(linha);
+            }
+            return listaDescripto;
+        }
+        #endregion
     }
 }

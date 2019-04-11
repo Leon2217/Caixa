@@ -52,6 +52,8 @@
             this.cmbAjustes = new System.Windows.Forms.ComboBox();
             this.txtAjuste = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
+            this.chkFornecedor = new System.Windows.Forms.CheckBox();
+            this.chkFuncionario = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -314,12 +316,35 @@
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // chkFornecedor
+            // 
+            this.chkFornecedor.AutoSize = true;
+            this.chkFornecedor.Location = new System.Drawing.Point(354, 12);
+            this.chkFornecedor.Name = "chkFornecedor";
+            this.chkFornecedor.Size = new System.Drawing.Size(110, 24);
+            this.chkFornecedor.TabIndex = 30;
+            this.chkFornecedor.Text = "Fornecedor";
+            this.chkFornecedor.UseVisualStyleBackColor = true;
+            this.chkFornecedor.CheckedChanged += new System.EventHandler(this.chkFornecedor_CheckedChanged);
+            // 
+            // chkFuncionario
+            // 
+            this.chkFuncionario.AutoSize = true;
+            this.chkFuncionario.Location = new System.Drawing.Point(353, 42);
+            this.chkFuncionario.Name = "chkFuncionario";
+            this.chkFuncionario.Size = new System.Drawing.Size(111, 24);
+            this.chkFuncionario.TabIndex = 31;
+            this.chkFuncionario.Text = "Funcionário";
+            this.chkFuncionario.UseVisualStyleBackColor = true;
+            // 
             // frmGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(782, 660);
+            this.Controls.Add(this.chkFuncionario);
+            this.Controls.Add(this.chkFornecedor);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtAjuste);
             this.Controls.Add(this.cmbAjustes);
@@ -382,5 +407,7 @@
         private System.Windows.Forms.ComboBox cmbAjustes;
         private System.Windows.Forms.TextBox txtAjuste;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.CheckBox chkFornecedor;
+        private System.Windows.Forms.CheckBox chkFuncionario;
     }
 }
