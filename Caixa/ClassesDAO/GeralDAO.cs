@@ -30,6 +30,180 @@ namespace Caixa
         }
         #endregion
 
+        #region VERIFICA A SOMA FORN
+        public Boolean VerificaSomaForn()
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL WHERE FORN NOT IN('0.00');");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA FUNC
+        public Boolean VerificaSomaFunc()
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL WHERE FUNC NOT IN('0.00');");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE FORN
+        public Boolean VerificaSDForn(DateTime de)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where FORN not in('0.00') AND data='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE FUNC
+        public Boolean VerificaSDFunc(DateTime de)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where FUNC not in('0.00') AND data='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E BETWEEN FORN
+        public Boolean VerificaSBForn(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where FORN not in('0.00') AND data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E BETWEEN FUNC
+        public Boolean VerificaSBFunc(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where FUNC not in('0.00') AND data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA FORNFUNC
+        public Boolean VerificaSomaFornFunc()
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL WHERE FORN NOT IN('0.00') || FUNC NOT IN('0.00');");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE FORNFUNC
+        public Boolean VerificaSDFornFunc(DateTime de)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where (FORN not in('0.00') || FUNC not in('0.00')) AND data='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA E BETWEEN FORNFUNC
+        public Boolean VerificaSBFornFunc(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where (FORN not in('0.00') || FUNC not in('0.00') AND data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
+                Ger.Deb_g = tabela_memoria.Rows[0]["DEB"].ToString();
+                Ger.Func = tabela_memoria.Rows[0]["FUNC"].ToString();
+                Ger.Forn = tabela_memoria.Rows[0]["FORN"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
         #region VERIFICA A SOMA DE TUDO
         public Boolean VerificaSoma()
         {
@@ -440,7 +614,7 @@ namespace Caixa
         public DataTable ListarFornFunc()
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND FORN NOT IN('0.00');");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') || FORN NOT IN('0.00');");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -449,9 +623,9 @@ namespace Caixa
 
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
-                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
                 linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
 
 
                 listaDescripto.Rows.Add(linha);
@@ -464,7 +638,7 @@ namespace Caixa
         public DataTable ListarDEFornFunc(DateTime data)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FUNC NOT IN('0.00') AND FORN NOT IN('0.00') AND data='" + data.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE (FUNC NOT IN('0.00') || FORN NOT IN('0.00')) AND data='" + data.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -473,9 +647,9 @@ namespace Caixa
 
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
-                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
                 linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;
@@ -486,7 +660,7 @@ namespace Caixa
         public DataTable ListarBTNFornFunc(DateTime de, DateTime at)
         {
             DataTable listaDescripto;
-            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE FORN NOT IN('0.00') AND FUNC NOT IN('0.00') AND data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            executarComando("SELECT DATE_FORMAT(data, '%d/%m/%y') as DATA,desc_g as DESCR,IF(forn=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(forn, 2), '.', '|'), ',', '.'), '|', ','))) AS FORN,IF(func=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(func, 2), '.', '|'), ',', '.'), '|', ','))) AS FUNC,IF(total=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(total, 2), '.', '|'), ',', '.'), '|', ','))) AS TOTAL FROM GERAL WHERE (FORN NOT IN('0.00') || FUNC NOT IN('0.00')) AND data BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
@@ -494,9 +668,9 @@ namespace Caixa
                 DataRow linha = listaDescripto.NewRow();
                 linha["DATA"] = tabela_memoria.Rows[i]["DATA"].ToString();
                 linha["DESCR"] = tabela_memoria.Rows[i]["DESCR"].ToString();
-                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 linha["FUNC"] = tabela_memoria.Rows[i]["FUNC"].ToString();
                 linha["FORN"] = tabela_memoria.Rows[i]["FORN"].ToString();
+                linha["TOTAL"] = tabela_memoria.Rows[i]["TOTAL"].ToString();
                 listaDescripto.Rows.Add(linha);
             }
             return listaDescripto;

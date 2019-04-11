@@ -336,6 +336,7 @@
             this.chkFuncionario.TabIndex = 31;
             this.chkFuncionario.Text = "Funcionário";
             this.chkFuncionario.UseVisualStyleBackColor = true;
+            this.chkFuncionario.CheckedChanged += new System.EventHandler(this.chkFuncionario_CheckedChanged);
             // 
             // frmGeral
             // 

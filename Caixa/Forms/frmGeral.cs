@@ -116,19 +116,38 @@ namespace Caixa
 
         private void cmbDescricao_TextChanged(object sender, EventArgs e)
         {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
             {
-                if (column.DataPropertyName == "DESCR")
-                    column.Width = 160; //tamanho fixo da coluna DESCR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DESCR
-                else
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
+                #endregion
             }
-            #endregion
+            else
+            {
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
 
             #region DE
             if (mskDe.MaskFull == true)
@@ -142,6 +161,7 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskDe.Clear();
                 }
+
             }
             #endregion
 
@@ -157,11 +177,12 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskAté.Clear();
                 }
+
             }
             #endregion
 
             #region DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
@@ -192,12 +213,13 @@ namespace Caixa
                 {
 
                 }
+
                 #endregion
             }
             #endregion
 
             #region DESC
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDS(desc);
@@ -261,7 +283,7 @@ namespace Caixa
             #endregion
 
             #region DESC E DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDD(desc, de);
@@ -324,7 +346,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
                 #region SOMA B
@@ -358,332 +380,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN E DESC
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty)
-            {
-                desc = cmbDescricao.Text.ToString();
-                gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
-
-                #region SOMA B E DESC
-                try
-                {
-                    gerDAO.VerificaSBD(de, at, desc);
-                    try
-                    {
-                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-                    }
-                    catch
-                    {
-
-                    }
-
-                    lblDeb.Text = deb.ToString("C2");
-                    lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
-
-                    if (lblTotal.Text.Contains("-"))
-                    {
-                        lblTotal.ForeColor = Color.Firebrick;
-                    }
-                    else
-                    {
-                        lblTotal.ForeColor = Color.ForestGreen;
-                    }
-                }
-                catch
-                {
-
-                }
-
-                #endregion
-            }
-            #endregion
-
-            #region LISTAR TUDO
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
-            {
-                gvExibir.DataSource = gerDAO.ListarTudo();
-
-                #region SOMA TUDO
-                gerDAO.VerificaSoma();
-                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-                lblDeb.Text = deb.ToString("C2");
-                lblCred.Text = cred.ToString("C2");
-                lblTotal.Text = (cred - deb).ToString("c2");
-
-                if (lblTotal.Text.Contains("-"))
-                {
-                    lblTotal.ForeColor = Color.Firebrick;
-                }
-                else
-                {
-                    lblTotal.ForeColor = Color.ForestGreen;
-                }
-                #endregion
-            }
-            #endregion
-        }
-
-        private void cmbDescricao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            #region DE
-            if (mskDe.MaskFull == true)
-            {
-                try
-                {
-                    de = Convert.ToDateTime(mskDe.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskDe.Clear();
-                }
-
-            }
-            #endregion
-
-            #region ATÉ
-            if (mskAté.MaskFull == true)
-            {
-                try
-                {
-                    at = Convert.ToDateTime(mskAté.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskAté.Clear();
-                }
-
-            }
-            #endregion
-
-            #region DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
-            {
-                this.ProcessTabKey(true);
-                gvExibir.DataSource = gerDAO.ListarDE(de);
-
-                #region SOMA DE
-                gerDAO.VerificaSD(de);
-                try
-                {
-                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-
-                    lblDeb.Text = deb.ToString("C2");
-                    lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("c2");
-
-                    if (lblTotal.Text.Contains("-"))
-                    {
-                        lblTotal.ForeColor = Color.Firebrick;
-                    }
-                    else
-                    {
-                        lblTotal.ForeColor = Color.ForestGreen;
-                    }
-                }
-                catch
-                {
-
-                }
-
-                #endregion
-            }
-            #endregion
-
-            #region DESC
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
-            {
-                desc = cmbDescricao.Text.ToString();
-                gvExibir.DataSource = gerDAO.ListarDS(desc);
-
-                #region SOMA DESC
-                gerDAO.VerificaSDC(desc);
-                try
-                {
-                    try
-                    {
-                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-                    }
-                    catch
-                    {
-
-                    }
-
-                    lblDeb.Text = deb.ToString("C2");
-                    lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
-
-                    if (lblTotal.Text.Contains("-"))
-                    {
-                        lblTotal.ForeColor = Color.Firebrick;
-                    }
-                    else
-                    {
-                        lblTotal.ForeColor = Color.ForestGreen;
-                    }
-                }
-                catch
-                {
-
-                }
-                #endregion
-            }
-            #endregion
-
-            #region DESC E DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
-            {
-                desc = cmbDescricao.Text.ToString();
-                gvExibir.DataSource = gerDAO.ListarDD(desc, de);
-
-                #region SOMA DESC DE
-                gerDAO.VerificaSDD(de, desc);
-                try
-                {
-                    try
-                    {
-                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-                    }
-                    catch
-                    {
-
-                    }
-                    lblDeb.Text = deb.ToString("C2");
-                    lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
-
-                    if (lblTotal.Text.Contains("-"))
-                    {
-                        lblTotal.ForeColor = Color.Firebrick;
-                    }
-                    else
-                    {
-                        lblTotal.ForeColor = Color.ForestGreen;
-                    }
-                }
-                catch
-                {
-
-                }
-                #endregion
-            }
-            #endregion
-
-            #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
-            {
-                gvExibir.DataSource = gerDAO.ListarB(de, at);
-                #region SOMA B
-                try
-                {
-                    gerDAO.VerificaSB(de, at);
-                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
-                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
-                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
-                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
-                    lblDeb.Text = deb.ToString("C2");
-                    lblCred.Text = cred.ToString("C2");
-                    lblTotal.Text = (cred - deb).ToString("C2");
-
-                    if (lblTotal.Text.Contains("-"))
-                    {
-                        lblTotal.ForeColor = Color.Firebrick;
-                    }
-                    else
-                    {
-                        lblTotal.ForeColor = Color.ForestGreen;
-                    }
-                }
-                catch
-                {
-
-                }
-
-                #endregion
-            }
-            #endregion
-
-            #region BETWEEN E DESC
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
@@ -770,6 +467,1174 @@ namespace Caixa
                 {
                     lblTotal.ForeColor = Color.ForestGreen;
                 }
+                #endregion
+            }
+            #endregion
+
+            #region FORN
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarForn();
+
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
+
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+        }
+
+        private void cmbDescricao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
+            {
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+
+            #region DE
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDE(de);
+
+                #region SOMA DE
+                gerDAO.VerificaSD(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarDS(desc);
+
+                #region SOMA DESC
+                gerDAO.VerificaSDC(desc);
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion
+
+            #region DESC E DE
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarDD(desc, de);
+
+                #region SOMA DESC DE
+                gerDAO.VerificaSDD(de, desc);
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarB(de, at);
+                #region SOMA B
+                try
+                {
+                    gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN E DESC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
+
+                #region SOMA B E DESC
+                try
+                {
+                    gerDAO.VerificaSBD(de, at, desc);
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region LISTAR TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarTudo();
+
+                #region SOMA TUDO
+                gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                lblDeb.Text = deb.ToString("C2");
+                lblCred.Text = cred.ToString("C2");
+                lblTotal.Text = (cred - deb).ToString("c2");
+
+                if (lblTotal.Text.Contains("-"))
+                {
+                    lblTotal.ForeColor = Color.Firebrick;
+                }
+                else
+                {
+                    lblTotal.ForeColor = Color.ForestGreen;
+                }
+                #endregion
+            }
+            #endregion
+
+            #region FORN
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarForn();
+
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
+
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
                 #endregion
             }
             #endregion
@@ -987,6 +1852,45 @@ namespace Caixa
 
         private void chkFornecedor_CheckedChanged(object sender, EventArgs e)
         {
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
+            {
+                gvExibir.Columns.Clear();
+
+                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                gvExibir.Columns.Clear();
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -1020,7 +1924,7 @@ namespace Caixa
             #endregion
 
             #region DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
@@ -1057,7 +1961,7 @@ namespace Caixa
             #endregion
 
             #region DESC
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDS(desc);
@@ -1121,7 +2025,7 @@ namespace Caixa
             #endregion
 
             #region DESC E DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDD(desc, de);
@@ -1184,7 +2088,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
                 #region SOMA B
@@ -1218,7 +2122,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN E DESC
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
@@ -1309,29 +2213,1179 @@ namespace Caixa
             }
             #endregion
 
+            #region FORN
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarForn();
 
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
 
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
 
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
 
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
 
+                    }
 
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
 
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
+
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+        }
+
+        private void chkFuncionario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
+            {
+                gvExibir.Columns.Clear();
+
+                gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                gvExibir.Columns.Clear();
+
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
+
+            #region DE
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region ATÉ
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DE
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDE(de);
+
+                #region SOMA DE
+                gerDAO.VerificaSD(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DESC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarDS(desc);
+
+                #region SOMA DESC
+                gerDAO.VerificaSDC(desc);
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion
+
+            #region DESC E DE
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarDD(desc, de);
+
+                #region SOMA DESC DE
+                gerDAO.VerificaSDD(de, desc);
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarB(de, at);
+                #region SOMA B
+                try
+                {
+                    gerDAO.VerificaSB(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN E DESC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                desc = cmbDescricao.Text.ToString();
+                gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
+
+                #region SOMA B E DESC
+                try
+                {
+                    gerDAO.VerificaSBD(de, at, desc);
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region LISTAR TUDO
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarTudo();
+
+                #region SOMA TUDO
+                gerDAO.VerificaSoma();
+                func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                lblDeb.Text = deb.ToString("C2");
+                lblCred.Text = cred.ToString("C2");
+                lblTotal.Text = (cred - deb).ToString("c2");
+
+                if (lblTotal.Text.Contains("-"))
+                {
+                    lblTotal.ForeColor = Color.Firebrick;
+                }
+                else
+                {
+                    lblTotal.ForeColor = Color.ForestGreen;
+                }
+                #endregion
+            }
+            #endregion
 
             #region FORN
             if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarForn();
-                
+
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
             }
             #endregion
 
-            
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
 
-            
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
 
-            
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
 
-            
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
         }
 
         private void txtAjuste_KeyPress(object sender, KeyPressEventArgs e)
@@ -1445,21 +3499,38 @@ namespace Caixa
 
         private void mskAté_TextChanged(object sender, EventArgs e)
         {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
             {
-                if (column.DataPropertyName == "DESCR")
-                    column.Width = 160; //tamanho fixo da coluna DESCR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DESCR
-                else
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
-
-
+                #endregion
             }
-            #endregion
+            else
+            {
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
 
             #region DE
             if (mskDe.MaskFull == true)
@@ -1473,6 +3544,7 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskDe.Clear();
                 }
+
             }
             #endregion
 
@@ -1488,13 +3560,13 @@ namespace Caixa
                     MessageBox.Show("Data inválida !!!");
                     mskAté.Clear();
                 }
+
             }
             #endregion
 
             #region DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
-                //this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
 
                 #region SOMA DE
@@ -1529,7 +3601,7 @@ namespace Caixa
             #endregion
 
             #region DESC
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDS(desc);
@@ -1593,7 +3665,7 @@ namespace Caixa
             #endregion
 
             #region DESC E DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDD(desc, de);
@@ -1656,9 +3728,8 @@ namespace Caixa
             #endregion
 
             #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
-                this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
                 #region SOMA B
                 try
@@ -1691,7 +3762,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN E DESC
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
@@ -1756,7 +3827,7 @@ namespace Caixa
             #endregion
 
             #region LISTAR TUDO
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarTudo();
 
@@ -1781,26 +3852,447 @@ namespace Caixa
                 #endregion
             }
             #endregion
+
+            #region FORN
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarForn();
+
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
+
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)
         {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
+            if (chkFornecedor.Checked == true || chkFuncionario.Checked == true)
             {
-                if (column.DataPropertyName == "DESCR")
-                    column.Width = 160; //tamanho fixo da coluna DESCR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DESCR
-
-                else
+                #region AJUSTE GRID FORN FUNC
+                foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 250; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 100; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
-
-
+                #endregion
             }
-            #endregion
+            else
+            {
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "DESCR")
+                        column.Width = 160; //tamanho fixo da coluna DESCR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DESCR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+            }
 
             #region DE
             if (mskDe.MaskFull == true)
@@ -1835,7 +4327,7 @@ namespace Caixa
             #endregion
 
             #region DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 this.ProcessTabKey(true);
                 gvExibir.DataSource = gerDAO.ListarDE(de);
@@ -1872,7 +4364,7 @@ namespace Caixa
             #endregion
 
             #region DESC
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDS(desc);
@@ -1883,7 +4375,7 @@ namespace Caixa
                 {
                     try
                     {
-                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));                       
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
                     }
                     catch
                     {
@@ -1913,7 +4405,7 @@ namespace Caixa
                     {
 
                     }
-                    
+
                     lblDeb.Text = deb.ToString("C2");
                     lblCred.Text = cred.ToString("C2");
                     lblTotal.Text = (cred - deb).ToString("C2");
@@ -1936,13 +4428,13 @@ namespace Caixa
             #endregion
 
             #region DESC E DE
-            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarDD(desc, de);
 
                 #region SOMA DESC DE
-                gerDAO.VerificaSDD(de,desc);
+                gerDAO.VerificaSDD(de, desc);
                 try
                 {
                     try
@@ -1999,7 +4491,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarB(de, at);
                 #region SOMA B
@@ -2033,7 +4525,7 @@ namespace Caixa
             #endregion
 
             #region BETWEEN E DESC
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty)
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text != string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 desc = cmbDescricao.Text.ToString();
                 gvExibir.DataSource = gerDAO.ListarBD(de, at, desc);
@@ -2098,7 +4590,7 @@ namespace Caixa
             #endregion
 
             #region LISTAR TUDO
-            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty)
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == false)
             {
                 gvExibir.DataSource = gerDAO.ListarTudo();
 
@@ -2120,6 +4612,411 @@ namespace Caixa
                 {
                     lblTotal.ForeColor = Color.ForestGreen;
                 }
+                #endregion
+            }
+            #endregion
+
+            #region FORN
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarForn();
+
+                #region SOMA FORN
+                gerDAO.VerificaSomaForn();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region FUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFunc();
+
+                #region SOMA FUNC
+                gerDAO.VerificaSomaFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEForn(de);
+
+                #region SOMA DE FORN
+                gerDAO.VerificaSDForn(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region DE FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFunc(de);
+
+                #region SOMA DE FUNC
+                gerDAO.VerificaSDFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == false)
+            {
+                gvExibir.DataSource = gerDAO.ListarBForn(de, at);
+
+                #region SOMA BFORN
+                try
+                {
+                    gerDAO.VerificaSBForn(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == false && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBFunc(de, at);
+
+                #region SOMA BFUNC
+                try
+                {
+                    gerDAO.VerificaSBFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region FORNFUNC
+            if (mskDe.MaskFull == false && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarFornFunc();
+
+                #region SOMA FORNFUNC
+                gerDAO.VerificaSomaFornFunc();
+                try
+                {
+                    try
+                    {
+                        func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    }
+                    catch
+                    {
+
+                    }
+                    try
+                    {
+                        deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+                #endregion
+            }
+            #endregion                                              
+
+            #region DE FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == false && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                this.ProcessTabKey(true);
+                gvExibir.DataSource = gerDAO.ListarDEFornFunc(de);
+
+                #region SOMA DE FORNFUNC
+                gerDAO.VerificaSDFornFunc(de);
+                try
+                {
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("c2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region BETWEEN FORNFUNC
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbDescricao.Text == string.Empty && chkFornecedor.Checked == true && chkFuncionario.Checked == true)
+            {
+                gvExibir.DataSource = gerDAO.ListarBTNFornFunc(de, at);
+
+                #region SOMA BFORNFUNC
+                try
+                {
+                    gerDAO.VerificaSBFornFunc(de, at);
+                    func = Convert.ToDouble(gerDAO.Ger.Func.ToString().Replace(".", ""));
+                    forn = Convert.ToDouble(gerDAO.Ger.Forn.ToString().Replace(".", ""));
+                    cred = Convert.ToDouble(gerDAO.Ger.Cred_g.ToString().Replace(".", ""));
+                    deb = Convert.ToDouble(gerDAO.Ger.Deb_g.ToString().Replace(".", "")) + forn + func;
+                    lblDeb.Text = deb.ToString("C2");
+                    lblCred.Text = cred.ToString("C2");
+                    lblTotal.Text = (cred - deb).ToString("C2");
+
+                    if (lblTotal.Text.Contains("-"))
+                    {
+                        lblTotal.ForeColor = Color.Firebrick;
+                    }
+                    else
+                    {
+                        lblTotal.ForeColor = Color.ForestGreen;
+                    }
+                }
+                catch
+                {
+
+                }
+
                 #endregion
             }
             #endregion
