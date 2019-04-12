@@ -35,6 +35,7 @@ namespace Caixa
         assinadaDAO assDAO = new assinadaDAO();
         Process myProcess = new Process();
         AcessoEmail email = new AcessoEmail();
+
         #endregion
         #region VARIÁVEIS
         string codcaixa;
@@ -314,14 +315,52 @@ namespace Caixa
             catch { }
         }
         #endregion
-        private void InicialCaixa_Load(object sender, EventArgs e)
+
+        private void tmrHora_Tick(object sender, EventArgs e)
         {
+            #region RELÓGIO
+            int hh = DateTime.Now.Hour;
+            int mm = DateTime.Now.Minute;
+            int ss = DateTime.Now.Second;
+
+            string time = "";
+
+            if(hh < 10)
+            {
+                time += "0" + hh;
+            }
+            else
+            {
+                time += hh;
+            }
+            time += ":";
+
+            if(mm < 10)
+            {
+                time += "0" + mm;
+            }
+            else
+            {
+                time += mm;
+            }
+            time += ":";
+
+            if(ss < 10)
+            {
+                time += "0" + ss;
+            }
+            else
+            {
+                time += ss;
+            }
+
+            lblHora.Text = time;
+            #endregion
+
+            #region BACKUP AUTOMÁTICO
             try
             {
-                DateTime horaatual = DateTime.Now;
-                DateTime horamaxima = Convert.ToDateTime("08:00");
-
-                if (horaatual < horamaxima)
+                if (lblHora.Text == "08:00:00")
                 {
                     #region BACKUP
                     if (Directory.Exists("c:\\CaixaBackupTemp"))
@@ -350,6 +389,17 @@ namespace Caixa
             {
 
             }
+            #endregion
+        }
+        private void InicialCaixa_Load(object sender, EventArgs e)
+        {
+            lblData.Text = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy"));
+
+            tmrHora.Interval = 1000; //milisegundos
+
+            tmrHora.Tick += new EventHandler(this.tmrHora_Tick);
+
+            tmrHora.Start();
             
 
             #region SODEXO

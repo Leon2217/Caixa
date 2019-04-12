@@ -167,8 +167,6 @@ obs text,
 primary key(id_pessoa)
 );
 
-
-
 create table endereco
 (
 id_end int not null auto_increment,

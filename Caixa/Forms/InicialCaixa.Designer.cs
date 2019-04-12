@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicialCaixa));
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operadoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,9 @@
             this.btnRecebimento = new System.Windows.Forms.Button();
             this.btnValecap = new System.Windows.Forms.Button();
             this.btnRecarga = new System.Windows.Forms.Button();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.tmrHora = new System.Windows.Forms.Timer(this.components);
+            this.lblData = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +193,7 @@
             // 
             this.lblTurno.AutoSize = true;
             this.lblTurno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurno.Location = new System.Drawing.Point(558, 34);
+            this.lblTurno.Location = new System.Drawing.Point(569, 34);
             this.lblTurno.Name = "lblTurno";
             this.lblTurno.Size = new System.Drawing.Size(0, 20);
             this.lblTurno.TabIndex = 17;
@@ -387,12 +391,39 @@
             this.btnRecarga.UseVisualStyleBackColor = false;
             this.btnRecarga.Click += new System.EventHandler(this.btnRecarga_Click);
             // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = true;
+            this.lblHora.BackColor = System.Drawing.Color.AliceBlue;
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.Location = new System.Drawing.Point(638, 4);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(73, 20);
+            this.lblHora.TabIndex = 18;
+            this.lblHora.Text = "00:00:00";
+            // 
+            // tmrHora
+            // 
+            this.tmrHora.Interval = 1000;
+            // 
+            // lblData
+            // 
+            this.lblData.AutoSize = true;
+            this.lblData.BackColor = System.Drawing.Color.AliceBlue;
+            this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.Location = new System.Drawing.Point(539, 4);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(0, 20);
+            this.lblData.TabIndex = 19;
+            // 
             // InicialCaixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(718, 335);
+            this.Controls.Add(this.lblData);
+            this.Controls.Add(this.lblHora);
             this.Controls.Add(this.lblTurno);
             this.Controls.Add(this.lblOperador);
             this.Controls.Add(this.btnContas);
@@ -450,5 +481,8 @@
         private System.Windows.Forms.ToolStripMenuItem tiposToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.Timer tmrHora;
+        private System.Windows.Forms.Label lblData;
     }
 }

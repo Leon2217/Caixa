@@ -28,7 +28,7 @@
     <UpdateUrl>http://localhost/Caixa/</UpdateUrl>
     <ProductName>Caixa</ProductName>
     <PublisherName>Leonardo Gabriel e Lucas Uzan</PublisherName>
-    <ApplicationRevision>114</ApplicationRevision>
+    <ApplicationRevision>116</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
