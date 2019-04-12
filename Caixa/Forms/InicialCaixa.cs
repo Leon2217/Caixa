@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading;
+using System.IO;
+using Caixa.Classes;
 
 namespace Caixa
 {
@@ -219,21 +222,135 @@ namespace Caixa
             #endregion
         }
 
+        #region METODOS BACKUP
+        private static void MysqlBackup_Restore(string path, string type)
+        {
+            //Caminho onde o mysql esta instalado
+            string cmd = "\"C:/Arquivos de programas/MySQL/MySQL Server 5.1/bin/";
+
+            //create a bath file to run the script database.
+            StreamWriter sw = File.CreateText(path + "\\CaixaBackup.cmd");
+            //sw.WriteLine("c:");
+            sw.WriteLine("c:");
+            sw.WriteLine("cd\\");
+            sw.WriteLine("cd " + cmd);
+
+            string caminhoTemporario;
+            string arquivoTemporario;
+
+            if (type == "backup")
+            {
+                string dt = System.DateTime.Now.ToString().Replace("/", "_").Replace(":", "-").Replace(" ", "--");
+                arquivoTemporario = "BackupCaixa" + dt;
+                caminhoTemporario = path + "\\BackupCaixa" + dt + ".sql";
+                arquivoTemporario = "BackupCaixa" + dt;
+
+                Backup.DataBackup = dt;
+                //se for backup
+                sw.WriteLine("mysqldump.exe -uroot -pCoxinha#2019 --databases caixa1 > " + caminhoTemporario);
+                sw.WriteLine("");
+            }
+            else
+            {
+                arquivoTemporario = "c:\\CaixaBackupTemp\\restaurar.sql";
+                //se for restore
+                sw.WriteLine("mysql -uroot -pCoxinha#2019 < " + arquivoTemporario);
+                sw.WriteLine("");
+            }
+
+            sw.Close();
+        }
+
+        private static void MySqlProcess(string Path, string tipo)
+        {
+            try
+            {
+                //cria o processo a correr o MySqlbackup.cmd
+                Process.Start(Path + "\\CaixaBackup.cmd");
+
+                System.Threading.Thread.Sleep(420);
+                if (tipo == "restore")
+                {
+                    System.Threading.Thread.Sleep(420);
+                    File.Delete("c:\\CaixaBackupTemp\\restaurar.sql");
+                    File.Delete("c:\\CaixaBackupTemp\\CaixaBackup.cmd");
+
+                    Directory.Delete("c:\\CaixaBackupTemp");
+                }
+
+                System.Threading.Thread.Sleep(420);
+                if (tipo == "backup")
+                {
+                    //cria o processo a correr o MySqlbackup.cmd
+                    Process.Start(Path + "\\CaixaBackup.cmd");
+
+                    string caminhoTemporario;
+                    string arquivoTemporario;
+                    string path = "c:\\CaixaBackupTemp";
+                    caminhoTemporario = path + "\\BackupCaixa" + Backup.DataBackup + ".sql";
+                    arquivoTemporario = "BackupCaixa" + Backup.DataBackup;
+
+                    int count2 = 0;
+
+                    while (count2 != 1)
+                    {
+                        try
+                        {
+                            File.Move(caminhoTemporario, Backup.LocalBackup + arquivoTemporario + ".sql");
+
+                            File.Delete("c:\\CaixaBackupTemp\\restaurar.sql");
+                            File.Delete("c:\\CaixaBackupTemp\\CaixaBackup.cmd");
+
+                            Directory.Delete("c:\\CaixaBackupTemp");
+                            count2 = 1;
+                        }
+                        catch
+                        {
+                            count2 = 0;
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+        #endregion
         private void InicialCaixa_Load(object sender, EventArgs e)
         {
-            //DateTime dataatual = DateTime.Now;
-            //DateTime endlicense = Convert.ToDateTime("21/03/2019");
+            try
+            {
+                DateTime horaatual = DateTime.Now;
+                DateTime horamaxima = Convert.ToDateTime("08:00");
 
-            //if (endlicense > dataatual)
-            //{
+                if (horaatual < horamaxima)
+                {
+                    #region BACKUP
+                    if (Directory.Exists("c:\\CaixaBackupTemp"))
+                    { }
+                    else
+                    {
+                        Directory.CreateDirectory("c:\\CaixaBackupTemp");
+                    }
+                    string path = "c:\\CaixaBackupTemp";
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Licensa expirada! Contate o Desenvolvedor.");
-            //    Application.Exit();
-            //}
+                    MysqlBackup_Restore(path, "backup");
 
+                    //corre uma thread com o processo que faz o backup ou restore
+                    System.Threading.Thread.Sleep(420);
+
+                    //quando executar fara o codigo seguinte
+                    //exemplo do path
+
+                    //corre uma thread com o processo que faz o backup ou restore
+                    Thread t = new Thread(delegate () { MySqlProcess(path, "backup"); });
+                    t.Start();
+                    #endregion
+                }
+            }
+            catch
+            {
+
+            }
+            
 
             #region SODEXO
             if (rlxDAO.SDX(FechamentoDAO.data) == false)

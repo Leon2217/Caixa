@@ -330,7 +330,7 @@
             // chkFuncionario
             // 
             this.chkFuncionario.AutoSize = true;
-            this.chkFuncionario.Location = new System.Drawing.Point(353, 42);
+            this.chkFuncionario.Location = new System.Drawing.Point(354, 42);
             this.chkFuncionario.Name = "chkFuncionario";
             this.chkFuncionario.Size = new System.Drawing.Size(111, 24);
             this.chkFuncionario.TabIndex = 31;
