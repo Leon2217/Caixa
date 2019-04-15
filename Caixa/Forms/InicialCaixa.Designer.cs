@@ -396,7 +396,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.BackColor = System.Drawing.Color.AliceBlue;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Location = new System.Drawing.Point(638, 4);
+            this.lblHora.Location = new System.Drawing.Point(635, 4);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(73, 20);
             this.lblHora.TabIndex = 18;
@@ -404,14 +404,16 @@
             // 
             // tmrHora
             // 
+            this.tmrHora.Enabled = true;
             this.tmrHora.Interval = 1000;
+            this.tmrHora.Tick += new System.EventHandler(this.tmrHora_Tick);
             // 
             // lblData
             // 
             this.lblData.AutoSize = true;
             this.lblData.BackColor = System.Drawing.Color.AliceBlue;
             this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblData.Location = new System.Drawing.Point(539, 4);
+            this.lblData.Location = new System.Drawing.Point(368, 4);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(0, 20);
             this.lblData.TabIndex = 19;

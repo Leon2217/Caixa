@@ -319,42 +319,7 @@ namespace Caixa
         private void tmrHora_Tick(object sender, EventArgs e)
         {
             #region RELÓGIO
-            int hh = DateTime.Now.Hour;
-            int mm = DateTime.Now.Minute;
-            int ss = DateTime.Now.Second;
-
-            string time = "";
-
-            if(hh < 10)
-            {
-                time += "0" + hh;
-            }
-            else
-            {
-                time += hh;
-            }
-            time += ":";
-
-            if(mm < 10)
-            {
-                time += "0" + mm;
-            }
-            else
-            {
-                time += mm;
-            }
-            time += ":";
-
-            if(ss < 10)
-            {
-                time += "0" + ss;
-            }
-            else
-            {
-                time += ss;
-            }
-
-            lblHora.Text = time;
+            lblHora.Text = DateTime.Now.ToLongTimeString();
             #endregion
 
             #region BACKUP AUTOMÁTICO
@@ -393,14 +358,7 @@ namespace Caixa
         }
         private void InicialCaixa_Load(object sender, EventArgs e)
         {
-            lblData.Text = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy"));
-
-            tmrHora.Interval = 1000; //milisegundos
-
-            tmrHora.Tick += new EventHandler(this.tmrHora_Tick);
-
-            tmrHora.Start();
-            
+            lblData.Text = Convert.ToString(DateTime.Today.ToLongDateString() + " |");
 
             #region SODEXO
             if (rlxDAO.SDX(FechamentoDAO.data) == false)
