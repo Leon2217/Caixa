@@ -1688,14 +1688,6 @@ namespace Caixa
                 cmbTipo3.Enabled = false;
                 cmbTipo3.Text = "";
             }
-
-            //if (cmbTipo1.Text != string.Empty)
-            //    cmbTipo3.Enabled = true;
-            //else
-            //{
-            //    cmbTipo3.Enabled = false;
-            //    cmbTipo3.Text = "";
-            //}
         }
 
         private void cmbTipo3_SelectedIndexChanged(object sender, EventArgs e)
