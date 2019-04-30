@@ -576,6 +576,20 @@ namespace Caixa
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
 
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL DÉBITO
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "BOLETO M";
+                                ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
                             }
                             else
                             {
@@ -593,6 +607,20 @@ namespace Caixa
                                 cd.Total = vcDAO.Vc.Valor;
                                 cd.C = null;
                                 cdDAO.Inserir(cd);
+                                ((frmMovimentoCaixa)this.Owner).AtualizaDados();
+                                #endregion
+
+                                vgDAO.Update2(valor);
+                                vgDAO.Verificavalor();
+                                #region GERAL DÉBITO
+                                ger.Data = Convert.ToDateTime(mskData.Text);
+                                ger.Desc_g = "BOLETO M";
+                                ger.Deb_g = txtValor.Text.ToString().Replace(".", "");
+                                ger.Cred_g = "0,00";
+                                ger.Func = "0,00";
+                                ger.Forn = "0,00";
+                                ger.Total = vgDAO.Vg.Valor;
+                                gerDAO.Inserir(ger);
                                 ((frmMovimentoCaixa)this.Owner).AtualizaDados();
                                 #endregion
                             }

@@ -79,7 +79,6 @@ namespace Caixa
                             txtNome.BackColor = Color.Red;
                  
 
-
                         MessageBox.Show("Favor preencher os campos em vermelho!!!");
 
                     }
@@ -431,7 +430,15 @@ namespace Caixa
             cmbTipo2.DataSource = tpDAO.ListarTipo();
             cmbTipo2.DisplayMember = "tipo";
             cmbTipo2.ValueMember = "ID";
-            codtp2 = cmbTipo2.SelectedValue.ToString();
+            try
+            {
+                codtp2 = cmbTipo2.SelectedValue.ToString();
+            }
+            catch
+            {
+
+            }
+
         }
 
         public void CarregarComboTipo3()
@@ -439,7 +446,15 @@ namespace Caixa
             cmbTipo3.DataSource = tpDAO.ListarTipo();
             cmbTipo3.DisplayMember = "tipo";
             cmbTipo3.ValueMember = "ID";
-            codtp3 = cmbTipo3.SelectedValue.ToString();
+            try
+            {
+                codtp3 = cmbTipo3.SelectedValue.ToString();
+            }
+            catch
+            {
+
+            }
+
         }
 
         public void CarregarComboTipo4()
@@ -447,7 +462,15 @@ namespace Caixa
             cmbTipo4.DataSource = tpDAO.ListarTipo();
             cmbTipo4.DisplayMember = "tipo";
             cmbTipo4.ValueMember = "ID";
-            codtp4 = cmbTipo4.SelectedValue.ToString();
+            try
+            {
+                codtp4 = cmbTipo4.SelectedValue.ToString();
+            }
+            catch
+            {
+
+            }
+
         }
 
         public void CarregarComboTipo5()
@@ -1648,77 +1671,70 @@ namespace Caixa
         private void cmbTipo1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
+            {
+                if (cmbTipo1.Text == cmbTipo3.Text || cmbTipo1.Text == cmbTipo2.Text || cmbTipo1.Text == cmbTipo4.Text)
+                {
+                    cmbTipo1.SelectedIndex = -1;
+                    cmbTipo1.Text = "";
+                }
+                else
+                {
+                    cmbTipo3.Enabled = true;
+                    cmbTipo3.Text = "";
+                }
+            }
             else
             {
                 cmbTipo3.Enabled = false;
                 cmbTipo3.Text = "";
             }
 
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
-            }
+            //if (cmbTipo1.Text != string.Empty)
+            //    cmbTipo3.Enabled = true;
+            //else
+            //{
+            //    cmbTipo3.Enabled = false;
+            //    cmbTipo3.Text = "";
+            //}
         }
 
         private void cmbTipo3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
-            {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
             if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
+            {
+                if (cmbTipo3.Text == cmbTipo1.Text)
+                {
+                    cmbTipo3.SelectedIndex = -1;
+                    cmbTipo3.Text = "";
+                }
+                else
+                {
+                    cmbTipo2.Enabled = true;
+                    cmbTipo2.Text = "";
+                }
+            }
             else
             {
                 cmbTipo2.Enabled = false;
                 cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
             }
         }
 
         private void cmbTipo2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
-            {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
+        {                   
             if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
+            {
+                if (cmbTipo2.Text == cmbTipo3.Text || cmbTipo2.Text == cmbTipo1.Text)
+                {
+                    cmbTipo2.SelectedIndex = -1;
+                    cmbTipo2.Text = "";
+                }
+                else
+                {
+                    cmbTipo4.Enabled = true;
+                    cmbTipo4.Text = "";
+                }
+            }
             else
             {
                 cmbTipo4.Enabled = false;
@@ -1727,28 +1743,13 @@ namespace Caixa
         }
         private void cmbTipo4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
+            if (cmbTipo4.Text != string.Empty)
             {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
+                if (cmbTipo4.Text == cmbTipo2.Text || cmbTipo4.Text == cmbTipo3.Text || cmbTipo4.Text == cmbTipo1.Text)
+                {
+                    cmbTipo4.SelectedIndex = -1;
+                    cmbTipo4.Text = "";
+                }
             }
         }
 
@@ -1761,71 +1762,45 @@ namespace Caixa
                 cmbTipo3.Enabled = false;
                 cmbTipo3.Text = "";
             }
-
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
-            }
         }
 
         private void cmbTipo3_TextChanged(object sender, EventArgs e)
         {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
-            {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
             if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
+            {
+                if (cmbTipo3.Text == cmbTipo1.Text)
+                {
+                    cmbTipo3.SelectedIndex = -1;
+                    cmbTipo3.Text = "";
+                }
+                else
+                {
+                    cmbTipo2.Enabled = true;
+                    cmbTipo2.Text = "";
+                }
+            }
             else
             {
                 cmbTipo2.Enabled = false;
                 cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
             }
         }
 
         private void cmbTipo2_TextChanged(object sender, EventArgs e)
         {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
-            {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
             if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
+            {
+                if (cmbTipo2.Text == cmbTipo3.Text || cmbTipo2.Text == cmbTipo1.Text)
+                {
+                    cmbTipo2.SelectedIndex = -1;
+                    cmbTipo2.Text = "";
+                }
+                else
+                {
+                    cmbTipo4.Enabled = true;
+                    cmbTipo4.Text = "";
+                }
+            }
             else
             {
                 cmbTipo4.Enabled = false;
@@ -1835,28 +1810,13 @@ namespace Caixa
 
         private void cmbTipo4_TextChanged(object sender, EventArgs e)
         {
-            if (cmbTipo1.Text != string.Empty)
-                cmbTipo3.Enabled = true;
-            else
+            if (cmbTipo4.Text != string.Empty)
             {
-                cmbTipo3.Enabled = false;
-                cmbTipo3.Text = "";
-            }
-
-            if (cmbTipo3.Text != string.Empty)
-                cmbTipo2.Enabled = true;
-            else
-            {
-                cmbTipo2.Enabled = false;
-                cmbTipo2.Text = "";
-            }
-
-            if (cmbTipo2.Text != string.Empty)
-                cmbTipo4.Enabled = true;
-            else
-            {
-                cmbTipo4.Enabled = false;
-                cmbTipo4.Text = "";
+                if (cmbTipo4.Text == cmbTipo2.Text || cmbTipo4.Text == cmbTipo3.Text || cmbTipo4.Text == cmbTipo1.Text)
+                {
+                    cmbTipo4.SelectedIndex = -1;
+                    cmbTipo4.Text = "";
+                }
             }
         }
 

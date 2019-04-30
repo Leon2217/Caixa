@@ -20,14 +20,13 @@ namespace Caixa
             {
                 conectar.Close();
             }
-
             // serve para configurar os parametros do banco de dados
             ////Padaria Vista Verde
-            //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "25.37.204.167", "root", "Coxinha#2019");
+            string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "25.37.204.167", "root", "Coxinha#2019");
             ////Padaria Parque das Américas 
             //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "25.48.37.81", "root", "Coxinha#2019");
             //Padrão
-            string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "127.0.0.1", "root", "Coxinha#2019");
+            //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "127.0.0.1", "root", "Coxinha#2019");
             //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql;sslMode=none;pooling=false", "127.0.0.1", "root", "ALUNOS");
             //string configuracao = string.Format("server={0};user id={1}; password={2};database=mysql; pooling=false", "127.0.0.1", "root", "aluno@etep");
             // tenta estabelecer conectar

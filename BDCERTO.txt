@@ -627,6 +627,7 @@ chave text not null
 );
 
 
+
 executarComando("delete a.* FROM assinadas a INNER JOIN caixa c on c.id_caixa = a.id_caixa;");
 
 

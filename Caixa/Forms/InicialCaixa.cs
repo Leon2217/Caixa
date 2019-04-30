@@ -358,7 +358,7 @@ namespace Caixa
         }
         private void InicialCaixa_Load(object sender, EventArgs e)
         {
-            lblData.Text = Convert.ToString(DateTime.Today.ToLongDateString() + " |");
+            lblData.Text = Convert.ToString(DateTime.Today.ToLongDateString());
 
             #region SODEXO
             if (rlxDAO.SDX(FechamentoDAO.data) == false)
