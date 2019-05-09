@@ -15,7 +15,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>C:\Users\Estagiario01\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\Estagiario01\Desktop\Instalador Caixa\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,9 +26,11 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://localhost/Caixa/</UpdateUrl>
+    <SupportUrl>http://www.microstation.com.br</SupportUrl>
     <ProductName>Caixa</ProductName>
-    <PublisherName>Leonardo Gabriel e Lucas Uzan</PublisherName>
-    <ApplicationRevision>116</ApplicationRevision>
+    <PublisherName>Microstation - Léo e Lucas Uzan</PublisherName>
+    <SuiteName>Microstation</SuiteName>
+    <ApplicationRevision>118</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Software secundário de controle de caixa.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MicroStation LTDA.")]
-[assembly: AssemblyProduct("Caixas")]
+[assembly: AssemblyProduct("Caixa")]
 [assembly: AssemblyCopyright("MicroStation Copyright ©  2018 - Todos os direitos reservados.")]
 [assembly: AssemblyTrademark("Le'Zann")]
 [assembly: AssemblyCulture("")]
