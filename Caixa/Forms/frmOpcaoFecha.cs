@@ -342,9 +342,18 @@ namespace Caixa
             {
                 try
                 {
-                    dinDAO.PegaUltimoId(UsuarioDAO.login);
-                    string cod = dinDAO.Dinh.Id_qtd.ToString();
-                    dinDAO.PegaTotalUltimoId(cod,UsuarioDAO.login);
+                    if (FechamentoDAO.codturno == "1")
+                    {
+                        dinDAO.PegaUltimoIdTurno1();
+                        string cod = dinDAO.Dinh.Id_qtd.ToString();
+                        dinDAO.PegaTotalUltimoIdTurno1(cod);
+                    }
+                    else if(FechamentoDAO.codturno == "2")
+                    {
+                        dinDAO.PegaUltimoIdTurno2();
+                        string cod = dinDAO.Dinh.Id_qtd.ToString();
+                        dinDAO.PegaTotalUltimoIdTurno2(cod);
+                    }
                     double supr = Convert.ToDouble(dinDAO.Dinh.Total.ToString().Replace('.', ','));
                     btnSuprimento.Text = "F5 - Suprimento" + "\n Total : " + (supr).ToString("C2");
 
