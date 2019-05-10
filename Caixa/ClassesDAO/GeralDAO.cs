@@ -265,7 +265,7 @@ namespace Caixa
         #region VERIFICA A SOMA E DESC
         public Boolean VerificaSDC(string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g='" + desc+ "';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g LIKE '" + desc + "%';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
@@ -284,7 +284,7 @@ namespace Caixa
         #region VERIFICA A SOMA DE DESC 
         public Boolean VerificaSDD(DateTime de,string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g='" + desc + "' and data='"+de.ToString("yyyy/MM/dd")+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where desc_g LIKE '" + desc + "%' and data='" + de.ToString("yyyy/MM/dd")+"';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();
@@ -300,10 +300,10 @@ namespace Caixa
         }
         #endregion
 
-        #region VERIFICA A SOMA E BETWEEN
+        #region VERIFICA A SOMA E BETWEEN DESC
         public Boolean VerificaSBD(DateTime de, DateTime at,string desc)
         {
-            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "' and desc_g='"+desc+"';");
+            executarComando("SELECT SUM(cred_g) AS CRED,SUM(deb_g) AS DEB, SUM(forn) as FORN,SUM(func) as FUNC FROM GERAL where data BETWEEN'" + de.ToString("yyyy/MM/dd") + "'and '" + at.ToString("yyyy/MM/dd") + "' and desc_g LIKE '" + desc + "%';");
             try
             {
                 Ger.Cred_g = tabela_memoria.Rows[0]["CRED"].ToString();

@@ -49,7 +49,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
 
@@ -138,7 +138,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else
@@ -901,7 +901,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else
@@ -1864,7 +1864,7 @@ namespace Caixa
                     if (column.DataPropertyName == "DESCR")
                         column.Width = 250; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 100; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DESCR
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -1880,7 +1880,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else
@@ -2649,7 +2649,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else
@@ -3521,7 +3521,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else
@@ -4283,7 +4283,7 @@ namespace Caixa
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
                     if (column.DataPropertyName == "DESCR")
-                        column.Width = 160; //tamanho fixo da coluna DESCR
+                        column.Width = 200; //tamanho fixo da coluna DESCR
                     else if (column.DataPropertyName == "DATA")
                         column.Width = 80; //tamanho fixo da coluna DESCR
                     else

@@ -357,7 +357,7 @@ namespace Caixa
                                     vgDAO.Verificavalor();
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = f;
+                                    ger.Desc_g = "PG. DINHEIRO - " + f;
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -376,7 +376,7 @@ namespace Caixa
 
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = f;
+                                    ger.Desc_g = "PG. DINHEIRO - " + f;
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -424,7 +424,7 @@ namespace Caixa
                                     vgDAO.Verificavalor();
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = f;
+                                    ger.Desc_g = "PG. DINHEIRO - " + f;
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -443,7 +443,7 @@ namespace Caixa
 
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = "";
+                                    ger.Desc_g = "PG. DINHEIRO - " + f;
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -516,7 +516,7 @@ namespace Caixa
                                 vgDAO.Verificavalor();
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(mskData.Text);
-                                ger.Desc_g = f;
+                                ger.Desc_g = "PG. DINHEIRO - " + f;
                                 ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
                                 ger.Cred_g = "0,00";
@@ -535,7 +535,7 @@ namespace Caixa
 
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(mskData.Text);
-                                ger.Desc_g = f;
+                                ger.Desc_g = "PG. DINHEIRO - " + f;
                                 ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
                                 ger.Cred_g = "0,00";
@@ -913,7 +913,7 @@ namespace Caixa
                                     vgDAO.Verificavalor();
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = "";
+                                    ger.Desc_g = "PG. DINHEIRO";
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -980,7 +980,7 @@ namespace Caixa
                                     vgDAO.Verificavalor();
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = "";
+                                    ger.Desc_g = "PG. DINHEIRO";
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -999,7 +999,7 @@ namespace Caixa
 
                                     #region GERAL
                                     ger.Data = Convert.ToDateTime(FechamentoDAO.data);
-                                    ger.Desc_g = "";
+                                    ger.Desc_g = "PG. DINHEIRO";
                                     ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                     ger.Deb_g = "0,00";
                                     ger.Cred_g = "0,00";
@@ -1072,7 +1072,7 @@ namespace Caixa
                                 vgDAO.Verificavalor();
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(mskData.Text);
-                                ger.Desc_g = "";
+                                ger.Desc_g = "PG. DINHEIRO";
                                 ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
                                 ger.Cred_g = "0,00";
@@ -1091,7 +1091,7 @@ namespace Caixa
 
                                 #region GERAL
                                 ger.Data = Convert.ToDateTime(mskData.Text);
-                                ger.Desc_g = "";
+                                ger.Desc_g = "PG. DINHEIRO";
                                 ger.Forn = txtValor.Text.ToString().Replace(".", "");
                                 ger.Deb_g = "0,00";
                                 ger.Cred_g = "0,00";

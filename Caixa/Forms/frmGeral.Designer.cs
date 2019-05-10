@@ -160,15 +160,16 @@
             this.cmbDescricao.Items.AddRange(new object[] {
             "FIADO",
             "NF",
-            "DESPESA FIXA",
+            "PG. DINHEIRO",
             "SODEXO",
             "TICKET",
             "VR",
             "ALELO",
             "PLCARD",
-            "CARTÃO CRÉDITO",
-            "CARTÃO DÉBITO"});
-            this.cmbDescricao.Location = new System.Drawing.Point(98, 45);
+            "DESPESA FIXA",
+            "CARTÃO DÉBITO",
+            "CARTÃO CRÉDITO"});
+            this.cmbDescricao.Location = new System.Drawing.Point(98, 44);
             this.cmbDescricao.Name = "cmbDescricao";
             this.cmbDescricao.Size = new System.Drawing.Size(199, 28);
             this.cmbDescricao.TabIndex = 15;
