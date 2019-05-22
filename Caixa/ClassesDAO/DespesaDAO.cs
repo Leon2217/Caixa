@@ -500,5 +500,12 @@ namespace Caixa
             }
         }
         #endregion
+
+        #region UPDATE VALOR PELO ID
+        public void UpdateValorDespesa(string valor, string id)
+        {
+            executarComando("UPDATE DESPESA SET valor='" + valor.ToString().Replace(",", ".") + "' where id_despesa='" + id + "';");
+        }
+        #endregion
     }
 }

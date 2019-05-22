@@ -51,10 +51,34 @@ namespace Caixa
             cmbPessoa.ValueMember = "ID";
         }
 
+        public static void Moeda(ref TextBox txt)
+        {
+            string n = string.Empty;
+            double v = 0;
+
+            try
+            {
+                n = txt.Text.Replace(",", "").Replace(".", "");
+                if (n.Equals(""))
+                    n = "";
+                n = n.PadLeft(3, '0');
+                if (n.Length > 3 & n.Substring(0, 1) == "0")
+                    n = n.Substring(1, n.Length - 1);
+                v = Convert.ToDouble(n) / 100;
+                txt.Text = string.Format("{0:N}", v);
+                txt.SelectionStart = txt.Text.Length;
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void frmRelatDespesa_Load(object sender, EventArgs e)
         {
             try
             {
+                Moeda(ref txtValor);
                 despDAO.UpdateAtrasado();
                 gvExibir.DataSource = despDAO.ListarTudo();
                 CarregarComboPessoa();
@@ -911,7 +935,7 @@ namespace Caixa
                     mskDe.Clear();
                 }
 
-              
+
 
             }
             #endregion
@@ -1451,90 +1475,98 @@ namespace Caixa
             {
                 MessageBox.Show("Favor que preencher o ID !!!");
                 txtID.BackColor = Color.Red;
-                
             }
             else
             {
                 try
                 {
+                    //PEGA AS INFO'S DO ID
+                    despDAO.Verificavalor(id);
                     DialogResult op;
 
-                    op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
+                    op = MessageBox.Show("Você tem certeza dessas informações?",
                         "Alterando!", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
 
                     if (op == DialogResult.Yes)
                     {
-
-                        if (st == "Pago")
+                        if (txtValor.Text == "0,00")
                         {
-                            //PEGA AS INFO'S DO ID
-
-                            despDAO.Verificavalor(id);
-                            string valor = despDAO.Desp.Valor.ToString();
-                            DateTime data = despDAO.Desp.Data;
-                            despDAO.UpdateStatus(st, id);
-
-                            aud.Acao = "PAGOU DESPESA FIXA";
-                            aud.Data = FechamentoDAO.data;
-                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                            aud.Responsavel = UsuarioDAO.login;
-                            audDAO.Inserir(aud);
-
-                            #region GERAL
-                            if (vgDAO.Verificavalor() == true)
+                            if (st == "Pago")
                             {
-                                vgDAO.Update2(valor);
-                                vgDAO.Verificavalor();
-                                #region GERAL
-                                ger.Data = data;
-                                ger.Desc_g = "DESPESA FIXA";
-                                ger.Deb_g = valor;
-                                ger.Cred_g = "0,00";
-                                ger.Forn = "0,00";
-                                ger.Func = "0,00";
-                                ger.Total = vgDAO.Vg.Valor;
-                                gerDAO.Inserir(ger);
+                                string valor = despDAO.Desp.Valor.ToString();
+                                DateTime data = despDAO.Desp.Data;
+                                despDAO.UpdateStatus(st, id);
 
+                                aud.Acao = "PAGOU DESPESA FIXA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = data;
+                                    ger.Desc_g = "DESPESA FIXA";
+                                    ger.Deb_g = valor;
+                                    ger.Cred_g = "0,00";
+                                    ger.Forn = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero = "0.00";
+                                    vgDAO.Inserir(zero);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = data;
+                                    ger.Desc_g = "DESPESA FIXA";
+                                    ger.Deb_g = valor;
+                                    ger.Cred_g = "0,00";
+                                    ger.Forn = "0,00";
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
                                 #endregion
                             }
                             else
                             {
-                                string zero = "0.00";
-                                vgDAO.Inserir(zero);
-                                vgDAO.Update2(valor);
-                                vgDAO.Verificavalor();
-
-                                #region GERAL
-                                ger.Data = data;
-                                ger.Desc_g = "DESPESA FIXA";
-                                ger.Deb_g = valor;
-                                ger.Cred_g = "0,00";
-                                ger.Forn = "0,00";
-                                ger.Func = "0,00";
-                                ger.Total = vgDAO.Vg.Valor;
-                                gerDAO.Inserir(ger);
-
-                                #endregion
+                                despDAO.UpdateStatus(st, id);
                             }
-                            #endregion
                         }
                         else
                         {
-                            despDAO.UpdateStatus(st, id);                         
+                            string valor = txtValor.Text;
+                            despDAO.UpdateValorDespesa(valor, id);
                         }
-                        MessageBox.Show("Atualizado com sucesso !!!");
-                        txtID.Clear();
-                        AtualizaDados();
-
-                        despDAO.VerificaAtrasado();
-                        atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());
-                        lblCountatrasado.Text = atrasado.ToString();
-
-                        despDAO.VerificaEmAberto();
-                        emaberto = Convert.ToInt32(despDAO.Desp.N.ToString());
-                        lblCountEmaberto.Text = emaberto.ToString();
                     }
+                    
+                    MessageBox.Show("Atualizado com sucesso !!!");
+                    txtID.Clear();
+                    txtValor.Clear();
+                    cmbS.SelectedIndex = -1;
+                    AtualizaDados();
+
+                    despDAO.VerificaAtrasado();
+                    atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());
+                    lblCountatrasado.Text = atrasado.ToString();
+
+                    despDAO.VerificaEmAberto();
+                    emaberto = Convert.ToInt32(despDAO.Desp.N.ToString());
+                    lblCountEmaberto.Text = emaberto.ToString();
                 }
                 catch
                 {
@@ -1711,7 +1743,7 @@ namespace Caixa
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (ChkFr.Checked==true)
+            if (ChkFr.Checked == true)
             {
                 gvExibir.DataSource = despDAO.ListarTudoSemForn();
                 cmbPessoa.Enabled = false;
@@ -2031,6 +2063,11 @@ namespace Caixa
                     MessageBox.Show("Cancelado");
                 }
             }
+        }
+
+        private void TxtValor_TextChanged(object sender, EventArgs e)
+        {
+            Moeda(ref txtValor);
         }
 
         private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)

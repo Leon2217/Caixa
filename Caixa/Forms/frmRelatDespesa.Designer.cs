@@ -52,6 +52,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblCountatrasado = new System.Windows.Forms.Label();
             this.lblCountEmaberto = new System.Windows.Forms.Label();
+            this.txtValor = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,7 +245,7 @@
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.Location = new System.Drawing.Point(642, 299);
+            this.txtID.Location = new System.Drawing.Point(642, 267);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(149, 26);
             this.txtID.TabIndex = 30;
@@ -253,7 +255,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(606, 302);
+            this.label5.Location = new System.Drawing.Point(606, 270);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 29;
@@ -289,6 +291,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(606, 183);
@@ -299,6 +302,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Goldenrod;
             this.label8.Location = new System.Drawing.Point(606, 228);
@@ -309,6 +313,7 @@
             // 
             // lblCountatrasado
             // 
+            this.lblCountatrasado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountatrasado.AutoSize = true;
             this.lblCountatrasado.ForeColor = System.Drawing.Color.Red;
             this.lblCountatrasado.Location = new System.Drawing.Point(694, 183);
@@ -318,6 +323,7 @@
             // 
             // lblCountEmaberto
             // 
+            this.lblCountEmaberto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountEmaberto.AutoSize = true;
             this.lblCountEmaberto.ForeColor = System.Drawing.Color.Goldenrod;
             this.lblCountEmaberto.Location = new System.Drawing.Point(694, 228);
@@ -325,12 +331,33 @@
             this.lblCountEmaberto.Size = new System.Drawing.Size(0, 20);
             this.lblCountEmaberto.TabIndex = 39;
             // 
+            // txtValor
+            // 
+            this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValor.Location = new System.Drawing.Point(642, 299);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(149, 26);
+            this.txtValor.TabIndex = 41;
+            this.txtValor.TextChanged += new System.EventHandler(this.TxtValor_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(606, 302);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 20);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "R$:";
+            // 
             // frmRelatDespesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(802, 478);
+            this.Controls.Add(this.txtValor);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.lblCountEmaberto);
             this.Controls.Add(this.lblCountatrasado);
             this.Controls.Add(this.label8);
@@ -393,5 +420,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblCountatrasado;
         private System.Windows.Forms.Label lblCountEmaberto;
+        private System.Windows.Forms.TextBox txtValor;
+        private System.Windows.Forms.Label label9;
     }
 }
