@@ -14,7 +14,6 @@ namespace Caixa
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
 
-        InicialCaixa form1;
         int qtd;
         double valor;
         double totalvc;

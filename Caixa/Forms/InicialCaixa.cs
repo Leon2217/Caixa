@@ -42,7 +42,6 @@ namespace Caixa
         double totsang;
         double totrec;
         double total;
-        string dinheiro;
         double totalmanharec;
         double totalrec;
         double totaltarderec;
@@ -1135,6 +1134,7 @@ namespace Caixa
             {
                 //email.enviarEmail(mensagemEmail, "leogz120100@gmail.com");
                 email.enviarEmail(mensagemEmail, "helder@microstation.com.br");
+                //email.enviarEmail(mensagemEmail, "flamboyant2@hotmail.com");
             }
             catch (Exception ex)
             {

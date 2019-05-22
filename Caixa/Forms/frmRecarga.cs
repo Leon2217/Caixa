@@ -16,7 +16,6 @@ namespace Caixa
         AuditoriaDAO audDAO = new AuditoriaDAO();
 
         string codop;
-        string valor;
           
         public frmRecarga()
         {

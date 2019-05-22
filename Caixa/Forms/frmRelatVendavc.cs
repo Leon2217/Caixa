@@ -11,7 +11,6 @@ namespace Caixa
         VendaVCDAO vcDAO = new VendaVCDAO();
         VendaVC vc = new VendaVC();
         DateTime data;
-        DateTime dt;
         double total;
         int j;
         public frmRelatVendavc()

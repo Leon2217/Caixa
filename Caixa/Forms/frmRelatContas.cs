@@ -31,13 +31,10 @@ namespace Caixa
         string pc;
         string id;
         string st;
-        string n;
         int atrasado, emaberto;
         int j;
         DateTime data;
         DateTime data2;
-        DateTime data3;
-        DateTime data4;
         #endregion
 
         public frmRelatContas()

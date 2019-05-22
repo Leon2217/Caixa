@@ -67,7 +67,7 @@
             this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
             this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(490, 7);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(517, 7);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
             this.btnPaideFamilia.Size = new System.Drawing.Size(137, 67);
             this.btnPaideFamilia.TabIndex = 14;
@@ -86,7 +86,7 @@
             this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(633, 7);
+            this.btnExport.Location = new System.Drawing.Point(660, 7);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(140, 67);
             this.btnExport.TabIndex = 13;
@@ -150,7 +150,7 @@
             this.gvExibir.Location = new System.Drawing.Point(12, 114);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(761, 479);
+            this.gvExibir.Size = new System.Drawing.Size(788, 479);
             this.gvExibir.TabIndex = 8;
             this.gvExibir.TabStop = false;
             // 
@@ -344,7 +344,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(782, 660);
+            this.ClientSize = new System.Drawing.Size(809, 660);
             this.Controls.Add(this.chkFuncionario);
             this.Controls.Add(this.chkFornecedor);
             this.Controls.Add(this.btnOk);

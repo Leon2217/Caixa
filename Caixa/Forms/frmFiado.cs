@@ -27,12 +27,9 @@ namespace Caixa
 
         string nome;
         string codcaixa;
-        string tipo;
-        string login;
         string codpes;
         string id;
         Boolean update;
-        DateTime de;       
         int j;
 
         public frmFiado()
