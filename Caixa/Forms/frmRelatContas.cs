@@ -59,12 +59,36 @@ namespace Caixa
 
         }
 
+        public static void Moeda(ref TextBox txt)
+        {
+            string n = string.Empty;
+            double v = 0;
+
+            try
+            {
+                n = txt.Text.Replace(",", "").Replace(".", "");
+                if (n.Equals(""))
+                    n = "";
+                n = n.PadLeft(3, '0');
+                if (n.Length > 3 & n.Substring(0, 1) == "0")
+                    n = n.Substring(1, n.Length - 1);
+                v = Convert.ToDouble(n) / 100;
+                txt.Text = string.Format("{0:N}", v);
+                txt.SelectionStart = txt.Text.Length;
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void frmRelatContas_Load(object sender, EventArgs e)
         {
             //gvExibir.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             try
             {
+                Moeda(ref txtValor);
                 CarregarComboFornecedor();
                 cmbFornecedor.SelectedIndex = -1;
                 contasDAO.UpdateAtrasado();
@@ -3045,7 +3069,7 @@ namespace Caixa
 
         private void btnAt_Click(object sender, EventArgs e)
         {
-            if (cmbS.Text == string.Empty || txtID.Text == string.Empty)
+            if (txtID.Text == string.Empty)
             {
                 MessageBox.Show("Favor preencher o ID !!!");
             }
@@ -3053,6 +3077,7 @@ namespace Caixa
             {
                 try
                 {
+                    contasDAO.Verificavalor(id);
                     DialogResult op;
 
                     op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
@@ -3061,60 +3086,82 @@ namespace Caixa
 
                     if (op == DialogResult.Yes)
                     {
-                        if (st == "Pago")
+                        if (txtValor.Text == "0,00")
                         {
-                            //PEGA AS INFO'S DO ID
-
-                            contasDAO.Verificavalor(id);
-                            string valor = contasDAO.Con.Valor.ToString();
-                            DateTime data = contasDAO.Con.Data;
-                            contasDAO.UpdateStatus(st, id);
-
-                            #region GERAL
-                            if (vgDAO.Verificavalor() == true)
+                            if (st == "Pago")
                             {
-                                vgDAO.Update2(valor);
-                                vgDAO.Verificavalor();
-                                #region GERAL
-                                ger.Data = DateTime.Today;
-                                ger.Desc_g = "NF";
-                                ger.Deb_g = "0,00";
-                                ger.Cred_g = "0,00";
-                                ger.Forn = valor;
-                                ger.Func = "0,00";
-                                ger.Total = vgDAO.Vg.Valor;
-                                gerDAO.Inserir(ger);
+                                //PEGA AS INFO'S DO ID
 
+                                string valor = contasDAO.Con.Valor.ToString();
+                                DateTime data = contasDAO.Con.Data;
+                                contasDAO.UpdateStatus(st, id);
+
+                                #region GERAL
+                                if (vgDAO.Verificavalor() == true)
+                                {
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+                                    #region GERAL
+                                    ger.Data = DateTime.Today;
+                                    ger.Desc_g = "NF";
+                                    ger.Deb_g = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    string zero = "0.00";
+                                    vgDAO.Inserir(zero);
+                                    vgDAO.Update2(valor);
+                                    vgDAO.Verificavalor();
+
+                                    #region GERAL
+                                    ger.Data = DateTime.Today;
+                                    ger.Desc_g = "NF";
+                                    ger.Deb_g = "0,00";
+                                    ger.Forn = valor;
+                                    ger.Func = "0,00";
+                                    ger.Cred_g = "0,00";
+                                    ger.Total = vgDAO.Vg.Valor;
+                                    gerDAO.Inserir(ger);
+
+                                    #endregion
+                                }
                                 #endregion
+
+                                aud.Acao = "PAGOU CONTA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
                             }
                             else
                             {
-                                string zero = "0.00";
-                                vgDAO.Inserir(zero);
-                                vgDAO.Update2(valor);
-                                vgDAO.Verificavalor();
-
-                                #region GERAL
-                                ger.Data = DateTime.Today;
-                                ger.Desc_g = "NF";
-                                ger.Deb_g = "0,00";
-                                ger.Forn = valor;
-                                ger.Func = "0,00";
-                                ger.Cred_g = "0,00";
-                                ger.Total = vgDAO.Vg.Valor;
-                                gerDAO.Inserir(ger);
-
-                                #endregion
+                                contasDAO.UpdateStatus(st, id);
                             }
-                            #endregion
                         }
                         else
                         {
-                            contasDAO.UpdateStatus(st, id);
+                            string valor = txtValor.Text;
+                            contasDAO.UpdateValorContas(valor, id);
+
+
+                            aud.Acao = "ATUALIZOU VALOR CONTAS";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
                         }
-
+                        AtualizaDados();
                         MessageBox.Show("Atualizado com sucesso !!!");
-
+                        txtValor.Clear();
+                        txtID.Clear();
+                        cmbS.SelectedIndex = -1;
 
                         contasDAO.VerificaAtrasado();
                         atrasado = Convert.ToInt32(contasDAO.Con.N.ToString());
@@ -3123,13 +3170,6 @@ namespace Caixa
                         contasDAO.VerificaEmAberto();
                         emaberto = Convert.ToInt32(contasDAO.Con.N.ToString());
                         lblCountemaberto.Text = emaberto.ToString();
-
-                        aud.Acao = "PAGOU CONTA";
-                        aud.Data = FechamentoDAO.data;
-                        aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                        aud.Responsavel = UsuarioDAO.login;
-                        audDAO.Inserir(aud);
-                        AtualizaDados();
                     }
                 }
                 catch
@@ -3445,6 +3485,11 @@ namespace Caixa
                     MessageBox.Show("Cancelado");
                 }
             }
+        }
+
+        private void TxtValor_TextChanged(object sender, EventArgs e)
+        {
+            Moeda(ref txtValor);
         }
 
         private void gvExibir_CellClick_1(object sender, DataGridViewCellEventArgs e)

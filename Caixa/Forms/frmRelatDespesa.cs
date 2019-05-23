@@ -1551,14 +1551,21 @@ namespace Caixa
                         {
                             string valor = txtValor.Text;
                             despDAO.UpdateValorDespesa(valor, id);
+
+                            aud.Acao = "ATUALIZOU VALOR DESPESA FIXA";
+                            aud.Data = FechamentoDAO.data;
+                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                            aud.Responsavel = UsuarioDAO.login;
+                            audDAO.Inserir(aud);
                         }
                     }
-                    
+
+                    AtualizaDados();
                     MessageBox.Show("Atualizado com sucesso !!!");
                     txtID.Clear();
                     txtValor.Clear();
                     cmbS.SelectedIndex = -1;
-                    AtualizaDados();
+
 
                     despDAO.VerificaAtrasado();
                     atrasado = Convert.ToInt32(despDAO.Desp.N.ToString());

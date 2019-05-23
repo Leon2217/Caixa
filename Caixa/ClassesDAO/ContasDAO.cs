@@ -671,5 +671,12 @@ namespace Caixa
             }
         }
         #endregion
+
+        #region UPDATE VALOR PELO ID
+        public void UpdateValorContas(string valor, string id)
+        {
+            executarComando("UPDATE contas SET valor='" + valor.ToString().Replace(",", ".") + "' where id_contas='" + id + "';");
+        }
+        #endregion       
     }
 }
