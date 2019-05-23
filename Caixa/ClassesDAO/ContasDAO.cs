@@ -677,6 +677,22 @@ namespace Caixa
         {
             executarComando("UPDATE contas SET valor='" + valor.ToString().Replace(",", ".") + "' where id_contas='" + id + "';");
         }
-        #endregion       
+        #endregion
+
+        #region VERIFICA STATUS
+        public Boolean VerificaStatusEmAberto(string id)
+        {
+            executarComando("select status as STATUS from contas where status = 'Em Aberto' and id_contas = '"+id+"'; ");
+            try
+            {
+                Con.Status = (tabela_memoria.Rows[0]["STATUS"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

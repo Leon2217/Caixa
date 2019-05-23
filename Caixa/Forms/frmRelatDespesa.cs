@@ -1497,6 +1497,7 @@ namespace Caixa
                                 string valor = despDAO.Desp.Valor.ToString();
                                 DateTime data = despDAO.Desp.Data;
                                 despDAO.UpdateStatus(st, id);
+                                MessageBox.Show("Atualizado com sucesso !!!");
 
                                 aud.Acao = "PAGOU DESPESA FIXA";
                                 aud.Data = FechamentoDAO.data;
@@ -1549,19 +1550,25 @@ namespace Caixa
                         }
                         else
                         {
-                            string valor = txtValor.Text;
-                            despDAO.UpdateValorDespesa(valor, id);
+                            if (despDAO.VerificaStatusEmAberto(id) == true)
+                            {
+                                string valor = txtValor.Text;
+                                despDAO.UpdateValorDespesa(valor, id);
 
-                            aud.Acao = "ATUALIZOU VALOR DESPESA FIXA";
-                            aud.Data = FechamentoDAO.data;
-                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                            aud.Responsavel = UsuarioDAO.login;
-                            audDAO.Inserir(aud);
+                                aud.Acao = "ATUALIZOU VALOR DESPESA FIXA";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Não é possível mudar o valor de uma conta paga");
+                            }
                         }
                     }
 
                     AtualizaDados();
-                    MessageBox.Show("Atualizado com sucesso !!!");
                     txtID.Clear();
                     txtValor.Clear();
                     cmbS.SelectedIndex = -1;
@@ -2075,6 +2082,15 @@ namespace Caixa
         private void TxtValor_TextChanged(object sender, EventArgs e)
         {
             Moeda(ref txtValor);
+            if (txtValor.Text != "0,00")
+            {
+                cmbS.Enabled = false;
+                cmbS.SelectedIndex = -1;
+            }
+            else
+            {
+                cmbS.Enabled = true;
+            }
         }
 
         private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)

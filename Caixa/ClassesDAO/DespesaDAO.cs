@@ -507,5 +507,21 @@ namespace Caixa
             executarComando("UPDATE DESPESA SET valor='" + valor.ToString().Replace(",", ".") + "' where id_despesa='" + id + "';");
         }
         #endregion
+
+        #region VERIFICA STATUS
+        public Boolean VerificaStatusEmAberto(string id)
+        {
+            executarComando("select status as STATUS from despesa where status = 'Em Aberto' and id_despesa = '" + id + "'; ");
+            try
+            {
+                Desp.Status = (tabela_memoria.Rows[0]["STATUS"].ToString());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

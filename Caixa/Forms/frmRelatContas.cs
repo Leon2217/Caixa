@@ -3080,7 +3080,7 @@ namespace Caixa
                     contasDAO.Verificavalor(id);
                     DialogResult op;
 
-                    op = MessageBox.Show("Você tem certeza dessas informações?" + "\n Status : " + st,
+                    op = MessageBox.Show("Você tem certeza dessas informações?",
                         "Alterando!", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
 
@@ -3095,6 +3095,7 @@ namespace Caixa
                                 string valor = contasDAO.Con.Valor.ToString();
                                 DateTime data = contasDAO.Con.Data;
                                 contasDAO.UpdateStatus(st, id);
+                                MessageBox.Show("Atualizado com sucesso !!!");
 
                                 #region GERAL
                                 if (vgDAO.Verificavalor() == true)
@@ -3147,18 +3148,26 @@ namespace Caixa
                         }
                         else
                         {
-                            string valor = txtValor.Text;
-                            contasDAO.UpdateValorContas(valor, id);
+                            if(contasDAO.VerificaStatusEmAberto(id) == true)
+                            {
+                                string valor = txtValor.Text;
+                                contasDAO.UpdateValorContas(valor, id);
+                                MessageBox.Show("Atualizado com sucesso !!!");
 
 
-                            aud.Acao = "ATUALIZOU VALOR CONTAS";
-                            aud.Data = FechamentoDAO.data;
-                            aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                            aud.Responsavel = UsuarioDAO.login;
-                            audDAO.Inserir(aud);
+                                aud.Acao = "ATUALIZOU VALOR CONTAS";
+                                aud.Data = FechamentoDAO.data;
+                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                aud.Responsavel = UsuarioDAO.login;
+                                audDAO.Inserir(aud);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Não é possível mudar o valor de uma conta paga");
+                            }
+                            
                         }
                         AtualizaDados();
-                        MessageBox.Show("Atualizado com sucesso !!!");
                         txtValor.Clear();
                         txtID.Clear();
                         cmbS.SelectedIndex = -1;
@@ -3490,6 +3499,15 @@ namespace Caixa
         private void TxtValor_TextChanged(object sender, EventArgs e)
         {
             Moeda(ref txtValor);
+            if (txtValor.Text != "0,00")
+            {
+                cmbS.Enabled = false;
+                cmbS.SelectedIndex = -1;
+            }
+            else
+            {
+                cmbS.Enabled = true;
+            }
         }
 
         private void gvExibir_CellClick_1(object sender, DataGridViewCellEventArgs e)
