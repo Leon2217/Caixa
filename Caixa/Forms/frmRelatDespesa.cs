@@ -1511,7 +1511,7 @@ namespace Caixa
                                     vgDAO.Update2(valor);
                                     vgDAO.Verificavalor();
                                     #region GERAL
-                                    ger.Data = data;
+                                    ger.Data = DateTime.Now;
                                     ger.Desc_g = "DESPESA FIXA";
                                     ger.Deb_g = valor;
                                     ger.Cred_g = "0,00";
@@ -1530,7 +1530,7 @@ namespace Caixa
                                     vgDAO.Verificavalor();
 
                                     #region GERAL
-                                    ger.Data = data;
+                                    ger.Data = DateTime.Now;
                                     ger.Desc_g = "DESPESA FIXA";
                                     ger.Deb_g = valor;
                                     ger.Cred_g = "0,00";
