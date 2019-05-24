@@ -335,6 +335,7 @@
             // 
             // lblAtrasado
             // 
+            this.lblAtrasado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAtrasado.AutoSize = true;
             this.lblAtrasado.ForeColor = System.Drawing.Color.Red;
             this.lblAtrasado.Location = new System.Drawing.Point(878, 215);
@@ -345,6 +346,7 @@
             // 
             // lblEmaberto
             // 
+            this.lblEmaberto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmaberto.AutoSize = true;
             this.lblEmaberto.ForeColor = System.Drawing.Color.Goldenrod;
             this.lblEmaberto.Location = new System.Drawing.Point(878, 259);
@@ -355,6 +357,7 @@
             // 
             // lblCountatrasado
             // 
+            this.lblCountatrasado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountatrasado.AutoSize = true;
             this.lblCountatrasado.ForeColor = System.Drawing.Color.Red;
             this.lblCountatrasado.Location = new System.Drawing.Point(966, 215);
@@ -364,6 +367,7 @@
             // 
             // lblCountemaberto
             // 
+            this.lblCountemaberto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountemaberto.AutoSize = true;
             this.lblCountemaberto.ForeColor = System.Drawing.Color.Goldenrod;
             this.lblCountemaberto.Location = new System.Drawing.Point(966, 259);

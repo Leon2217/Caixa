@@ -379,6 +379,7 @@
             this.Text = ".: Relatório geral";
             this.Load += new System.EventHandler(this.frmGeral_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGeral_KeyDown);
+            this.Resize += new System.EventHandler(this.FrmGeral_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -48,10 +48,18 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
 
                     else
                     {
@@ -137,14 +145,25 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
+
+
                 }
                 #endregion
             }
@@ -900,14 +919,25 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
+
+
                 }
                 #endregion
             }
@@ -1879,10 +1909,19 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -2648,14 +2687,25 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
+
+
                 }
                 #endregion
             }
@@ -3388,6 +3438,58 @@ namespace Caixa
             #endregion
         }
 
+        private void FrmGeral_Resize(object sender, EventArgs e)
+        {
+            #region AJUSTE GRID
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 130; //tamanho fixo da coluna CREDITO
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 90; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 130; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 130; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 130; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 140; //tamanho fixo da coluna FUNC
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+            }
+            else
+            {
+                foreach (DataGridViewColumn column in gvExibir.Columns)
+                {
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+            }
+            #endregion
+        }
+
         private void txtAjuste_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
@@ -3520,14 +3622,25 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
+
+
                 }
                 #endregion
             }
@@ -4282,14 +4395,25 @@ namespace Caixa
                 #region AJUSTE GRID
                 foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    if (column.DataPropertyName == "DESCR")
-                        column.Width = 200; //tamanho fixo da coluna DESCR
+                    if (column.DataPropertyName == "CREDITO")
+                        column.Width = 85; //tamanho fixo da coluna CREDITO
                     else if (column.DataPropertyName == "DATA")
-                        column.Width = 80; //tamanho fixo da coluna DESCR
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DEBITO")
+                        column.Width = 80; //tamanho fixo da coluna DEBITO
+                    else if (column.DataPropertyName == "FORN")
+                        column.Width = 80; //tamanho fixo da coluna FORN
+                    else if (column.DataPropertyName == "FUNC")
+                        column.Width = 80; //tamanho fixo da coluna FUNC
+                    else if (column.DataPropertyName == "TOTAL")
+                        column.Width = 90; //tamanho fixo da coluna FUNC
+
                     else
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
+
+
                 }
                 #endregion
             }
