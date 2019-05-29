@@ -30,7 +30,7 @@
     <ProductName>Caixa</ProductName>
     <PublisherName>Microstation - Léo e Lucas Uzan</PublisherName>
     <SuiteName>Microstation</SuiteName>
-    <ApplicationRevision>129</ApplicationRevision>
+    <ApplicationRevision>131</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -177,7 +177,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassesDAO\ConsumoDAO.cs" />
+    <Compile Include="ClassesDAO\relatconsumoDAO.cs" />
     <Compile Include="Classes\Backup.cs" />
+    <Compile Include="Classes\Consumo.cs" />
+    <Compile Include="Classes\RelatConsumo.cs" />
     <Compile Include="Forms\Abertura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +251,12 @@
     </Compile>
     <Compile Include="Forms\frmCadtipodespesa.Designer.cs">
       <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmConsumo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmConsumo.Designer.cs">
+      <DependentUpon>frmConsumo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmFiado.cs">
       <SubType>Form</SubType>
@@ -421,6 +431,12 @@
     </Compile>
     <Compile Include="Forms\frmRelatCartao.Designer.cs">
       <DependentUpon>frmRelatCartao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRelatConsumo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRelatConsumo.Designer.cs">
+      <DependentUpon>frmRelatConsumo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmRelatContas.cs">
       <SubType>Form</SubType>
@@ -606,6 +622,9 @@
     <EmbeddedResource Include="Forms\frmCadtipodespesa.resx">
       <DependentUpon>frmCadtipodespesa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmConsumo.resx">
+      <DependentUpon>frmConsumo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmFiado.resx">
       <DependentUpon>frmFiado.cs</DependentUpon>
     </EmbeddedResource>
@@ -692,6 +711,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRelatCartao.resx">
       <DependentUpon>frmRelatCartao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRelatConsumo.resx">
+      <DependentUpon>frmRelatConsumo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRelatContas.resx">
       <DependentUpon>frmRelatContas.cs</DependentUpon>
@@ -828,6 +850,7 @@
     <None Include="Resources\databackup_theapplication_dedatos_3366 %281%291.png" />
     <None Include="Resources\backup-restore256_24925 %281%29.png" />
     <None Include="Resources\remove_delete_database_16698.png" />
+    <None Include="Resources\icons8-bens-de-consumo-rápido-50.png" />
     <Content Include="UpgradeLog.htm" />
     <Content Include="UpgradeLog2.htm" />
     <Content Include="UpgradeLog3.htm" />

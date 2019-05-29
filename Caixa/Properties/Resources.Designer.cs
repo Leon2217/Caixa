@@ -19,7 +19,7 @@ namespace Caixa.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -456,6 +456,16 @@ namespace Caixa.Properties {
         internal static System.Drawing.Bitmap ic_cancel_128_28318 {
             get {
                 object obj = ResourceManager.GetObject("ic_cancel_128_28318", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_bens_de_consumo_rápido_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bens-de-consumo-rápido-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.IO;
 using Caixa.Classes;
+using Caixa.Forms;
 
 namespace Caixa
 {
@@ -1145,6 +1146,13 @@ namespace Caixa
             sp.Owner = this;
             sp.ShowDialog();
             #endregion           
+        }
+
+        private void ConsumoDeFuncionáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsumo cons = new frmConsumo();
+            cons.Owner = this;
+            cons.ShowDialog();
         }
     }
 }

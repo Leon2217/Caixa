@@ -233,6 +233,29 @@ on delete cascade on update cascade
 );
 
 
+create table consumo
+(
+id_pessoa int not null,
+valor text not null,
+primary key(id_pessoa),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
+create table relatconsumo
+(
+id_consumo int not null auto_increment,
+id_pessoa int not null,
+valor text not null,
+descr text,
+data date not null,
+primary key(id_consumo),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
+
+
 create table assinadas
 (
 
