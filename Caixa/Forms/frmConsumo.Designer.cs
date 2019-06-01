@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsumo));
             this.lblFunc = new System.Windows.Forms.Label();
             this.lblDescr = new System.Windows.Forms.Label();
@@ -45,6 +45,8 @@
             // 
             // lblFunc
             // 
+            this.lblFunc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFunc.AutoSize = true;
             this.lblFunc.Location = new System.Drawing.Point(8, 14);
             this.lblFunc.Name = "lblFunc";
@@ -54,6 +56,8 @@
             // 
             // lblDescr
             // 
+            this.lblDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescr.AutoSize = true;
             this.lblDescr.Location = new System.Drawing.Point(8, 70);
             this.lblDescr.Name = "lblDescr";
@@ -63,6 +67,7 @@
             // 
             // lblValor
             // 
+            this.lblValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblValor.AutoSize = true;
             this.lblValor.Location = new System.Drawing.Point(323, 70);
             this.lblValor.Name = "lblValor";
@@ -72,6 +77,8 @@
             // 
             // cmbFuncionario
             // 
+            this.cmbFuncionario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFuncionario.FormattingEnabled = true;
             this.cmbFuncionario.Location = new System.Drawing.Point(110, 11);
             this.cmbFuncionario.Name = "cmbFuncionario";
@@ -81,6 +88,8 @@
             // 
             // txtDesc
             // 
+            this.txtDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDesc.Location = new System.Drawing.Point(110, 64);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(206, 26);
@@ -88,6 +97,7 @@
             // 
             // txtValor
             // 
+            this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValor.Location = new System.Drawing.Point(379, 64);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(100, 26);
@@ -96,6 +106,8 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvar.BackColor = System.Drawing.Color.White;
             this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
             this.btnSalvar.FlatAppearance.BorderSize = 2;
@@ -114,6 +126,7 @@
             // 
             // btnRelatConsumo
             // 
+            this.btnRelatConsumo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRelatConsumo.BackColor = System.Drawing.Color.White;
             this.btnRelatConsumo.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
             this.btnRelatConsumo.FlatAppearance.BorderSize = 2;
@@ -136,8 +149,8 @@
             this.gvExibir.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -155,6 +168,7 @@
             // 
             // chkTodos
             // 
+            this.chkTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkTodos.AutoSize = true;
             this.chkTodos.Location = new System.Drawing.Point(520, 110);
             this.chkTodos.Name = "chkTodos";

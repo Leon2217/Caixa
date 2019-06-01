@@ -61,7 +61,7 @@ namespace Caixa.ClassesDAO
         public DataTable ListarMes()
         {
             DataTable listaDescripto;
-            executarComando("SELECT p.id_pessoa as ID, p.nome as NOME, sum(rc.valor) as VALOR FROM consumo A INNER JOIN PESSOA P ON P.ID_PESSOA = A.ID_PESSOA INNER JOIN relatconsumo rc on A.ID_PESSOA = RC.ID_PESSOA where month(data) = month(now()) group by p.nome;");
+            executarComando("SELECT p.id_pessoa as ID, p.nome as NOME, IF(round(sum(rc.valor),2)=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(round(sum(rc.valor),2),2), '.', '|'), ',', '.'), '|', ','))) as VALOR FROM consumo A INNER JOIN PESSOA P ON P.ID_PESSOA = A.ID_PESSOA INNER JOIN relatconsumo rc on A.ID_PESSOA = RC.ID_PESSOA where month(data) = month(now()) group by p.nome;");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)

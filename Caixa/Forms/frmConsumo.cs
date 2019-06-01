@@ -90,7 +90,7 @@ namespace Caixa.Forms
         {
             if (consDAO.Verificaconsumo(codpes) == true)
             {
-                if (cmbFuncionario.Text == string.Empty || txtValor.Text == "0,00")
+                if (cmbFuncionario.Text == string.Empty || txtValor.Text == "0,00" || txtDesc.Text == string.Empty)
                 {
                     if (cmbFuncionario.Text == string.Empty)
                         cmbFuncionario.BackColor = Color.Red;
@@ -98,7 +98,10 @@ namespace Caixa.Forms
                     if (txtValor.Text == "0.00")
                         txtValor.BackColor = Color.Red;
 
-                    MessageBox.Show("Informações inválidas!!!");
+                    if (txtDesc.Text == string.Empty)
+                        txtDesc.BackColor = Color.Red;
+
+                        MessageBox.Show("Informações inválidas!!!");
                 }
                 else
                 {
