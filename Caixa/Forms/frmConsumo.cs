@@ -26,25 +26,33 @@ namespace Caixa.Forms
 
         private void FrmConsumo_Load(object sender, EventArgs e)
         {
-            gvExibir.DataSource = consDAO.ListarMes();
+            try
+            {            
+                gvExibir.DataSource = consDAO.ListarMes();
 
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
-            {
-                if (column.DataPropertyName == "ID")
-                    column.Width = 40; //tamanho fixo da coluna ID
-                else if (column.DataPropertyName == "VALOR")
-                    column.Width = 75; //tamanho fixo da coluna VALOR
-                else
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    if (column.DataPropertyName == "ID")
+                        column.Width = 40; //tamanho fixo da coluna ID
+                    else if (column.DataPropertyName == "VALOR")
+                        column.Width = 75; //tamanho fixo da coluna VALOR
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
-            }
-            #endregion
+                #endregion
 
-            Moeda(ref txtValor);
-            CarregarComboFunc();
-            cmbFuncionario.SelectedIndex = -1;
+                Moeda(ref txtValor);
+                CarregarComboFunc();
+                cmbFuncionario.SelectedIndex = -1;
+            }
+            catch
+            {
+
+            }
+
         }
 
         public void CarregarComboFunc()

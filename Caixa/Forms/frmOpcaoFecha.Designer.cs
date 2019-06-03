@@ -42,6 +42,8 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.lblDif = new System.Windows.Forms.Label();
             this.btnValor = new System.Windows.Forms.Button();
+            this.lblVendaLq = new System.Windows.Forms.Label();
+            this.lblValorVendaLq = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label10
@@ -239,12 +241,37 @@
             this.btnValor.UseVisualStyleBackColor = false;
             this.btnValor.Click += new System.EventHandler(this.btnValor_Click);
             // 
+            // lblVendaLq
+            // 
+            this.lblVendaLq.AutoSize = true;
+            this.lblVendaLq.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendaLq.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblVendaLq.Location = new System.Drawing.Point(12, 251);
+            this.lblVendaLq.Name = "lblVendaLq";
+            this.lblVendaLq.Size = new System.Drawing.Size(131, 24);
+            this.lblVendaLq.TabIndex = 26;
+            this.lblVendaLq.Text = "Venda líquida:";
+            this.lblVendaLq.Visible = false;
+            // 
+            // lblValorVendaLq
+            // 
+            this.lblValorVendaLq.AutoSize = true;
+            this.lblValorVendaLq.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorVendaLq.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblValorVendaLq.Location = new System.Drawing.Point(138, 251);
+            this.lblValorVendaLq.Name = "lblValorVendaLq";
+            this.lblValorVendaLq.Size = new System.Drawing.Size(0, 24);
+            this.lblValorVendaLq.TabIndex = 27;
+            this.lblValorVendaLq.Visible = false;
+            // 
             // frmOpcaoFecha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(718, 292);
+            this.Controls.Add(this.lblValorVendaLq);
+            this.Controls.Add(this.lblVendaLq);
             this.Controls.Add(this.btnValor);
             this.Controls.Add(this.lblDif);
             this.Controls.Add(this.btnSalvar);
@@ -287,5 +314,7 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label lblDif;
         private System.Windows.Forms.Button btnValor;
+        private System.Windows.Forms.Label lblVendaLq;
+        private System.Windows.Forms.Label lblValorVendaLq;
     }
 }

@@ -20,57 +20,64 @@ namespace Caixa.Forms
 
         private void FrmRelatConsumo_Load(object sender, EventArgs e)
         {
-            gvExibir.DataSource = rlcDAO.ListarTudo();
-
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
+            try
             {
-                if (column.DataPropertyName == "VALOR")
-                    column.Width = 50; //tamanho fixo da coluna VALOR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DATA
-                else if (column.DataPropertyName == "DESCRICAO")
-                    column.Width = 100; //tamanho fixo da coluna DESCRICAO
+                gvExibir.DataSource = rlcDAO.ListarTudo();
 
-
-                else
+                #region AJUSTE GRID
+                foreach (DataGridViewColumn column in gvExibir.Columns)
                 {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-            #endregion
+                    if (column.DataPropertyName == "VALOR")
+                        column.Width = 50; //tamanho fixo da coluna VALOR
+                    else if (column.DataPropertyName == "DATA")
+                        column.Width = 80; //tamanho fixo da coluna DATA
+                    else if (column.DataPropertyName == "DESCRICAO")
+                        column.Width = 100; //tamanho fixo da coluna DESCRICAO
 
-            #region DATA INCIAL
-            if (mskDe.MaskFull == true)
+
+                    else
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                #endregion
+
+                #region DATA INCIAL
+                if (mskDe.MaskFull == true)
+                {
+                    try
+                    {
+                        de = Convert.ToDateTime(mskDe.Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Data inválida !!!");
+                        mskDe.Clear();
+                    }
+
+                }
+                #endregion
+
+                #region DATA FINAL
+                if (mskAté.MaskFull == true)
+                {
+                    try
+                    {
+                        at = Convert.ToDateTime(mskAté.Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Data inválida !!!");
+                        mskAté.Clear();
+                    }
+
+                }
+                #endregion
+            }
+            catch
             {
-                try
-                {
-                    de = Convert.ToDateTime(mskDe.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskDe.Clear();
-                }
 
             }
-            #endregion
-
-            #region DATA FINAL
-            if (mskAté.MaskFull == true)
-            {
-                try
-                {
-                    at = Convert.ToDateTime(mskAté.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskAté.Clear();
-                }
-
-            }
-            #endregion
         }
 
         private void TxtNome_TextChanged(object sender, EventArgs e)

@@ -1596,6 +1596,7 @@ namespace Caixa
 
         private void txtID_TextChanged(object sender, EventArgs e)
         {
+            txtID.BackColor = Color.Empty;
             if (txtID.Text != string.Empty)
             {
                 id = txtID.Text.ToString();

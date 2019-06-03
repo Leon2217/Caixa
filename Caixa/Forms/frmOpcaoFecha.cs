@@ -61,6 +61,7 @@ namespace Caixa
         string tipo;
         string login;
         double noite;
+        double valorelat;
         #endregion
         public frmOpcaoFecha()
         {
@@ -262,10 +263,14 @@ namespace Caixa
                 {
                     txtValorRelat.Enabled = true;
                     lblDif.Visible = false;
+                    lblValorVendaLq.Visible = false;
+                    lblVendaLq.Visible = false;
                 }
                 else
                 {
                     lblDif.Visible = true;
+                    lblValorVendaLq.Visible = true;
+                    lblVendaLq.Visible = true;
                 }
 
 
@@ -437,6 +442,17 @@ namespace Caixa
 
             Calcdif();
             #endregion
+
+            try
+            {
+                valorelat = Convert.ToDouble(txtValorRelat.Text) + totsang - totalsupri;
+                lblValorVendaLq.Text = valorelat.ToString("C2");
+            }
+            catch
+            {
+
+            }
+
         }
 
         public void TotalCart()
@@ -663,6 +679,18 @@ namespace Caixa
                             {
                                 txtValorRelat.Enabled = false;
                             }
+                        }
+
+                        try
+                        {
+                            valorelat = Convert.ToDouble(txtValorRelat.Text) + totsang - totalsupri;
+                            lblValorVendaLq.Text = valorelat.ToString("C2");
+                            lblValorVendaLq.Visible = true;
+                            lblVendaLq.Visible = true;
+                        }
+                        catch
+                        {
+
                         }
                     }
                 }
