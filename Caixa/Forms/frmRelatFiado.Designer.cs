@@ -52,15 +52,15 @@
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvExibir.GridColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gvExibir.Location = new System.Drawing.Point(21, 42);
+            this.gvExibir.Location = new System.Drawing.Point(13, 42);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(595, 361);
+            this.gvExibir.Size = new System.Drawing.Size(685, 401);
             this.gvExibir.TabIndex = 22;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(371, 10);
+            this.txtNome.Location = new System.Drawing.Point(453, 10);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(245, 26);
             this.txtNome.TabIndex = 16;
@@ -69,7 +69,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(310, 13);
+            this.label3.Location = new System.Drawing.Point(392, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 21;
@@ -78,7 +78,7 @@
             // mskAté
             // 
             this.mskAté.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskAté.Location = new System.Drawing.Point(204, 10);
+            this.mskAté.Location = new System.Drawing.Point(211, 10);
             this.mskAté.Mask = "00/00/0000";
             this.mskAté.Name = "mskAté";
             this.mskAté.Size = new System.Drawing.Size(100, 26);
@@ -89,7 +89,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(160, 13);
+            this.label2.Location = new System.Drawing.Point(167, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 20);
             this.label2.TabIndex = 20;
@@ -98,7 +98,7 @@
             // mskDe
             // 
             this.mskDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskDe.Location = new System.Drawing.Point(54, 10);
+            this.mskDe.Location = new System.Drawing.Point(49, 10);
             this.mskDe.Mask = "00/00/0000";
             this.mskDe.Name = "mskDe";
             this.mskDe.Size = new System.Drawing.Size(100, 26);
@@ -109,7 +109,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 13);
+            this.label1.Location = new System.Drawing.Point(9, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 20);
             this.label1.TabIndex = 19;
@@ -126,7 +126,7 @@
             this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(622, 10);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(703, 10);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
             this.btnPaideFamilia.Size = new System.Drawing.Size(141, 45);
             this.btnPaideFamilia.TabIndex = 17;
@@ -146,7 +146,7 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(622, 61);
+            this.btnExport.Location = new System.Drawing.Point(703, 61);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(141, 45);
             this.btnExport.TabIndex = 18;
@@ -160,7 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(775, 415);
+            this.ClientSize = new System.Drawing.Size(856, 447);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.btnPaideFamilia);
             this.Controls.Add(this.btnExport);

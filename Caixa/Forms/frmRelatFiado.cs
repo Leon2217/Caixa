@@ -35,8 +35,8 @@ namespace Caixa
                     column.Width = 50; //tamanho fixo da coluna VALOR
                 else if (column.DataPropertyName == "DATA")
                     column.Width = 80; //tamanho fixo da coluna DATA
-                else if (column.DataPropertyName == "DESCRICAO")
-                    column.Width = 100; //tamanho fixo da coluna DESCRICAO
+                else if (column.DataPropertyName == "NOME")
+                    column.Width = 140; //tamanho fixo da coluna DESCRICAO
 
 
                 else
@@ -143,25 +143,7 @@ namespace Caixa
 
 
         private void txtNome_TextChanged(object sender, EventArgs e)
-        {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
-            {
-                if (column.DataPropertyName == "VALOR")
-                    column.Width = 50; //tamanho fixo da coluna VALOR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DATA
-                else if (column.DataPropertyName == "DESCRICAO")
-                    column.Width = 100; //tamanho fixo da coluna DESCRICAO
-
-
-                else
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-            #endregion
-
+        {            
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -240,25 +222,7 @@ namespace Caixa
         }
 
         private void mskDe_TextChanged(object sender, EventArgs e)
-        {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
-            {
-                if (column.DataPropertyName == "VALOR")
-                    column.Width = 50; //tamanho fixo da coluna VALOR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DATA
-                else if (column.DataPropertyName == "DESCRICAO")
-                    column.Width = 100; //tamanho fixo da coluna DESCRICAO
-
-
-                else
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-            #endregion
-
+        {            
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -337,25 +301,7 @@ namespace Caixa
         }
 
         private void mskAté_TextChanged(object sender, EventArgs e)
-        {
-            #region AJUSTE GRID
-            foreach (DataGridViewColumn column in gvExibir.Columns)
-            {
-                if (column.DataPropertyName == "VALOR")
-                    column.Width = 50; //tamanho fixo da coluna VALOR
-                else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DATA
-                else if (column.DataPropertyName == "DESCRICAO")
-                    column.Width = 100; //tamanho fixo da coluna DESCRICAO
-
-
-                else
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-            #endregion
-
+        {            
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {

@@ -41,16 +41,18 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(361, 6);
+            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNome.Location = new System.Drawing.Point(550, 6);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(245, 26);
+            this.txtNome.Size = new System.Drawing.Size(341, 26);
             this.txtNome.TabIndex = 24;
             this.txtNome.TextChanged += new System.EventHandler(this.TxtNome_TextChanged);
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(300, 9);
+            this.label3.Location = new System.Drawing.Point(489, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 27;
@@ -59,7 +61,7 @@
             // mskAté
             // 
             this.mskAté.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskAté.Location = new System.Drawing.Point(194, 6);
+            this.mskAté.Location = new System.Drawing.Point(198, 6);
             this.mskAté.Mask = "00/00/0000";
             this.mskAté.Name = "mskAté";
             this.mskAté.Size = new System.Drawing.Size(100, 26);
@@ -70,7 +72,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(150, 9);
+            this.label2.Location = new System.Drawing.Point(154, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 20);
             this.label2.TabIndex = 26;
@@ -79,7 +81,7 @@
             // mskDe
             // 
             this.mskDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskDe.Location = new System.Drawing.Point(44, 6);
+            this.mskDe.Location = new System.Drawing.Point(47, 6);
             this.mskDe.Mask = "00/00/0000";
             this.mskDe.Name = "mskDe";
             this.mskDe.Size = new System.Drawing.Size(100, 26);
@@ -110,7 +112,7 @@
             this.gvExibir.Location = new System.Drawing.Point(11, 40);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(595, 361);
+            this.gvExibir.Size = new System.Drawing.Size(880, 380);
             this.gvExibir.TabIndex = 28;
             // 
             // frmRelatConsumo
@@ -118,7 +120,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(615, 407);
+            this.ClientSize = new System.Drawing.Size(900, 426);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label3);
