@@ -673,16 +673,16 @@ namespace Caixa
         #endregion
 
         #region UPDATE VALOR PELO ID
-        public void UpdateValorContas(string valor, string id)
+        public void UpdateValorContas(double valor, string id)
         {
             executarComando("UPDATE contas SET valor='" + valor.ToString().Replace(",", ".") + "' where id_contas='" + id + "';");
         }
         #endregion
 
-        #region VERIFICA STATUS
-        public Boolean VerificaStatusEmAberto(string id)
+        #region VERIFICA STATUSS
+        public Boolean VerificaStatuss(string id)
         {
-            executarComando("select status as STATUS from contas where status = 'Em Aberto' and id_contas = '"+id+"'; ");
+            executarComando("select status as STATUS from contas where status not in ('Pago') and id_contas = '"+id+"'; ");
             try
             {
                 Con.Status = (tabela_memoria.Rows[0]["STATUS"].ToString());

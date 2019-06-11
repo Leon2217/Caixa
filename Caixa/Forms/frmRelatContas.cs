@@ -3148,9 +3148,9 @@ namespace Caixa
                         }
                         else
                         {
-                            if(contasDAO.VerificaStatusEmAberto(id) == true)
+                            if(contasDAO.VerificaStatuss(id) == true)
                             {
-                                string valor = txtValor.Text;
+                                double valor = Convert.ToDouble(txtValor.Text);
                                 contasDAO.UpdateValorContas(valor, id);
                                 MessageBox.Show("Atualizado com sucesso !!!");
 

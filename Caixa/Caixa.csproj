@@ -30,7 +30,7 @@
     <ProductName>Caixa</ProductName>
     <PublisherName>Microstation - Léo e Lucas Uzan</PublisherName>
     <SuiteName>Microstation</SuiteName>
-    <ApplicationRevision>133</ApplicationRevision>
+    <ApplicationRevision>135</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

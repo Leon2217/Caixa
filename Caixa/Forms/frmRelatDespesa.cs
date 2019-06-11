@@ -1550,9 +1550,9 @@ namespace Caixa
                         }
                         else
                         {
-                            if (despDAO.VerificaStatusEmAberto(id) == true)
+                            if (despDAO.VerificaStatuss(id) == true)
                             {
-                                string valor = txtValor.Text;
+                                double valor = Convert.ToDouble(txtValor.Text);
                                 despDAO.UpdateValorDespesa(valor, id);
 
                                 aud.Acao = "ATUALIZOU VALOR DESPESA FIXA";

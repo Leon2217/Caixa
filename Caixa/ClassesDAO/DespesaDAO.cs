@@ -502,16 +502,16 @@ namespace Caixa
         #endregion
 
         #region UPDATE VALOR PELO ID
-        public void UpdateValorDespesa(string valor, string id)
+        public void UpdateValorDespesa(double valor, string id)
         {
             executarComando("UPDATE DESPESA SET valor='" + valor.ToString().Replace(",", ".") + "' where id_despesa='" + id + "';");
         }
         #endregion
 
-        #region VERIFICA STATUS
-        public Boolean VerificaStatusEmAberto(string id)
+        #region VERIFICA STATUSS
+        public Boolean VerificaStatuss(string id)
         {
-            executarComando("select status as STATUS from despesa where status = 'Em Aberto' and id_despesa = '" + id + "'; ");
+            executarComando("select status as STATUS from despesa where status not in ('Pago') and id_despesa = '" + id + "'; ");
             try
             {
                 Desp.Status = (tabela_memoria.Rows[0]["STATUS"].ToString());
