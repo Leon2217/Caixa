@@ -3090,56 +3090,61 @@ namespace Caixa
                         {
                             if (st == "Pago")
                             {
-                                //PEGA AS INFO'S DO ID
-
-                                string valor = contasDAO.Con.Valor.ToString();
-                                DateTime data = contasDAO.Con.Data;
-                                contasDAO.UpdateStatus(st, id);
-                                MessageBox.Show("Atualizado com sucesso !!!");
-
-                                #region GERAL
-                                if (vgDAO.Verificavalor() == true)
+                                if (contasDAO.VerificaStatuss(id) == false)
                                 {
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-                                    #region GERAL
-                                    ger.Data = DateTime.Today;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
-
-                                    #endregion
+                                    MessageBox.Show("Essa conta já foi paga!");
                                 }
                                 else
                                 {
-                                    string zero = "0.00";
-                                    vgDAO.Inserir(zero);
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
+                                    string valor = contasDAO.Con.Valor.ToString();
+                                    DateTime data = contasDAO.Con.Data;
+                                    contasDAO.UpdateStatus(st, id);
+                                    MessageBox.Show("Atualizado com sucesso !!!");
 
                                     #region GERAL
-                                    ger.Data = DateTime.Today;
-                                    ger.Desc_g = "NF";
-                                    ger.Deb_g = "0,00";
-                                    ger.Forn = valor;
-                                    ger.Func = "0,00";
-                                    ger.Cred_g = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
+                                    if (vgDAO.Verificavalor() == true)
+                                    {
+                                        vgDAO.Update2(valor);
+                                        vgDAO.Verificavalor();
+                                        #region GERAL
+                                        ger.Data = DateTime.Today;
+                                        ger.Desc_g = "NF";
+                                        ger.Deb_g = "0,00";
+                                        ger.Cred_g = "0,00";
+                                        ger.Forn = valor;
+                                        ger.Func = "0,00";
+                                        ger.Total = vgDAO.Vg.Valor;
+                                        gerDAO.Inserir(ger);
 
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        string zero = "0.00";
+                                        vgDAO.Inserir(zero);
+                                        vgDAO.Update2(valor);
+                                        vgDAO.Verificavalor();
+
+                                        #region GERAL
+                                        ger.Data = DateTime.Today;
+                                        ger.Desc_g = "NF";
+                                        ger.Deb_g = "0,00";
+                                        ger.Forn = valor;
+                                        ger.Func = "0,00";
+                                        ger.Cred_g = "0,00";
+                                        ger.Total = vgDAO.Vg.Valor;
+                                        gerDAO.Inserir(ger);
+
+                                        #endregion
+                                    }
                                     #endregion
-                                }
-                                #endregion
 
-                                aud.Acao = "PAGOU CONTA";
-                                aud.Data = FechamentoDAO.data;
-                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                                aud.Responsavel = UsuarioDAO.login;
-                                audDAO.Inserir(aud);
+                                    aud.Acao = "PAGOU CONTA";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
+                                }
                             }
                             else
                             {
@@ -3148,7 +3153,7 @@ namespace Caixa
                         }
                         else
                         {
-                            if(contasDAO.VerificaStatuss(id) == true)
+                            if (contasDAO.VerificaStatuss(id) == true)
                             {
                                 double valor = Convert.ToDouble(txtValor.Text);
                                 contasDAO.UpdateValorContas(valor, id);
@@ -3165,7 +3170,7 @@ namespace Caixa
                             {
                                 MessageBox.Show("Não é possível mudar o valor de uma conta paga");
                             }
-                            
+
                         }
                         AtualizaDados();
                         txtValor.Clear();

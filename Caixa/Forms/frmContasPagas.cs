@@ -242,7 +242,6 @@ namespace Caixa
         {
             if (chkNf.Checked == true || chkPc.Checked == true)
             {
-
                 if (chkNf.Checked == true)
                 {
                     if (txtNf.Text == string.Empty || mskData.MaskFull == false || txtValorVenc1.Text == "0,00")

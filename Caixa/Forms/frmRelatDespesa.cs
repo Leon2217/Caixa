@@ -1494,54 +1494,61 @@ namespace Caixa
                         {
                             if (st == "Pago")
                             {
-                                string valor = despDAO.Desp.Valor.ToString();
-                                DateTime data = despDAO.Desp.Data;
-                                despDAO.UpdateStatus(st, id);
-                                MessageBox.Show("Atualizado com sucesso !!!");
-
-                                aud.Acao = "PAGOU DESPESA FIXA";
-                                aud.Data = FechamentoDAO.data;
-                                aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
-                                aud.Responsavel = UsuarioDAO.login;
-                                audDAO.Inserir(aud);
-
-                                #region GERAL
-                                if (vgDAO.Verificavalor() == true)
+                                if (despDAO.VerificaStatuss(id) == false)
                                 {
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
-                                    #region GERAL
-                                    ger.Data = DateTime.Now;
-                                    ger.Desc_g = "DESPESA FIXA";
-                                    ger.Deb_g = valor;
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = "0,00";
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
-
-                                    #endregion
+                                    MessageBox.Show("Essa conta já foi paga!");
                                 }
                                 else
                                 {
-                                    string zero = "0.00";
-                                    vgDAO.Inserir(zero);
-                                    vgDAO.Update2(valor);
-                                    vgDAO.Verificavalor();
+                                    string valor = despDAO.Desp.Valor.ToString();
+                                    DateTime data = despDAO.Desp.Data;
+                                    despDAO.UpdateStatus(st, id);
+                                    MessageBox.Show("Atualizado com sucesso !!!");
+
+                                    aud.Acao = "PAGOU DESPESA FIXA";
+                                    aud.Data = FechamentoDAO.data;
+                                    aud.Hora = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
+                                    aud.Responsavel = UsuarioDAO.login;
+                                    audDAO.Inserir(aud);
 
                                     #region GERAL
-                                    ger.Data = DateTime.Now;
-                                    ger.Desc_g = "DESPESA FIXA";
-                                    ger.Deb_g = valor;
-                                    ger.Cred_g = "0,00";
-                                    ger.Forn = "0,00";
-                                    ger.Func = "0,00";
-                                    ger.Total = vgDAO.Vg.Valor;
-                                    gerDAO.Inserir(ger);
+                                    if (vgDAO.Verificavalor() == true)
+                                    {
+                                        vgDAO.Update2(valor);
+                                        vgDAO.Verificavalor();
+                                        #region GERAL
+                                        ger.Data = DateTime.Now;
+                                        ger.Desc_g = "DESPESA FIXA";
+                                        ger.Deb_g = valor;
+                                        ger.Cred_g = "0,00";
+                                        ger.Forn = "0,00";
+                                        ger.Func = "0,00";
+                                        ger.Total = vgDAO.Vg.Valor;
+                                        gerDAO.Inserir(ger);
 
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        string zero = "0.00";
+                                        vgDAO.Inserir(zero);
+                                        vgDAO.Update2(valor);
+                                        vgDAO.Verificavalor();
+
+                                        #region GERAL
+                                        ger.Data = DateTime.Now;
+                                        ger.Desc_g = "DESPESA FIXA";
+                                        ger.Deb_g = valor;
+                                        ger.Cred_g = "0,00";
+                                        ger.Forn = "0,00";
+                                        ger.Func = "0,00";
+                                        ger.Total = vgDAO.Vg.Valor;
+                                        gerDAO.Inserir(ger);
+
+                                        #endregion
+                                    }
                                     #endregion
                                 }
-                                #endregion
                             }
                             else
                             {
