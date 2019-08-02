@@ -61,9 +61,6 @@
             this.gvExibir.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             this.gvExibir.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -122,9 +119,9 @@
             this.btnAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAt.Location = new System.Drawing.Point(597, 268);
+            this.btnAt.Location = new System.Drawing.Point(599, 271);
             this.btnAt.Name = "btnAt";
-            this.btnAt.Size = new System.Drawing.Size(183, 40);
+            this.btnAt.Size = new System.Drawing.Size(194, 40);
             this.btnAt.TabIndex = 39;
             this.btnAt.Text = "Atualizar";
             this.btnAt.UseVisualStyleBackColor = false;
@@ -140,9 +137,9 @@
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(125, 82);
+            this.txtValor.Location = new System.Drawing.Point(156, 82);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(93, 26);
+            this.txtValor.Size = new System.Drawing.Size(107, 26);
             this.txtValor.TabIndex = 36;
             this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged_2);
             // 
@@ -151,9 +148,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(9, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 20);
+            this.label5.Size = new System.Drawing.Size(141, 20);
             this.label5.TabIndex = 40;
-            this.label5.Text = "Valor a pagar:";
+            this.label5.Text = "Valor de consumo:";
             // 
             // cmbCliente
             // 
@@ -169,7 +166,7 @@
             // txtValorPago
             // 
             this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorPago.Location = new System.Drawing.Point(690, 239);
+            this.txtValorPago.Location = new System.Drawing.Point(705, 239);
             this.txtValorPago.Name = "txtValorPago";
             this.txtValorPago.Size = new System.Drawing.Size(88, 26);
             this.txtValorPago.TabIndex = 45;
@@ -179,11 +176,11 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(593, 242);
+            this.label7.Location = new System.Drawing.Point(595, 242);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 20);
+            this.label7.Size = new System.Drawing.Size(108, 20);
             this.label7.TabIndex = 46;
-            this.label7.Text = "Valor Pago:";
+            this.label7.Text = "Valor do pgto:";
             // 
             // lblPessoa
             // 
@@ -206,7 +203,7 @@
             // txtIdAtualizar
             // 
             this.txtIdAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIdAtualizar.Location = new System.Drawing.Point(690, 209);
+            this.txtIdAtualizar.Location = new System.Drawing.Point(705, 209);
             this.txtIdAtualizar.Name = "txtIdAtualizar";
             this.txtIdAtualizar.Size = new System.Drawing.Size(88, 26);
             this.txtIdAtualizar.TabIndex = 49;
@@ -238,10 +235,10 @@
             this.btnFiado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnFiado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiado.Image = global::Caixa.Properties.Resources.Sales_report_25411__2_;
-            this.btnFiado.Location = new System.Drawing.Point(597, 360);
+            this.btnFiado.Location = new System.Drawing.Point(599, 360);
             this.btnFiado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFiado.Name = "btnFiado";
-            this.btnFiado.Size = new System.Drawing.Size(181, 65);
+            this.btnFiado.Size = new System.Drawing.Size(194, 65);
             this.btnFiado.TabIndex = 52;
             this.btnFiado.Text = "Relatório dos Gastos";
             this.btnFiado.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -258,7 +255,7 @@
             this.btnSalvarc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvarc.Image = global::Caixa.Properties.Resources.save_as_22027__1_;
             this.btnSalvarc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalvarc.Location = new System.Drawing.Point(236, 78);
+            this.btnSalvarc.Location = new System.Drawing.Point(269, 78);
             this.btnSalvarc.Name = "btnSalvarc";
             this.btnSalvarc.Size = new System.Drawing.Size(183, 35);
             this.btnSalvarc.TabIndex = 44;
@@ -276,10 +273,10 @@
             this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
             this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(597, 12);
+            this.btnPaideFamilia.Location = new System.Drawing.Point(599, 12);
             this.btnPaideFamilia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPaideFamilia.Name = "btnPaideFamilia";
-            this.btnPaideFamilia.Size = new System.Drawing.Size(181, 65);
+            this.btnPaideFamilia.Size = new System.Drawing.Size(194, 65);
             this.btnPaideFamilia.TabIndex = 35;
             this.btnPaideFamilia.Text = "Gerar .PDF";
             this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -296,10 +293,10 @@
             this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(597, 89);
+            this.btnExport.Location = new System.Drawing.Point(599, 87);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(181, 65);
+            this.btnExport.Size = new System.Drawing.Size(194, 65);
             this.btnExport.TabIndex = 34;
             this.btnExport.Text = "Gerar Excel";
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -311,7 +308,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(787, 432);
+            this.ClientSize = new System.Drawing.Size(802, 432);
             this.Controls.Add(this.btnFiado);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDesc);

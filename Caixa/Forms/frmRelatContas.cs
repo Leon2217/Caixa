@@ -3556,6 +3556,8 @@ namespace Caixa
                     mskDe.Clear();
                 }
 
+                this.ProcessTabKey(true);
+
             }
             #endregion
 

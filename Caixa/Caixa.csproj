@@ -15,7 +15,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>C:\Users\Estagiario01\Desktop\Instalador Caixa\</PublishUrl>
+    <PublishUrl>C:\Users\Estagiario01\Desktop\Caixa Vista Verde\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -30,7 +30,7 @@
     <ProductName>Caixa</ProductName>
     <PublisherName>Microstation - Léo e Lucas Uzan</PublisherName>
     <SuiteName>Microstation</SuiteName>
-    <ApplicationRevision>135</ApplicationRevision>
+    <ApplicationRevision>141</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -58,10 +58,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>668F00CCE0A9C0814094AB4551A8D77E8730BCD1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4B9A43957DE9776D94A711C42EB3E83C15136BF3</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Caixa_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -785,7 +786,6 @@
     <EmbeddedResource Include="Forms\totalcartao.resx">
       <DependentUpon>totalcartao.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Caixa_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
