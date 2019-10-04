@@ -422,7 +422,7 @@
             this.lblData.AutoSize = true;
             this.lblData.BackColor = System.Drawing.Color.AliceBlue;
             this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblData.Location = new System.Drawing.Point(368, 4);
+            this.lblData.Location = new System.Drawing.Point(336, 5);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(0, 20);
             this.lblData.TabIndex = 19;

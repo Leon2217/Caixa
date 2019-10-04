@@ -363,33 +363,32 @@ namespace Caixa
 
                     gvExibir.DataSource = assDAO.ListarTudo();
 
-                    if (vcDAO.Verificavalor() == true)
+                    if(chkCartao.Checked == false)
                     {
-                        vcDAO.Update(txtValorPago.Text.ToString().Replace(".", ""));
-                        vcDAO.Verificavalor();
-
                         #region CREDITO DEBITO
-                        string datatela = DateTime.Now.ToShortDateString();
-                        string hrtela = DateTime.Now.ToShortTimeString();
-                        cd.Data = Convert.ToDateTime(datatela);
-                        cd.Hora = Convert.ToDateTime(hrtela);
-                        cd.Desc_db = "Pagamento Fiado de "+ fiadoDAO.nome;
-                        cd.Cred_db = txtValorPago.Text.ToString().Replace(".", "");
-                        cd.Deb_db = "0,00";
-                        cd.Responsa_db = UsuarioDAO.login;
-                        cd.Total = vcDAO.Vc.Valor;
-                        cd.C = null;
-                        cdDAO.Inserir(cd);
-                    }
+                        if (vcDAO.Verificavalor() == true)
+                        {
+                            vcDAO.Update(txtValorPago.Text.ToString().Replace(".", ""));
+                            vcDAO.Verificavalor();
 
+                            
+                            string datatela = DateTime.Now.ToShortDateString();
+                            string hrtela = DateTime.Now.ToShortTimeString();
+                            cd.Data = Convert.ToDateTime(datatela);
+                            cd.Hora = Convert.ToDateTime(hrtela);
+                            cd.Desc_db = "Pagamento Fiado de " + fiadoDAO.nome;
+                            cd.Cred_db = txtValorPago.Text.ToString().Replace(".", "");
+                            cd.Deb_db = "0,00";
+                            cd.Responsa_db = UsuarioDAO.login;
+                            cd.Total = vcDAO.Vc.Valor;
+                            cd.C = null;
+                            cdDAO.Inserir(cd);
+                        }
                         #endregion
-
+                        
                         #region GERAL
                         if (vgDAO.Verificavalor() == true)
                         {
-
-
-
                             vgDAO.Update(txtValorPago.Text.ToString().Replace(".", ""));
                             vgDAO.Verificavalor();
                             #region GERAL
@@ -425,10 +424,12 @@ namespace Caixa
                         }
                         #endregion
 
-                        txtValorPago.Text = string.Empty;
-                        txtIdAtualizar.Text = string.Empty;
                     }
-                
+                    txtValorPago.Text = string.Empty;
+                    txtIdAtualizar.Text = string.Empty;
+                    chkCartao.Checked = false;
+                }
+                                    
                 catch
                 {
                     MessageBox.Show("Favor verificar as informações digitadas!!!");

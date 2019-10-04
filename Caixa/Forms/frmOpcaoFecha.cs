@@ -36,9 +36,7 @@ namespace Caixa
         #endregion
 
         #region VAR
-#pragma warning disable CS0169 // O campo "frmOpcaoFecha.update" nunca é usado
         Boolean update;
-#pragma warning restore CS0169 // O campo "frmOpcaoFecha.update" nunca é usado
         string codcaixa;
         double total;
         double totalgaveta;
@@ -55,13 +53,12 @@ namespace Caixa
         string valor;
         string v;
         double valorrelat;
-#pragma warning disable CS0169 // O campo "frmOpcaoFecha.codturno" nunca é usado
         string codturno;
-#pragma warning restore CS0169 // O campo "frmOpcaoFecha.codturno" nunca é usado
         string tipo;
         string login;
         double noite;
         double valorelat;
+        double fiado;
         #endregion
         public frmOpcaoFecha()
         {
@@ -154,6 +151,7 @@ namespace Caixa
                     classm = Convert.ToDouble(assinadaDAO.classm.ToString().Replace('.', ','));
                     julio = Convert.ToDouble(assinadaDAO.julio.ToString().Replace('.', ','));
                     assinadas = Convert.ToDouble(assinadaDAO.assinada.ToString().Replace('.', ','));
+                    fiado = Convert.ToDouble(assinadaDAO.fiado.ToString().Replace('.', ','));
                     Caclularass();
                 }
                 catch
@@ -377,6 +375,7 @@ namespace Caixa
                 classm = Convert.ToDouble(assinadaDAO.classm.ToString().Replace('.', ','));
                 julio = Convert.ToDouble(assinadaDAO.julio.ToString().Replace('.', ','));
                 assinadas = Convert.ToDouble(assinadaDAO.assinada.ToString().Replace('.', ','));
+                fiado = Convert.ToDouble(assinadaDAO.fiado.ToString().Replace('.', ','));
                 Caclularass();
             }
             #endregion
@@ -462,7 +461,7 @@ namespace Caixa
         }
         public void Caclularass()
         {
-            btnFiado.Text = "F4 - Assinadas" + "\n Total: " + (classm + julio + assinadas).ToString("C2");
+            btnFiado.Text = "F4 - Assinadas/Fiado" + "\n Total: " + (classm + julio + assinadas).ToString("C2") + "\n Cartão Fiado: " + fiado.ToString("C2");
         }
         private void btnCartão_Click(object sender, EventArgs e)
         {
@@ -505,12 +504,12 @@ namespace Caixa
             valor = Convert.ToDouble(txtValorRelat.Text);
             if (FechamentoDAO.codturno == "1")
             {
-                dif = ((totalgaveta + total + classm + julio + assinadas + totalmanhacart) - (valor));
+                dif = ((totalgaveta + total + classm + julio + assinadas - fiado + totalmanhacart) - (valor));
                 lblDif.Text = "Diferença : " + dif.ToString("C2");
             }
             else
             {
-                dif = ((totalgaveta + total + classm + julio + assinadas + totaltarde) - (valor));
+                dif = ((totalgaveta + total + classm + julio + assinadas - fiado + totaltarde) - (valor));
                 lblDif.Text = "Diferença : " + dif.ToString("C2");
             }
         }

@@ -51,6 +51,7 @@
             this.btnSalvarc = new System.Windows.Forms.Button();
             this.btnPaideFamilia = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.chkCartao = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,7 +120,7 @@
             this.btnAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAt.Location = new System.Drawing.Point(599, 271);
+            this.btnAt.Location = new System.Drawing.Point(599, 312);
             this.btnAt.Name = "btnAt";
             this.btnAt.Size = new System.Drawing.Size(194, 40);
             this.btnAt.TabIndex = 39;
@@ -303,12 +304,24 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // chkCartao
+            // 
+            this.chkCartao.AutoSize = true;
+            this.chkCartao.Location = new System.Drawing.Point(595, 279);
+            this.chkCartao.Name = "chkCartao";
+            this.chkCartao.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkCartao.Size = new System.Drawing.Size(188, 24);
+            this.chkCartao.TabIndex = 53;
+            this.chkCartao.Text = "Pagamento em Cartão";
+            this.chkCartao.UseVisualStyleBackColor = true;
+            // 
             // frmFiado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(802, 432);
+            this.Controls.Add(this.chkCartao);
             this.Controls.Add(this.btnFiado);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDesc);
@@ -368,5 +381,6 @@
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnFiado;
+        private System.Windows.Forms.CheckBox chkCartao;
     }
 }

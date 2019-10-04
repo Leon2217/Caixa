@@ -156,7 +156,7 @@
             this.btnFiado.Name = "btnFiado";
             this.btnFiado.Size = new System.Drawing.Size(228, 84);
             this.btnFiado.TabIndex = 4;
-            this.btnFiado.Text = "F4 - Assinadas";
+            this.btnFiado.Text = "F4 - Assinadas/Fiado";
             this.btnFiado.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnFiado.UseVisualStyleBackColor = false;
             this.btnFiado.Click += new System.EventHandler(this.btnFiado_Click);

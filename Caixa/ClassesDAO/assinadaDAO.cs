@@ -18,6 +18,7 @@ namespace Caixa
         public static string Julio { get => julio; set => julio = value; }
         public static string Assinada { get => assinada; set => assinada = value; }
         internal assinada Ass { get => ass; set => ass = value; }
+        public static string Fiado { get => fiado; set => fiado = value; }
 
         public static string codcaixa;
 
@@ -26,6 +27,8 @@ namespace Caixa
         public static string julio;
 
         public static string assinada;
+
+        public static string fiado;
         private void executarComando(string comando)
         {
             tabela_memoria = new DataTable();
@@ -36,19 +39,20 @@ namespace Caixa
         #region INSERIR OK
         public void Inserir(assinada ass)
         {
-            executarComando("insert into assinadas values(0,'" + ass.Id_caixa + "','" + ass.Classm.ToString().Replace(",", ".") + "','" + ass.Julio.ToString().Replace(",", ".") + "','" + ass.Assinadas.ToString().Replace(",", ".") + "');");
+            executarComando("insert into assinadas values(0,'" + ass.Id_caixa + "','" + ass.Classm.ToString().Replace(",", ".") + "','" + ass.Julio.ToString().Replace(",", ".") + "','" + ass.Assinadas.ToString().Replace(",", ".") + "','" + ass.Fiado.ToString().Replace(",",".") + "');");
         }
         #endregion
 
         #region BUSCAR OK
         public Boolean Buscar(string codcaixa)
         {
-            executarComando("select classm,julio,assinada from assinadas a inner join caixa ca on ca.id_caixa=a.id_caixa where ca.id_caixa='" + codcaixa + "';");
+            executarComando("select classm,julio,assinada,fiado from assinadas a inner join caixa ca on ca.id_caixa=a.id_caixa where ca.id_caixa='" + codcaixa + "';");
             try
             {
                 classm = tabela_memoria.Rows[0]["classm"].ToString();
                 julio = tabela_memoria.Rows[0]["julio"].ToString();
                 assinada = tabela_memoria.Rows[0]["assinada"].ToString();
+                fiado = tabela_memoria.Rows[0]["fiado"].ToString();
                 return true;
             }
             catch
@@ -60,7 +64,7 @@ namespace Caixa
 
         public void Alterar(assinada ass)
         {
-            executarComando("update assinadas set classm='" + ass.Classm.ToString().Replace(",", ".") + "',julio='" + ass.Julio.ToString().Replace(",", ".") + "',assinada='" + ass.Assinadas.ToString().Replace(",", ".") + "' where id_caixa='" + ass.Id_caixa + "';");
+            executarComando("update assinadas set classm='" + ass.Classm.ToString().Replace(",", ".") + "',julio='" + ass.Julio.ToString().Replace(",", ".") + "',assinada='" + ass.Assinadas.ToString().Replace(",", ".") + "',fiado='" + ass.Fiado.ToString().Replace(",",".") +"' where id_caixa='" + ass.Id_caixa + "';");
         }
 
         #region DeletaTudo

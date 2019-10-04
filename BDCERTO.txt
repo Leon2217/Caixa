@@ -264,6 +264,7 @@ id_caixa int not null,
 classm text not null,
 julio text not null,
 assinada text not null,
+fiado text not null,
 primary key(id_fiado),
 foreign key(id_caixa) references caixa(id_caixa)
 on delete cascade on update cascade

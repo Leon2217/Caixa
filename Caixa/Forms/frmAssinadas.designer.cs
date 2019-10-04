@@ -36,6 +36,8 @@
             this.txtClass = new System.Windows.Forms.TextBox();
             this.lblJulio = new System.Windows.Forms.Label();
             this.txtJulio = new System.Windows.Forms.TextBox();
+            this.lblFiado = new System.Windows.Forms.Label();
+            this.txtFiado = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -78,7 +80,7 @@
             this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(16, 108);
+            this.btnSalvar.Location = new System.Drawing.Point(16, 146);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(204, 43);
             this.btnSalvar.TabIndex = 4;
@@ -118,12 +120,34 @@
             this.txtJulio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJulio_KeyDown);
             this.txtJulio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtJulio_KeyPress);
             // 
+            // lblFiado
+            // 
+            this.lblFiado.AutoSize = true;
+            this.lblFiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiado.Location = new System.Drawing.Point(12, 109);
+            this.lblFiado.Name = "lblFiado";
+            this.lblFiado.Size = new System.Drawing.Size(105, 20);
+            this.lblFiado.TabIndex = 10;
+            this.lblFiado.Text = "Cartão Fiado:";
+            // 
+            // txtFiado
+            // 
+            this.txtFiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiado.Location = new System.Drawing.Point(120, 109);
+            this.txtFiado.Name = "txtFiado";
+            this.txtFiado.Size = new System.Drawing.Size(100, 26);
+            this.txtFiado.TabIndex = 11;
+            this.txtFiado.TextChanged += new System.EventHandler(this.txtFiado_TextChanged);
+            this.txtFiado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiado_KeyDown);
+            // 
             // frmAssinadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(238, 156);
+            this.ClientSize = new System.Drawing.Size(238, 201);
+            this.Controls.Add(this.txtFiado);
+            this.Controls.Add(this.lblFiado);
             this.Controls.Add(this.txtJulio);
             this.Controls.Add(this.lblJulio);
             this.Controls.Add(this.btnSalvar);
@@ -154,5 +178,7 @@
         private System.Windows.Forms.TextBox txtClass;
         private System.Windows.Forms.Label lblJulio;
         private System.Windows.Forms.TextBox txtJulio;
+        private System.Windows.Forms.Label lblFiado;
+        private System.Windows.Forms.TextBox txtFiado;
     }
 }

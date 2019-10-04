@@ -11,6 +11,7 @@ namespace Caixa
         string  valor;
         string valor2;
         string valor3;
+        string valor4;
         string codcaixa;
         string tipo;
         string login;
@@ -24,7 +25,7 @@ namespace Caixa
         {
             DialogResult op;
 
-            op = MessageBox.Show("Você tem certeza dessas informações?"+"\n Assinadas : " +valor+" R$"+"\n Class : "+valor2+ " R$"+"\n Julio Simões : "+valor3+" R$",
+            op = MessageBox.Show("Você tem certeza dessas informações?"+"\n Assinadas : " +valor+" R$"+"\n Class : "+valor2+ " R$"+ "\n Julio Simões : " + valor3 + " R$" + "\n Fiado cartão : " + valor4 + "R$",
                 "Salvando!", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -41,6 +42,7 @@ namespace Caixa
                             ass.Classm = txtClass.Text.ToString().Replace(".", "");
                             ass.Assinadas = txtAssinada.Text.ToString().Replace(".", "");
                             ass.Julio = txtJulio.Text.ToString().Replace(".", "");
+                            ass.Fiado = txtFiado.Text.ToString().Replace(".", "");
                             assDAO.Alterar(ass);
                             MessageBox.Show("Dados alterados com sucesso !!!");
                             txtAssinada.Clear();
@@ -61,6 +63,7 @@ namespace Caixa
                         ass.Classm = txtClass.Text.ToString().Replace(".", "");
                         ass.Assinadas = txtAssinada.Text.ToString().Replace(".", "");
                         ass.Julio = txtJulio.Text.ToString().Replace(".", "");
+                        ass.Fiado = txtFiado.Text.ToString().Replace(".", "");
                         assDAO.Inserir(ass);
                         MessageBox.Show("Informações salvas com sucesso !!!");
                         txtAssinada.Clear();
@@ -104,12 +107,14 @@ namespace Caixa
             Moeda(ref txtClass);
             Moeda(ref txtJulio);
             Moeda(ref txtAssinada);
+            Moeda(ref txtFiado);
             codcaixa = assinadaDAO.codcaixa;
             if (assDAO.Buscar(codcaixa)==true)
             {
                 txtAssinada.Text =assinadaDAO.assinada.ToString();
                 txtClass.Text = assinadaDAO.classm.ToString();
                 txtJulio.Text = assinadaDAO.julio.ToString();
+                txtFiado.Text = assinadaDAO.fiado.ToString();
                 login = UsuarioDAO.login;
                 usuDAO.VerificaCargo(login);
                 tipo = usuDAO.Usu.Tipo.ToString();
@@ -195,6 +200,21 @@ namespace Caixa
             if (e.KeyValue.Equals(27))
             {
                    this.Close();
+            }
+        }
+
+        private void txtFiado_TextChanged(object sender, EventArgs e)
+        {
+            Moeda(ref txtFiado);
+            valor4 = txtFiado.Text;
+        }
+
+        private void txtFiado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue.Equals(13))
+            {
+                this.ProcessTabKey(true);
+                e.Handled = true;
             }
         }
     }
