@@ -36,13 +36,15 @@
             this.mskDe = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gvExibir = new System.Windows.Forms.DataGridView();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
             // 
-            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNome.Location = new System.Drawing.Point(550, 6);
+            this.txtNome.Location = new System.Drawing.Point(423, 6);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(341, 26);
             this.txtNome.TabIndex = 24;
@@ -50,9 +52,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(489, 9);
+            this.label3.Location = new System.Drawing.Point(362, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 27;
@@ -102,9 +103,6 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
-            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -112,15 +110,75 @@
             this.gvExibir.Location = new System.Drawing.Point(11, 40);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(880, 380);
+            this.gvExibir.Size = new System.Drawing.Size(753, 496);
             this.gvExibir.TabIndex = 28;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.White;
+            this.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnImprimir.FlatAppearance.BorderSize = 2;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Image = global::Caixa.Properties.Resources.apps_printer_15747;
+            this.btnImprimir.Location = new System.Drawing.Point(830, 499);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(35, 37);
+            this.btnImprimir.TabIndex = 29;
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.BorderSize = 2;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
+            this.btnExport.Location = new System.Drawing.Point(771, 6);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(94, 101);
+            this.btnExport.TabIndex = 30;
+            this.btnExport.Text = "Gerar Excel";
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPDF.BackColor = System.Drawing.Color.White;
+            this.btnPDF.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatAppearance.BorderSize = 2;
+            this.btnPDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnPDF.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
+            this.btnPDF.Location = new System.Drawing.Point(771, 117);
+            this.btnPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(94, 101);
+            this.btnPDF.TabIndex = 31;
+            this.btnPDF.Text = "Gerar .PDF";
+            this.btnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
             // 
             // frmRelatConsumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(900, 426);
+            this.ClientSize = new System.Drawing.Size(871, 548);
+            this.Controls.Add(this.btnPDF);
+            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label3);
@@ -152,5 +210,8 @@
         private System.Windows.Forms.MaskedTextBox mskDe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gvExibir;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnPDF;
     }
 }
