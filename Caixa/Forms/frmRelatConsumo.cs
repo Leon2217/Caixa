@@ -21,7 +21,7 @@ namespace Caixa.Forms
         private void FrmRelatConsumo_Load(object sender, EventArgs e)
         {
             try
-            {             
+            {
                 #region DATA INCIAL
                 if (mskDe.MaskFull == true)
                 {
@@ -83,7 +83,7 @@ namespace Caixa.Forms
         }
 
         private void TxtNome_TextChanged(object sender, EventArgs e)
-        {            
+        {
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -149,7 +149,7 @@ namespace Caixa.Forms
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, de, at);
             }
             #endregion
 
@@ -162,7 +162,7 @@ namespace Caixa.Forms
         }
 
         private void MskAté_TextChanged(object sender, EventArgs e)
-        {            
+        {
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -228,7 +228,7 @@ namespace Caixa.Forms
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, de, at);
             }
             #endregion
 
@@ -241,7 +241,7 @@ namespace Caixa.Forms
         }
 
         private void MskDe_TextChanged(object sender, EventArgs e)
-        {            
+        {
             #region DATA INCIAL
             if (mskDe.MaskFull == true)
             {
@@ -307,7 +307,7 @@ namespace Caixa.Forms
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlcDAO.ListarBTNNOME(nome, de, at);
             }
             #endregion
 
