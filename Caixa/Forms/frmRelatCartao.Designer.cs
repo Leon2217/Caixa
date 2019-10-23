@@ -45,6 +45,22 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cmbCartao = new System.Windows.Forms.ComboBox();
             this.btnTaxa = new System.Windows.Forms.Button();
+            this.lblSoft = new System.Windows.Forms.Label();
+            this.lblPlcard = new System.Windows.Forms.Label();
+            this.lblAlelo = new System.Windows.Forms.Label();
+            this.lblAle = new System.Windows.Forms.Label();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblTic = new System.Windows.Forms.Label();
+            this.lblSodexo = new System.Windows.Forms.Label();
+            this.lblSod = new System.Windows.Forms.Label();
+            this.lblVR = new System.Windows.Forms.Label();
+            this.lblV = new System.Windows.Forms.Label();
+            this.lblDebito = new System.Windows.Forms.Label();
+            this.lblDeb = new System.Windows.Forms.Label();
+            this.lblCredito = new System.Windows.Forms.Label();
+            this.lblCred = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +68,6 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
-            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -225,7 +238,6 @@
             // 
             // btnTaxa
             // 
-            this.btnTaxa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTaxa.BackColor = System.Drawing.Color.White;
             this.btnTaxa.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
             this.btnTaxa.FlatAppearance.BorderSize = 2;
@@ -240,12 +252,197 @@
             this.btnTaxa.UseVisualStyleBackColor = false;
             this.btnTaxa.Click += new System.EventHandler(this.btnTaxa_Click);
             // 
+            // lblSoft
+            // 
+            this.lblSoft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSoft.AutoSize = true;
+            this.lblSoft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSoft.Location = new System.Drawing.Point(526, 517);
+            this.lblSoft.Name = "lblSoft";
+            this.lblSoft.Size = new System.Drawing.Size(0, 20);
+            this.lblSoft.TabIndex = 57;
+            // 
+            // lblPlcard
+            // 
+            this.lblPlcard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPlcard.AutoSize = true;
+            this.lblPlcard.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblPlcard.Location = new System.Drawing.Point(526, 497);
+            this.lblPlcard.Name = "lblPlcard";
+            this.lblPlcard.Size = new System.Drawing.Size(84, 20);
+            this.lblPlcard.TabIndex = 56;
+            this.lblPlcard.Text = "SOFTNEX";
+            // 
+            // lblAlelo
+            // 
+            this.lblAlelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAlelo.AutoSize = true;
+            this.lblAlelo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblAlelo.Location = new System.Drawing.Point(189, 542);
+            this.lblAlelo.Name = "lblAlelo";
+            this.lblAlelo.Size = new System.Drawing.Size(61, 20);
+            this.lblAlelo.TabIndex = 55;
+            this.lblAlelo.Text = "ALELO";
+            // 
+            // lblAle
+            // 
+            this.lblAle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAle.AutoSize = true;
+            this.lblAle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblAle.Location = new System.Drawing.Point(189, 562);
+            this.lblAle.Name = "lblAle";
+            this.lblAle.Size = new System.Drawing.Size(0, 20);
+            this.lblAle.TabIndex = 54;
+            // 
+            // lblTicket
+            // 
+            this.lblTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTicket.Location = new System.Drawing.Point(365, 497);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(64, 20);
+            this.lblTicket.TabIndex = 53;
+            this.lblTicket.Text = "TICKET";
+            // 
+            // lblTic
+            // 
+            this.lblTic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTic.AutoSize = true;
+            this.lblTic.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTic.Location = new System.Drawing.Point(365, 517);
+            this.lblTic.Name = "lblTic";
+            this.lblTic.Size = new System.Drawing.Size(0, 20);
+            this.lblTic.TabIndex = 52;
+            // 
+            // lblSodexo
+            // 
+            this.lblSodexo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSodexo.AutoSize = true;
+            this.lblSodexo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSodexo.Location = new System.Drawing.Point(365, 542);
+            this.lblSodexo.Name = "lblSodexo";
+            this.lblSodexo.Size = new System.Drawing.Size(78, 20);
+            this.lblSodexo.TabIndex = 51;
+            this.lblSodexo.Text = "SODEXO";
+            // 
+            // lblSod
+            // 
+            this.lblSod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSod.AutoSize = true;
+            this.lblSod.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSod.Location = new System.Drawing.Point(365, 562);
+            this.lblSod.Name = "lblSod";
+            this.lblSod.Size = new System.Drawing.Size(0, 20);
+            this.lblSod.TabIndex = 50;
+            // 
+            // lblVR
+            // 
+            this.lblVR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblVR.AutoSize = true;
+            this.lblVR.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblVR.Location = new System.Drawing.Point(8, 542);
+            this.lblVR.Name = "lblVR";
+            this.lblVR.Size = new System.Drawing.Size(32, 20);
+            this.lblVR.TabIndex = 49;
+            this.lblVR.Text = "VR";
+            // 
+            // lblV
+            // 
+            this.lblV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblV.AutoSize = true;
+            this.lblV.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblV.Location = new System.Drawing.Point(8, 562);
+            this.lblV.Name = "lblV";
+            this.lblV.Size = new System.Drawing.Size(0, 20);
+            this.lblV.TabIndex = 48;
+            // 
+            // lblDebito
+            // 
+            this.lblDebito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDebito.AutoSize = true;
+            this.lblDebito.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDebito.Location = new System.Drawing.Point(189, 497);
+            this.lblDebito.Name = "lblDebito";
+            this.lblDebito.Size = new System.Drawing.Size(69, 20);
+            this.lblDebito.TabIndex = 47;
+            this.lblDebito.Text = "DÉBITO";
+            // 
+            // lblDeb
+            // 
+            this.lblDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDeb.AutoSize = true;
+            this.lblDeb.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDeb.Location = new System.Drawing.Point(189, 517);
+            this.lblDeb.Name = "lblDeb";
+            this.lblDeb.Size = new System.Drawing.Size(0, 20);
+            this.lblDeb.TabIndex = 46;
+            // 
+            // lblCredito
+            // 
+            this.lblCredito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCredito.AutoSize = true;
+            this.lblCredito.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblCredito.Location = new System.Drawing.Point(8, 497);
+            this.lblCredito.Name = "lblCredito";
+            this.lblCredito.Size = new System.Drawing.Size(81, 20);
+            this.lblCredito.TabIndex = 45;
+            this.lblCredito.Text = "CRÉDITO";
+            // 
+            // lblCred
+            // 
+            this.lblCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCred.AutoSize = true;
+            this.lblCred.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblCred.Location = new System.Drawing.Point(8, 517);
+            this.lblCred.Name = "lblCred";
+            this.lblCred.Size = new System.Drawing.Size(0, 20);
+            this.lblCred.TabIndex = 44;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label7.Location = new System.Drawing.Point(527, 542);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 20);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "**TOTAL**";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTotal.Location = new System.Drawing.Point(527, 562);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(0, 20);
+            this.lblTotal.TabIndex = 42;
+            // 
             // frmRelatCartao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(899, 486);
+            this.ClientSize = new System.Drawing.Size(899, 591);
+            this.Controls.Add(this.lblSoft);
+            this.Controls.Add(this.lblPlcard);
+            this.Controls.Add(this.lblAlelo);
+            this.Controls.Add(this.lblAle);
+            this.Controls.Add(this.lblTicket);
+            this.Controls.Add(this.lblTic);
+            this.Controls.Add(this.lblSodexo);
+            this.Controls.Add(this.lblSod);
+            this.Controls.Add(this.lblVR);
+            this.Controls.Add(this.lblV);
+            this.Controls.Add(this.lblDebito);
+            this.Controls.Add(this.lblDeb);
+            this.Controls.Add(this.lblCredito);
+            this.Controls.Add(this.lblCred);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnTaxa);
             this.Controls.Add(this.cmbCartao);
             this.Controls.Add(this.label6);
@@ -297,5 +494,21 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbCartao;
         private System.Windows.Forms.Button btnTaxa;
+        private System.Windows.Forms.Label lblSoft;
+        private System.Windows.Forms.Label lblPlcard;
+        private System.Windows.Forms.Label lblAlelo;
+        private System.Windows.Forms.Label lblAle;
+        private System.Windows.Forms.Label lblTicket;
+        private System.Windows.Forms.Label lblTic;
+        private System.Windows.Forms.Label lblSodexo;
+        private System.Windows.Forms.Label lblSod;
+        private System.Windows.Forms.Label lblVR;
+        private System.Windows.Forms.Label lblV;
+        private System.Windows.Forms.Label lblDebito;
+        private System.Windows.Forms.Label lblDeb;
+        private System.Windows.Forms.Label lblCredito;
+        private System.Windows.Forms.Label lblCred;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

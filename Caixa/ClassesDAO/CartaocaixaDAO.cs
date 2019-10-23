@@ -972,6 +972,347 @@ namespace Caixa
             #endregion
             return listaDescripto;
         }
-        #endregion     
+        #endregion
+
+
+        #region LISTAR SOMA CARTAO
+
+        #region VERIFICA A SOMA DE TODOS OS CREDITOS
+        public Boolean VerificaSC()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE TODOS OS DEBITOS
+        public Boolean VerificaSD()
+        {
+            executarComando("SELECT SUM(valor) AS DEB FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["DEB"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE VR
+        public Boolean VerificaSVR()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=8) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE SODEXO
+        public Boolean VerificaSDX()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=5) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA TICKET
+        public Boolean VerificaT()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=6) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA ELO
+        public Boolean VerificaSe()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_cartao=8 or c.id_cartao=9) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA SOFTNEX
+        public Boolean VerificaSFN()
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=cc.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=9) and (t.id_turno=2 or t.id_turno=3);");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE(DE) TODOS OS CREDITOS
+        public Boolean VerificaDC(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE(DE) TODOS OS DEBITOS
+        public Boolean VerificaDD(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS DEB FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "' ; ");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["DEB"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(DE) DE VR
+        public Boolean VerificaDVR(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=8) and (t.id_turno=2 or t.id_turno=3) and  cx.datainicio='" + de.ToString("yyyy/MM/dd") + "' ;");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(DE) DE SODEXO
+        public Boolean VerificaDSDX(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=5) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "' ;");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(DE) TICKET
+        public Boolean VerificaDT(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=6) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(DE) ELO
+        public Boolean VerificaDELO(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_cartao=8 or c.id_cartao=9) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(DE) SOFTNEX
+        public Boolean VerificaDSOFT(DateTime de)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=9) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE(BTN) TODOS OS CREDITOS
+        public Boolean VerificaBC(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA DE(BTN) TODOS OS DEBITOS
+        public Boolean VerificaBDD(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS DEB FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["DEB"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(BTN) DE VR
+        public Boolean VerificaBVR(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=8) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(BTN) DE SODEXO
+        public Boolean VerificaBSDX(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=5) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(BTN) TICKET
+        public Boolean VerificaBTK(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=6) and (t.id_turno=2 or t.id_turno=3) and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(BTN) ELO
+        public Boolean VerificaBELO(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_cartao=8 or c.id_cartao=9) and (t.id_turno=2 or t.id_turno=3)and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA A SOMA(BTN) SOFTNEX
+        public Boolean VerificaSOFT(DateTime de, DateTime at)
+        {
+            executarComando("SELECT SUM(valor) AS CRED FROM CARTAOCAIXA CC INNER JOIN CARTAO C ON C.ID_CARTAO=CC.ID_CARTAO inner join caixa cx on cx.id_caixa=cc.id_caixa inner join turno t on t.id_turno=cx.id_turno inner join marca m on m.id_marca=c.id_marca where (c.id_marca=9) and (t.id_turno=2 or t.id_turno=3)and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["CRED"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

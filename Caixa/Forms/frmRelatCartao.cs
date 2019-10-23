@@ -23,6 +23,7 @@ namespace Caixa
         string codmaq;
         int j;
         string tipo;
+        double cred, deb, vr, tk, sd, el, sn;
         string login;
         #endregion
         public frmRelatCartao()
@@ -75,6 +76,86 @@ namespace Caixa
             cmbCartao.Text = "";
             cmbMaquina.Text = "";
             gvExibir.DataSource = ccDAO.ListarTudo();
+
+            #region VERIFICA SE
+            try
+            {
+                ccDAO.VerificaSC();
+                cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblCred.Text = cred.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaSD();
+                deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblDeb.Text = deb.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaSDX();
+                sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblSod.Text = sd.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaSVR();
+                vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblV.Text = vr.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaT();
+                tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblTic.Text = tk.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaSe();
+                el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblAle.Text = el.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                ccDAO.VerificaSFN();
+                sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                lblSoft.Text = sn.ToString("C2");
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+            }
+            catch
+            {
+            }
+            #endregion
         }
 
         private void cmbBandeira_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,7 +250,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -257,7 +439,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -505,7 +780,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -593,7 +969,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -842,7 +1311,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -930,7 +1500,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -1169,7 +1832,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1257,7 +2021,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -1506,7 +2363,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1594,7 +2552,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -1842,7 +2893,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1930,7 +3082,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -2178,7 +3423,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -2266,7 +3612,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -2514,7 +3953,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -2602,7 +4142,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -2956,7 +4589,108 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarDe(de);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDe(de);
+
+                    #region Label (DE) Crédito
+                    ccDAO.VerificaDC(de);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (DE) Débito
+                    ccDAO.VerificaDD(de);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Vr
+                    ccDAO.VerificaDVR(de);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Sodexo
+                    ccDAO.VerificaDSDX(de);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Alelo
+                    ccDAO.VerificaDELO(de);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Ticket
+                    ccDAO.VerificaDT(de);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(DE) Softnex
+                    ccDAO.VerificaDSOFT(de);
+                    try
+                    {
+                        sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSoft.Text = sn.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -3044,7 +4778,100 @@ namespace Caixa
                 cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
                 )
             {
-                gvExibir.DataSource = ccDAO.ListarB(de, at);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarB(de, at);
+
+
+                    #region Label (BTW) Crédito
+                    ccDAO.VerificaBC(de, at);
+                    try
+                    {
+                        cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblCred.Text = cred.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label (BTW) Débito
+                    ccDAO.VerificaBDD(de, at);
+                    try
+                    {
+                        deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblDeb.Text = deb.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Vr
+                    ccDAO.VerificaBVR(de, at);
+                    try
+                    {
+                        vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblV.Text = vr.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Sodexo
+                    ccDAO.VerificaBSDX(de, at);
+                    try
+                    {
+                        sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblSod.Text = sd.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Alelo
+                    ccDAO.VerificaBELO(de, at);
+                    try
+                    {
+                        el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblAle.Text = el.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Ticket
+                    ccDAO.VerificaBTK(de, at);
+                    try
+                    {
+                        tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                        lblTic.Text = tk.ToString("C2");
+                    }
+                    catch
+                    {
+
+                    }
+                    #endregion
+
+                    #region Label(BTW) Soft
+                    ccDAO.VerificaSOFT(de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
