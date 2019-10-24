@@ -1313,6 +1313,384 @@ namespace Caixa
         }
         #endregion
 
+        #region VERIFICA CRED MAQUINA
+        public Boolean VerificaCM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA DEB MAQUINA
+        public Boolean VerificaDM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA VR MAQUINA
+        public Boolean VerificaVRM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=8) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SODEXO MAQUINA
+        public Boolean VerificaSDXM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=5) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA ELO MAQUINA
+        public Boolean VerificaELOM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=8 or c.id_cartao=9) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA TICKET MAQUINA
+        public Boolean VerificaTM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=6) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SOFTNEX MAQUINA
+        public Boolean VerificaSFTM(string id)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=9) and t.id_turno=2 and m.id_maquina='" + id + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA CRED MAQUINA (DE)
+        public Boolean VerificaDCM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA DEB MAQUINA (DE)
+        public Boolean VerificaDDM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA VR MAQUINA (DE)
+        public Boolean VerificaDVRM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=8) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SODEXO MAQUINA (DE)
+        public Boolean VerificaDSDXM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=5) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA ELO MAQUINA (DE)
+        public Boolean VerificaDELOM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=8 or c.id_cartao=9) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA TICKET MAQUINA (DE)
+        public Boolean VerificaDTM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=6) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SOFTNEX MAQUINA (DE)
+        public Boolean VerificaDSFTM(string id, DateTime de)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=9) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio='" + de.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA CRED MAQUINA (BTN)
+        public Boolean VerificaBCM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=1 or c.id_cartao=3 or c.id_cartao=6 or c.id_cartao=7 or c.id_cartao=14) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA DEB MAQUINA (BTN)
+        public Boolean VerificaBDM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=2 or c.id_cartao=4 or c.id_cartao=5 or c.id_cartao=13) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA VR MAQUINA (BTN)
+        public Boolean VerificaBVRM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=8) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SODEXO MAQUINA (BTN)
+        public Boolean VerificaBSDXM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=5) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA ELO MAQUINA (BTN)
+        public Boolean VerificaBELOM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_cartao=8 or c.id_cartao=9) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA TICKET MAQUINA (BTN)
+        public Boolean VerificaBTM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=6) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region VERIFICA SOFTNEX MAQUINA (BTN)
+        public Boolean VerificaBSFTM(string id, DateTime de, DateTime at)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT SUM(valor) as VALOR from cartaocaixa cc inner join cartao c on c.id_cartao=cc.id_cartao inner join caixa cx on cx.id_caixa=cc.id_caixa inner join marca ma on ma.id_marca=c.id_marca inner join maquina m on m.id_maquina=cc.id_maquina inner join turno t on t.id_turno=cx.id_turno where (c.id_marca=9) and t.id_turno=2 and m.id_maquina='" + id + "' and cx.datainicio between'" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "';");
+            listaDescripto = tabela_memoria.Clone();
+            try
+            {
+                Carcai.Valor = tabela_memoria.Rows[0]["VALOR"].ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+        
         #endregion
     }
 }

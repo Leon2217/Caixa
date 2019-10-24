@@ -381,7 +381,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -395,7 +446,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -556,10 +660,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -585,7 +740,7 @@ namespace Caixa
             #endregion
 
             #region BANDEIRA, TURNO E MAQUINA
-            if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text == string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
+            if (mskDe.MaskFull == false && cmbBandeira.Text != string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = ccDAO.ListarBTM(codmarca, codturno, codmaq);
             }
@@ -606,6 +761,33 @@ namespace Caixa
                 )
             {
                 gvExibir.DataSource = ccDAO.ListarBBM(de, at, codmarca, codmaq);
+            }
+            #endregion
+
+            #region BETWEEN, BANDEIRA E CART
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text != string.Empty &&
+                cmbCartao.Text != string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text == string.Empty
+                )
+            {
+                gvExibir.DataSource = ccDAO.ListarBBC(de, at, codmarca, codmarca2);
+            }
+            #endregion
+
+            #region BETWEEN, TURNO E MAQUINA
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
+                cmbCartao.Text == string.Empty && cmbTurno.Text != string.Empty && cmbMaquina.Text != string.Empty
+                )
+            {
+                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codturno, codmaq);
+            }
+            #endregion
+
+            #region BETWEEN, BANDEIRA, CART E TURNO
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text != string.Empty &&
+                cmbCartao.Text != string.Empty && cmbTurno.Text != string.Empty && cmbMaquina.Text == string.Empty
+                )
+            {
+                gvExibir.DataSource = ccDAO.ListarBBCT(de, at, codmarca, codmarca2, codturno);
             }
             #endregion
 
@@ -690,6 +872,7 @@ namespace Caixa
         private void cmbBandeira_TextChanged(object sender, EventArgs e)
         {
             CarregarComboCartao();
+
             #region DE
             if (mskDe.MaskFull == true)
             {
@@ -911,7 +1094,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -925,7 +1159,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1086,10 +1373,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -1209,7 +1547,6 @@ namespace Caixa
                 gvExibir.DataSource = ccDAO.ListarDBMTC(de, codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
-
 
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
@@ -1442,7 +1779,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1456,7 +1844,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1617,10 +2058,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -1658,6 +2150,15 @@ namespace Caixa
                 )
             {
                 gvExibir.DataSource = ccDAO.ListarBBT(de, at, codmarca, codturno);
+            }
+            #endregion
+
+            #region BETWEEN, BANDEIRA E MAQUINA
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text != string.Empty &&
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
+                )
+            {
+                gvExibir.DataSource = ccDAO.ListarBBM(de, at, codmarca, codmaq);
             }
             #endregion
 
@@ -1963,7 +2464,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -1977,7 +2529,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -2138,10 +2743,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -2261,7 +2917,6 @@ namespace Caixa
                 gvExibir.DataSource = ccDAO.ListarDBMTC(de, codmarca, codmaq, codturno, codmarca2);
             }
             #endregion
-
 
             #region BETWEEN,BANDEIRA, TURNO, MAQUINA E CARTAO
             if (mskDe.MaskFull == true && cmbBandeira.Text != string.Empty && cmbCartao.Text != string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text != string.Empty && mskAté.MaskFull == true)
@@ -2494,7 +3149,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -2508,7 +3214,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -2669,10 +3428,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -3024,7 +3834,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -3038,7 +3899,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -3199,10 +4113,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -3554,7 +4519,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -3568,7 +4584,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -3729,10 +4798,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -4084,7 +5204,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -4098,7 +5269,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -4259,10 +5483,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
@@ -4720,7 +5995,58 @@ namespace Caixa
             #region DE E MÁQUINA
             if (mskDe.MaskFull == true && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarDM(de, codmaq);
+
+                    #region CRED (DE) MAQUINA
+                    ccDAO.VerificaDCM(codmaq, de);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (DE) MAQUINA
+                    ccDAO.VerificaDDM(codmaq, de);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (DE) MAQUINA
+                    ccDAO.VerificaDVRM(codmaq, de);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (DE) MAQUINA
+                    ccDAO.VerificaDSDXM(codmaq, de);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (DE) MAQUINA
+                    ccDAO.VerificaDELOM(codmaq, de);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (DE) MAQUINA
+                    ccDAO.VerificaDTM(codmaq, de);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (DE) MAQUINA
+                    ccDAO.VerificaDSFTM(codmaq, de);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -4734,7 +6060,60 @@ namespace Caixa
             #region MÁQUINA
             if (mskDe.MaskFull == false && cmbBandeira.Text == string.Empty && cmbCartao.Text == string.Empty && cmbMaquina.Text != string.Empty && cmbTurno.Text == string.Empty && mskAté.MaskFull == false)
             {
-                gvExibir.DataSource = ccDAO.ListarM(codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarM(codmaq);
+
+                    #region CRED MAQUINA
+                    ccDAO.VerificaCM(codmaq);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB MAQUINA
+                    ccDAO.VerificaDM(codmaq);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR MAQUINA
+                    ccDAO.VerificaVRM(codmaq);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SDX MAQUINA
+                    ccDAO.VerificaSDXM(codmaq);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO MAQUINA
+                    ccDAO.VerificaELOM(codmaq);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET MAQUINA
+                    ccDAO.VerificaTM(codmaq);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX MAQUINA
+                    ccDAO.VerificaSFTM(codmaq);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
+
             }
             #endregion
 
@@ -4895,10 +6274,61 @@ namespace Caixa
 
             #region BETWEEN E MAQUINA
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && cmbBandeira.Text == string.Empty &&
-                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty
-                )
+                cmbCartao.Text == string.Empty && cmbTurno.Text == string.Empty && cmbMaquina.Text != string.Empty)
             {
-                gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+                try
+                {
+                    gvExibir.DataSource = ccDAO.ListarBTM(de, at, codmaq);
+
+
+                    #region CRED (BTN) MAQUINA
+                    ccDAO.VerificaBCM(codmaq, de, at);
+                    cred = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblCred.Text = cred.ToString("C2");
+                    #endregion
+
+                    #region DEB (BTN) MAQUINA
+                    ccDAO.VerificaBDM(codmaq, de, at);
+                    deb = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblDeb.Text = deb.ToString("C2");
+                    #endregion
+
+                    #region VR (BTN) MAQUINA
+                    ccDAO.VerificaBVRM(codmaq, de, at);
+                    vr = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblV.Text = vr.ToString("C2");
+                    #endregion
+
+                    #region SODEXO (BTN) MAQUINA
+                    ccDAO.VerificaBSDXM(codmaq, de, at);
+                    sd = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSod.Text = sd.ToString("C2");
+                    #endregion
+
+                    #region ELO (BTN) MAQUINA
+                    ccDAO.VerificaBELOM(codmaq, de, at);
+                    el = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblAle.Text = el.ToString("C2");
+                    #endregion
+
+                    #region TICKET (BTN) MAQUINA
+                    ccDAO.VerificaBTM(codmaq, de, at);
+                    tk = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblTic.Text = tk.ToString("C2");
+                    #endregion
+
+                    #region SOFTNEX (BTN) MAQUINA
+                    ccDAO.VerificaBSFTM(codmaq, de, at);
+                    sn = Convert.ToDouble(ccDAO.Carcai.Valor.ToString().Replace(".", ""));
+                    lblSoft.Text = sn.ToString("C2");
+                    #endregion
+                }
+                catch
+                {
+
+                }
+
+                lblTotal.Text = (cred + deb + sd + vr + tk + el + sn).ToString("C2");
             }
             #endregion
 
