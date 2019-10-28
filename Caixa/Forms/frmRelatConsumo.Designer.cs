@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelatConsumo));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,10 +38,14 @@
             this.mskDe = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gvExibir = new System.Windows.Forms.DataGridView();
-            this.btnImprimir = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnPDF = new System.Windows.Forms.Button();
+            this.gvMostrarTotal = new System.Windows.Forms.DataGridView();
+            this.prnFormConsumo = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.btnImprimirForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMostrarTotal)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -110,23 +116,11 @@
             this.gvExibir.Location = new System.Drawing.Point(11, 40);
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
-            this.gvExibir.Size = new System.Drawing.Size(753, 496);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gvExibir.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvExibir.Size = new System.Drawing.Size(753, 464);
             this.gvExibir.TabIndex = 28;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.White;
-            this.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnImprimir.FlatAppearance.BorderSize = 2;
-            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimir.Image = global::Caixa.Properties.Resources.apps_printer_15747;
-            this.btnImprimir.Location = new System.Drawing.Point(830, 499);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(35, 37);
-            this.btnImprimir.TabIndex = 29;
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnImprimir.UseVisualStyleBackColor = false;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnExport
             // 
@@ -139,13 +133,15 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnExport.Image = global::Caixa.Properties.Resources.document_microsoft_excel_15023;
-            this.btnExport.Location = new System.Drawing.Point(771, 6);
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExport.Location = new System.Drawing.Point(798, 6);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(94, 101);
+            this.btnExport.Size = new System.Drawing.Size(102, 101);
             this.btnExport.TabIndex = 30;
             this.btnExport.Text = "Gerar Excel";
-            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -160,25 +156,82 @@
             this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnPDF.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPDF.Location = new System.Drawing.Point(771, 117);
+            this.btnPDF.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPDF.Location = new System.Drawing.Point(798, 117);
             this.btnPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(94, 101);
+            this.btnPDF.Size = new System.Drawing.Size(102, 101);
             this.btnPDF.TabIndex = 31;
-            this.btnPDF.Text = "Gerar .PDF";
-            this.btnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPDF.Text = "Gerar  .PDF";
+            this.btnPDF.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnPDF.UseVisualStyleBackColor = false;
             this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // gvMostrarTotal
+            // 
+            this.gvMostrarTotal.AllowUserToAddRows = false;
+            this.gvMostrarTotal.AllowUserToDeleteRows = false;
+            this.gvMostrarTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.gvMostrarTotal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvMostrarTotal.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.gvMostrarTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvMostrarTotal.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gvMostrarTotal.Location = new System.Drawing.Point(11, 510);
+            this.gvMostrarTotal.Name = "gvMostrarTotal";
+            this.gvMostrarTotal.ReadOnly = true;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.gvMostrarTotal.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gvMostrarTotal.Size = new System.Drawing.Size(753, 51);
+            this.gvMostrarTotal.TabIndex = 32;
+            // 
+            // prnFormConsumo
+            // 
+            this.prnFormConsumo.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.prnFormConsumo_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.prnFormConsumo;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // btnImprimirForm
+            // 
+            this.btnImprimirForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimirForm.BackColor = System.Drawing.Color.White;
+            this.btnImprimirForm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnImprimirForm.FlatAppearance.BorderSize = 2;
+            this.btnImprimirForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnImprimirForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnImprimirForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimirForm.Image = global::Caixa.Properties.Resources.apps_printer_15747;
+            this.btnImprimirForm.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnImprimirForm.Location = new System.Drawing.Point(798, 226);
+            this.btnImprimirForm.Name = "btnImprimirForm";
+            this.btnImprimirForm.Size = new System.Drawing.Size(102, 101);
+            this.btnImprimirForm.TabIndex = 33;
+            this.btnImprimirForm.Text = "Imprimir Formulário";
+            this.btnImprimirForm.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnImprimirForm.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnImprimirForm.UseVisualStyleBackColor = false;
+            this.btnImprimirForm.Click += new System.EventHandler(this.btnImprimirForm_Click);
             // 
             // frmRelatConsumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(871, 548);
+            this.ClientSize = new System.Drawing.Size(906, 567);
+            this.Controls.Add(this.btnImprimirForm);
+            this.Controls.Add(this.gvMostrarTotal);
             this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.btnExport);
-            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label3);
@@ -196,6 +249,7 @@
             this.Load += new System.EventHandler(this.FrmRelatConsumo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmRelatConsumo_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMostrarTotal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,8 +264,11 @@
         private System.Windows.Forms.MaskedTextBox mskDe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gvExibir;
-        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.DataGridView gvMostrarTotal;
+        private System.Drawing.Printing.PrintDocument prnFormConsumo;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Button btnImprimirForm;
     }
 }

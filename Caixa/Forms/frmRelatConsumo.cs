@@ -5,6 +5,7 @@ using Caixa.ClassesDAO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Drawing;
 
 namespace Caixa.Forms
 {
@@ -79,7 +80,6 @@ namespace Caixa.Forms
                     }
                 }
                 #endregion
-
             }
             catch
             {
@@ -221,6 +221,17 @@ namespace Caixa.Forms
             if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = rlcDAO.ListarTudo();
+            }
+            #endregion
+
+            #region GridView da soma do mês
+            if (txtNome.Text != string.Empty)
+            {
+                gvMostrarTotal.DataSource = rlcDAO.ListarMes(nome);
+            }
+            else
+            {
+                gvMostrarTotal.DataSource = null;
             }
             #endregion
         }
@@ -391,11 +402,6 @@ namespace Caixa.Forms
             }
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            printDGV.Print_DataGridView(gvExibir);
-        }
-
         private void btnPDF_Click(object sender, EventArgs e)
         {
             ExportarPDF(gvExibir, "CONSUMO");
@@ -480,6 +486,22 @@ namespace Caixa.Forms
                 workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
             app.Quit();
+        }
+
+        private void prnFormConsumo_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp, 0, 0);
+        }
+
+        Bitmap bmp;
+
+        private void btnImprimirForm_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
+            Graphics mg = Graphics.FromImage(bmp);
+            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            printPreviewDialog1.ShowDialog();
         }
     }
 }

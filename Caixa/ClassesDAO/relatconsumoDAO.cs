@@ -9,12 +9,14 @@ namespace Caixa.ClassesDAO
     {
         Criptografia cripto = new Criptografia("MICROSTATION");
         RelatConsumo rlc = new RelatConsumo();
+        private static string nome;
 
         MySqlDataAdapter comando_sql;
         MySqlCommandBuilder executar_comando;
         DataTable tabela_memoria;
 
         internal RelatConsumo Rlc { get => rlc; set => rlc = value; }
+        public static string Nome { get => nome; set => nome = value; }
 
         private void executarComando(string comando)
         {
@@ -168,5 +170,26 @@ namespace Caixa.ClassesDAO
             return listaDescripto;
         }
         #endregion
+
+        #region LISTARSOMAVALORESGASTOSMES
+        public DataTable ListarMes(string nome)
+        {
+            DataTable listaDescripto;
+            executarComando("SELECT p.nome as NOME, IF(round(sum(rc.valor),2)=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(round(sum(rc.valor),2),2), '.', '|'), ',', '.'), '|', ','))) as VALOR FROM consumo A INNER JOIN PESSOA P ON P.ID_PESSOA = A.ID_PESSOA INNER JOIN relatconsumo rc on A.ID_PESSOA = RC.ID_PESSOA where month(data) = month(now()) and p.nome LIKE '" + nome + "%'; ");
+            listaDescripto = tabela_memoria.Clone();
+
+            for (int i = 0; i < tabela_memoria.Rows.Count; i++)
+            {
+                DataRow linha = listaDescripto.NewRow();
+
+                linha["NOME"] = tabela_memoria.Rows[i]["NOME"].ToString();
+                linha["VALOR"] = tabela_memoria.Rows[i]["VALOR"].ToString();
+
+                listaDescripto.Rows.Add(linha);
+            }
+
+            return listaDescripto;
+        }
+        #endregion       
     }
 }
