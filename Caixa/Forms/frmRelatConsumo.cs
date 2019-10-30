@@ -14,6 +14,8 @@ namespace Caixa.Forms
         RelatConsumo rlc = new RelatConsumo();
         relatconsumoDAO rlcDAO = new relatconsumoDAO();
 
+        Bitmap bmp;
+
         DateTime de;
         DateTime at;
         string nome;
@@ -224,10 +226,10 @@ namespace Caixa.Forms
             }
             #endregion
 
-            #region GridView da soma do mês
-            if (txtNome.Text != string.Empty)
+            #region GRIDVIEW DA SOMA DO BETWEEN
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true && mskAté.MaskFull == true)
             {
-                gvMostrarTotal.DataSource = rlcDAO.ListarMes(nome);
+                gvMostrarTotal.DataSource = rlcDAO.ListarMes(nome, de, at);
             }
             else
             {
@@ -313,6 +315,17 @@ namespace Caixa.Forms
                 gvExibir.DataSource = rlcDAO.ListarTudo();
             }
             #endregion
+
+            #region GRIDVIEW DA SOMA DO BETWEEN
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true && mskAté.MaskFull == true)
+            {
+                gvMostrarTotal.DataSource = rlcDAO.ListarMes(nome, de, at);
+            }
+            else
+            {
+                gvMostrarTotal.DataSource = null;
+            }
+            #endregion
         }
 
         private void MskDe_TextChanged(object sender, EventArgs e)
@@ -390,6 +403,17 @@ namespace Caixa.Forms
             if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
             {
                 gvExibir.DataSource = rlcDAO.ListarTudo();
+            }
+            #endregion
+
+            #region GRIDVIEW DA SOMA DO BETWEEN
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true && mskAté.MaskFull == true)
+            {
+                gvMostrarTotal.DataSource = rlcDAO.ListarMes(nome, de, at);
+            }
+            else
+            {
+                gvMostrarTotal.DataSource = null;
             }
             #endregion
         }
@@ -492,8 +516,6 @@ namespace Caixa.Forms
         {
             e.Graphics.DrawImage(bmp, 0, 0);
         }
-
-        Bitmap bmp;
 
         private void btnImprimirForm_Click(object sender, EventArgs e)
         {

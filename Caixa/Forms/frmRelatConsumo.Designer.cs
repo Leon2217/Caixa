@@ -109,6 +109,8 @@
             // 
             this.gvExibir.AllowUserToAddRows = false;
             this.gvExibir.AllowUserToDeleteRows = false;
+            this.gvExibir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.gvExibir.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvExibir.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvExibir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -172,7 +174,7 @@
             // 
             this.gvMostrarTotal.AllowUserToAddRows = false;
             this.gvMostrarTotal.AllowUserToDeleteRows = false;
-            this.gvMostrarTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.gvMostrarTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gvMostrarTotal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvMostrarTotal.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gvMostrarTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

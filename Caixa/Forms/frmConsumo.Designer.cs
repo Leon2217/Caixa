@@ -69,7 +69,7 @@
             // 
             this.lblValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(323, 70);
+            this.lblValor.Location = new System.Drawing.Point(336, 70);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(50, 20);
             this.lblValor.TabIndex = 0;
@@ -82,7 +82,7 @@
             this.cmbFuncionario.FormattingEnabled = true;
             this.cmbFuncionario.Location = new System.Drawing.Point(110, 11);
             this.cmbFuncionario.Name = "cmbFuncionario";
-            this.cmbFuncionario.Size = new System.Drawing.Size(369, 28);
+            this.cmbFuncionario.Size = new System.Drawing.Size(382, 28);
             this.cmbFuncionario.TabIndex = 2;
             this.cmbFuncionario.SelectedIndexChanged += new System.EventHandler(this.CmbFuncionario_SelectedIndexChanged);
             // 
@@ -92,13 +92,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDesc.Location = new System.Drawing.Point(110, 64);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(206, 26);
+            this.txtDesc.Size = new System.Drawing.Size(219, 26);
             this.txtDesc.TabIndex = 3;
             // 
             // txtValor
             // 
             this.txtValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValor.Location = new System.Drawing.Point(379, 64);
+            this.txtValor.Location = new System.Drawing.Point(392, 64);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(100, 26);
             this.txtValor.TabIndex = 4;
@@ -118,7 +118,7 @@
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalvar.Location = new System.Drawing.Point(8, 96);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(471, 38);
+            this.btnSalvar.Size = new System.Drawing.Size(484, 38);
             this.btnSalvar.TabIndex = 45;
             this.btnSalvar.Text = "Salvar Informações";
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -135,7 +135,7 @@
             this.btnRelatConsumo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelatConsumo.Image = global::Caixa.Properties.Resources.icons8_bens_de_consumo_rápido_50;
             this.btnRelatConsumo.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRelatConsumo.Location = new System.Drawing.Point(485, 9);
+            this.btnRelatConsumo.Location = new System.Drawing.Point(498, 9);
             this.btnRelatConsumo.Name = "btnRelatConsumo";
             this.btnRelatConsumo.Size = new System.Drawing.Size(182, 81);
             this.btnRelatConsumo.TabIndex = 46;
@@ -163,14 +163,14 @@
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvExibir.Size = new System.Drawing.Size(656, 336);
+            this.gvExibir.Size = new System.Drawing.Size(669, 336);
             this.gvExibir.TabIndex = 47;
             // 
             // chkTodos
             // 
             this.chkTodos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkTodos.AutoSize = true;
-            this.chkTodos.Location = new System.Drawing.Point(520, 110);
+            this.chkTodos.Location = new System.Drawing.Point(533, 110);
             this.chkTodos.Name = "chkTodos";
             this.chkTodos.Size = new System.Drawing.Size(144, 24);
             this.chkTodos.TabIndex = 48;
@@ -183,7 +183,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(671, 482);
+            this.ClientSize = new System.Drawing.Size(684, 482);
             this.Controls.Add(this.chkTodos);
             this.Controls.Add(this.gvExibir);
             this.Controls.Add(this.btnRelatConsumo);

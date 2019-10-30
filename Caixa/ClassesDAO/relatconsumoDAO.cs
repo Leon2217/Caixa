@@ -171,11 +171,11 @@ namespace Caixa.ClassesDAO
         }
         #endregion
 
-        #region LISTARSOMAVALORESGASTOSMES
-        public DataTable ListarMes(string nome)
+        #region LISTARSOMAVALORESGASTOSBETWEEN
+        public DataTable ListarMes(string nome, DateTime de, DateTime at)
         {
             DataTable listaDescripto;
-            executarComando("SELECT p.nome as NOME, IF(round(sum(rc.valor),2)=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(round(sum(rc.valor),2),2), '.', '|'), ',', '.'), '|', ','))) as VALOR FROM consumo A INNER JOIN PESSOA P ON P.ID_PESSOA = A.ID_PESSOA INNER JOIN relatconsumo rc on A.ID_PESSOA = RC.ID_PESSOA where month(data) = month(now()) and p.nome LIKE '" + nome + "%'; ");
+            executarComando("SELECT p.nome as NOME, IF(round(sum(rc.valor),2)=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(round(sum(rc.valor),2),2), '.', '|'), ',', '.'), '|', ','))) as VALOR FROM consumo A INNER JOIN PESSOA P ON P.ID_PESSOA = A.ID_PESSOA INNER JOIN relatconsumo rc on A.ID_PESSOA = RC.ID_PESSOA where DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "'and + p.nome LIKE '" + nome + "%'; ");
             listaDescripto = tabela_memoria.Clone();
 
             for (int i = 0; i < tabela_memoria.Rows.Count; i++)
