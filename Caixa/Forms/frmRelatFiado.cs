@@ -209,7 +209,7 @@ namespace Caixa
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
             }
             #endregion
 
@@ -288,7 +288,7 @@ namespace Caixa
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
             }
             #endregion
 
@@ -367,7 +367,7 @@ namespace Caixa
             #region TODOS
             if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
             {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(nome, at, de);
+                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
             }
             #endregion
 

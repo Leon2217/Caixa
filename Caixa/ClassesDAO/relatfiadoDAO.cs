@@ -146,7 +146,7 @@ namespace Caixa
         #endregion        
 
         #region LISTAR BTN NOME
-        public DataTable ListarBTNNOME(string nome,DateTime de, DateTime at)
+        public DataTable ListarBTNNOME(DateTime de, DateTime at, string nome)
         {
             DataTable listaDescripto;
             executarComando("SELECT p.nome as NOME,rf.descr as DESCRICAO,IF(rf.valor=('0.00' OR '0'),'',Concat(Replace(Replace(Replace(Format(rf.valor, 2), '.', '|'), ',', '.'), '|', ','))) as VALOR,DATE_FORMAT(data, '%d/%m/%y') as DATA FROM relatfiado rf INNER JOIN PESSOA P ON P.ID_PESSOA = RF.ID_PESSOA WHERE p.nome LIKE '" + nome + "%' AND DATA BETWEEN '" + de.ToString("yyyy/MM/dd") + "' and '" + at.ToString("yyyy/MM/dd") + "' order by rf.data;");
