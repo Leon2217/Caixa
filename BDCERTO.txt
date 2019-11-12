@@ -444,6 +444,32 @@ foreign key(id_caixa) references caixa(id_caixa)
 on delete cascade on update cascade
 );
 
+create table inventario_gds
+(
+id_iv int not null auto_increment,
+qtd_est int not null,
+valor_gds text not null,
+primary key(id_iv)
+);
+
+
+create table venda_gds
+(
+id_gds int not null auto_increment,
+id_caixa int not null,
+qtd_gds int not null,
+valor_gds text not null,
+total_gds text not null,
+qtd_estoque int not null,
+total_vendas int not null,
+data date not null,
+hora time not null,
+descr text not null,
+primary key(id_gds),
+foreign key(id_caixa) references caixa(id_caixa)
+on delete cascade on update cascade
+);
+
 
 create table verifica
 (

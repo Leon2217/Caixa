@@ -5,6 +5,7 @@ using System.Threading;
 using System.IO;
 using Caixa.Classes;
 using Caixa.Forms;
+using Caixa.ClassesDAO;
 
 namespace Caixa
 {
@@ -24,6 +25,8 @@ namespace Caixa
         VerificaDAO verDAO = new VerificaDAO();
         VendaVC vcc = new VendaVC();
         VendaVCDAO vvcDAO = new VendaVCDAO();
+        VendaSS vgds = new VendaSS();
+        VendaSSDAO vgdsDAO = new VendaSSDAO();
         ContasDAO contasDAO = new ContasDAO();
         UsuarioDAO usuDAO = new UsuarioDAO();
         GeralDAO gerDAO = new GeralDAO();
@@ -47,9 +50,11 @@ namespace Caixa
         double totalrec;
         double totaltarderec;
         double totalmanhavale;
+        double totalmanhagds;
+        double totaltardegds;
+        double totalnoitegds;
         double totaltardevale;
         double totalnoitevale;
-        double totalvale;
         double totalnoiterec;
         string tipo;
         string login;
@@ -164,60 +169,72 @@ namespace Caixa
             }
 
             #endregion
-            #region VALECAP
-            if (vvcDAO.VerificaVenda(data) == true)
+            #region APOSTAS
+            if (vvcDAO.VerificaVenda(data) == true || vgdsDAO.VerificaVenda(data) == true)
             {
-
                 try
                 {
+                    vvcDAO.VerificaVenda(data);
+                    vgdsDAO.VerificaVenda(data);
+
+
                     totalmanhavale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalvale).ToString("C2");
+                    totalmanhagds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
                 }
                 catch
                 {
 
                 }
+
                 if (FechamentoDAO.codturno == "1")
                 {
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalmanhavale).ToString("C2");
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totalmanhavale).ToString("C2") + "\n Santa Sorte: " + (totalmanhagds.ToString("C2"));
                 }
             }
 
-            if (vvcDAO.VerificaVenda2(data) == true)
+            if (vvcDAO.VerificaVenda2(data) == true || vgdsDAO.VerificaVenda2(data) == true)
             {
                 try
                 {
+                    vvcDAO.VerificaVenda2(data);
+                    vgdsDAO.VerificaVenda2(data);
+
+
                     totaltardevale = Convert.ToDouble(VendaVCDAO.tarde.ToString().Replace('.', ','));
-                    totalvale = (totaltardevale + totalmanhavale);
-                    if (FechamentoDAO.codturno == "2")
-                    {
-                        TotalVale();
-                    }
+                    totaltardegds = Convert.ToDouble(VendaSSDAO.tarde.ToString().Replace('.', ','));
                 }
                 catch
                 {
 
+                }
+
+                if (FechamentoDAO.codturno == "2")
+                {
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totaltardevale).ToString("C2") + "\n Santa Sorte: " + (totaltardegds.ToString("C2"));
                 }
             }
 
-            if (vvcDAO.VerificaVenda3(data) == true)
+            if (vvcDAO.VerificaVenda3(data) == true || vgdsDAO.VerificaVenda3(data) == true)
             {
-
                 try
                 {
-                    totalnoitevale = Convert.ToDouble(VendaVCDAO.noite.ToString().Replace('.', ','));
+                    vvcDAO.VerificaVenda3(data);
+                    vgdsDAO.VerificaVenda3(data);
 
+
+                    totalnoitevale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
+                    totalnoitegds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
                 }
                 catch
                 {
 
                 }
+
                 if (FechamentoDAO.codturno == "3")
                 {
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalnoitevale).ToString("C2");
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totalnoitevale).ToString("C2") + "\n Santa Sorte: " + (totalnoitegds.ToString("C2"));
                 }
             }
-
 
 
             #endregion
@@ -811,60 +828,72 @@ namespace Caixa
             }
 
             #endregion
-            #region VALECAP
-            if (vvcDAO.VerificaVenda(data) == true)
+            #region APOSTAS
+            if (vvcDAO.VerificaVenda(data) == true || vgdsDAO.VerificaVenda(data) == true)
             {
-
                 try
                 {
+                    vvcDAO.VerificaVenda(data);
+                    vgdsDAO.VerificaVenda(data);
+
+
                     totalmanhavale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalvale).ToString("C2");
-                }
+                    totalmanhagds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
+                }       
                 catch
                 {
 
                 }
+
                 if (FechamentoDAO.codturno == "1")
                 {
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalmanhavale).ToString("C2");
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totalmanhavale).ToString("C2") + "\n Santa Sorte: " + (totalmanhagds.ToString("C2"));
                 }
             }
 
-            if (vvcDAO.VerificaVenda2(data) == true)
+            if (vvcDAO.VerificaVenda2(data) == true || vgdsDAO.VerificaVenda2(data) == true)
             {
                 try
                 {
+                    vvcDAO.VerificaVenda2(data);
+                    vgdsDAO.VerificaVenda2(data);
+
+
                     totaltardevale = Convert.ToDouble(VendaVCDAO.tarde.ToString().Replace('.', ','));
-                    totalvale = (totaltardevale + totalmanhavale);
-                    if (FechamentoDAO.codturno == "2")
-                    {
-                        TotalVale();
-                    }
+                    totaltardegds = Convert.ToDouble(VendaSSDAO.tarde.ToString().Replace('.', ','));
                 }
                 catch
                 {
 
+                }
+
+                if (FechamentoDAO.codturno == "2")
+                {
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totaltardevale).ToString("C2") + "\n Santa Sorte: " + (totaltardegds.ToString("C2"));
                 }
             }
 
-            if (vvcDAO.VerificaVenda3(data) == true)
+            if (vvcDAO.VerificaVenda3(data) == true || vgdsDAO.VerificaVenda3(data) == true)
             {
-
                 try
                 {
-                    totalnoitevale = Convert.ToDouble(VendaVCDAO.noite.ToString().Replace('.', ','));
+                    vvcDAO.VerificaVenda3(data);
+                    vgdsDAO.VerificaVenda3(data);
 
+
+                    totalnoitevale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
+                    totalnoitegds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
                 }
                 catch
                 {
 
                 }
+
                 if (FechamentoDAO.codturno == "3")
                 {
-                    btnValecap.Text = "F3 - Vale Cap" + "\n Total : " + (totalnoitevale).ToString("C2");
+                    btnValecap.Text = "F3 - Apostas" + "\n Vale Cap : " + (totalnoitevale).ToString("C2") + "\n Santa Sorte: " + (totalnoitegds.ToString("C2"));
                 }
             }
-
 
 
             #endregion
@@ -890,10 +919,6 @@ namespace Caixa
             btnRecarga.Text = "F2 - Recarga" + "\n Manhã : " + totalmanharec.ToString("C2") + "\n Tarde : " + totaltarderec.ToString("C2") + "\n Total : " + totalrec.ToString("C2");
         }
 
-        public void TotalVale()
-        {
-            btnValecap.Text = "F3 - Vale Cap" + "\n Manhã : " + totalmanhavale.ToString("C2") + "\n Tarde : " + totaltardevale.ToString("C2") + "\n Total : " + totalvale.ToString("C2");
-        }
 
         private void InicialCaixa_KeyDown(object sender, KeyEventArgs e)
         {
@@ -974,9 +999,9 @@ namespace Caixa
 
             if (e.KeyValue.Equals(114))
             {
-                frmOpValeCap op = new frmOpValeCap();
-                op.Owner = this;
-                op.ShowDialog();
+                frmOpApostas opa = new frmOpApostas();
+                opa.Owner = this;
+                opa.ShowDialog();
             }
 
             if (e.KeyValue.Equals(115))
@@ -1055,9 +1080,9 @@ namespace Caixa
         }
         private void btnValecap_Click(object sender, EventArgs e)
         {
-            frmOpValeCap ovc = new frmOpValeCap();
-            ovc.Owner = this;
-            ovc.ShowDialog();
+            frmOpApostas opa = new frmOpApostas();
+            opa.Owner = this;
+            opa.ShowDialog();
         }
         private void funcionárioToolStripMenuItem_Click(object sender, EventArgs e)
         {

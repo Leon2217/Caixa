@@ -32,7 +32,7 @@
             this.gvExibir = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.mskData = new System.Windows.Forms.MaskedTextBox();
-            this.btnPaideFamilia = new System.Windows.Forms.Button();
+            this.btnPDF = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTotalV = new System.Windows.Forms.Label();
@@ -80,26 +80,26 @@
             this.mskData.TabIndex = 1;
             this.mskData.TextChanged += new System.EventHandler(this.mskData_TextChanged);
             // 
-            // btnPaideFamilia
+            // btnPDF
             // 
-            this.btnPaideFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaideFamilia.BackColor = System.Drawing.Color.White;
-            this.btnPaideFamilia.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
-            this.btnPaideFamilia.FlatAppearance.BorderSize = 2;
-            this.btnPaideFamilia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
-            this.btnPaideFamilia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
-            this.btnPaideFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaideFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnPaideFamilia.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
-            this.btnPaideFamilia.Location = new System.Drawing.Point(447, 14);
-            this.btnPaideFamilia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnPaideFamilia.Name = "btnPaideFamilia";
-            this.btnPaideFamilia.Size = new System.Drawing.Size(189, 45);
-            this.btnPaideFamilia.TabIndex = 2;
-            this.btnPaideFamilia.Text = "Gerar .PDF";
-            this.btnPaideFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnPaideFamilia.UseVisualStyleBackColor = false;
-            this.btnPaideFamilia.Click += new System.EventHandler(this.btnPaideFamilia_Click);
+            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPDF.BackColor = System.Drawing.Color.White;
+            this.btnPDF.FlatAppearance.BorderColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatAppearance.BorderSize = 2;
+            this.btnPDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnPDF.Image = global::Caixa.Properties.Resources.adobe_pdf_document_14979__1_;
+            this.btnPDF.Location = new System.Drawing.Point(447, 14);
+            this.btnPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(189, 45);
+            this.btnPDF.TabIndex = 2;
+            this.btnPDF.Text = "Gerar .PDF";
+            this.btnPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPaideFamilia_Click);
             // 
             // btnExport
             // 
@@ -151,7 +151,7 @@
             this.ClientSize = new System.Drawing.Size(840, 526);
             this.Controls.Add(this.lblTotalV);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnPaideFamilia);
+            this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.mskData);
             this.Controls.Add(this.label1);
@@ -177,7 +177,7 @@
         private System.Windows.Forms.DataGridView gvExibir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox mskData;
-        private System.Windows.Forms.Button btnPaideFamilia;
+        private System.Windows.Forms.Button btnPDF;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTotalV;

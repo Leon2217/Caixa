@@ -367,14 +367,14 @@
             this.btnValecap.FlatAppearance.BorderSize = 2;
             this.btnValecap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
             this.btnValecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValecap.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnValecap.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValecap.Image = global::Caixa.Properties.Resources.dice_98559;
             this.btnValecap.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnValecap.Location = new System.Drawing.Point(480, 62);
             this.btnValecap.Name = "btnValecap";
             this.btnValecap.Size = new System.Drawing.Size(228, 84);
             this.btnValecap.TabIndex = 3;
-            this.btnValecap.Text = "F3 - Vale Cap";
+            this.btnValecap.Text = "F3 - Apostas";
             this.btnValecap.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnValecap.UseVisualStyleBackColor = false;
             this.btnValecap.Click += new System.EventHandler(this.btnValecap_Click);

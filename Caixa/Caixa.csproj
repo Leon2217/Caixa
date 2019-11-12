@@ -179,10 +179,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassesDAO\ConsumoDAO.cs" />
+    <Compile Include="ClassesDAO\InventarioSSDAO.cs" />
     <Compile Include="ClassesDAO\relatconsumoDAO.cs" />
     <Compile Include="Classes\Backup.cs" />
     <Compile Include="Classes\Consumo.cs" />
+    <Compile Include="Classes\InventarioGds.cs" />
     <Compile Include="Classes\RelatConsumo.cs" />
+    <Compile Include="Classes\VendaSS.cs" />
+    <Compile Include="ClassesDAO\VendaSSDAO.cs" />
     <Compile Include="Forms\Abertura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,6 +383,12 @@
     <Compile Include="Forms\frmInventario.designer.cs">
       <DependentUpon>frmInventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmInventarioSS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInventarioSS.Designer.cs">
+      <DependentUpon>frmInventarioSS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmInventariorec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,11 +401,23 @@
     <Compile Include="Forms\frmMovimentoCaixa.designer.cs">
       <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmOpApostas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOpApostas.Designer.cs">
+      <DependentUpon>frmOpApostas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmOpcaoFecha.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmOpcaoFecha.designer.cs">
       <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOpSantaSorte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOpSantaSorte.Designer.cs">
+      <DependentUpon>frmOpSantaSorte.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmOpValeCap.cs">
       <SubType>Form</SubType>
@@ -469,6 +491,12 @@
     <Compile Include="Forms\frmRelatFiado.Designer.cs">
       <DependentUpon>frmRelatFiado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmRelatSS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRelatSS.Designer.cs">
+      <DependentUpon>frmRelatSS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmRelatTaxa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -516,6 +544,12 @@
     </Compile>
     <Compile Include="Forms\frmValorOperadora.designer.cs">
       <DependentUpon>frmValorOperadora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmVendaSS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmVendaSS.Designer.cs">
+      <DependentUpon>frmVendaSS.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmVendavc.cs">
       <SubType>Form</SubType>
@@ -686,14 +720,23 @@
     <EmbeddedResource Include="Forms\frmInventario.resx">
       <DependentUpon>frmInventario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInventarioSS.resx">
+      <DependentUpon>frmInventarioSS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInventariorec.resx">
       <DependentUpon>frmInventariorec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMovimentoCaixa.resx">
       <DependentUpon>frmMovimentoCaixa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOpApostas.resx">
+      <DependentUpon>frmOpApostas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmOpcaoFecha.resx">
       <DependentUpon>frmOpcaoFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOpSantaSorte.resx">
+      <DependentUpon>frmOpSantaSorte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmOpValeCap.resx">
       <DependentUpon>frmOpValeCap.cs</DependentUpon>
@@ -731,6 +774,9 @@
     <EmbeddedResource Include="Forms\frmRelatFiado.resx">
       <DependentUpon>frmRelatFiado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRelatSS.resx">
+      <DependentUpon>frmRelatSS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRelatTaxa.es.resx">
       <DependentUpon>frmRelatTaxa.cs</DependentUpon>
     </EmbeddedResource>
@@ -757,6 +803,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmValorOperadora.resx">
       <DependentUpon>frmValorOperadora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmVendaSS.resx">
+      <DependentUpon>frmVendaSS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmVendavc.resx">
       <DependentUpon>frmVendavc.cs</DependentUpon>
