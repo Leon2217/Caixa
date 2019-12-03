@@ -174,12 +174,26 @@ namespace Caixa
             {
                 try
                 {
-                    vvcDAO.VerificaVenda(data);
-                    vgdsDAO.VerificaVenda(data);
+                    try
+                    {
+                        vvcDAO.VerificaVenda(data);
+                        totalmanhavale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
 
+                    }
 
-                    totalmanhavale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
-                    totalmanhagds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
+                    try
+                    {
+                        vgdsDAO.VerificaVenda(data);
+                        totalmanhagds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
+
+                    }
+
                 }
                 catch
                 {
@@ -196,12 +210,26 @@ namespace Caixa
             {
                 try
                 {
-                    vvcDAO.VerificaVenda2(data);
-                    vgdsDAO.VerificaVenda2(data);
+                    try
+                    {
+                        vvcDAO.VerificaVenda2(data);
+                        totaltardevale = Convert.ToDouble(VendaVCDAO.tarde.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
 
+                    }
 
-                    totaltardevale = Convert.ToDouble(VendaVCDAO.tarde.ToString().Replace('.', ','));
-                    totaltardegds = Convert.ToDouble(VendaSSDAO.tarde.ToString().Replace('.', ','));
+                    try
+                    {
+                        vgdsDAO.VerificaVenda2(data);
+                        totaltardegds = Convert.ToDouble(VendaSSDAO.tarde.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
+
+                    }
+
                 }
                 catch
                 {
@@ -218,12 +246,26 @@ namespace Caixa
             {
                 try
                 {
-                    vvcDAO.VerificaVenda3(data);
-                    vgdsDAO.VerificaVenda3(data);
+                    try
+                    {
+                        vvcDAO.VerificaVenda3(data);
+                        totalnoitevale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
 
+                    }
 
-                    totalnoitevale = Convert.ToDouble(VendaVCDAO.manha.ToString().Replace('.', ','));
-                    totalnoitegds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
+                    try
+                    {
+                        vgdsDAO.VerificaVenda3(data);
+                        totalnoitegds = Convert.ToDouble(VendaSSDAO.manha.ToString().Replace('.', ','));
+                    }
+                    catch
+                    {
+
+                    }
+
                 }
                 catch
                 {
