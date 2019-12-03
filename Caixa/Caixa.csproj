@@ -183,7 +183,7 @@
     <Compile Include="ClassesDAO\relatconsumoDAO.cs" />
     <Compile Include="Classes\Backup.cs" />
     <Compile Include="Classes\Consumo.cs" />
-    <Compile Include="Classes\InventarioGds.cs" />
+    <Compile Include="Classes\InventarioSS.cs" />
     <Compile Include="Classes\RelatConsumo.cs" />
     <Compile Include="Classes\VendaSS.cs" />
     <Compile Include="ClassesDAO\VendaSSDAO.cs" />
