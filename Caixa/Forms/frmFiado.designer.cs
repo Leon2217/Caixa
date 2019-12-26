@@ -52,6 +52,7 @@
             this.btnPaideFamilia = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.chkCartao = new System.Windows.Forms.CheckBox();
+            this.btnPag = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvExibir)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             this.gvExibir.Name = "gvExibir";
             this.gvExibir.ReadOnly = true;
             this.gvExibir.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvExibir.Size = new System.Drawing.Size(575, 304);
+            this.gvExibir.Size = new System.Drawing.Size(575, 375);
             this.gvExibir.TabIndex = 20;
             this.gvExibir.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvExibir_CellClick);
             // 
@@ -113,7 +114,6 @@
             // 
             // btnAt
             // 
-            this.btnAt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAt.BackColor = System.Drawing.Color.White;
             this.btnAt.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
             this.btnAt.FlatAppearance.BorderSize = 2;
@@ -131,7 +131,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(659, 205);
+            this.label6.Location = new System.Drawing.Point(659, 193);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 20);
             this.label6.TabIndex = 41;
@@ -166,8 +166,7 @@
             // 
             // txtValorPago
             // 
-            this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorPago.Location = new System.Drawing.Point(705, 239);
+            this.txtValorPago.Location = new System.Drawing.Point(705, 227);
             this.txtValorPago.Name = "txtValorPago";
             this.txtValorPago.Size = new System.Drawing.Size(88, 26);
             this.txtValorPago.TabIndex = 45;
@@ -175,9 +174,8 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(595, 242);
+            this.label7.Location = new System.Drawing.Point(595, 230);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 20);
             this.label7.TabIndex = 46;
@@ -193,9 +191,8 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(595, 212);
+            this.label8.Location = new System.Drawing.Point(595, 200);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 20);
             this.label8.TabIndex = 48;
@@ -203,8 +200,7 @@
             // 
             // txtIdAtualizar
             // 
-            this.txtIdAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIdAtualizar.Location = new System.Drawing.Point(705, 209);
+            this.txtIdAtualizar.Location = new System.Drawing.Point(705, 197);
             this.txtIdAtualizar.Name = "txtIdAtualizar";
             this.txtIdAtualizar.Size = new System.Drawing.Size(88, 26);
             this.txtIdAtualizar.TabIndex = 49;
@@ -315,12 +311,33 @@
             this.chkCartao.Text = "Pagamento em Cartão";
             this.chkCartao.UseVisualStyleBackColor = true;
             // 
+            // btnPag
+            // 
+            this.btnPag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPag.BackColor = System.Drawing.Color.White;
+            this.btnPag.FlatAppearance.BorderColor = System.Drawing.Color.LightBlue;
+            this.btnPag.FlatAppearance.BorderSize = 2;
+            this.btnPag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow;
+            this.btnPag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPag.Image = global::Caixa.Properties.Resources._4230540_analysis_graph_report_115003;
+            this.btnPag.Location = new System.Drawing.Point(599, 431);
+            this.btnPag.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPag.Name = "btnPag";
+            this.btnPag.Size = new System.Drawing.Size(194, 65);
+            this.btnPag.TabIndex = 54;
+            this.btnPag.Text = "Relatório dos Pagamentos";
+            this.btnPag.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPag.UseVisualStyleBackColor = false;
+            this.btnPag.Click += new System.EventHandler(this.btnPag_Click);
+            // 
             // frmFiado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(802, 432);
+            this.ClientSize = new System.Drawing.Size(802, 500);
+            this.Controls.Add(this.btnPag);
             this.Controls.Add(this.chkCartao);
             this.Controls.Add(this.btnFiado);
             this.Controls.Add(this.label4);
@@ -382,5 +399,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnFiado;
         private System.Windows.Forms.CheckBox chkCartao;
+        private System.Windows.Forms.Button btnPag;
     }
 }

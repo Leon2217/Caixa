@@ -4,6 +4,9 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using Caixa.Classes;
+using Caixa.ClassesDAO;
+using Caixa.Forms;
 
 namespace Caixa
 {
@@ -24,6 +27,8 @@ namespace Caixa
         relatfiadoDAO rlfDAO = new relatfiadoDAO();
         Auditoria aud = new Auditoria();
         AuditoriaDAO audDAO = new AuditoriaDAO();
+        Pagfiado pgf = new Pagfiado();
+        PagfiadoDAO pgfDAO = new PagfiadoDAO();
 
         string nome;
         string codcaixa;
@@ -363,7 +368,8 @@ namespace Caixa
 
                     gvExibir.DataSource = assDAO.ListarTudo();
 
-                    if(chkCartao.Checked == false)
+
+                    if (chkCartao.Checked == false)
                     {
                         #region CREDITO DEBITO
                         if (vcDAO.Verificavalor() == true)
@@ -423,7 +429,24 @@ namespace Caixa
                             #endregion
                         }
                         #endregion
-
+                         
+                        #region PAGFIADO DINHEIRO
+                        pgf.Id_pessoa = Convert.ToInt32(txtIdAtualizar.Text);
+                        pgf.Valor = txtValorPago.Text.ToString().Replace(".", "");
+                        pgf.Data = DateTime.Now;
+                        pgf.Forma = "Dinheiro";
+                        pgfDAO.Inserir(pgf);
+                        #endregion
+                    }
+                    else
+                    {
+                        #region PAGFIADO CARTÃO
+                        pgf.Id_pessoa = Convert.ToInt32(txtIdAtualizar.Text);
+                        pgf.Valor = txtValorPago.Text.ToString().Replace(".", "");
+                        pgf.Data = DateTime.Now;
+                        pgf.Forma = "Cartão";
+                        pgfDAO.Inserir(pgf);
+                        #endregion
                     }
                     txtValorPago.Text = string.Empty;
                     txtIdAtualizar.Text = string.Empty;
@@ -600,6 +623,13 @@ namespace Caixa
         private void gvExibir_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtIdAtualizar.Text = gvExibir.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        private void btnPag_Click(object sender, EventArgs e)
+        {
+            frmPagFiado  pgf = new frmPagFiado();
+            pgf.Owner = this;
+            pgf.ShowDialog();
         }
     }   
 }

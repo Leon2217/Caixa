@@ -118,65 +118,71 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="1486564179-finance-saving_81499" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1486564179-finance-saving_81499.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_40632" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_40632.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="new-file_40454" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new-file_40454.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Login_37128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login_37128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_printer_15747" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps_printer_15747.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="coin_money_icon-icons.com_51091" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\coin_money_icon-icons.com_51091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="adobe_pdf_document_14979 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adobe_pdf_document_14979 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="businessapplication_distributor_report_document_negocio_23191" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\businessapplication_distributor_report_document_negocio_23191.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="businesspaymentcard_paymentcard_visa_negocio_pag_2339" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\businesspaymentcard_paymentcard_visa_negocio_pag_2339.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Accounting_icon-icons.com_74682 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Accounting_icon-icons.com_74682 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="trashcan-full-icon_34338 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trashcan-full-icon_34338 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sign-open_icon-icons.com_56363" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign-open_icon-icons.com_56363.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="more-button-of-three-dots_icon-icons.com_74259" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\more-button-of-three-dots_icon-icons.com_74259.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Accounting_icon-icons.com_74682" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Accounting_icon-icons.com_74682.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1486503747-block-delete-person-remove-user_81250" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486503747-block-delete-person-remove-user_81250.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bk.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backup-restore256_24925 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backup-restore256_24925 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_book_open_search_locate_6178" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_book_open_search_locate_6178.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="businessapplication_distributor_report_document_negocio_2319 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\businessapplication_distributor_report_document_negocio_2319 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Checked-80_icon-icons.com_57359" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Checked-80_icon-icons.com_57359.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus_40632" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_40632.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="safebox_78389" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\safebox_78389.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="save_as_22027" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save_as_22027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="businessapplication_distributor_report_document_negocio_2319" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\businessapplication_distributor_report_document_negocio_2319.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plusregular_106327" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plusregular_106327.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="question_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\question_icon-icons.com_699701.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cancel_icon-icons.com_73703" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_icon-icons.com_73703.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Coinincrease_icon-icons.com_51180" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Coinincrease_icon-icons.com_51180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bk.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Login_37128 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login_37128 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Retro_Coin_24705" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Retro_Coin_24705.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="businesspaymentcard_paymentcard_visa_negocio_pag_2339" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\businesspaymentcard_paymentcard_visa_negocio_pag_2339.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="document_microsoft_excel_15023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document_microsoft_excel_15023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_cancel_128_28318" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_cancel_128_28318.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save_as_22027 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save_as_22027 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_add_user_16734" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new_add_user_16734.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1486503757-bank-money-safe-locker-security_81276" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486503757-bank-money-safe-locker-security_81276.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="businessapplication_distributor_report_document_negocio_23191" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\businessapplication_distributor_report_document_negocio_23191.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Accounting_icon_icons_com_74682" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Accounting_icon-icons.com_74682.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="apps_printer_15747 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\apps_printer_15747 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,26 +190,140 @@
   <data name="databackup_theapplication_dedatos_3366 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\databackup_theapplication_dedatos_3366 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Accounting_icon-icons.com_74682" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Accounting_icon-icons.com_74682.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Accounting_icon-icons.com_74682 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Accounting_icon-icons.com_74682 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new-file_40454 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new-file_40454 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel_icon-icons.com_73703" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_icon-icons.com_73703.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search_book_open_search_locate_6178" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_book_open_search_locate_6178.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1485477182-open-lock_78586" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1485477182-open-lock_78586.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cash_icon-icons.com_51090 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cash_icon-icons.com_51090 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cancel_icon-icons2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_icon-icons.com_737032.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Accounting_icon_icons_com_74682" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Accounting_icon-icons.com_74682.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-bens-de-consumo-rápido-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-bens-de-consumo-rápido-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sales-report_25411" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sales-report_25411.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="business-color_money-time_icon-icons.com_53444" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\business-color_money-time_icon-icons.com_53444.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1486564179-finance-saving_81499" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486564179-finance-saving_81499.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adobe_pdf_document_14979 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adobe_pdf_document_14979 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1485969921-5-refresh_78908" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1485969921-5-refresh_78908.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="coin_money_icon-icons.com_51091" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coin_money_icon-icons.com_51091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_icon-icons.com_737031.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eraser_46865" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eraser_46865.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="go-back256_24856" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\go-back256_24856.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search_find_lupa_21889" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_find_lupa_21889.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trashcan-full-icon_34338 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trashcan-full-icon_34338 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel_stop_exit_1583" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel_stop_exit_1583.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="more-button-of-three-dots_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\more-button-of-three-dots_icon-icons.com_742591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="question_icon-icons.com_69970" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\question_icon-icons.com_69970.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trashcan-full-icon_343381" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trashcan-full-icon_343381.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cash_icon-icons.com_51090" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cash_icon-icons.com_51090.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paperdesk_icon-icons.com_51135" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paperdesk_icon-icons.com_51135.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="33_Cell_Phone__Charger_icon-icons.com_61444" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\33_Cell_Phone__Charger_icon-icons.com_61444.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="next-5_icon-icons.com_69490" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\next-5_icon-icons.com_69490.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Login_37128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login_37128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save_as_22027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save_as_22027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adobe_pdf_document_14979" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adobe_pdf_document_14979.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plusregular_106327" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plusregular_106327.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Checked-80_icon-icons.com_57359" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Checked-80_icon-icons.com_57359.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1489436625-chartmoneydollarcurrency_81885" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1489436625-chartmoneydollarcurrency_81885.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice_98559" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dice_98559.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new-file_40454" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new-file_40454.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next-5_icon-icons.com_69490 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next-5_icon-icons.com_69490 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="remove_delete_database_16698" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove_delete_database_16698.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps_printer_15747" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps_printer_15747.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cash_icon-icons.com_51090 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cash_icon-icons.com_51090 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trashcan-full-icon_34338" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trashcan-full-icon_34338.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="databackup_theapplication_dedatos_3366 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\databackup_theapplication_dedatos_3366 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="three-dots-more-indicator_icon-icons.com_72518" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\three-dots-more-indicator_icon-icons.com_72518.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghostview_search_document_6161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghostview_search_document_6161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="business_application_addmale_useradd_insert_add_user_client_2312" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\business_application_addmale_useradd_insert_add_user_client_2312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="databackup_theapplication_dedatos_3366" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\databackup_theapplication_dedatos_3366.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_arrow_back_128_28226" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_arrow_back_128_28226.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="padlock66_42533" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\padlock66_42533.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="business_salesreport_salesreport_negocio_2353" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\business_salesreport_salesreport_negocio_2353.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,133 +331,16 @@
   <data name="Sales-report_25411 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sales-report_25411 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="databackup_theapplication_dedatos_3366" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\databackup_theapplication_dedatos_3366.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Login_37128 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login_37128 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel_icon-icons2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_icon-icons.com_737032.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Sales-report_25411" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sales-report_25411.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="trashcan-full-icon_34338" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trashcan-full-icon_34338.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="question_icon-icons.com_69970" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\question_icon-icons.com_69970.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save_as_22027 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save_as_22027 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_cancel_128_28318" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_cancel_128_28318.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="new-file_40454 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new-file_40454 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="document_microsoft_excel_15023" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document_microsoft_excel_15023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="new_add_user_16734" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new_add_user_16734.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="more-button-of-three-dots_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\more-button-of-three-dots_icon-icons.com_742591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search_find_lupa_21889" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_find_lupa_21889.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search_find_lupa_218891" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_find_lupa_218891.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1485969921-5-refresh_78908" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1485969921-5-refresh_78908.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="businessapplication_distributor_report_document_negocio_2319" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\businessapplication_distributor_report_document_negocio_2319.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_arrow_back_128_28226" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_arrow_back_128_28226.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dice_98559" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dice_98559.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="padlock66_42533" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\padlock66_42533.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="business-color_money-time_icon-icons.com_53444" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\business-color_money-time_icon-icons.com_53444.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="trashcan-full-icon_343381" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trashcan-full-icon_343381.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="remove_delete_database_16698" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\remove_delete_database_16698.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="more-button-of-three-dots_icon-icons.com_74259" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\more-button-of-three-dots_icon-icons.com_74259.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Retro_Coin_24705" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Retro_Coin_24705.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="business_application_addmale_useradd_insert_add_user_client_2312" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\business_application_addmale_useradd_insert_add_user_client_2312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="question_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\question_icon-icons.com_699701.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cash_icon-icons.com_51090" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cash_icon-icons.com_51090.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Coinincrease_icon-icons.com_51180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Coinincrease_icon-icons.com_51180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cancel_stop_exit_1583" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cancel_stop_exit_1583.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="three-dots-more-indicator_icon-icons.com_72518" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\three-dots-more-indicator_icon-icons.com_72518.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Paperdesk_icon-icons.com_51135" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Paperdesk_icon-icons.com_51135.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1486503757-bank-money-safe-locker-security_81276" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1486503757-bank-money-safe-locker-security_81276.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1489436625-chartmoneydollarcurrency_81885" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1489436625-chartmoneydollarcurrency_81885.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_icon-icons.com_737031.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="businessapplication_distributor_report_document_negocio_2319 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\businessapplication_distributor_report_document_negocio_2319 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="next-5_icon-icons.com_69490" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next-5_icon-icons.com_69490.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_find_lupa_218892" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_find_lupa_218892.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="go-back256_24856" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go-back256_24856.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_find_lupa_218891" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_find_lupa_218891.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ghostview_search_document_6161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ghostview_search_document_6161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="backup-restore256_24925 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\backup-restore256_24925 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="next-5_icon-icons.com_69490 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\next-5_icon-icons.com_69490 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="adobe_pdf_document_14979" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adobe_pdf_document_14979.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eraser_46865" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eraser_46865.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-bens-de-consumo-rápido-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-bens-de-consumo-rápido-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="4230540-analysis-graph-report_115003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4230540-analysis-graph-report_115003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

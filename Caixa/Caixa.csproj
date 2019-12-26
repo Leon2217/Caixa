@@ -180,10 +180,12 @@
   <ItemGroup>
     <Compile Include="ClassesDAO\ConsumoDAO.cs" />
     <Compile Include="ClassesDAO\InventarioSSDAO.cs" />
+    <Compile Include="ClassesDAO\PagfiadoDAO.cs" />
     <Compile Include="ClassesDAO\relatconsumoDAO.cs" />
     <Compile Include="Classes\Backup.cs" />
     <Compile Include="Classes\Consumo.cs" />
     <Compile Include="Classes\InventarioSS.cs" />
+    <Compile Include="Classes\Pagfiado.cs" />
     <Compile Include="Classes\RelatConsumo.cs" />
     <Compile Include="Classes\VendaSS.cs" />
     <Compile Include="ClassesDAO\VendaSSDAO.cs" />
@@ -430,6 +432,12 @@
     </Compile>
     <Compile Include="Forms\frmOpçãodeMoeda.designer.cs">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPagFiado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPagFiado.Designer.cs">
+      <DependentUpon>frmPagFiado.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmPesquisaPessoa.cs">
       <SubType>Form</SubType>
@@ -744,6 +752,9 @@
     <EmbeddedResource Include="Forms\frmOpçãodeMoeda.resx">
       <DependentUpon>frmOpçãodeMoeda.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPagFiado.resx">
+      <DependentUpon>frmPagFiado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPesquisaPessoa.resx">
       <DependentUpon>frmPesquisaPessoa.cs</DependentUpon>
     </EmbeddedResource>
@@ -900,6 +911,7 @@
     <None Include="Resources\backup-restore256_24925 %281%29.png" />
     <None Include="Resources\remove_delete_database_16698.png" />
     <None Include="Resources\icons8-bens-de-consumo-rápido-50.png" />
+    <None Include="Resources\4230540-analysis-graph-report_115003.png" />
     <Content Include="UpgradeLog.htm" />
     <Content Include="UpgradeLog2.htm" />
     <Content Include="UpgradeLog3.htm" />

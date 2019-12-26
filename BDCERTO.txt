@@ -232,6 +232,17 @@ foreign key(id_pessoa) references pessoa(id_pessoa)
 on delete cascade on update cascade
 );
 
+create table pagfiado
+(
+id_pag int not null auto_increment,
+id_pessoa int not null,
+valor text not null,
+data date not null,
+forma text not null,
+primary key(id_pag),
+foreign key(id_pessoa) references pessoa(id_pessoa)
+on delete cascade on update cascade
+);
 
 create table consumo
 (

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
+using Caixa.Classes;
+using Caixa.ClassesDAO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 
-namespace Caixa
+namespace Caixa.Forms
 {
-    public partial class frmRelatFiado : Form
+    public partial class frmPagFiado : Form
     {
-        Relatfiado rlf = new Relatfiado();
-        relatfiadoDAO rlfDAO = new relatfiadoDAO();
+        Pagfiado pgf = new Pagfiado();
+        PagfiadoDAO pgfDAO = new PagfiadoDAO();
 
         #region VAR
         string nome;
@@ -19,14 +21,14 @@ namespace Caixa
         DateTime data;
         #endregion
 
-        public frmRelatFiado()
+        public frmPagFiado()
         {
             InitializeComponent();
         }
 
-        private void frmRelatFiado_Load(object sender, EventArgs e)
+        private void frmPagFiado_Load(object sender, EventArgs e)
         {
-            gvExibir.DataSource = rlfDAO.ListarTudo();
+            gvExibir.DataSource = pgfDAO.ListarTudo();
 
             #region AJUSTE GRID
             foreach (DataGridViewColumn column in gvExibir.Columns)
@@ -34,15 +36,255 @@ namespace Caixa
                 if (column.DataPropertyName == "VALOR")
                     column.Width = 50; //tamanho fixo da coluna VALOR
                 else if (column.DataPropertyName == "DATA")
-                    column.Width = 80; //tamanho fixo da coluna DATA
+                    column.Width = 50; //tamanho fixo da coluna DATA
                 else if (column.DataPropertyName == "NOME")
-                    column.Width = 140; //tamanho fixo da coluna DESCRICAO
+                    column.Width = 200; //tamanho fixo da coluna NOME
+                else if (column.DataPropertyName == "FORMA")
+                    column.Width = 90; //tamanho fixo da coluna FORMA
+
 
 
                 else
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
+            }
+            #endregion
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+            #region DATA INCIAL
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DATA FINAL
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region SOMENTE NOME PREENCHIDO
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarNome(nome);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA E NOME
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarDeNome(nome, de);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA 
+            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarDe(de);
+            }
+            #endregion
+
+            #region BETWEEN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTN(de, at);
+            }
+            #endregion
+
+            #region TODOS
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTNNOME(de, at, nome);
+            }
+            #endregion
+
+            #region TODOS VAZIOS
+            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarTudo();
+            }
+            #endregion
+        }
+
+        private void mskAté_TextChanged(object sender, EventArgs e)
+        {
+            #region DATA INCIAL
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DATA FINAL
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region SOMENTE NOME PREENCHIDO
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarNome(nome);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA E NOME
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarDeNome(nome, de);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA 
+            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarDe(de);
+            }
+            #endregion
+
+            #region BETWEEN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTN(de, at);
+            }
+            #endregion
+
+            #region TODOS
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTNNOME(de, at, nome);
+            }
+            #endregion
+
+            #region TODOS VAZIOS
+            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarTudo();
+            }
+            #endregion
+        }
+
+        private void mskDe_TextChanged(object sender, EventArgs e)
+        {
+            #region DATA INCIAL
+            if (mskDe.MaskFull == true)
+            {
+                try
+                {
+                    de = Convert.ToDateTime(mskDe.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskDe.Clear();
+                }
+
+            }
+            #endregion
+
+            #region DATA FINAL
+            if (mskAté.MaskFull == true)
+            {
+                try
+                {
+                    at = Convert.ToDateTime(mskAté.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Data inválida !!!");
+                    mskAté.Clear();
+                }
+
+            }
+            #endregion
+
+            #region SOMENTE NOME PREENCHIDO
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarNome(nome);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA E NOME
+            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
+            {
+                nome = txtNome.Text;
+                gvExibir.DataSource = pgfDAO.ListarDeNome(nome, de);
+            }
+            #endregion
+
+            #region SOMENTE A PRIMEIRA DATA 
+            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarDe(de);
+            }
+            #endregion
+
+            #region BETWEEN
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTN(de, at);
+            }
+            #endregion
+
+            #region TODOS
+            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
+            {
+                gvExibir.DataSource = pgfDAO.ListarBTNNOME(de, at, nome);
+            }
+            #endregion
+
+            #region TODOS VAZIOS
+            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
+            {
+                gvExibir.DataSource = pgfDAO.ListarTudo();
             }
             #endregion
         }
@@ -74,7 +316,7 @@ namespace Caixa
                 foreach (DataGridViewCell cell in row.Cells)
                 {
 
-                    if (cell.ColumnIndex == 3)
+                    if (cell.ColumnIndex == 2)
                     {
                         DateTime d;
                         d = Convert.ToDateTime(cell.Value.ToString());
@@ -108,251 +350,10 @@ namespace Caixa
             }
             #endregion
         }
-            
 
-        private void txtNome_TextChanged(object sender, EventArgs e)
-        {            
-            #region DATA INCIAL
-            if (mskDe.MaskFull == true)
-            {
-                try
-                {
-                    de = Convert.ToDateTime(mskDe.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskDe.Clear();
-                }
-
-            }
-            #endregion
-
-            #region DATA FINAL
-            if (mskAté.MaskFull == true)
-            {
-                try
-                {
-                    at = Convert.ToDateTime(mskAté.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskAté.Clear();
-                }
-
-            }
-            #endregion
-
-            #region SOMENTE NOME PREENCHIDO
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarNome(nome);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA E NOME
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarDeNome(nome, de);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA 
-            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarDe(de);
-            }
-            #endregion
-
-            #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTN(de, at);
-            }
-            #endregion
-
-            #region TODOS
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
-            }
-            #endregion
-
-            #region TODOS VAZIOS
-            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarTudo();
-            }
-            #endregion
-        }
-
-        private void mskDe_TextChanged(object sender, EventArgs e)
-        {            
-            #region DATA INCIAL
-            if (mskDe.MaskFull == true)
-            {
-                try
-                {
-                    de = Convert.ToDateTime(mskDe.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskDe.Clear();
-                }
-
-            }
-            #endregion
-
-            #region DATA FINAL
-            if (mskAté.MaskFull == true)
-            {
-                try
-                {
-                    at = Convert.ToDateTime(mskAté.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskAté.Clear();
-                }
-
-            }
-            #endregion
-
-            #region SOMENTE NOME PREENCHIDO
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarNome(nome);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA E NOME
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarDeNome(nome, de);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA 
-            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarDe(de);
-            }
-            #endregion
-
-            #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTN(de, at);
-            }
-            #endregion
-
-            #region TODOS
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
-            }
-            #endregion
-
-            #region TODOS VAZIOS
-            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarTudo();
-            }
-            #endregion
-        }
-
-        private void mskAté_TextChanged(object sender, EventArgs e)
-        {            
-            #region DATA INCIAL
-            if (mskDe.MaskFull == true)
-            {
-                try
-                {
-                    de = Convert.ToDateTime(mskDe.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskDe.Clear();
-                }
-
-            }
-            #endregion
-
-            #region DATA FINAL
-            if (mskAté.MaskFull == true)
-            {
-                try
-                {
-                    at = Convert.ToDateTime(mskAté.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Data inválida !!!");
-                    mskAté.Clear();
-                }
-
-            }
-            #endregion
-
-            #region SOMENTE NOME PREENCHIDO
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == false && mskAté.MaskFull == false)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarNome(nome);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA E NOME
-            if (txtNome.Text != string.Empty && mskDe.MaskFull == true)
-            {
-                nome = txtNome.Text;
-                gvExibir.DataSource = rlfDAO.ListarDeNome(nome, de);
-            }
-            #endregion
-
-            #region SOMENTE A PRIMEIRA DATA 
-            if (mskDe.MaskFull == true && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarDe(de);
-            }
-            #endregion
-
-            #region BETWEEN
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text == string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTN(de, at);
-            }
-            #endregion
-
-            #region TODOS
-            if (mskDe.MaskFull == true && mskAté.MaskFull == true && txtNome.Text != string.Empty)
-            {
-                gvExibir.DataSource = rlfDAO.ListarBTNNOME(de, at, nome);
-            }
-            #endregion
-
-            #region TODOS VAZIOS
-            if (mskDe.MaskFull == false && txtNome.Text == string.Empty && mskAté.MaskFull == false)
-            {
-                gvExibir.DataSource = rlfDAO.ListarTudo();
-            }
-            #endregion
-        }
-
-        private void frmRelatFiado_KeyDown(object sender, KeyEventArgs e)
+        private void btnPDF_Click(object sender, EventArgs e)
         {
-            if (e.KeyValue.Equals(27))
-            {
-                this.Close();
-            }
+            ExportarPDF(gvExibir, "planilha");
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -383,7 +384,7 @@ namespace Caixa
             {
                 for (j = 0; j < gvExibir.Columns.Count; j++)
                 {
-                    if (j == 3)
+                    if (j == 2)
                     {
                         data = Convert.ToDateTime(gvExibir.Rows[i].Cells[j].Value);
 
@@ -396,7 +397,7 @@ namespace Caixa
                     }
                 }
             }
-            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("C2", "C300");
+            Microsoft.Office.Interop.Excel.Range rng = worksheet.get_Range("B2", "B300");
 
             Microsoft.Office.Interop.Excel.Range foda;
             foda = worksheet.UsedRange;
@@ -417,9 +418,12 @@ namespace Caixa
             #endregion
         }
 
-        private void btnPaideFamilia_Click(object sender, EventArgs e)
+        private void frmPagFiado_KeyDown(object sender, KeyEventArgs e)
         {
-            ExportarPDF(gvExibir, "planilha");
+            if (e.KeyValue.Equals(27))
+            {
+                this.Close();
+            }
         }
     }
 }
